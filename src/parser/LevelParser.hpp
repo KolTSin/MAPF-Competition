@@ -1,9 +1,15 @@
 #pragma once
 
 #include "domain/Level.hpp"
+#include "state/State.hpp"
 #include <istream>
+
+struct ParsedLevel {
+    Level level;
+    State initial_state;
+};
 
 class LevelParser {
 public:
-    static Level parse(std::istream& in);
+    static ParsedLevel parse(std::istream& in);
 };
