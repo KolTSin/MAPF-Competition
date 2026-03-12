@@ -56,19 +56,19 @@ struct Action {
     Direction move_dir{Direction::North};
     Direction box_dir{Direction::North};
 
-    static Action move(Direction dir) noexcept {
+    static constexpr Action move(Direction dir) noexcept {
         return Action{ActionType::Move, dir, Direction::North};
     }
 
-    static Action push(Direction agent_dir, Direction box_move_dir) noexcept {
+    static constexpr Action push(Direction agent_dir, Direction box_move_dir) noexcept {
         return Action{ActionType::Push, agent_dir, box_move_dir};
     }
 
-    static Action pull(Direction agent_dir, Direction box_dir) noexcept {
+    static constexpr Action pull(Direction agent_dir, Direction box_dir) noexcept {
         return Action{ActionType::Pull, agent_dir, box_dir};
     }
 
-    static Action noop() noexcept {
+    static constexpr Action noop() noexcept {
         return Action{ActionType::NoOp, Direction::North, Direction::North};
     }
 
