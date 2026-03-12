@@ -13,7 +13,7 @@ struct JointAction {
             if (i > 0) {
                 out += "|";
             }
-            out += actions[i].command;
+            out += actions[i].to_string();
         }
         return out;
     }

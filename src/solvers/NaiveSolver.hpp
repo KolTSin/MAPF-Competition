@@ -4,5 +4,5 @@
 
 class NaiveSolver final : public Solver {
 public:
-    Plan solve(const Level& level) override;
+    Plan solve(const Level& level, const State& initial_state) override;
 };

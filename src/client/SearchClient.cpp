@@ -1,16 +1,16 @@
 #include "client/SearchClient.hpp"
 #include "parser/LevelParser.hpp"
 #include "solvers/NaiveSolver.hpp"
-#include <iostream>
-#include <memory>
 
+#include <iostream>
 
 void SearchClient::run() {
-    auto level = LevelParser::parse(std::cin);
+    ParsedLevel parsed = LevelParser::parse(std::cin);
+
     NaiveSolver solver;
-    auto plan = solver.solve(level);
+    auto plan = solver.solve(parsed.level, parsed.initial_state);
 
     for (const auto& joint_action : plan.steps) {
-        std::cout << joint_action.to_string() << std::endl;
+        std::cout << joint_action.to_string() << '\n';
     }
 }

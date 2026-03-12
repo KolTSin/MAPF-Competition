@@ -50,5 +50,5 @@ inline Color color_from_string(const std::string& raw) {
     if (s == "lightblue") return Color::Lightblue;
     if (s == "brown") return Color::Brown;
 
-    return ;
+    return Color::Unknown;
 }
