@@ -10,4 +10,7 @@ public:
     [[nodiscard]] bool empty() const noexcept {
         return steps.empty();
     }
+    [[nodiscard]] std::size_t size() const noexcept {
+        return steps.size();
+    }
 };

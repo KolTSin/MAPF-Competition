@@ -1,6 +1,6 @@
 #include "client/SearchClient.hpp"
 #include "parser/LevelParser.hpp"
-#include "solvers/NaiveSolver.hpp"
+#include "solvers/SequentialSolver.hpp"
 
 #include <iostream>
 
@@ -9,12 +9,13 @@ void SearchClient::run() {
     std::cout.flush();
     ParsedLevel parsed = LevelParser::parse(std::cin);
 
-    NaiveSolver solver;
-    auto plan = solver.solve(parsed.level, parsed.initial_state);
+    SequentialSolver solver;
+    Plan plan = solver.solve(parsed.level, parsed.initial_state);
 
-    for (const auto& joint_action : plan.steps) {
+    for (const JointAction& joint_action : plan.steps) {
         std::cout << joint_action.to_string() << '\n';
         std::cout.flush();
+        std::cerr << joint_action.to_string() << '\n';
 
         std::string response;
         if (!std::getline(std::cin, response)) {

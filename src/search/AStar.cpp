@@ -13,10 +13,12 @@
 #include <stdexcept>
 #include <unordered_map>
 #include <vector>
+#include <iostream>
 
 namespace {
 
 [[nodiscard]] int heuristic(const Level& level, const State& state, int agent_id) {
+    // Simple heuristic that returns the manhattan-distance between a given agent and its goal. 
     const Position pos = state.agent_positions[agent_id];
 
     int best = std::numeric_limits<int>::max();
@@ -74,7 +76,7 @@ Plan AStar::search(const Level& level,
     if (agent_id < 0 || agent_id >= initial_state.num_agents()) {
         throw std::runtime_error("Invalid agent_id in AStar::search");
     }
-
+    std::cerr << "Starting search for agent: " << agent_id <<'\n';
     std::vector<Node> nodes;
     nodes.reserve(1024);
 
