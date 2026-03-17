@@ -16,61 +16,32 @@
 #include <iostream>
 
 namespace {
-
-[[nodiscard]] int heuristic(const Level& level, const State& state, int agent_id) {
-    // Simple heuristic that returns the manhattan-distance between a given agent and its goal. 
-    const Position pos = state.agent_positions[agent_id];
-
-    int best = std::numeric_limits<int>::max();
-
-    for (int r = 0; r < level.rows; ++r) {
-        for (int c = 0; c < level.cols; ++c) {
-            const char g = level.goal_at(r, c);
-            if (g == static_cast<char>('0' + agent_id)) {
-                const int dist = std::abs(pos.row - r) + std::abs(pos.col - c);
-                best = std::min(best, dist);
-            }
-        }
-    }
-
-    if (best == std::numeric_limits<int>::max()) {
-        return 0;
-    }
-
-    return best;
-}
-
 [[nodiscard]] bool is_goal(const Level& level, const State& state, int agent_id) {
     const Position pos = state.agent_positions[agent_id];
     return level.goal_at(pos.row, pos.col) == static_cast<char>('0' + agent_id);
 }
 
-[[nodiscard]] Plan reconstruct_plan(const std::vector<Node>& nodes,
-                                    int goal_index,
-                                    int num_agents,
-                                    int agent_id) {
-    std::vector<JointAction> reversed_steps;
+[[nodiscard]] std::vector<Action> reconstruct_plan(const std::vector<Node>& nodes,
+                                    int goal_index) {
+    std::vector<Action> reversed_steps;
 
     int current = goal_index;
     while (nodes[current].parent_index != -1) {
-        JointAction ja;
-        ja.actions.resize(num_agents, Action::noop());
-        ja.actions[agent_id] = nodes[current].action;
-        reversed_steps.push_back(ja);
+        reversed_steps.push_back(nodes[current].action);
 
         current = nodes[current].parent_index;
     }
 
     std::reverse(reversed_steps.begin(), reversed_steps.end());
 
-    Plan plan;
-    plan.steps = std::move(reversed_steps);
-    return plan;
+    // Plan plan;
+    // plan.steps = std::move(reversed_steps);
+    return reversed_steps;
 }
 
 } // namespace
 
-Plan AStar::search(const Level& level,
+std::vector<Action> AStar::search(const Level& level,
                    const State& initial_state,
                    int agent_id) {
     if (agent_id < 0 || agent_id >= initial_state.num_agents()) {
@@ -88,7 +59,7 @@ Plan AStar::search(const Level& level,
     Node start;
     start.state = initial_state;
     start.g = 0;
-    start.h = heuristic(level, initial_state, agent_id);
+    start.h = heuristic_.evaluate(initial_state);
     start.parent_index = -1;
     start.action = Action::noop();
 
@@ -110,9 +81,7 @@ Plan AStar::search(const Level& level,
 
         if (is_goal(level, current.state, agent_id)) {
             return reconstruct_plan(nodes,
-                                    current_index,
-                                    initial_state.num_agents(),
-                                    agent_id);
+                                    current_index);
         }
 
         SuccessorGenerator::expand_agent(level, current.state, agent_id, successors);
@@ -128,7 +97,7 @@ Plan AStar::search(const Level& level,
             Node next;
             next.state = succ.next_state;
             next.g = tentative_g;
-            next.h = heuristic(level, next.state, agent_id);
+            next.h = heuristic_.evaluate(next.state);
             next.parent_index = current_index;
             next.action = succ.action;
 
@@ -140,5 +109,5 @@ Plan AStar::search(const Level& level,
         }
     }
 
-    return Plan{};
+    return std::vector<Action>{};
 }

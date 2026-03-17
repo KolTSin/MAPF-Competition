@@ -7,6 +7,6 @@
 
 class PlanMerger {
 public:
-    static Plan merge_agent_plans(const std::vector<Plan>& agent_plans,
+    static Plan merge_agent_plans(const std::vector<std::vector<Action>>& agent_plans,
                                   int num_agents);
 };
