@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 20)
+cmake_minimum_required(VERSION 3.16)
 project(MAPF-Competition LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)

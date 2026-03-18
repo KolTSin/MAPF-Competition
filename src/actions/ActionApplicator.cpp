@@ -32,9 +32,9 @@ bool ActionApplicator::cell_is_free(const Level& level,
     if (state.has_box(row, col)) {
         return false;
     }
-    if (cell_has_other_agent(state, acting_agent, row, col)) {
-        return false;
-    }
+    // if (cell_has_other_agent(state, acting_agent, row, col)) {
+    //     return false;
+    // }
     return true;
 }
 

@@ -18,5 +18,6 @@ public:
         const Level& level,
         const State& state,
         int agent_id,
+        int time,
         std::vector<Successor>& out);
 };

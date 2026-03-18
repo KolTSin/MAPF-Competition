@@ -84,7 +84,7 @@ std::vector<Action> AStar::search(const Level& level,
                                     current_index);
         }
 
-        SuccessorGenerator::expand_agent(level, current.state, agent_id, successors);
+        SuccessorGenerator::expand_agent(level, current.state, agent_id, 0, successors);
 
         for (const Successor& succ : successors) {
             const int tentative_g = current.g + 1;

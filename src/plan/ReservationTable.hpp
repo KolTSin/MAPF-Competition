@@ -1,9 +1,10 @@
 #pragma once
 
 #include "domain/Position.hpp"
+#include "actions/Action.hpp"
 
 #include <cstddef>
-#include <unordered_set>
+#include <unordered_map>
 #include <vector>
 
 struct CellReservation {
@@ -40,19 +41,21 @@ struct EdgeReservationHasher {
 
 class ReservationTable {
 public:
-    [[nodiscard]] bool is_cell_reserved(int row, int col, int time) const;
+    [[nodiscard]] bool is_cell_reserved(int row, int col, int time, int agent) const;
     [[nodiscard]] bool is_edge_reserved(const Position& from,
                                         const Position& to,
-                                        int time) const;
+                                        int time,
+                                        int agent) const;
 
-    void reserve_cell(int row, int col, int time);
+    void reserve_cell(int row, int col, int time, int agent);
     void reserve_edge(const Position& from,
                       const Position& to,
-                      int time);
+                      int time,
+                      int agent);
 
-    void reserve_path(const std::vector<Position>& path);
+    void reserve_path(const std::vector<Action>& path, Position initial_pos, int agent);
 
 private:
-    std::unordered_set<CellReservation, CellReservationHasher> cell_reservations_;
-    std::unordered_set<EdgeReservation, EdgeReservationHasher> edge_reservations_;
+    std::unordered_map<CellReservation, int, CellReservationHasher> cell_reservations_;
+    std::unordered_map<EdgeReservation, int, EdgeReservationHasher> edge_reservations_;
 };

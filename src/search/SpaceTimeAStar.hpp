@@ -32,8 +32,8 @@ public:
 
     std::vector<Action> search(
         const Level& level,
-        const Position& start,
-        const Position& goal,
+        const State& initial_state,
+        const int agent,
         const ReservationTable& reservations
     );
 private:

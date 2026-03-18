@@ -7,6 +7,7 @@
 
 struct Node {
     State state;
+    int time{0};
 
     int g{0};
     int h{0};
