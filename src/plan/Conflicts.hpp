@@ -11,9 +11,17 @@
 //     std::size_t operator()(const Conflict& r) const noexcept;
 // };
 
+enum class ConflictType {
+    None,
+    Vertex,
+    Edge,
+    Follow
+};
+
 struct Constraint {
     int agent_id;
     int time;
+    ConflictType type{ConflictType::None};
 
     Position cell;
     std::array<Position, 2> from{};
@@ -32,6 +40,7 @@ struct Constraint {
 struct Conflict {
     std::vector<int> agents{-1,-1};
     int time;
+    ConflictType type{ConflictType::None};
 
     Position cell;
     std::array<Position, 2> from{};
