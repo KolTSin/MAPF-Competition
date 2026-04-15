@@ -14,6 +14,7 @@
 #include "search/CBSFrontier.hpp"
 
 #include <algorithm>
+#include <iostream>
 
 namespace {
 
@@ -84,7 +85,7 @@ Plan CBSSolver::solve(const Level& level, const State& initial_state, const IHeu
     // go through the CT until a solution is found
     while (!open.empty()) {
         const int current_index = open.pop();
-        const CBSNode& current = CT[current_index];
+        const CBSNode current = CT[current_index];
 
         // detect conflicts
         const Conflict conflict = ConflictDetector::findFirstConflict(current.plans);
@@ -119,12 +120,15 @@ Plan CBSSolver::solve(const Level& level, const State& initial_state, const IHeu
 
             // search for the constrained agent
             plan = stastar.search(level, initial_state, conflict.agents[i], 20'000, res_table);
-            if (!plan.valid()) {
-                continue;
-            }
             if (plan == child.plans[conflict.agents[i]]) {
+                std::cerr << "plan did not change!" << std::endl;
                 continue;
             }
+            if (!plan.valid()) {
+                std::cerr << "plan is not valid!" << std::endl;
+                continue;
+            }
+            
             child.plans[conflict.agents[i]] = plan;
             update_node_costs(child);
 

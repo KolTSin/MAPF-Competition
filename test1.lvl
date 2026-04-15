@@ -1,0 +1,20 @@
+#domain
+hospital
+#levelname
+action_test_01
+#colors
+blue: 0, A
+red: 1, B
+#initial
++++++++++
++0 A    +
++   +   +
++   B 1 +
++++++++++
+#goal
++++++++++
++  A    +
++   +   +
++   B   +
++++++++++
+#end

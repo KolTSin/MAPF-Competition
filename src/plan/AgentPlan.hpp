@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <sstream>
+#include <iostream>
 
 struct AgentPlan {
     int agent{-1};
@@ -17,6 +18,9 @@ struct AgentPlan {
     }
 
     bool valid() const {
+        if (!(!positions.empty() && positions.size() == actions.size() + 1)){
+            std::cerr << "positions: " << positions.size() << "actions: " << actions.size() + 1 << std::endl;
+        }
         return !positions.empty() && positions.size() == actions.size() + 1;
     }
 
