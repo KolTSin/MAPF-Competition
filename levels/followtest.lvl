@@ -1,0 +1,15 @@
+#domain
+hospital
+#levelname
+FollowConflictTest
+#colors
+blue: 0,1
+#initial
++++++++
++01   +
++++++++
+#goal
++++++++
++  01 +
++++++++
+#end

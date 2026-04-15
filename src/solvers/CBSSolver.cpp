@@ -4,9 +4,7 @@
 #include "actions/JointAction.hpp"
 #include "search/AStar.hpp"
 #include "search/SpaceTimeAStar.hpp"
-#include "search/SpaceTimeAStar.hpp"
 #include "search/CBSNode.hpp"
-#include "search/CBS.hpp"
 #include "plan/PlanMerger.hpp"
 #include "plan/AgentPlan.hpp"
 #include "search/heuristics/Heuristic.hpp"
@@ -15,113 +13,131 @@
 #include "plan/ConflictDetector.hpp"
 #include "search/CBSFrontier.hpp"
 
+#include <algorithm>
 #include <iostream>
 
-Plan CBSSolver::solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) {
-    (void) level;
+namespace {
 
-    int num_agents = initial_state.num_agents();
+void update_node_costs(CBSNode& node) {
+    node.makespan = 0;
+    node.sum_of_costs = 0;
+    for (const auto& plan : node.plans) {
+        node.makespan = std::max(node.makespan, static_cast<int>(plan.actions.size()));
+        node.sum_of_costs += plan.cost();
+    }
+}
+
+void add_constraint_reservation(const Constraint& constraint, ReservationTable& table) {
+    switch (constraint.type) {
+        case ConflictType::Vertex:
+        case ConflictType::Follow:
+            table.reserve_cell(constraint.cell.row, constraint.cell.col, constraint.time, -1);
+            break;
+        case ConflictType::Edge:
+            // SpaceTimeAStar checks edge conflicts by querying reservations on
+            // the reverse direction (next -> current). To forbid traversing
+            // from A -> B at time t, we must therefore reserve B -> A at t.
+            table.reserve_edge(
+                constraint.to[0],
+                constraint.from[0],
+                constraint.time,
+                -1
+            );
+            break;
+        case ConflictType::None:
+            break;
+    }
+}
+
+} // namespace
+
+Plan CBSSolver::solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) {
+    const int num_agents = initial_state.num_agents();
 
     SpaceTimeAStar stastar(heuristic);
     AStar astar(heuristic);
-    // CBS stastar(heuristic);
+    (void) astar;
 
     std::vector<AgentPlan> agent_plans(num_agents);
     AgentPlan plan;
     ReservationTable conflict_table;
-    
 
     std::vector<CBSNode> CT;
     CT.reserve(2048);
     CBSNode start;
-    std::vector<Constraint> constraint;
 
     CBSFrontier open(&CT);
 
     // initial plan for all agents individually
-    for (int agent = 0; agent < num_agents; agent++){
-        plan = stastar.search(level, initial_state, agent, 20'000, conflict_table); //, 20000, conflict_table);
+    for (int agent = 0; agent < num_agents; agent++) {
+        plan = stastar.search(level, initial_state, agent, 20'000, conflict_table);
+        if (!plan.valid()) {
+            return Plan{};
+        }
         agent_plans[agent] = plan;
     }
 
     start.plans = agent_plans;
+    update_node_costs(start);
     CT.push_back(start);
     open.push(0);
 
     // go through the CT until a solution is found
-    while (!open.empty()){
+    while (!open.empty()) {
         const int current_index = open.pop();
         const CBSNode current = CT[current_index];
-        // std::cerr << "current index: " << current_index << '\n';
 
         // detect conflicts
-        ConflictDetector conflict_detector;
-        Conflict conflict = conflict_detector.findFirstConflict(current.plans);
-        // std::cerr << "the conflict found: " << conflict.agents[0] << std::endl;
-        // std::cerr << conflict.to_string() << std::endl;
-        if (conflict.agents[0] == -1){
-            // std::cerr << "no conflicts found, current index: " << current_index << '\n'
-            //     << conflict.to_string() << std::endl; 
+        const Conflict conflict = ConflictDetector::findFirstConflict(current.plans);
+        if (conflict.agents[0] == -1) {
             return PlanMerger::merge_agent_plans(current.plans, num_agents);
         }
-        
 
-        for (int i = 0 ; i < 2; i++){
-            std::cerr << "creating a new CBSNode" << std::endl;
+        for (int i = 0; i < 2; i++) {
             // create a new node
-            CBSNode a;
-            a.constraints = current.constraints;
-            a.plans = current.plans;
-            int makespan = 0;
-            for (const auto& p : a.plans) {
-                makespan = std::max(makespan, static_cast<int>(p.actions.size()));
-            }
-            a.makespan = makespan;
+            CBSNode child;
+            child.constraints = current.constraints;
+            child.plans = current.plans;
 
-            std::cerr << "creating a new constraint" << std::endl;
             // add the new constraint
-            Constraint c;
-            c.agent_id = conflict.agents[i];
-            c.time = conflict.time;
-            c.cell = conflict.cell;
-            c.from = conflict.from;
-            c.to = conflict.to;
-            a.constraints.push_back(c);
-            // std::cerr << "constraint created!" << std::endl;
+            Constraint constraint;
+            constraint.agent_id = conflict.agents[i];
+            constraint.time = conflict.time;
+            constraint.type = conflict.type;
+            constraint.cell = conflict.cell;
+            constraint.from[0] = conflict.from[i];
+            constraint.to[0] = conflict.to[i];
+            child.constraints.push_back(constraint);
 
-            // add the current constraints into the reservations table
+            // add the current constraints into the reservation table
             ReservationTable res_table;
-            for (Constraint cons : a.constraints){
-                if (cons.agent_id == conflict.agents[i]){
-                    std::cerr << cons.to_string() << std::endl;
-                    // std::cerr << "reserving the cells/edges in the constraints" << std::endl;
-                    res_table.reserve_cell(cons.cell.row,cons.cell.col,cons.time,-1);
-                    res_table.reserve_edge(cons.from[0], cons.to[0], cons.time + 1,-1);
-                    res_table.reserve_edge(cons.from[1], cons.to[1], cons.time,-1);
+            for (const Constraint& cons : child.constraints) {
+                if (cons.agent_id != conflict.agents[i]) {
+                    continue;
                 }
+                add_constraint_reservation(cons, res_table);
             }
-            std::cerr << "restarting search for agent " << conflict.agents[i] << std::endl;
+
             // search for the constrained agent
             plan = stastar.search(level, initial_state, conflict.agents[i], 20'000, res_table);
-            // std::cerr << "search for agent " << conflict.agents[i] << " complete" << std::endl;
-            res_table.clear_reservations();
-            // std::cerr << "reservations cleared!" << std::endl;
-            if (!plan.valid()){
+            if (plan == child.plans[conflict.agents[i]]) {
+                std::cerr << "plan did not change!" << std::endl;
                 continue;
             }
-            if (plan == a.plans[conflict.agents[i]]){
+            if (!plan.valid()) {
+                std::cerr << "plan is not valid!" << std::endl;
                 continue;
             }
-            a.plans[conflict.agents[i]] = plan;
+            
+            child.plans[conflict.agents[i]] = plan;
+            update_node_costs(child);
 
             // push the node into open
-            // std::cerr << "pushing the node into open" << std::endl;
-            CT.push_back(a);
-            int next_index = static_cast<int>(CT.size()) - 1;
+            CT.push_back(child);
+            const int next_index = static_cast<int>(CT.size()) - 1;
             open.push(next_index);
-            // std::cerr << "done!" << std::endl;
         }
     }
 
-    return PlanMerger::merge_agent_plans(agent_plans, num_agents);
+    return Plan{};
 }
