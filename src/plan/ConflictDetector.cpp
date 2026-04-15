@@ -5,7 +5,6 @@
 
 #include <algorithm>
 #include <cassert>
-#include <iostream>
 
 Position ConflictDetector::getPositionAt(const AgentPlan& plan, int t) {
     // std::cerr << "agent pos:" << plan.agent << std::endl;
@@ -39,7 +38,6 @@ Conflict ConflictDetector::findFirstConflict(const std::vector<AgentPlan>& plans
     for (const auto& p : plans) {
         makespan = std::max(makespan, static_cast<int>(p.actions.size()));
     }
-    std::cerr << "starting to look for conflicts" << std::endl;
     for (int t = 0; t < makespan; ++t) {
         // std::cerr << "time: " << t << std::endl;
         for (int i = 0; i < static_cast<int>(plans.size()); ++i) {
@@ -62,8 +60,8 @@ Conflict ConflictDetector::findFirstConflict(const std::vector<AgentPlan>& plans
                     c.agents[0] = i;
                     c.agents[1] = j;
                     c.time   = t + 1;
+                    c.type = ConflictType::Vertex;
                     c.cell   = dst_i;
-                    std::cerr << "vertex conflicts found! @ " << dst_i.to_string() << std::endl;
                     return c;
                 }
 
@@ -73,6 +71,7 @@ Conflict ConflictDetector::findFirstConflict(const std::vector<AgentPlan>& plans
                     c.agents[0] = i;
                     c.agents[1] = j;
                     c.time   = t;
+                    c.type = ConflictType::Edge;
                     c.from[0]  = src_i;
                     c.to[0]    = dst_i;
                     c.from[1]  = src_j;
@@ -88,8 +87,8 @@ Conflict ConflictDetector::findFirstConflict(const std::vector<AgentPlan>& plans
                     c.agents[0] = i;      // follower
                     c.agents[1] = j;      // leader
                     c.time   = t;      // step time
+                    c.type = ConflictType::Follow;
                     c.cell   = src_j;  // leader source cell
-                    std::cerr << "follow conflicts found!" << std::endl;
                     return c;
                 }
 
@@ -99,14 +98,13 @@ Conflict ConflictDetector::findFirstConflict(const std::vector<AgentPlan>& plans
                     c.agents[0] = j;      // follower
                     c.agents[1] = i;      // leader
                     c.time   = t;      // step time
+                    c.type = ConflictType::Follow;
                     c.cell   = src_i;  // leader source cell
-                    std::cerr << "symmetric follow conflicts found!" << std::endl;
                     return c;
                 }
             }
         }
     }
 
-    std::cerr << "no conflicts found!" << std::endl;
     return c_err;
 }
