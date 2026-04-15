@@ -9,24 +9,9 @@
 
 #include <vector>
 
-struct SpaceTimeNode {
-    Position pos{};
-    int time{0};
-
-    int g{0};
-    int h{0};
-
-    int parent_index{-1};
-    Action action{Action::noop()};
-
-    [[nodiscard]] int f() const noexcept {
-        return g + h;
-    }
-};
-
-class SpaceTimeAStar {
+class CBS {
 public:
-    explicit SpaceTimeAStar(const IHeuristic& heuristic):
+    explicit CBS(const IHeuristic& heuristic):
         heuristic_(heuristic)
         {
         }

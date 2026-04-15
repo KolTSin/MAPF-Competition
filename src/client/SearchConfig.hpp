@@ -7,7 +7,8 @@
 enum class SolverType {
     NAIVE,
     SEQUENTIAL,
-    SPACETIME_ASTAR
+    SPACETIME_ASTAR,
+    CBS
 };
 
 enum class HeuristicType {
@@ -19,7 +20,7 @@ enum class HeuristicType {
 
 struct SearchConfig {
     SolverType solver = SolverType::NAIVE;
-    std::string heuristic_name = "agd";
+    std::string heuristic_name = "bgd";
 
     bool verbose = false;
     bool help = false;

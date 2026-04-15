@@ -10,7 +10,7 @@
 Plan SequentialSolver::solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) {
     int num_agents = initial_state.num_agents();
 
-    std::vector<std::vector<Action>> agent_plans(num_agents);
+    std::vector<AgentPlan> agent_plans(num_agents);
 
     AStar astar(heuristic);
 
@@ -22,7 +22,7 @@ Plan SequentialSolver::solve(const Level& level, const State& initial_state, con
         try {
             agent_plans[agent] = astar.search(level, initial_state, agent);
             std::cerr << "Agent " << agent << " plan length = "
-                    << agent_plans[agent].size() << '\n';
+                    << agent_plans[agent].actions.size() << '\n';
         } catch (const std::exception& e) {
             std::cerr << "AStar failed for agent " << agent
                     << " with exception: " << e.what() << '\n';

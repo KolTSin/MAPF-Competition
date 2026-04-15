@@ -1,7 +1,7 @@
 #pragma once
 
 #include "domain/Level.hpp"
-#include "plan/Plan.hpp"
+#include "plan/AgentPlan.hpp"
 #include "state/State.hpp"
 #include "search/heuristics/Heuristic.hpp"
 
@@ -12,7 +12,7 @@ public:
         {
         }
 
-    std::vector<Action> search(const Level& level,
+    AgentPlan search(const Level& level,
                        const State& initial_state,
                        int agent_id);
 

@@ -2,6 +2,7 @@
 
 #include "domain/Position.hpp"
 #include "actions/Action.hpp"
+#include "plan/AgentPlan.hpp"
 
 #include <cstddef>
 #include <unordered_map>
@@ -53,9 +54,13 @@ public:
                       int time,
                       int agent);
 
-    void reserve_path(const std::vector<Action>& path, Position initial_pos, int agent);
+    void reserve_path(const AgentPlan& path, Position initial_pos, int agent);
+    void clear_reservations(){
+        cell_reservations_.clear();
+        edge_reservations_.clear();
+    };
 
 private:
-    std::unordered_map<CellReservation, int, CellReservationHasher> cell_reservations_;
-    std::unordered_map<EdgeReservation, int, EdgeReservationHasher> edge_reservations_;
+    std::unordered_map<CellReservation, std::vector<int>, CellReservationHasher> cell_reservations_;
+    std::unordered_map<EdgeReservation, std::vector<int>, EdgeReservationHasher> edge_reservations_;
 };
