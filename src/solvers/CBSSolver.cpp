@@ -33,9 +33,12 @@ void add_constraint_reservation(const Constraint& constraint, ReservationTable& 
             table.reserve_cell(constraint.cell.row, constraint.cell.col, constraint.time, -1);
             break;
         case ConflictType::Edge:
+            // SpaceTimeAStar checks edge conflicts by querying reservations on
+            // the reverse direction (next -> current). To forbid traversing
+            // from A -> B at time t, we must therefore reserve B -> A at t.
             table.reserve_edge(
-                constraint.from[0],
                 constraint.to[0],
+                constraint.from[0],
                 constraint.time,
                 -1
             );
