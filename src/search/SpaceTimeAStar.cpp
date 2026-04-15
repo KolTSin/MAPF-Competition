@@ -10,7 +10,6 @@
 #include <stdexcept>
 #include <unordered_map>
 #include <vector>
-#include <iostream>
 
 namespace {
 
@@ -169,8 +168,6 @@ AgentPlan SpaceTimeAStar::search(
     const ReservationTable& reservations
 ) {
     if (!has_agent_goal(level, agent)) {
-        std::cerr << "agent " << agent
-                  << " has no personal goal; returning empty plan\n";
         return {};
     }
     std::vector<Node> nodes;
@@ -196,14 +193,9 @@ AgentPlan SpaceTimeAStar::search(
     std::vector<Successor> successors;
     successors.reserve(29);
 
-    std::size_t expansions = 0;
-    std::size_t generated = 0;
-
     while (!open.empty()) {
         int current_index = open.pop();
         Node current = nodes[current_index];
-        const Node* current_ptr = &current;
-        const Node* data_before = nodes.data();
 
         SpaceTimeKey current_key{current.state, current.time};
         auto it_best = best_g.find(current_key);
@@ -212,29 +204,13 @@ AgentPlan SpaceTimeAStar::search(
         }
 
         if (is_goal(level, current.state, agent)) {
-            std::cerr << "agent " << agent
-                    << " reached goal after expansions=" << expansions
-                    << ", nodes=" << nodes.size()
-                    << ", best_g=" << best_g.size()
-                    << '\n';
             return reconstruct_plan(nodes, current_index, agent);
         }
 
         SuccessorGenerator::expand_agent(level, current.state, agent, current.time, successors);
-        generated += successors.size();
         try {
             for (const Successor& succ : successors) {
                 // std::cerr << "trying move: " << succ.action.to_string() << '\n';
-
-                ++expansions;
-                if (expansions % 100 == 0) {
-                    std::cerr << "agent=" << agent
-                            << " expansions=" << expansions
-                            << " nodes=" << nodes.size()
-                            << " best_g=" << best_g.size()
-                            << " current_time=" << current.time
-                            << '\n';
-                }
 
                 Position next_pos = succ.next_state.agent_positions[agent];
 
@@ -267,28 +243,12 @@ AgentPlan SpaceTimeAStar::search(
                 int next_index = static_cast<int>(nodes.size()) - 1;
                 best_g[key] = next.g;
                 open.push(next_index);
-                if (nodes.data() != data_before) {
-                    std::cerr << "REALLOCATION happened while current ref was alive. "
-                            << "current_ptr=" << current_ptr
-                            << " new_ptr=" << &nodes[current_index]
-                            << " current_index=" << current_index
-                            << '\n';
-                }
                 
             }
         } catch (const std::exception& e) {
-            std::cerr << "AStar failed for agent " << agent
-                    << " with exception: " << e.what() << '\n';
             throw;
         }
         // std::cerr << "finished searching for agent " << agent << '\n';
     }
-    std::cerr << "agent " << agent
-          << " search failed: open list exhausted"
-          << ", expansions=" << expansions
-          << ", generated=" << generated
-          << ", nodes=" << nodes.size()
-          << ", best_g=" << best_g.size()
-          << '\n';
     return AgentPlan{};
 }
