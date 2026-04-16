@@ -5,6 +5,23 @@
 
 namespace {
 constexpr int LARGE_PENALTY = 1000;
+constexpr int TRANSIT_GOAL_PENALTY = 400;
+
+bool has_unsolved_box_goal(const Level& level, const State& state) {
+    for (int row = 0; row < level.rows; ++row) {
+        for (int col = 0; col < level.cols; ++col) {
+            const char goal = level.goal_at(row, col);
+            if (goal < 'A' || goal > 'Z') {
+                continue;
+            }
+
+            if (state.box_at(row, col) != goal) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 }
 
 std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
@@ -13,6 +30,7 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
     const MapAnalysis& analysis) const {
     std::vector<HospitalTask> tasks;
     std::unordered_set<int> used_box_cells;
+    const bool unsolved_box_goals = has_unsolved_box_goal(level, state);
 
     const std::vector<BoxRecord> boxes = analysis.collect_boxes(state);
 
@@ -26,6 +44,7 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             Position goal_pos{row, col};
             int best_idx = -1;
             int best_cost = LARGE_PENALTY * LARGE_PENALTY;
+            const bool goal_is_transit = analysis.is_transit_cell(goal_pos.row, goal_pos.col);
 
             for (int i = 0; i < static_cast<int>(boxes.size()); ++i) {
                 const BoxRecord& box = boxes[i];
@@ -41,6 +60,9 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                 int cost = manhattan(box.pos, goal_pos);
                 if (box.in_chokepoint && !box.on_goal) {
                     cost += LARGE_PENALTY;
+                }
+                if (goal_is_transit && !box.on_goal) {
+                    cost += TRANSIT_GOAL_PENALTY;
                 }
 
                 if (cost < best_cost) {
@@ -75,6 +97,20 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                     });
                 }
             }
+            if (selected.on_goal && goal_is_transit && unsolved_box_goals) {
+                std::vector<Position> relocation = analysis.find_relocation_candidates(state, selected.pos);
+                if (!relocation.empty()) {
+                    tasks.push_back(HospitalTask{
+                        HospitalTaskType::RelocateBox,
+                        agent,
+                        selected.symbol,
+                        selected.pos,
+                        relocation.front(),
+                        5,
+                        "Temporarily clear transit corridor goal for other box tasks"
+                    });
+                }
+            }
 
             tasks.push_back(HospitalTask{
                 HospitalTaskType::AssignBox,
@@ -93,7 +129,9 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                 selected.pos,
                 goal_pos,
                 100 + best_cost,
-                "Transport box to target hospital task location"
+                goal_is_transit
+                    ? "Transport box to transit goal after non-blocking tasks"
+                    : "Transport box to target hospital task location"
             });
         }
     }

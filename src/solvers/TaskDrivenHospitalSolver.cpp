@@ -140,33 +140,49 @@ Plan TaskDrivenHospitalSolver::solve(const Level& level, const State& initial_st
     HospitalTaskDecomposer decomposer;
     BoxTransportPlanner planner(analysis);
 
-    const std::vector<HospitalTask> tasks = decomposer.decompose(level, current, analysis);
-
-    std::cerr << "TaskDrivenHospitalSolver generated tasks=" << tasks.size() << '\n';
-
     std::vector<std::vector<Action>> per_agent_plans(static_cast<std::size_t>(num_agents));
-
-    for (const HospitalTask& task : tasks) {
-        if (task.type == HospitalTaskType::AssignBox) {
-            std::cerr << "[assign] agent=" << task.agent_id
-                      << " box=" << task.box_symbol
-                      << " -> goal=(" << task.destination.row << "," << task.destination.col << ")"
-                      << " reason=" << task.reason
-                      << '\n';
-            continue;
+    constexpr int MAX_TASK_ITERATIONS = 512;
+    for (int iter = 0; iter < MAX_TASK_ITERATIONS; ++iter) {
+        const std::vector<HospitalTask> tasks = decomposer.decompose(level, current, analysis);
+        if (tasks.empty()) {
+            break;
         }
 
-        const std::vector<Action> segment = planner.plan_for_task(level, current, task);
-        auto& target = per_agent_plans[task.agent_id];
-        target.insert(target.end(), segment.begin(), segment.end());
+        bool progressed = false;
+        for (const HospitalTask& task : tasks) {
+            if (task.type == HospitalTaskType::AssignBox) {
+                std::cerr << "[assign] agent=" << task.agent_id
+                          << " box=" << task.box_symbol
+                          << " -> goal=(" << task.destination.row << "," << task.destination.col << ")"
+                          << " reason=" << task.reason
+                          << '\n';
+                continue;
+            }
 
-        std::cerr << "[execute] type="
-                  << (task.type == HospitalTaskType::RelocateBox ? "relocate" : "transport")
-                  << " agent=" << task.agent_id
-                  << " box=" << task.box_symbol
-                  << " actions=" << segment.size()
-                  << " reason=" << task.reason
-                  << '\n';
+            const std::vector<Action> segment = planner.plan_for_task(level, current, task);
+            if (segment.empty()) {
+                continue;
+            }
+
+            auto& target = per_agent_plans[task.agent_id];
+            target.insert(target.end(), segment.begin(), segment.end());
+
+            std::cerr << "[execute] iter=" << iter
+                      << " type=" << (task.type == HospitalTaskType::RelocateBox ? "relocate" : "transport")
+                      << " agent=" << task.agent_id
+                      << " box=" << task.box_symbol
+                      << " actions=" << segment.size()
+                      << " reason=" << task.reason
+                      << '\n';
+
+            progressed = true;
+            break;
+        }
+
+        if (!progressed) {
+            std::cerr << "[stop] no executable hospital tasks at iter=" << iter << '\n';
+            break;
+        }
     }
 
     ConflictTable conflicts;

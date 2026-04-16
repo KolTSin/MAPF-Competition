@@ -22,6 +22,7 @@ public:
     [[nodiscard]] bool is_walkable(int row, int col) const noexcept;
     [[nodiscard]] int degree(int row, int col) const noexcept;
     [[nodiscard]] bool is_chokepoint(int row, int col) const noexcept;
+    [[nodiscard]] bool is_transit_cell(int row, int col) const noexcept;
 
     [[nodiscard]] std::vector<Position> neighbors(const Position& pos) const;
     [[nodiscard]] std::vector<Position> all_goal_cells_for(char symbol) const;
