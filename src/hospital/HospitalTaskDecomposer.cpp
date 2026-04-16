@@ -5,6 +5,7 @@
 
 namespace {
 constexpr int LARGE_PENALTY = 1000;
+constexpr int CHOKEPOINT_GOAL_PENALTY = 400;
 }
 
 std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
@@ -26,6 +27,7 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             Position goal_pos{row, col};
             int best_idx = -1;
             int best_cost = LARGE_PENALTY * LARGE_PENALTY;
+            const bool goal_is_chokepoint = analysis.is_chokepoint(goal_pos.row, goal_pos.col);
 
             for (int i = 0; i < static_cast<int>(boxes.size()); ++i) {
                 const BoxRecord& box = boxes[i];
@@ -41,6 +43,9 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                 int cost = manhattan(box.pos, goal_pos);
                 if (box.in_chokepoint && !box.on_goal) {
                     cost += LARGE_PENALTY;
+                }
+                if (goal_is_chokepoint && !box.on_goal) {
+                    cost += CHOKEPOINT_GOAL_PENALTY;
                 }
 
                 if (cost < best_cost) {
@@ -93,7 +98,9 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                 selected.pos,
                 goal_pos,
                 100 + best_cost,
-                "Transport box to target hospital task location"
+                goal_is_chokepoint
+                    ? "Transport box to chokepoint goal after non-blocking tasks"
+                    : "Transport box to target hospital task location"
             });
         }
     }
