@@ -1,11 +1,64 @@
 #include "hospital/HospitalTaskDecomposer.hpp"
 
 #include <algorithm>
+#include <optional>
+#include <queue>
 #include <unordered_set>
 
 namespace {
 constexpr int LARGE_PENALTY = 1000;
 constexpr int TRANSIT_GOAL_PENALTY = 400;
+constexpr int BLOCKED_BY_CORRIDOR_PENALTY = 300;
+
+bool can_reach_with_boxes(
+    const State& state,
+    const MapAnalysis& analysis,
+    const Position& start,
+    const Position& goal,
+    const std::optional<Position>& ignored_box = std::nullopt) {
+    if (start == goal) {
+        return true;
+    }
+
+    std::queue<Position> q;
+    std::vector<bool> visited(static_cast<std::size_t>(state.rows * state.cols), false);
+
+    auto push_if_open = [&](const Position& p) {
+        if (!analysis.is_walkable(p.row, p.col)) {
+            return;
+        }
+
+        if (visited[state.index(p.row, p.col)]) {
+            return;
+        }
+
+        const bool has_box = state.has_box(p.row, p.col);
+        const bool is_ignored_box = ignored_box.has_value() && p == *ignored_box;
+        if (has_box && p != start && p != goal && !is_ignored_box) {
+            return;
+        }
+
+        visited[state.index(p.row, p.col)] = true;
+        q.push(p);
+    };
+
+    push_if_open(start);
+
+    while (!q.empty()) {
+        const Position current = q.front();
+        q.pop();
+
+        if (current == goal) {
+            return true;
+        }
+
+        for (const Position& neighbor : analysis.neighbors(current)) {
+            push_if_open(neighbor);
+        }
+    }
+
+    return false;
+}
 
 bool has_unsolved_box_goal(const Level& level, const State& state) {
     for (int row = 0; row < level.rows; ++row) {
@@ -22,6 +75,57 @@ bool has_unsolved_box_goal(const Level& level, const State& state) {
     }
     return false;
 }
+
+std::unordered_set<int> detect_transit_corridor_blockers(
+    const Level& level,
+    const State& state,
+    const MapAnalysis& analysis,
+    const std::vector<BoxRecord>& boxes) {
+    std::unordered_set<int> blockers;
+
+    for (const BoxRecord& candidate_blocker : boxes) {
+        if (!analysis.is_transit_cell(candidate_blocker.pos.row, candidate_blocker.pos.col)) {
+            continue;
+        }
+
+        bool blocks_other_task = false;
+        for (int row = 0; row < level.rows && !blocks_other_task; ++row) {
+            for (int col = 0; col < level.cols && !blocks_other_task; ++col) {
+                const char goal = level.goal_at(row, col);
+                if (goal < 'A' || goal > 'Z') {
+                    continue;
+                }
+
+                if (state.box_at(row, col) == goal) {
+                    continue;
+                }
+
+                const Position goal_pos{row, col};
+                for (const BoxRecord& target : boxes) {
+                    if (target.symbol != goal || target.pos == candidate_blocker.pos) {
+                        continue;
+                    }
+
+                    const bool reachable_with_blocker =
+                        can_reach_with_boxes(state, analysis, target.pos, goal_pos);
+                    const bool reachable_without_blocker =
+                        can_reach_with_boxes(state, analysis, target.pos, goal_pos, candidate_blocker.pos);
+
+                    if (!reachable_with_blocker && reachable_without_blocker) {
+                        blocks_other_task = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (blocks_other_task) {
+            blockers.insert(state.index(candidate_blocker.pos.row, candidate_blocker.pos.col));
+        }
+    }
+
+    return blockers;
+}
 }
 
 std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
@@ -33,6 +137,35 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
     const bool unsolved_box_goals = has_unsolved_box_goal(level, state);
 
     const std::vector<BoxRecord> boxes = analysis.collect_boxes(state);
+    const std::unordered_set<int> transit_blockers =
+        detect_transit_corridor_blockers(level, state, analysis, boxes);
+
+    for (const BoxRecord& box : boxes) {
+        const int box_flat = state.index(box.pos.row, box.pos.col);
+        if (!transit_blockers.contains(box_flat)) {
+            continue;
+        }
+
+        const int agent = pick_agent_for_box(level, state, box.symbol, box.pos);
+        if (agent < 0) {
+            continue;
+        }
+
+        const std::vector<Position> relocation = analysis.find_relocation_candidates(state, box.pos);
+        if (relocation.empty()) {
+            continue;
+        }
+
+        tasks.push_back(HospitalTask{
+            HospitalTaskType::RelocateBox,
+            agent,
+            box.symbol,
+            box.pos,
+            relocation.front(),
+            0,
+            "Clear transit-corridor blocker for dependent tasks"
+        });
+    }
 
     for (int row = 0; row < level.rows; ++row) {
         for (int col = 0; col < level.cols; ++col) {
@@ -128,10 +261,15 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                 selected.symbol,
                 selected.pos,
                 goal_pos,
-                100 + best_cost,
-                goal_is_transit
-                    ? "Transport box to transit goal after non-blocking tasks"
-                    : "Transport box to target hospital task location"
+                100 + best_cost
+                    + (transit_blockers.contains(state.index(selected.pos.row, selected.pos.col))
+                           ? 0
+                           : static_cast<int>(transit_blockers.size()) * BLOCKED_BY_CORRIDOR_PENALTY),
+                !transit_blockers.empty() && !transit_blockers.contains(state.index(selected.pos.row, selected.pos.col))
+                    ? "Transport box after corridor-clearing dependencies are resolved"
+                    : (goal_is_transit
+                           ? "Transport box to transit goal after non-blocking tasks"
+                           : "Transport box to target hospital task location")
             });
         }
     }
