@@ -100,6 +100,9 @@ void reserve_plan(
 
     for (int t = 0; t < static_cast<int>(scheduled_plan.size()); ++t) {
         const Position next = ActionSemantics::compute_effect(pos, scheduled_plan[t]).agent_to;
+        // Forbid follow conflicts: no later agent may enter a cell immediately
+        // after another agent occupied it, even if it has just been vacated.
+        conflicts.cells.insert(TimedCell{pos.row, pos.col, t + 1});
         conflicts.edges.insert(TimedEdge{pos, next, t});
         conflicts.cells.insert(TimedCell{next.row, next.col, t + 1});
         pos = next;
