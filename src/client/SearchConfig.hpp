@@ -7,7 +7,8 @@
 enum class SolverType {
     NAIVE,
     SEQUENTIAL,
-    SPACETIME_ASTAR
+    SPACETIME_ASTAR,
+    TASK_DRIVEN_HOSPITAL
 };
 
 enum class HeuristicType {
