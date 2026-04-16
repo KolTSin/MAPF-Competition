@@ -8,7 +8,7 @@
 static void printUsage() {
     std::cerr
         << "Usage: searchclient [options]\n"
-        << "  --solver <bfs|dfs|astar|greedy|spacetime_astar>\n"
+        << "  --solver <naive|sequential|spacetime_astar|task_driven_hospital>\n"
         << "  --heuristic <none|goal_count|agent_goal_distance|box_goal_distance>\n"
         << "  --verbose\n"
         << "  --help\n";

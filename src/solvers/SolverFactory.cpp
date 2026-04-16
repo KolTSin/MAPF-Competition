@@ -4,6 +4,7 @@
 #include "solvers/NaiveSolver.hpp"
 #include "solvers/SequentialSolver.hpp"
 #include "solvers/SpaceTimeSolver.hpp"
+#include "solvers/TaskDrivenHospitalSolver.hpp"
 // #include "search/heuristics/Heuristic.hpp"
 
 #include <memory>
@@ -25,6 +26,8 @@ std::unique_ptr<Solver> makeSolver(
         case SolverType::SPACETIME_ASTAR:
             // if (!heuristic) throw std::runtime_error("SpaceTimeAStar requires a heuristic");
             return std::make_unique<SpaceTimeSolver>();
+        case SolverType::TASK_DRIVEN_HOSPITAL:
+            return std::make_unique<TaskDrivenHospitalSolver>();
 
         default:
             throw std::runtime_error("Unsupported solver type");
