@@ -228,6 +228,7 @@ std::vector<Action> BoxTransportPlanner::shortest_agent_walk(
 
     std::vector<Action> actions;
     actions.reserve(path.size());
+    State simulated = state;
     for (std::size_t i = 0; i + 1 < path.size(); ++i) {
         const int dr = path[i + 1].row - path[i].row;
         const int dc = path[i + 1].col - path[i].col;
@@ -237,11 +238,12 @@ std::vector<Action> BoxTransportPlanner::shortest_agent_walk(
         }
 
         const Action move = Action::move(*dir);
-        if (!ActionApplicator::is_applicable(level, state, agent, move)) {
+        if (!ActionApplicator::is_applicable(level, simulated, agent, move)) {
             return {};
         }
 
         actions.push_back(move);
+        simulated = ActionApplicator::apply(level, simulated, agent, move);
     }
 
     return actions;

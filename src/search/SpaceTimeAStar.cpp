@@ -112,18 +112,9 @@ bool is_move_valid(const Level& level,
 
     const int next_time = current_time + 1;
 
-    // Follow-conflict prevention:
-    // destination cannot be occupied at the start of the timestep
-    if (reservations.is_cell_reserved(next.row, next.col, current_time, agent) || 
-        reservations.is_cell_reserved(next.row, next.col, next_time, agent) || 
-        reservations.is_cell_reserved(next.row, next.col, next_time + 1, agent)) {
-        std::cerr << "follow conflict!" << '\n';
-        return false;
-    }
-
-    // Vertex reservation
+    // Vertex conflict prevention:
+    // destination cannot be occupied at arrival time.
     if (reservations.is_cell_reserved(next.row, next.col, next_time, agent)) {
-        std::cerr << "vertex conflict!" << '\n';
         return false;
     }
 
@@ -131,14 +122,9 @@ bool is_move_valid(const Level& level,
     // If someone else already reserved next -> current at current_time,
     // then current -> next is forbidden.
     if (reservations.is_edge_reserved(next, current, current_time, agent)) {
-        std::cerr << "edge conflict!" << '\n';
         return false;
     }
-    if (agent == 2){
-        std::cerr << "No conflict detected! " 
-        << current_time << " : " << reservations.is_cell_reserved(next.row, next.col, current_time, agent) 
-        << next_time << " : " << reservations.is_cell_reserved(next.row, next.col, next_time, agent) << '\n';
-    }
+
     return true;
 }
 
@@ -187,11 +173,6 @@ std::vector<Action> SpaceTimeAStar::search(
         }
 
         if (is_goal(level, current.state, agent)) {
-            std::cerr << "agent " << agent
-                    << " reached goal after expansions=" << expansions
-                    << ", nodes=" << nodes.size()
-                    << ", best_g=" << best_g.size()
-                    << '\n';
             return reconstruct_plan(nodes, current_index);
         }
 
@@ -199,17 +180,7 @@ std::vector<Action> SpaceTimeAStar::search(
         generated += successors.size();
         try {
             for (const Successor& succ : successors) {
-                // std::cerr << "trying move: " << succ.action.to_string() << '\n';
-
                 ++expansions;
-                if (expansions % 100 == 0) {
-                    std::cerr << "agent=" << agent
-                            << " expansions=" << expansions
-                            << " nodes=" << nodes.size()
-                            << " best_g=" << best_g.size()
-                            << " current_time=" << current.time
-                            << '\n';
-                }
 
                 Position next_pos = succ.next_state.agent_positions[agent];
 
@@ -231,9 +202,6 @@ std::vector<Action> SpaceTimeAStar::search(
                 auto it = best_g.find(key);
                 if (it != best_g.end() && next.g >= it->second) {
                     continue;
-                }
-                if (agent == 2){
-                    std::cerr << "found next move: " << succ.action.to_string() << '\n';
                 }
                 nodes.push_back(next);
                 int next_index = static_cast<int>(nodes.size()) - 1;
