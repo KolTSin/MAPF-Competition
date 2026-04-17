@@ -50,6 +50,23 @@ bool MapAnalysis::is_chokepoint(const int row, const int col) const noexcept {
     return deg <= 2;
 }
 
+bool MapAnalysis::is_transit_cell(const int row, const int col) const noexcept {
+    if (!is_walkable(row, col)) {
+        return false;
+    }
+
+    if (degree(row, col) != 2) {
+        return false;
+    }
+
+    bool north = is_walkable(row - 1, col);
+    bool south = is_walkable(row + 1, col);
+    bool east = is_walkable(row, col + 1);
+    bool west = is_walkable(row, col - 1);
+
+    return (north && south) || (east && west);
+}
+
 std::vector<Position> MapAnalysis::neighbors(const Position& pos) const {
     std::vector<Position> out;
     out.reserve(4);

@@ -13,6 +13,17 @@ struct PrevCell {
     bool has_prev{false};
 };
 
+struct BoxSearchNode {
+    Position box;
+    Position agent;
+};
+
+struct BoxSearchParent {
+    int prev_key{-1};
+    bool has_prev{false};
+    Position box{};
+};
+
 constexpr int DR[4] = {-1, 1, 0, 0};
 constexpr int DC[4] = {0, 0, -1, 1};
 }
@@ -36,7 +47,13 @@ std::vector<Action> BoxTransportPlanner::plan_for_task(const Level& level, State
     }
 
     std::vector<Action> total_actions;
-    std::vector<Position> route = shortest_box_path(level, state, box_pos, task.destination);
+    std::vector<Position> route = shortest_box_path(
+        level,
+        state,
+        task.agent_id,
+        state.agent_positions[task.agent_id],
+        box_pos,
+        task.destination);
     if (route.size() < 2) {
         return {};
     }
@@ -113,58 +130,80 @@ std::optional<Position> BoxTransportPlanner::find_box(const State& state, const 
 std::vector<Position> BoxTransportPlanner::shortest_box_path(
     const Level& level,
     const State& state,
-    const Position& from,
-    const Position& to) const {
-    std::queue<Position> q;
-    std::vector<PrevCell> prev(static_cast<std::size_t>(state.rows * state.cols));
-
-    auto idx = [&](const Position& p) {
-        return state.index(p.row, p.col);
+    const int agent,
+    const Position& agent_start,
+    const Position& box_start,
+    const Position& box_goal) const {
+    int grid_cells = state.rows * state.cols;
+    auto key_for = [&](const Position& box, const Position& agent_pos) {
+        return state.index(box.row, box.col) * grid_cells + state.index(agent_pos.row, agent_pos.col);
+    };
+    auto decode = [&](int key) -> BoxSearchNode {
+        int box_flat = key / grid_cells;
+        int agent_flat = key % grid_cells;
+        return BoxSearchNode{
+            Position{box_flat / state.cols, box_flat % state.cols},
+            Position{agent_flat / state.cols, agent_flat % state.cols}
+        };
     };
 
-    q.push(from);
-    prev[idx(from)].has_prev = true;
-    prev[idx(from)].prev = from;
+    std::queue<int> q;
+    std::unordered_map<int, BoxSearchParent> parents;
+    const int start_key = key_for(box_start, agent_start);
+    q.push(start_key);
+    parents[start_key] = BoxSearchParent{-1, true, box_start};
 
+    int goal_key = -1;
     while (!q.empty()) {
-        const Position cur = q.front();
+        int current_key = q.front();
         q.pop();
 
-        if (cur == to) {
+        const BoxSearchNode node = decode(current_key);
+        if (node.box == box_goal) {
+            goal_key = current_key;
             break;
         }
 
-        for (const Position& nxt : analysis_.neighbors(cur)) {
-            if (state.has_box(nxt.row, nxt.col) && nxt != to) {
+        for (const Position& nxt_box : analysis_.neighbors(node.box)) {
+            if (state.has_box(nxt_box.row, nxt_box.col) && nxt_box != box_start) {
                 continue;
             }
 
-            const Position support{cur.row - (nxt.row - cur.row), cur.col - (nxt.col - cur.col)};
-            if (!level.in_bounds(support.row, support.col) || level.is_wall(support.row, support.col)) {
+            const int dr = nxt_box.row - node.box.row;
+            const int dc = nxt_box.col - node.box.col;
+            const Position setup{node.box.row - dr, node.box.col - dc};
+            if (!level.in_bounds(setup.row, setup.col) || level.is_wall(setup.row, setup.col)) {
                 continue;
             }
 
-            if (prev[idx(nxt)].has_prev) {
+            std::vector<Action> setup_walk = shortest_agent_walk(level, state, agent, node.agent, setup);
+            if (setup_walk.empty() && node.agent != setup) {
                 continue;
             }
 
-            prev[idx(nxt)].has_prev = true;
-            prev[idx(nxt)].prev = cur;
-            q.push(nxt);
+            const Position nxt_agent = node.box;
+            const int nxt_key = key_for(nxt_box, nxt_agent);
+            if (parents.contains(nxt_key)) {
+                continue;
+            }
+
+            parents[nxt_key] = BoxSearchParent{current_key, true, nxt_box};
+            q.push(nxt_key);
         }
     }
 
-    if (!prev[idx(to)].has_prev) {
+    if (goal_key < 0) {
         return {};
     }
 
     std::vector<Position> path;
-    Position cur = to;
-    while (cur != from) {
-        path.push_back(cur);
-        cur = prev[idx(cur)].prev;
+    int key = goal_key;
+    while (key != start_key) {
+        const BoxSearchNode node = decode(key);
+        path.push_back(node.box);
+        key = parents[key].prev_key;
     }
-    path.push_back(from);
+    path.push_back(box_start);
     std::reverse(path.begin(), path.end());
     return path;
 }
