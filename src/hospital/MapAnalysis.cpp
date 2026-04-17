@@ -1,6 +1,7 @@
 #include "hospital/MapAnalysis.hpp"
 
 #include <algorithm>
+#include <queue>
 
 namespace {
 constexpr int DR[4] = {-1, 1, 0, 0};
@@ -120,21 +121,46 @@ std::vector<BoxRecord> MapAnalysis::collect_boxes(const State& state) const {
 
 std::vector<Position> MapAnalysis::find_relocation_candidates(const State& state, const Position& from) const {
     std::vector<Position> candidates;
+    std::queue<Position> frontier;
+    std::unordered_set<int> visited;
 
-    for (const Position& cell : neighbors(from)) {
-        if (state.has_box(cell.row, cell.col)) {
-            continue;
+    frontier.push(from);
+    visited.insert(index(from.row, from.col));
+
+    while (!frontier.empty()) {
+        const Position current = frontier.front();
+        frontier.pop();
+
+        for (const Position& nxt : neighbors(current)) {
+            const int flat = index(nxt.row, nxt.col);
+            if (visited.contains(flat)) {
+                continue;
+            }
+            visited.insert(flat);
+
+            if (state.has_box(nxt.row, nxt.col)) {
+                continue;
+            }
+
+            frontier.push(nxt);
+
+            if (level_.goal_at(nxt.row, nxt.col) != '\0') {
+                continue;
+            }
+            if (degree(nxt.row, nxt.col) <= 2) {
+                continue;
+            }
+
+            candidates.push_back(nxt);
         }
-        if (level_.goal_at(cell.row, cell.col) != '\0') {
-            continue;
-        }
-        if (degree(cell.row, cell.col) <= 2) {
-            continue;
-        }
-        candidates.push_back(cell);
     }
 
     std::sort(candidates.begin(), candidates.end(), [&](const Position& a, const Position& b) {
+        const int dist_a = std::abs(a.row - from.row) + std::abs(a.col - from.col);
+        const int dist_b = std::abs(b.row - from.row) + std::abs(b.col - from.col);
+        if (dist_a != dist_b) {
+            return dist_a < dist_b;
+        }
         return degree(a.row, a.col) > degree(b.row, b.col);
     });
 
