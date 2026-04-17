@@ -99,6 +99,107 @@ std::unordered_set<int> detect_transit_corridor_blockers(
     const State& state,
     const MapAnalysis& analysis,
     const std::vector<BoxRecord>& boxes) {
+    auto pick_agent_for_box_position = [&](const char box_symbol, const Position& box_pos) {
+        const Color box_color = level.box_colors[box_symbol - 'A'];
+        int best_agent = -1;
+        int best_distance = LARGE_PENALTY * LARGE_PENALTY;
+
+        for (int agent = 0; agent < state.num_agents(); ++agent) {
+            if (level.agent_colors[agent] != box_color) {
+                continue;
+            }
+
+            const int dist = std::abs(state.agent_positions[agent].row - box_pos.row)
+                             + std::abs(state.agent_positions[agent].col - box_pos.col);
+            if (dist < best_distance) {
+                best_distance = dist;
+                best_agent = agent;
+            }
+        }
+
+        return best_agent;
+    };
+
+    auto first_box_step_towards_goal = [&](const State& world, const Position& start, const Position& goal, const std::optional<Position>& ignored_box) -> std::optional<Position> {
+        if (start == goal) {
+            return goal;
+        }
+
+        std::queue<Position> q;
+        std::vector<int> parent(static_cast<std::size_t>(world.rows * world.cols), -1);
+        q.push(start);
+        parent[world.index(start.row, start.col)] = world.index(start.row, start.col);
+
+        while (!q.empty()) {
+            const Position cur = q.front();
+            q.pop();
+            if (cur == goal) {
+                break;
+            }
+
+            for (const Position& nxt : analysis.neighbors(cur)) {
+                const int idx = world.index(nxt.row, nxt.col);
+                if (parent[idx] != -1) {
+                    continue;
+                }
+
+                const bool has_box = world.has_box(nxt.row, nxt.col);
+                const bool is_ignored = ignored_box.has_value() && nxt == *ignored_box;
+                if (has_box && nxt != goal && !is_ignored) {
+                    continue;
+                }
+
+                parent[idx] = world.index(cur.row, cur.col);
+                q.push(nxt);
+            }
+        }
+
+        const int goal_idx = world.index(goal.row, goal.col);
+        if (parent[goal_idx] == -1) {
+            return std::nullopt;
+        }
+
+        Position cur = goal;
+        while (parent[world.index(cur.row, cur.col)] != world.index(start.row, start.col)) {
+            const int p = parent[world.index(cur.row, cur.col)];
+            cur = Position{p / world.cols, p % world.cols};
+        }
+        return cur;
+    };
+
+    auto task_reachable_with_agent = [&](const Position& box_pos, const Position& goal_pos, const int agent, const std::optional<Position>& ignored_box) {
+        const bool box_goal_reachable =
+            can_reach_with_boxes(state, analysis, box_pos, goal_pos, ignored_box);
+        if (!box_goal_reachable) {
+            return false;
+        }
+
+        const std::optional<Position> next_step =
+            first_box_step_towards_goal(state, box_pos, goal_pos, ignored_box);
+        if (!next_step.has_value()) {
+            return false;
+        }
+        if (*next_step == box_pos) {
+            return true;
+        }
+
+        const int dr = next_step->row - box_pos.row;
+        const int dc = next_step->col - box_pos.col;
+        const Position setup{box_pos.row - dr, box_pos.col - dc};
+        if (!analysis.is_walkable(setup.row, setup.col)) {
+            return false;
+        }
+
+        const bool setup_occupied = state.has_box(setup.row, setup.col)
+                                    && !(ignored_box.has_value() && setup == *ignored_box)
+                                    && setup != box_pos;
+        if (setup_occupied) {
+            return false;
+        }
+
+        return can_reach_with_boxes(state, analysis, state.agent_positions[agent], setup, ignored_box);
+    };
+
     std::unordered_set<int> blockers;
 
     for (const BoxRecord& candidate_blocker : boxes) {
@@ -124,10 +225,15 @@ std::unordered_set<int> detect_transit_corridor_blockers(
                         continue;
                     }
 
+                    const int agent = pick_agent_for_box_position(target.symbol, target.pos);
+                    if (agent < 0) {
+                        continue;
+                    }
+
                     const bool reachable_with_blocker =
-                        can_reach_with_boxes(state, analysis, target.pos, goal_pos);
+                        task_reachable_with_agent(target.pos, goal_pos, agent, std::nullopt);
                     const bool reachable_without_blocker =
-                        can_reach_with_boxes(state, analysis, target.pos, goal_pos, candidate_blocker.pos);
+                        task_reachable_with_agent(target.pos, goal_pos, agent, candidate_blocker.pos);
 
                     if (!reachable_with_blocker && reachable_without_blocker) {
                         blocks_other_task = true;
