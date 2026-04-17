@@ -1,6 +1,7 @@
 #include "hospital/HospitalTaskDecomposer.hpp"
 
 #include <algorithm>
+#include <iostream>
 #include <optional>
 #include <queue>
 #include <unordered_set>
@@ -9,6 +10,22 @@ namespace {
 constexpr int LARGE_PENALTY = 1000;
 constexpr int TRANSIT_GOAL_PENALTY = 400;
 constexpr int BLOCKED_BY_CORRIDOR_PENALTY = 300;
+
+void log_relocation_task(
+    const char* phase,
+    const char box_symbol,
+    const int agent,
+    const Position& from,
+    const Position& to,
+    const int candidates) {
+    std::cerr << "[relocation-detected] phase=" << phase
+              << " box=" << box_symbol
+              << " blocker=(" << from.row << "," << from.col << ")"
+              << " -> relocate_to=(" << to.row << "," << to.col << ")"
+              << " agent=" << agent
+              << " candidates=" << candidates
+              << '\n';
+}
 
 bool can_reach_with_boxes(
     const State& state,
@@ -165,6 +182,13 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             0,
             "Clear transit-corridor blocker for dependent tasks"
         });
+        log_relocation_task(
+            "transit-blocker",
+            box.symbol,
+            agent,
+            box.pos,
+            relocation.front(),
+            static_cast<int>(relocation.size()));
     }
 
     for (int row = 0; row < level.rows; ++row) {
@@ -228,6 +252,13 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                         10,
                         "Relocate corridor-blocking box before main transport"
                     });
+                    log_relocation_task(
+                        "chokepoint",
+                        selected.symbol,
+                        agent,
+                        selected.pos,
+                        relocation.front(),
+                        static_cast<int>(relocation.size()));
                 }
             }
             if (selected.on_goal && goal_is_transit && unsolved_box_goals) {
@@ -242,6 +273,13 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                         5,
                         "Temporarily clear transit corridor goal for other box tasks"
                     });
+                    log_relocation_task(
+                        "transit-goal",
+                        selected.symbol,
+                        agent,
+                        selected.pos,
+                        relocation.front(),
+                        static_cast<int>(relocation.size()));
                 }
             }
 
