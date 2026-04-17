@@ -1,6 +1,7 @@
 #include "hospital/HospitalTaskDecomposer.hpp"
 
 #include <algorithm>
+#include <functional>
 #include <iostream>
 #include <optional>
 #include <queue>
@@ -143,6 +144,67 @@ std::unordered_set<int> detect_transit_corridor_blockers(
 
     return blockers;
 }
+
+std::optional<Position> find_non_blocking_relocation_target(
+    const Level& level,
+    const State& state,
+    const MapAnalysis& analysis,
+    const Position& from) {
+    const char box_symbol = state.box_at(from.row, from.col);
+    if (box_symbol == '\0') {
+        return std::nullopt;
+    }
+
+    auto build_state_with_box_at = [&](const Position& pos) {
+        State simulated = state;
+        simulated.set_box(from.row, from.col, '\0');
+        simulated.set_box(pos.row, pos.col, box_symbol);
+        return simulated;
+    };
+
+    auto is_blocking_at = [&](const Position& pos) {
+        const State simulated = build_state_with_box_at(pos);
+        const std::vector<BoxRecord> simulated_boxes = analysis.collect_boxes(simulated);
+        const std::unordered_set<int> blockers =
+            detect_transit_corridor_blockers(level, simulated, analysis, simulated_boxes);
+        return blockers.contains(simulated.index(pos.row, pos.col));
+    };
+
+    std::queue<Position> frontier;
+    std::unordered_set<int> visited;
+
+    frontier.push(from);
+    visited.insert(state.index(from.row, from.col));
+
+    while (!frontier.empty()) {
+        const Position current = frontier.front();
+        frontier.pop();
+
+        const State current_state = build_state_with_box_at(current);
+        const std::vector<Position> candidates =
+            analysis.find_relocation_candidates(current_state, current);
+        for (const Position& candidate : candidates) {
+            const int candidate_flat = state.index(candidate.row, candidate.col);
+            if (visited.contains(candidate_flat)) {
+                continue;
+            }
+
+            visited.insert(candidate_flat);
+            if (!is_blocking_at(candidate)) {
+                return candidate;
+            }
+
+            frontier.push(candidate);
+        }
+    }
+
+    const std::vector<Position> fallback = analysis.find_relocation_candidates(state, from);
+    if (!fallback.empty()) {
+        return fallback.front();
+    }
+
+    return std::nullopt;
+}
 }
 
 std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
@@ -168,8 +230,9 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             continue;
         }
 
-        const std::vector<Position> relocation = analysis.find_relocation_candidates(state, box.pos);
-        if (relocation.empty()) {
+        const std::optional<Position> relocation =
+            find_non_blocking_relocation_target(level, state, analysis, box.pos);
+        if (!relocation.has_value()) {
             continue;
         }
 
@@ -178,7 +241,7 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             agent,
             box.symbol,
             box.pos,
-            relocation.front(),
+            *relocation,
             0,
             "Clear transit-corridor blocker for dependent tasks"
         });
@@ -187,8 +250,8 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             box.symbol,
             agent,
             box.pos,
-            relocation.front(),
-            static_cast<int>(relocation.size()));
+            *relocation,
+            1);
     }
 
     for (int row = 0; row < level.rows; ++row) {
@@ -241,14 +304,15 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             }
 
             if (selected.in_chokepoint && !selected.on_goal) {
-                std::vector<Position> relocation = analysis.find_relocation_candidates(state, selected.pos);
-                if (!relocation.empty()) {
+                const std::optional<Position> relocation =
+                    find_non_blocking_relocation_target(level, state, analysis, selected.pos);
+                if (relocation.has_value()) {
                     tasks.push_back(HospitalTask{
                         HospitalTaskType::RelocateBox,
                         agent,
                         selected.symbol,
                         selected.pos,
-                        relocation.front(),
+                        *relocation,
                         10,
                         "Relocate corridor-blocking box before main transport"
                     });
@@ -257,19 +321,20 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                         selected.symbol,
                         agent,
                         selected.pos,
-                        relocation.front(),
-                        static_cast<int>(relocation.size()));
+                        *relocation,
+                        1);
                 }
             }
             if (selected.on_goal && goal_is_transit && unsolved_box_goals) {
-                std::vector<Position> relocation = analysis.find_relocation_candidates(state, selected.pos);
-                if (!relocation.empty()) {
+                const std::optional<Position> relocation =
+                    find_non_blocking_relocation_target(level, state, analysis, selected.pos);
+                if (relocation.has_value()) {
                     tasks.push_back(HospitalTask{
                         HospitalTaskType::RelocateBox,
                         agent,
                         selected.symbol,
                         selected.pos,
-                        relocation.front(),
+                        *relocation,
                         5,
                         "Temporarily clear transit corridor goal for other box tasks"
                     });
@@ -278,8 +343,8 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                         selected.symbol,
                         agent,
                         selected.pos,
-                        relocation.front(),
-                        static_cast<int>(relocation.size()));
+                        *relocation,
+                        1);
                 }
             }
 
