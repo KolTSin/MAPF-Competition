@@ -206,11 +206,23 @@ std::optional<Position> find_non_blocking_relocation_target(
     return std::nullopt;
 }
 
-bool has_immediate_own_goal_access(const MapAnalysis& analysis, const BoxRecord& box) {
-    const std::vector<Position> own_goals = analysis.all_goal_cells_for(box.symbol);
-    return std::any_of(own_goals.begin(), own_goals.end(), [&](const Position& goal) {
-        return std::abs(goal.row - box.pos.row) + std::abs(goal.col - box.pos.col) <= 1;
-    });
+bool has_reachable_own_goal_access(
+    const Level& level,
+    const State& state,
+    const MapAnalysis& analysis,
+    const BoxRecord& box) {
+    for (int row = 0; row < level.rows; ++row) {
+        for (int col = 0; col < level.cols; ++col) {
+            if (level.goal_at(row, col) != box.symbol) {
+                continue;
+            }
+
+            if (can_reach_with_boxes(state, analysis, box.pos, Position{row, col})) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 }
 
@@ -311,7 +323,7 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             }
 
             if (selected.in_chokepoint && !selected.on_goal
-                && !has_immediate_own_goal_access(analysis, selected)) {
+                && !has_reachable_own_goal_access(level, state, analysis, selected)) {
                 const std::optional<Position> relocation =
                     find_non_blocking_relocation_target(level, state, analysis, selected.pos);
                 if (relocation.has_value()) {
