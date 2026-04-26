@@ -69,6 +69,18 @@ struct RecoveryPlan {
     std::vector<Action> actions;
 };
 
+const char* task_type_name(const HospitalTaskType type) {
+    switch (type) {
+    case HospitalTaskType::AssignBox:
+        return "assign";
+    case HospitalTaskType::RelocateBox:
+        return "relocate";
+    case HospitalTaskType::TransportBox:
+        return "transport";
+    }
+    return "unknown";
+}
+
 std::optional<RecoveryPlan> try_recovery_relocation(
     const Level& level,
     State& state,
@@ -77,7 +89,7 @@ std::optional<RecoveryPlan> try_recovery_relocation(
     const BoxTransportPlanner& planner) {
     std::unordered_set<char> candidate_boxes;
     for (const HospitalTask& task : tasks) {
-        if (task.type == HospitalTaskType::AssignBox) {
+        if (task.box_symbol == '\0') {
             continue;
         }
         candidate_boxes.insert(task.box_symbol);
@@ -120,6 +132,12 @@ std::optional<RecoveryPlan> try_recovery_relocation(
             std::vector<Position> candidates = analysis.find_relocation_candidates(state, from);
             constexpr int MAX_CANDIDATES_TO_TRY = 16;
             const int max_candidates = std::min(static_cast<int>(candidates.size()), MAX_CANDIDATES_TO_TRY);
+            std::cerr << "[recovery-candidates] box=" << box
+                      << " from=(" << from.row << "," << from.col << ")"
+                      << " agent=" << agent_id
+                      << " total=" << candidates.size()
+                      << " trying=" << max_candidates
+                      << '\n';
 
             for (int i = 0; i < max_candidates; ++i) {
                 const Position& destination = candidates[static_cast<std::size_t>(i)];
@@ -245,23 +263,39 @@ Plan TaskDrivenHospitalSolver::solve(const Level& level, const State& initial_st
     constexpr int MAX_TASK_ITERATIONS = 512;
     for (int iter = 0; iter < MAX_TASK_ITERATIONS; ++iter) {
         const std::vector<HospitalTask> tasks = decomposer.decompose(level, current, analysis);
+        std::cerr << "[task-batch] iter=" << iter
+                  << " tasks=" << tasks.size()
+                  << '\n';
         if (tasks.empty()) {
             break;
         }
 
         bool progressed = false;
-        for (const HospitalTask& task : tasks) {
+        for (std::size_t task_index = 0; task_index < tasks.size(); ++task_index) {
+            const HospitalTask& task = tasks[task_index];
+            std::cerr << "[task] iter=" << iter
+                      << " idx=" << task_index
+                      << " type=" << task_type_name(task.type)
+                      << " agent=" << task.agent_id
+                      << " box=" << task.box_symbol
+                      << " from=(" << task.source.row << "," << task.source.col << ")"
+                      << " to=(" << task.destination.row << "," << task.destination.col << ")"
+                      << " reason=" << task.reason
+                      << '\n';
+
             if (task.type == HospitalTaskType::AssignBox) {
-                std::cerr << "[assign] agent=" << task.agent_id
-                          << " box=" << task.box_symbol
-                          << " -> goal=(" << task.destination.row << "," << task.destination.col << ")"
-                          << " reason=" << task.reason
-                          << '\n';
                 continue;
             }
 
             const std::vector<Action> segment = planner.plan_for_task(level, current, task);
             if (segment.empty()) {
+                std::cerr << "[task-failed] iter=" << iter
+                          << " idx=" << task_index
+                          << " type=" << task_type_name(task.type)
+                          << " agent=" << task.agent_id
+                          << " box=" << task.box_symbol
+                          << " reason=planner-returned-empty"
+                          << '\n';
                 continue;
             }
 
@@ -269,7 +303,8 @@ Plan TaskDrivenHospitalSolver::solve(const Level& level, const State& initial_st
             target.insert(target.end(), segment.begin(), segment.end());
 
             std::cerr << "[execute] iter=" << iter
-                      << " type=" << (task.type == HospitalTaskType::RelocateBox ? "relocate" : "transport")
+                      << " idx=" << task_index
+                      << " type=" << task_type_name(task.type)
                       << " agent=" << task.agent_id
                       << " box=" << task.box_symbol
                       << " actions=" << segment.size()
