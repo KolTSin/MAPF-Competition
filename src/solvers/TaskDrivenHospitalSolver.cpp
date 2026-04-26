@@ -12,55 +12,11 @@
 #include <iostream>
 #include <limits>
 #include <optional>
+#include <queue>
 #include <unordered_map>
 #include <unordered_set>
 
 namespace {
-struct TimedCell {
-    int row;
-    int col;
-    int time;
-
-    bool operator==(const TimedCell& other) const noexcept {
-        return row == other.row && col == other.col && time == other.time;
-    }
-};
-
-struct TimedEdge {
-    Position from;
-    Position to;
-    int time;
-
-    bool operator==(const TimedEdge& other) const noexcept {
-        return from == other.from && to == other.to && time == other.time;
-    }
-};
-
-struct TimedCellHasher {
-    std::size_t operator()(const TimedCell& v) const noexcept {
-        std::size_t seed = std::hash<int>{}(v.row);
-        seed ^= std::hash<int>{}(v.col) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-        seed ^= std::hash<int>{}(v.time) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-        return seed;
-    }
-};
-
-struct TimedEdgeHasher {
-    std::size_t operator()(const TimedEdge& v) const noexcept {
-        std::size_t seed = std::hash<int>{}(v.from.row);
-        seed ^= std::hash<int>{}(v.from.col) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-        seed ^= std::hash<int>{}(v.to.row) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-        seed ^= std::hash<int>{}(v.to.col) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-        seed ^= std::hash<int>{}(v.time) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-        return seed;
-    }
-};
-
-struct ConflictTable {
-    std::unordered_set<TimedCell, TimedCellHasher> cells;
-    std::unordered_set<TimedEdge, TimedEdgeHasher> edges;
-};
-
 struct RecoveryPlan {
     int agent_id{-1};
     char box_symbol{'\0'};
@@ -177,75 +133,139 @@ std::optional<RecoveryPlan> try_recovery_relocation(
     return best_plan;
 }
 
-bool has_conflict(
-    const std::vector<Action>& plan,
-    const Position& start,
-    int delay,
-    const ConflictTable& conflicts) {
-    Position pos = start;
-
-    for (int t = 0; t <= delay; ++t) {
-        if (conflicts.cells.contains(TimedCell{pos.row, pos.col, t})) {
-            return true;
-        }
-    }
-
-    int time = delay;
-    for (const Action& action : plan) {
-        const Position next = ActionSemantics::compute_effect(pos, action).agent_to;
-
-        if (conflicts.cells.contains(TimedCell{next.row, next.col, time + 1})) {
-            return true;
-        }
-
-        if (conflicts.edges.contains(TimedEdge{next, pos, time})) {
-            return true;
-        }
-
-        pos = next;
-        ++time;
-    }
-
-    return false;
-}
-
-void reserve_plan(
-    const std::vector<Action>& scheduled_plan,
-    const Position& start,
-    ConflictTable& conflicts,
-    Position& final_position) {
-    Position pos = start;
-    conflicts.cells.insert(TimedCell{pos.row, pos.col, 0});
-
-    for (int t = 0; t < static_cast<int>(scheduled_plan.size()); ++t) {
-        const Position next = ActionSemantics::compute_effect(pos, scheduled_plan[t]).agent_to;
-        // Forbid follow conflicts: no later agent may enter a cell immediately
-        // after another agent occupied it, even if it has just been vacated.
-        conflicts.cells.insert(TimedCell{pos.row, pos.col, t + 1});
-        conflicts.edges.insert(TimedEdge{pos, next, t});
-        conflicts.cells.insert(TimedCell{next.row, next.col, t + 1});
-        pos = next;
-    }
-
-    final_position = pos;
-}
-
 std::vector<Action> with_delay(const std::vector<Action>& plan, int delay) {
     std::vector<Action> out(static_cast<std::size_t>(delay), Action::noop());
     out.insert(out.end(), plan.begin(), plan.end());
     return out;
 }
 
-void reserve_goal_holding_cells(
-    ConflictTable& conflicts,
-    const std::unordered_map<int, Position>& final_positions,
-    int max_horizon) {
-    for (const auto& [agent, pos] : final_positions) {
-        (void) agent;
-        for (int t = 0; t <= max_horizon + 20; ++t) {
-            conflicts.cells.insert(TimedCell{pos.row, pos.col, t});
+struct ConflictEvent {
+    bool has_conflict{false};
+    int first_agent{-1};
+    int second_agent{-1};
+    int time{-1};
+};
+
+Position position_at_time(const std::vector<Action>& plan, const Position& start, const int delay, const int time) {
+    Position pos = start;
+    if (time <= delay) {
+        return pos;
+    }
+
+    int executed = 0;
+    for (const Action& action : plan) {
+        if (executed >= time - delay) {
+            break;
+        }
+        pos = ActionSemantics::compute_effect(pos, action).agent_to;
+        ++executed;
+    }
+    return pos;
+}
+
+ConflictEvent find_first_conflict(
+    const std::vector<std::vector<Action>>& per_agent_plans,
+    const State& initial_state,
+    const std::vector<int>& delays) {
+    const int num_agents = initial_state.num_agents();
+    int horizon = 0;
+    for (int agent = 0; agent < num_agents; ++agent) {
+        horizon = std::max(horizon, delays[agent] + static_cast<int>(per_agent_plans[agent].size()) + 1);
+    }
+
+    for (int t = 0; t <= horizon; ++t) {
+        for (int a = 0; a < num_agents; ++a) {
+            const Position a_now = position_at_time(per_agent_plans[a], initial_state.agent_positions[a], delays[a], t);
+            const Position a_prev = position_at_time(per_agent_plans[a], initial_state.agent_positions[a], delays[a], std::max(0, t - 1));
+            for (int b = a + 1; b < num_agents; ++b) {
+                const Position b_now = position_at_time(per_agent_plans[b], initial_state.agent_positions[b], delays[b], t);
+                const Position b_prev = position_at_time(per_agent_plans[b], initial_state.agent_positions[b], delays[b], std::max(0, t - 1));
+
+                if (a_now == b_now) {
+                    return ConflictEvent{true, a, b, t};
+                }
+
+                if (a_prev == b_now && b_prev == a_now) {
+                    return ConflictEvent{true, a, b, t};
+                }
+            }
         }
     }
+
+    return ConflictEvent{};
+}
+
+std::optional<std::vector<int>> cbs_style_delay_resolution(
+    const std::vector<std::vector<Action>>& per_agent_plans,
+    const State& initial_state) {
+    struct DelayNode {
+        std::vector<int> delays;
+        int cost{0};
+    };
+
+    struct NodeCompare {
+        bool operator()(const DelayNode& lhs, const DelayNode& rhs) const noexcept {
+            return lhs.cost > rhs.cost;
+        }
+    };
+
+    const int num_agents = initial_state.num_agents();
+    std::priority_queue<DelayNode, std::vector<DelayNode>, NodeCompare> open;
+    std::unordered_set<std::string> closed;
+
+    auto encode = [&](const std::vector<int>& delays) {
+        std::string key;
+        key.reserve(static_cast<std::size_t>(num_agents * 3));
+        for (int d : delays) {
+            key += std::to_string(d);
+            key += '|';
+        }
+        return key;
+    };
+
+    open.push(DelayNode{std::vector<int>(static_cast<std::size_t>(num_agents), 0), 0});
+    constexpr int MAX_DELAY_PER_AGENT = 256;
+    constexpr int MAX_CBS_EXPANSIONS = 4096;
+    int expansions = 0;
+
+    while (!open.empty() && expansions < MAX_CBS_EXPANSIONS) {
+        DelayNode node = open.top();
+        open.pop();
+
+        const std::string key = encode(node.delays);
+        if (closed.contains(key)) {
+            continue;
+        }
+        closed.insert(key);
+        ++expansions;
+
+        const ConflictEvent conflict = find_first_conflict(per_agent_plans, initial_state, node.delays);
+        if (!conflict.has_conflict) {
+            std::cerr << "[cbs] solved expansions=" << expansions
+                      << " total_delay=" << node.cost
+                      << '\n';
+            return node.delays;
+        }
+
+        std::cerr << "[cbs] conflict t=" << conflict.time
+                  << " agents=" << conflict.first_agent << "," << conflict.second_agent
+                  << " delays=(" << node.delays[conflict.first_agent] << "," << node.delays[conflict.second_agent] << ")"
+                  << '\n';
+
+        for (const int agent : {conflict.first_agent, conflict.second_agent}) {
+            if (node.delays[agent] >= MAX_DELAY_PER_AGENT) {
+                continue;
+            }
+
+            DelayNode child = node;
+            child.delays[agent] += 1;
+            child.cost += 1;
+            open.push(std::move(child));
+        }
+    }
+
+    std::cerr << "[cbs] failed expansions=" << expansions << '\n';
+    return std::nullopt;
 }
 }
 
@@ -338,34 +358,22 @@ Plan TaskDrivenHospitalSolver::solve(const Level& level, const State& initial_st
         }
     }
 
-    ConflictTable conflicts;
-    std::unordered_map<int, Position> final_positions;
     std::vector<std::vector<Action>> conflict_free_plans(static_cast<std::size_t>(num_agents));
-    int max_horizon = 0;
+    std::vector<int> delays(static_cast<std::size_t>(num_agents), 0);
+    if (const std::optional<std::vector<int>> resolved = cbs_style_delay_resolution(per_agent_plans, initial_state); resolved.has_value()) {
+        delays = *resolved;
+    } else {
+        std::cerr << "[cbs] fallback to zero-delay merge\n";
+    }
 
     for (int agent = 0; agent < num_agents; ++agent) {
-        const auto& plan = per_agent_plans[agent];
-
-        int delay = 0;
-        constexpr int MAX_DELAY = 256;
-        while (delay < MAX_DELAY && has_conflict(plan, initial_state.agent_positions[agent], delay, conflicts)) {
-            ++delay;
-        }
-
-        std::vector<Action> scheduled = with_delay(plan, delay);
-        Position final_pos{};
-        reserve_plan(scheduled, initial_state.agent_positions[agent], conflicts, final_pos);
-        final_positions[agent] = final_pos;
-        max_horizon = std::max(max_horizon, static_cast<int>(scheduled.size()));
-        conflict_free_plans[agent] = std::move(scheduled);
-
+        conflict_free_plans[agent] = with_delay(per_agent_plans[agent], delays[agent]);
         std::cerr << "[schedule] agent=" << agent
-                  << " base_actions=" << plan.size()
-                  << " delay=" << delay
+                  << " base_actions=" << per_agent_plans[agent].size()
+                  << " delay=" << delays[agent]
                   << " scheduled_actions=" << conflict_free_plans[agent].size()
                   << '\n';
     }
 
-    reserve_goal_holding_cells(conflicts, final_positions, max_horizon);
     return PlanMerger::merge_agent_plans(conflict_free_plans, num_agents);
 }
