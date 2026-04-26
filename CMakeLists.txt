@@ -14,3 +14,13 @@ file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
 add_executable(searchclient ${SRC_FILES})
 
 target_include_directories(searchclient PRIVATE src)
+
+include(CTest)
+if (BUILD_TESTING)
+    set(TEST_SRC_FILES ${SRC_FILES})
+    list(REMOVE_ITEM TEST_SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
+
+    add_executable(smoke_test tests/smoke_test.cpp ${TEST_SRC_FILES})
+    target_include_directories(smoke_test PRIVATE src)
+    add_test(NAME smoke_test COMMAND smoke_test)
+endif()
