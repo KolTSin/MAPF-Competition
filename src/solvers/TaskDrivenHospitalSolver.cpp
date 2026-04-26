@@ -1,6 +1,7 @@
 #include "solvers/TaskDrivenHospitalSolver.hpp"
 
 #include "actions/Action.hpp"
+#include "actions/ActionApplicator.hpp"
 #include "actions/ActionSemantics.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
 #include "hospital/HospitalTaskDecomposer.hpp"
@@ -9,6 +10,8 @@
 
 #include <algorithm>
 #include <iostream>
+#include <limits>
+#include <optional>
 #include <unordered_map>
 #include <unordered_set>
 
@@ -57,6 +60,104 @@ struct ConflictTable {
     std::unordered_set<TimedCell, TimedCellHasher> cells;
     std::unordered_set<TimedEdge, TimedEdgeHasher> edges;
 };
+
+struct RecoveryPlan {
+    int agent_id{-1};
+    char box_symbol{'\0'};
+    Position from{};
+    Position destination{};
+    std::vector<Action> actions;
+};
+
+std::optional<RecoveryPlan> try_recovery_relocation(
+    const Level& level,
+    State& state,
+    const MapAnalysis& analysis,
+    const std::vector<HospitalTask>& tasks,
+    const BoxTransportPlanner& planner) {
+    std::unordered_set<char> candidate_boxes;
+    for (const HospitalTask& task : tasks) {
+        if (task.type == HospitalTaskType::AssignBox) {
+            continue;
+        }
+        candidate_boxes.insert(task.box_symbol);
+    }
+
+    auto pick_agent_for_box = [&](const char box, const Position& box_pos) {
+        const Color box_color = level.box_colors[box - 'A'];
+        int best_agent = -1;
+        int best_distance = std::numeric_limits<int>::max();
+        for (int agent = 0; agent < state.num_agents(); ++agent) {
+            if (level.agent_colors[agent] != box_color) {
+                continue;
+            }
+
+            const int dist = std::abs(state.agent_positions[agent].row - box_pos.row)
+                             + std::abs(state.agent_positions[agent].col - box_pos.col);
+            if (dist < best_distance) {
+                best_distance = dist;
+                best_agent = agent;
+            }
+        }
+        return best_agent;
+    };
+
+    std::optional<RecoveryPlan> best_plan;
+
+    for (int row = 0; row < state.rows; ++row) {
+        for (int col = 0; col < state.cols; ++col) {
+            const char box = state.box_at(row, col);
+            if (box == '\0' || !candidate_boxes.contains(box)) {
+                continue;
+            }
+
+            const Position from{row, col};
+            const int agent_id = pick_agent_for_box(box, from);
+            if (agent_id < 0) {
+                continue;
+            }
+
+            std::vector<Position> candidates = analysis.find_relocation_candidates(state, from);
+            constexpr int MAX_CANDIDATES_TO_TRY = 16;
+            const int max_candidates = std::min(static_cast<int>(candidates.size()), MAX_CANDIDATES_TO_TRY);
+
+            for (int i = 0; i < max_candidates; ++i) {
+                const Position& destination = candidates[static_cast<std::size_t>(i)];
+                if (analysis.is_transit_cell(destination.row, destination.col)) {
+                    continue;
+                }
+
+                State simulated = state;
+                const HospitalTask recovery_task{
+                    HospitalTaskType::RelocateBox,
+                    agent_id,
+                    box,
+                    from,
+                    destination,
+                    0,
+                    "automatic recovery relocation"
+                };
+
+                std::vector<Action> actions = planner.plan_for_task(level, simulated, recovery_task);
+                if (actions.empty()) {
+                    continue;
+                }
+
+                if (!best_plan.has_value() || actions.size() < best_plan->actions.size()) {
+                    best_plan = RecoveryPlan{
+                        agent_id,
+                        box,
+                        from,
+                        destination,
+                        std::move(actions)
+                    };
+                }
+            }
+        }
+    }
+
+    return best_plan;
+}
 
 bool has_conflict(
     const std::vector<Action>& plan,
@@ -180,8 +281,25 @@ Plan TaskDrivenHospitalSolver::solve(const Level& level, const State& initial_st
         }
 
         if (!progressed) {
-            std::cerr << "[stop] no executable hospital tasks at iter=" << iter << '\n';
-            break;
+            const std::optional<RecoveryPlan> recovery =
+                try_recovery_relocation(level, current, analysis, tasks, planner);
+            if (!recovery.has_value()) {
+                std::cerr << "[stop] no executable hospital tasks at iter=" << iter << '\n';
+                break;
+            }
+
+            auto& target = per_agent_plans[recovery->agent_id];
+            target.insert(target.end(), recovery->actions.begin(), recovery->actions.end());
+            for (const Action& action : recovery->actions) {
+                current = ActionApplicator::apply(level, current, recovery->agent_id, action);
+            }
+            std::cerr << "[recovery] iter=" << iter
+                      << " agent=" << recovery->agent_id
+                      << " box=" << recovery->box_symbol
+                      << " from=(" << recovery->from.row << "," << recovery->from.col << ")"
+                      << " to=(" << recovery->destination.row << "," << recovery->destination.col << ")"
+                      << " actions=" << recovery->actions.size()
+                      << '\n';
         }
     }
 
