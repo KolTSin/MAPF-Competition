@@ -134,7 +134,15 @@ std::vector<Position> BoxTransportPlanner::shortest_box_path(
     const Position& agent_start,
     const Position& box_start,
     const Position& box_goal) const {
-    int grid_cells = state.rows * state.cols;
+    const int grid_cells = state.rows * state.cols;
+    const char moving_box_symbol = state.box_at(box_start.row, box_start.col);
+
+    auto projected_state = [&](const Position& box_pos) {
+        State projected = state;
+        projected.set_box(box_start.row, box_start.col, '\0');
+        projected.set_box(box_pos.row, box_pos.col, moving_box_symbol);
+        return projected;
+    };
     auto key_for = [&](const Position& box, const Position& agent_pos) {
         return state.index(box.row, box.col) * grid_cells + state.index(agent_pos.row, agent_pos.col);
     };
@@ -164,8 +172,10 @@ std::vector<Position> BoxTransportPlanner::shortest_box_path(
             break;
         }
 
+        const State node_state = projected_state(node.box);
+
         for (const Position& nxt_box : analysis_.neighbors(node.box)) {
-            if (state.has_box(nxt_box.row, nxt_box.col) && nxt_box != box_start) {
+            if (node_state.has_box(nxt_box.row, nxt_box.col) && nxt_box != node.box) {
                 continue;
             }
 
@@ -176,7 +186,7 @@ std::vector<Position> BoxTransportPlanner::shortest_box_path(
                 continue;
             }
 
-            std::vector<Action> setup_walk = shortest_agent_walk(level, state, agent, node.agent, setup);
+            std::vector<Action> setup_walk = shortest_agent_walk(level, node_state, agent, node.agent, setup);
             if (setup_walk.empty() && node.agent != setup) {
                 continue;
             }
