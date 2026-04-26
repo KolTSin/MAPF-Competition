@@ -147,10 +147,6 @@ std::vector<Position> MapAnalysis::find_relocation_candidates(const State& state
             if (level_.goal_at(nxt.row, nxt.col) != '\0') {
                 continue;
             }
-            if (degree(nxt.row, nxt.col) <= 2) {
-                continue;
-            }
-
             candidates.push_back(nxt);
         }
     }

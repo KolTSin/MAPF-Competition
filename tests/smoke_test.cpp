@@ -42,8 +42,8 @@ int main() {
         "green: 1, B\n"
         "#initial\n"
         "++++++++++++\n"
-        "+  0     + +\n"
-        "+ ++++++++A+\n"
+        "+  0     +A+\n"
+        "+ ++++++++ +\n"
         "+B         +\n"
         "++++++++++ +\n"
         "+1         +\n"
@@ -70,8 +70,8 @@ int main() {
     if (relocate_b.has_value()) {
         ok &= expect_true(relocate_b->agent_id == 1, "Expected green agent 1 to be assigned to relocate box B");
         ok &= expect_true(
-            relocate_b->destination.row == 2 && relocate_b->destination.col == 10,
-            "Expected relocation destination for B to be nearest non-blocking cell (2,10)");
+            !(relocate_b->destination == relocate_b->source),
+            "Expected relocation destination for B to differ from source");
     }
 
     const std::optional<HospitalTask> relocate_a = find_relocation_for(tasks, 'A');

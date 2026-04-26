@@ -365,7 +365,11 @@ std::optional<Position> find_non_blocking_relocation_target(
 
     auto is_blocking_at = [&](const Position& pos) {
         const State simulated = build_state_with_box_at(pos);
-        return blocked_task_count(simulated) >= baseline_blocked;
+        const int blocked_after = blocked_task_count(simulated);
+        if (baseline_blocked > 0) {
+            return blocked_after > 0;
+        }
+        return blocked_after > baseline_blocked;
     };
 
     std::queue<Position> frontier;
@@ -398,7 +402,17 @@ std::optional<Position> find_non_blocking_relocation_target(
 
     const std::vector<Position> fallback = analysis.find_relocation_candidates(state, from);
     if (!fallback.empty()) {
-        return fallback.front();
+        Position best = fallback.front();
+        int best_blocked = blocked_task_count(build_state_with_box_at(best));
+        for (std::size_t i = 1; i < fallback.size(); ++i) {
+            const Position& candidate = fallback[i];
+            const int blocked = blocked_task_count(build_state_with_box_at(candidate));
+            if (blocked < best_blocked) {
+                best_blocked = blocked;
+                best = candidate;
+            }
+        }
+        return best;
     }
 
     return std::nullopt;
@@ -563,7 +577,7 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             }
 
             if (selected.in_chokepoint && !selected.on_goal
-                && !has_reachable_own_goal_access(level, state, analysis, selected)) {
+                && manhattan(selected.pos, goal_pos) > 1) {
                 const std::optional<Position> relocation =
                     find_non_blocking_relocation_target(level, state, analysis, selected.pos, dependency_tasks);
                 if (relocation.has_value()) {
