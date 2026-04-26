@@ -141,9 +141,59 @@ std::vector<Action> with_delay(const std::vector<Action>& plan, int delay) {
 
 struct ConflictEvent {
     bool has_conflict{false};
+    bool edge_conflict{false};
     int first_agent{-1};
     int second_agent{-1};
     int time{-1};
+    Position first_from{};
+    Position first_to{};
+    Position second_from{};
+    Position second_to{};
+};
+
+struct TimedCell {
+    int row;
+    int col;
+    int time;
+
+    bool operator==(const TimedCell& other) const noexcept {
+        return row == other.row && col == other.col && time == other.time;
+    }
+};
+
+struct TimedEdge {
+    Position from;
+    Position to;
+    int time;
+
+    bool operator==(const TimedEdge& other) const noexcept {
+        return from == other.from && to == other.to && time == other.time;
+    }
+};
+
+struct TimedCellHasher {
+    std::size_t operator()(const TimedCell& v) const noexcept {
+        std::size_t seed = std::hash<int>{}(v.row);
+        seed ^= std::hash<int>{}(v.col) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        seed ^= std::hash<int>{}(v.time) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        return seed;
+    }
+};
+
+struct TimedEdgeHasher {
+    std::size_t operator()(const TimedEdge& v) const noexcept {
+        std::size_t seed = std::hash<int>{}(v.from.row);
+        seed ^= std::hash<int>{}(v.from.col) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        seed ^= std::hash<int>{}(v.to.row) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        seed ^= std::hash<int>{}(v.to.col) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        seed ^= std::hash<int>{}(v.time) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        return seed;
+    }
+};
+
+struct ConflictTable {
+    std::unordered_set<TimedCell, TimedCellHasher> cells;
+    std::unordered_set<TimedEdge, TimedEdgeHasher> edges;
 };
 
 Position position_at_time(const std::vector<Action>& plan, const Position& start, const int delay, const int time) {
@@ -182,11 +232,17 @@ ConflictEvent find_first_conflict(
                 const Position b_prev = position_at_time(per_agent_plans[b], initial_state.agent_positions[b], delays[b], std::max(0, t - 1));
 
                 if (a_now == b_now) {
-                    return ConflictEvent{true, a, b, t};
+                    return ConflictEvent{
+                        true, false, a, b, t,
+                        a_prev, a_now, b_prev, b_now
+                    };
                 }
 
                 if (a_prev == b_now && b_prev == a_now) {
-                    return ConflictEvent{true, a, b, t};
+                    return ConflictEvent{
+                        true, true, a, b, t,
+                        a_prev, a_now, b_prev, b_now
+                    };
                 }
             }
         }
@@ -200,6 +256,7 @@ std::optional<std::vector<int>> cbs_style_delay_resolution(
     const State& initial_state) {
     struct DelayNode {
         std::vector<int> delays;
+        std::vector<ConflictTable> constraints;
         int cost{0};
     };
 
@@ -213,18 +270,75 @@ std::optional<std::vector<int>> cbs_style_delay_resolution(
     std::priority_queue<DelayNode, std::vector<DelayNode>, NodeCompare> open;
     std::unordered_set<std::string> closed;
 
-    auto encode = [&](const std::vector<int>& delays) {
+    auto violates_constraints = [&](const int agent, const int delay, const std::vector<ConflictTable>& constraints) {
+        const auto& plan = per_agent_plans[agent];
+        const Position start = initial_state.agent_positions[agent];
+        Position pos = start;
+
+        for (int t = 0; t <= delay; ++t) {
+            if (constraints[agent].cells.contains(TimedCell{pos.row, pos.col, t})) {
+                return true;
+            }
+        }
+
+        int time = delay;
+        for (const Action& action : plan) {
+            const Position next = ActionSemantics::compute_effect(pos, action).agent_to;
+            if (constraints[agent].cells.contains(TimedCell{next.row, next.col, time + 1})) {
+                return true;
+            }
+            if (constraints[agent].edges.contains(TimedEdge{pos, next, time})
+                || constraints[agent].edges.contains(TimedEdge{next, pos, time})) {
+                return true;
+            }
+            pos = next;
+            ++time;
+        }
+        return false;
+    };
+
+    auto find_delay = [&](const int agent, const std::vector<ConflictTable>& constraints) -> std::optional<int> {
+        constexpr int MAX_DELAY_PER_AGENT = 256;
+        for (int delay = 0; delay <= MAX_DELAY_PER_AGENT; ++delay) {
+            if (!violates_constraints(agent, delay, constraints)) {
+                return delay;
+            }
+        }
+        return std::nullopt;
+    };
+
+    auto encode = [&](const std::vector<int>& delays, const std::vector<ConflictTable>& constraints) {
         std::string key;
         key.reserve(static_cast<std::size_t>(num_agents * 3));
         for (int d : delays) {
             key += std::to_string(d);
             key += '|';
         }
+        key += '#';
+        for (int agent = 0; agent < num_agents; ++agent) {
+            key += std::to_string(constraints[agent].cells.size());
+            key += ':';
+            key += std::to_string(constraints[agent].edges.size());
+            key += '|';
+        }
         return key;
     };
 
-    open.push(DelayNode{std::vector<int>(static_cast<std::size_t>(num_agents), 0), 0});
-    constexpr int MAX_DELAY_PER_AGENT = 256;
+    std::vector<ConflictTable> root_constraints(static_cast<std::size_t>(num_agents));
+    std::vector<int> root_delays(static_cast<std::size_t>(num_agents), 0);
+    for (int agent = 0; agent < num_agents; ++agent) {
+        const std::optional<int> delay = find_delay(agent, root_constraints);
+        if (!delay.has_value()) {
+            return std::nullopt;
+        }
+        root_delays[agent] = *delay;
+    }
+    int root_cost = 0;
+    for (int d : root_delays) {
+        root_cost += d;
+    }
+    open.push(DelayNode{std::move(root_delays), std::move(root_constraints), root_cost});
+
     constexpr int MAX_CBS_EXPANSIONS = 4096;
     int expansions = 0;
 
@@ -232,7 +346,7 @@ std::optional<std::vector<int>> cbs_style_delay_resolution(
         DelayNode node = open.top();
         open.pop();
 
-        const std::string key = encode(node.delays);
+        const std::string key = encode(node.delays, node.constraints);
         if (closed.contains(key)) {
             continue;
         }
@@ -253,13 +367,31 @@ std::optional<std::vector<int>> cbs_style_delay_resolution(
                   << '\n';
 
         for (const int agent : {conflict.first_agent, conflict.second_agent}) {
-            if (node.delays[agent] >= MAX_DELAY_PER_AGENT) {
-                continue;
+            DelayNode child = node;
+            if (conflict.edge_conflict) {
+                if (conflict.time <= 0) {
+                    continue;
+                }
+                const Position from = (agent == conflict.first_agent) ? conflict.first_from : conflict.second_from;
+                const Position to = (agent == conflict.first_agent) ? conflict.first_to : conflict.second_to;
+                child.constraints[agent].edges.insert(TimedEdge{from, to, conflict.time - 1});
+            } else {
+                child.constraints[agent].cells.insert(TimedCell{
+                    conflict.first_to.row,
+                    conflict.first_to.col,
+                    conflict.time
+                });
             }
 
-            DelayNode child = node;
-            child.delays[agent] += 1;
-            child.cost += 1;
+            const std::optional<int> new_delay = find_delay(agent, child.constraints);
+            if (!new_delay.has_value()) {
+                continue;
+            }
+            child.delays[agent] = *new_delay;
+            child.cost = 0;
+            for (int d : child.delays) {
+                child.cost += d;
+            }
             open.push(std::move(child));
         }
     }
