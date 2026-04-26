@@ -23,4 +23,7 @@ if (BUILD_TESTING)
     add_executable(smoke_test tests/smoke_test.cpp ${TEST_SRC_FILES})
     target_include_directories(smoke_test PRIVATE src)
     add_test(NAME smoke_test COMMAND smoke_test)
+
+    add_executable(masimple_levels_test tests/masimple_levels_test.cpp)
+    add_test(NAME masimple_levels_test COMMAND masimple_levels_test)
 endif()
