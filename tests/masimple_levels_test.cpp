@@ -1,10 +1,8 @@
 #include <array>
-#include <algorithm>
 #include <cstdio>
 #include <filesystem>
 #include <iostream>
 #include <optional>
-#include <regex>
 #include <string>
 #include <vector>
 
@@ -21,7 +19,7 @@ std::optional<fs::path> find_levels_dir() {
 }
 
 std::optional<fs::path> find_server_binary() {
-    for (const fs::path& candidate : {fs::path{"./server.public"}, fs::path{"../server.public"}}) {
+    for (const fs::path& candidate : {fs::path{"./server.jar"}, fs::path{"../server.jar"}}) {
         if (fs::exists(candidate)) {
             return candidate;
         }
@@ -30,7 +28,7 @@ std::optional<fs::path> find_server_binary() {
 }
 
 std::optional<fs::path> find_client_binary() {
-    for (const fs::path& candidate : {fs::path{"./searchclient"}, fs::path{"../build/searchclient"}}) {
+    for (const fs::path& candidate : {fs::path{"build/searchclient"}, fs::path{"./searchclient"}, fs::path{"../build/searchclient"}}) {
         if (fs::exists(candidate)) {
             return candidate;
         }
@@ -68,7 +66,7 @@ int main() {
         return 1;
     }
     if (!server_binary.has_value()) {
-        std::cerr << "[FAIL] Could not find server.public binary.\n";
+        std::cerr << "[FAIL] Could not find server.jar.\n";
         return 1;
     }
     if (!client_binary.has_value()) {
@@ -76,33 +74,23 @@ int main() {
         return 1;
     }
 
-    const std::regex level_name_pattern("^MA[Ss]imple.*\\.lvl$");
     std::vector<fs::path> levels;
-    for (const auto& entry : fs::directory_iterator(*levels_dir)) {
-        if (!entry.is_regular_file()) {
-            continue;
+    levels.reserve(5);
+    for (int level_index = 1; level_index <= 5; ++level_index) {
+        const fs::path level_path = *levels_dir / ("MAsimple" + std::to_string(level_index) + ".lvl");
+        if (!fs::exists(level_path)) {
+            std::cerr << "[FAIL] Missing level file: " << level_path << '\n';
+            return 1;
         }
-        const std::string filename = entry.path().filename().string();
-        if (std::regex_match(filename, level_name_pattern)) {
-            levels.push_back(entry.path());
-        }
-    }
-
-    std::sort(levels.begin(), levels.end());
-    if (levels.size() != 5) {
-        std::cerr << "[FAIL] Expected 5 MASimple*.lvl levels, found " << levels.size() << '\n';
-        for (const fs::path& level : levels) {
-            std::cerr << "  - " << level << '\n';
-        }
-        return 1;
+        levels.push_back(level_path);
     }
 
     bool all_solved = true;
     for (const fs::path& level : levels) {
         std::string command =
-            "\"" + server_binary->string() + "\""
-            + " \"" + level.string() + "\""
-            + " -c \"" + client_binary->string() + " --solver task_driven_hospital --heuristic goal_count\" -g 2>&1";
+            "java -jar \"" + server_binary->string() + "\""
+            + " -l \"" + level.string() + "\""
+            + " -c \"" + client_binary->string() + " --solver task_driven_hospital --heuristic gc\" 2>&1";
 
         int exit_code = 0;
         const std::string output = run_command_capture_output(command, exit_code);
