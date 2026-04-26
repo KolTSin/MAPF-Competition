@@ -1,6 +1,8 @@
 #include "hospital/BoxTransportPlanner.hpp"
 
+#include "actions/ActionLibrary.hpp"
 #include "actions/ActionApplicator.hpp"
+#include "actions/ActionSemantics.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -105,46 +107,27 @@ std::vector<Action> BoxTransportPlanner::shortest_box_action_plan(
         }
 
         const State node_state = projected_state(node.box, node.agent);
-        for (Direction move_dir : {Direction::North, Direction::South, Direction::East, Direction::West}) {
-            const Action move = Action::move(move_dir);
-            if (ActionApplicator::is_applicable(level, node_state, agent, move)) {
-                const Position next_agent = add(node.agent, move_dir);
-                const int next_key = key_for(node.box, next_agent);
-                if (!parents.contains(next_key)) {
-                    parents[next_key] = BoxSearchParent{current_key, true, move};
-                    q.push(next_key);
-                }
+        for (const Action& action : ActionLibrary::ALL_ACTIONS) {
+            if (action.type == ActionType::NoOp) {
+                continue;
+            }
+            if (!ActionApplicator::is_applicable(level, node_state, agent, action)) {
+                continue;
             }
 
-            const Action push = Action::push(move_dir, move_dir);
-            if (ActionApplicator::is_applicable(level, node_state, agent, push)) {
-                const Position next_box = add(node.box, move_dir);
-                const Position next_agent = node.box;
-                const int next_key = key_for(next_box, next_agent);
-                if (!parents.contains(next_key)) {
-                    parents[next_key] = BoxSearchParent{current_key, true, push};
-                    q.push(next_key);
+            const ActionEffect effect = ActionSemantics::compute_effect(node.agent, action);
+            Position next_box = node.box;
+            if (effect.moves_box) {
+                if (effect.box_from != node.box) {
+                    continue;
                 }
+                next_box = effect.box_to;
             }
-
-            for (Direction box_dir : {Direction::North, Direction::South, Direction::East, Direction::West}) {
-                const Action pull = Action::pull(move_dir, box_dir);
-                if (!ActionApplicator::is_applicable(level, node_state, agent, pull)) {
-                    continue;
-                }
-
-                const Position pulled_box_from{node.agent.row + drow(box_dir), node.agent.col + dcol(box_dir)};
-                if (pulled_box_from != node.box) {
-                    continue;
-                }
-
-                const Position next_agent = add(node.agent, move_dir);
-                const Position next_box = node.agent;
-                const int next_key = key_for(next_box, next_agent);
-                if (!parents.contains(next_key)) {
-                    parents[next_key] = BoxSearchParent{current_key, true, pull};
-                    q.push(next_key);
-                }
+            const Position next_agent = effect.agent_to;
+            const int next_key = key_for(next_box, next_agent);
+            if (!parents.contains(next_key)) {
+                parents[next_key] = BoxSearchParent{current_key, true, action};
+                q.push(next_key);
             }
         }
     }
@@ -162,10 +145,6 @@ std::vector<Action> BoxTransportPlanner::shortest_box_action_plan(
     }
     std::reverse(actions.begin(), actions.end());
     return actions;
-}
-
-Position BoxTransportPlanner::add(const Position& p, const Direction dir) {
-    return Position{p.row + drow(dir), p.col + dcol(dir)};
 }
 
 std::optional<Position> BoxTransportPlanner::find_box(const State& state, const char box_symbol) {

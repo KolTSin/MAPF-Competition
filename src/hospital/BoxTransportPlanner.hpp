@@ -19,8 +19,6 @@ public:
 private:
     const MapAnalysis& analysis_;
 
-    [[nodiscard]] static Position add(const Position& p, Direction dir);
-
     [[nodiscard]] static std::optional<Position> find_box(const State& state, char box_symbol);
     [[nodiscard]] std::vector<Action> shortest_box_action_plan(
         const Level& level,
