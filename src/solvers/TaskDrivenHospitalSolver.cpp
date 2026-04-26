@@ -142,6 +142,7 @@ std::vector<Action> with_delay(const std::vector<Action>& plan, int delay) {
 struct ConflictEvent {
     bool has_conflict{false};
     bool edge_conflict{false};
+    bool follow_conflict{false};
     int first_agent{-1};
     int second_agent{-1};
     int time{-1};
@@ -233,14 +234,29 @@ ConflictEvent find_first_conflict(
 
                 if (a_now == b_now) {
                     return ConflictEvent{
-                        true, false, a, b, t,
+                        true, false, false, a, b, t,
                         a_prev, a_now, b_prev, b_now
                     };
                 }
 
                 if (a_prev == b_now && b_prev == a_now) {
                     return ConflictEvent{
-                        true, true, a, b, t,
+                        true, true, false, a, b, t,
+                        a_prev, a_now, b_prev, b_now
+                    };
+                }
+
+                // Follow conflict: an agent enters a cell immediately after
+                // another agent vacates it.
+                if (a_prev == b_now && a_now != b_prev) {
+                    return ConflictEvent{
+                        true, false, true, b, a, t,
+                        b_prev, b_now, a_prev, a_now
+                    };
+                }
+                if (b_prev == a_now && b_now != a_prev) {
+                    return ConflictEvent{
+                        true, false, true, a, b, t,
                         a_prev, a_now, b_prev, b_now
                     };
                 }
@@ -251,7 +267,12 @@ ConflictEvent find_first_conflict(
     return ConflictEvent{};
 }
 
-std::optional<std::vector<int>> cbs_style_delay_resolution(
+struct CbsResolution {
+    std::vector<int> delays;
+    std::vector<ConflictTable> constraints;
+};
+
+std::optional<CbsResolution> cbs_style_delay_resolution(
     const std::vector<std::vector<Action>>& per_agent_plans,
     const State& initial_state) {
     struct DelayNode {
@@ -358,10 +379,11 @@ std::optional<std::vector<int>> cbs_style_delay_resolution(
             std::cerr << "[cbs] solved expansions=" << expansions
                       << " total_delay=" << node.cost
                       << '\n';
-            return node.delays;
+            return CbsResolution{node.delays, node.constraints};
         }
 
         std::cerr << "[cbs] conflict t=" << conflict.time
+                  << " type=" << (conflict.edge_conflict ? "edge" : (conflict.follow_conflict ? "follow" : "vertex"))
                   << " agents=" << conflict.first_agent << "," << conflict.second_agent
                   << " delays=(" << node.delays[conflict.first_agent] << "," << node.delays[conflict.second_agent] << ")"
                   << '\n';
@@ -375,12 +397,22 @@ std::optional<std::vector<int>> cbs_style_delay_resolution(
                 const Position from = (agent == conflict.first_agent) ? conflict.first_from : conflict.second_from;
                 const Position to = (agent == conflict.first_agent) ? conflict.first_to : conflict.second_to;
                 child.constraints[agent].edges.insert(TimedEdge{from, to, conflict.time - 1});
+                std::cerr << "[cbs-constraint] agent=" << agent
+                          << " forbid_edge=(" << from.row << "," << from.col << ")->(" << to.row << "," << to.col << ")"
+                          << " time=" << (conflict.time - 1)
+                          << '\n';
             } else {
+                const Position blocked = (agent == conflict.first_agent) ? conflict.first_to : conflict.second_to;
                 child.constraints[agent].cells.insert(TimedCell{
-                    conflict.first_to.row,
-                    conflict.first_to.col,
+                    blocked.row,
+                    blocked.col,
                     conflict.time
                 });
+                std::cerr << "[cbs-constraint] agent=" << agent
+                          << " forbid_cell=(" << blocked.row << "," << blocked.col << ")"
+                          << " time=" << conflict.time
+                          << " reason=" << (conflict.follow_conflict ? "follow" : "vertex")
+                          << '\n';
             }
 
             const std::optional<int> new_delay = find_delay(agent, child.constraints);
@@ -412,6 +444,7 @@ Plan TaskDrivenHospitalSolver::solve(const Level& level, const State& initial_st
     BoxTransportPlanner planner(analysis);
 
     std::vector<std::vector<Action>> per_agent_plans(static_cast<std::size_t>(num_agents));
+    std::vector<std::string> executed_task_trace;
     constexpr int MAX_TASK_ITERATIONS = 512;
     for (int iter = 0; iter < MAX_TASK_ITERATIONS; ++iter) {
         const std::vector<HospitalTask> tasks = decomposer.decompose(level, current, analysis);
@@ -453,6 +486,14 @@ Plan TaskDrivenHospitalSolver::solve(const Level& level, const State& initial_st
 
             auto& target = per_agent_plans[task.agent_id];
             target.insert(target.end(), segment.begin(), segment.end());
+            executed_task_trace.push_back(
+                "iter=" + std::to_string(iter)
+                + " idx=" + std::to_string(task_index)
+                + " type=" + task_type_name(task.type)
+                + " agent=" + std::to_string(task.agent_id)
+                + " box=" + std::string(1, task.box_symbol)
+                + " actions=" + std::to_string(segment.size())
+            );
 
             std::cerr << "[execute] iter=" << iter
                       << " idx=" << task_index
@@ -477,6 +518,12 @@ Plan TaskDrivenHospitalSolver::solve(const Level& level, const State& initial_st
 
             auto& target = per_agent_plans[recovery->agent_id];
             target.insert(target.end(), recovery->actions.begin(), recovery->actions.end());
+            executed_task_trace.push_back(
+                "iter=" + std::to_string(iter)
+                + " type=recovery agent=" + std::to_string(recovery->agent_id)
+                + " box=" + std::string(1, recovery->box_symbol)
+                + " actions=" + std::to_string(recovery->actions.size())
+            );
             for (const Action& action : recovery->actions) {
                 current = ActionApplicator::apply(level, current, recovery->agent_id, action);
             }
@@ -492,8 +539,19 @@ Plan TaskDrivenHospitalSolver::solve(const Level& level, const State& initial_st
 
     std::vector<std::vector<Action>> conflict_free_plans(static_cast<std::size_t>(num_agents));
     std::vector<int> delays(static_cast<std::size_t>(num_agents), 0);
-    if (const std::optional<std::vector<int>> resolved = cbs_style_delay_resolution(per_agent_plans, initial_state); resolved.has_value()) {
-        delays = *resolved;
+    std::cerr << "[task-trace] count=" << executed_task_trace.size() << '\n';
+    for (std::size_t i = 0; i < executed_task_trace.size(); ++i) {
+        std::cerr << "[task-trace] order=" << i << " " << executed_task_trace[i] << '\n';
+    }
+
+    if (const std::optional<CbsResolution> resolved = cbs_style_delay_resolution(per_agent_plans, initial_state); resolved.has_value()) {
+        delays = resolved->delays;
+        for (int agent = 0; agent < num_agents; ++agent) {
+            std::cerr << "[constraint-summary] agent=" << agent
+                      << " cells=" << resolved->constraints[agent].cells.size()
+                      << " edges=" << resolved->constraints[agent].edges.size()
+                      << '\n';
+        }
     } else {
         std::cerr << "[cbs] fallback to zero-delay merge\n";
     }
