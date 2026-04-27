@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 #include <queue>
 #include <unordered_map>
 
@@ -70,8 +71,15 @@ std::vector<Action> BoxTransportPlanner::plan_for_task(const Level& level, State
         task.agent_id,
         state.agent_positions[task.agent_id],
         box_pos,
-        task.destination);
+        task.destination,
+        task.box_symbol);
     if (route.size() < 2) {
+        std::cerr << "[box-transport] failed route"
+                  << " agent=" << task.agent_id
+                  << " box=" << task.box_symbol
+                  << " from=(" << box_pos.row << "," << box_pos.col << ")"
+                  << " to=(" << task.destination.row << "," << task.destination.col << ")"
+                  << "\n";
         return {};
     }
 
@@ -150,7 +158,8 @@ std::vector<Position> BoxTransportPlanner::shortest_box_path(
     const int agent,
     const Position& agent_start,
     const Position& box_start,
-    const Position& box_goal) const {
+    const Position& box_goal,
+    const char box_symbol) const {
     int grid_cells = state.rows * state.cols;
     auto key_for = [&](const Position& box, const Position& agent_pos) {
         return state.index(box.row, box.col) * grid_cells + state.index(agent_pos.row, agent_pos.col);
@@ -162,6 +171,15 @@ std::vector<Position> BoxTransportPlanner::shortest_box_path(
             Position{box_flat / state.cols, box_flat % state.cols},
             Position{agent_flat / state.cols, agent_flat % state.cols}
         };
+    };
+    auto make_virtual_state = [&](const BoxSearchNode& node) {
+        State virtual_state = state;
+
+        virtual_state.set_box(box_start.row, box_start.col, '\0');
+        virtual_state.set_box(node.box.row, node.box.col, box_symbol);
+        virtual_state.agent_positions[agent] = node.agent;
+
+        return virtual_state;
     };
 
     std::queue<int> q;
@@ -176,30 +194,42 @@ std::vector<Position> BoxTransportPlanner::shortest_box_path(
         q.pop();
 
         const BoxSearchNode node = decode(current_key);
+
         if (node.box == box_goal) {
             goal_key = current_key;
             break;
         }
 
+        State virtual_state = make_virtual_state(node);
+
         for (const Position& nxt_box : analysis_.neighbors(node.box)) {
-            if (state.has_box(nxt_box.row, nxt_box.col) && nxt_box != box_start) {
+            if (virtual_state.has_box(nxt_box.row, nxt_box.col) && nxt_box != node.box) {
                 continue;
             }
 
             const int dr = nxt_box.row - node.box.row;
             const int dc = nxt_box.col - node.box.col;
+
             const Position setup{node.box.row - dr, node.box.col - dc};
+
             if (!level.in_bounds(setup.row, setup.col) || level.is_wall(setup.row, setup.col)) {
                 continue;
             }
 
-            std::vector<Action> setup_walk = shortest_agent_walk(level, state, agent, node.agent, setup);
+            if (virtual_state.has_box(setup.row, setup.col) && setup != node.box) {
+                continue;
+            }
+
+            std::vector<Action> setup_walk =
+                shortest_agent_walk(level, virtual_state, agent, node.agent, setup);
+
             if (setup_walk.empty() && node.agent != setup) {
                 continue;
             }
 
             const Position nxt_agent = node.box;
             const int nxt_key = key_for(nxt_box, nxt_agent);
+
             if (parents.contains(nxt_key)) {
                 continue;
             }
@@ -285,6 +315,7 @@ std::vector<Action> BoxTransportPlanner::shortest_agent_walk(
     std::vector<Action> actions;
     actions.reserve(path.size());
     State simulated = state;
+    simulated.agent_positions[agent] = from;
     for (std::size_t i = 0; i + 1 < path.size(); ++i) {
         const int dr = path[i + 1].row - path[i].row;
         const int dc = path[i + 1].col - path[i].col;
