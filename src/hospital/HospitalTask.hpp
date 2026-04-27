@@ -10,6 +10,12 @@ enum class HospitalTaskType {
     TransportBox
 };
 
+enum class HospitalTaskPhase {
+    ClearBlockers = 0,
+    SolvePrimaryGoals = 1,
+    RestoreRelocatedBoxes = 2
+};
+
 struct HospitalTask {
     HospitalTaskType type{HospitalTaskType::TransportBox};
     int agent_id{-1};
@@ -18,4 +24,6 @@ struct HospitalTask {
     Position destination{};
     int priority{0};
     std::string reason;
+    HospitalTaskPhase phase{HospitalTaskPhase::SolvePrimaryGoals};
+    Position final_destination{-1, -1};
 };

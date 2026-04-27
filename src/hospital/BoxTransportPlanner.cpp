@@ -26,6 +26,23 @@ struct BoxSearchParent {
 
 constexpr int DR[4] = {-1, 1, 0, 0};
 constexpr int DC[4] = {0, 0, -1, 1};
+
+std::optional<Position> find_current_box(const State& state, const char symbol, const Position& preferred) {
+    if (state.in_bounds(preferred.row, preferred.col) && state.box_at(preferred.row, preferred.col) == symbol) {
+        return preferred;
+    }
+
+    for (int row = 0; row < state.rows; ++row) {
+        for (int col = 0; col < state.cols; ++col) {
+            if (state.box_at(row, col) == symbol) {
+                return Position{row, col};
+            }
+        }
+    }
+
+    return std::nullopt;
+}
+
 }
 
 BoxTransportPlanner::BoxTransportPlanner(const MapAnalysis& analysis)
@@ -36,7 +53,7 @@ std::vector<Action> BoxTransportPlanner::plan_for_task(const Level& level, State
         return {};
     }
 
-    std::optional<Position> box_pos_opt = find_box(state, task.box_symbol);
+    std::optional<Position> box_pos_opt = find_current_box(state, task.box_symbol, task.source);
     if (!box_pos_opt.has_value()) {
         return {};
     }
