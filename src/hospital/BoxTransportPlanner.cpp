@@ -1,9 +1,12 @@
 #include "hospital/BoxTransportPlanner.hpp"
 
 #include "actions/ActionApplicator.hpp"
+#include "actions/ActionLibrary.hpp"
+#include "actions/ActionSemantics.hpp"
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 #include <queue>
 #include <unordered_map>
 
@@ -24,8 +27,79 @@ struct BoxSearchParent {
     Position box{};
 };
 
-constexpr int DR[4] = {-1, 1, 0, 0};
-constexpr int DC[4] = {0, 0, -1, 1};
+struct BoxInteraction {
+    Action action;
+    Position setup;
+};
+
+Direction opposite(const Direction dir) {
+    switch (dir) {
+        case Direction::North: return Direction::South;
+        case Direction::South: return Direction::North;
+        case Direction::East: return Direction::West;
+        case Direction::West: return Direction::East;
+    }
+    return Direction::North;
+}
+
+std::optional<Direction> local_direction_from_delta(const int dr, const int dc) {
+    if (dr == -1 && dc == 0) return Direction::North;
+    if (dr == 1 && dc == 0) return Direction::South;
+    if (dr == 0 && dc == 1) return Direction::East;
+    if (dr == 0 && dc == -1) return Direction::West;
+    return std::nullopt;
+}
+
+std::vector<BoxInteraction> interactions_for_box_step(const Position& box_from, const Position& box_to) {
+    const int dr = box_to.row - box_from.row;
+    const int dc = box_to.col - box_from.col;
+
+    std::vector<BoxInteraction> out;
+    const std::optional<Direction> box_move = local_direction_from_delta(dr, dc);
+    if (!box_move.has_value()) {
+        return out;
+    }
+
+    const Direction required_pull_box_dir = opposite(*box_move);
+    for (const Action& action : ActionLibrary::ALL_ACTIONS) {
+        if (action.type == ActionType::Push) {
+            if (action.box_dir != *box_move) {
+                continue;
+            }
+
+            const Position setup{
+                box_from.row - drow(action.move_dir),
+                box_from.col - dcol(action.move_dir)
+            };
+            out.push_back(BoxInteraction{action, setup});
+        } else if (action.type == ActionType::Pull) {
+            if (action.box_dir != required_pull_box_dir) {
+                continue;
+            }
+
+            out.push_back(BoxInteraction{action, box_to});
+        }
+    }
+
+    return out;
+}
+
+std::optional<Position> find_current_box(const State& state, const char symbol, const Position& preferred) {
+    if (state.in_bounds(preferred.row, preferred.col) && state.box_at(preferred.row, preferred.col) == symbol) {
+        return preferred;
+    }
+
+    for (int row = 0; row < state.rows; ++row) {
+        for (int col = 0; col < state.cols; ++col) {
+            if (state.box_at(row, col) == symbol) {
+                return Position{row, col};
+            }
+        }
+    }
+
+    return std::nullopt;
+}
+
 }
 
 BoxTransportPlanner::BoxTransportPlanner(const MapAnalysis& analysis)
@@ -36,7 +110,7 @@ std::vector<Action> BoxTransportPlanner::plan_for_task(const Level& level, State
         return {};
     }
 
-    std::optional<Position> box_pos_opt = find_box(state, task.box_symbol);
+    std::optional<Position> box_pos_opt = find_current_box(state, task.box_symbol, task.source);
     if (!box_pos_opt.has_value()) {
         return {};
     }
@@ -53,8 +127,15 @@ std::vector<Action> BoxTransportPlanner::plan_for_task(const Level& level, State
         task.agent_id,
         state.agent_positions[task.agent_id],
         box_pos,
-        task.destination);
+        task.destination,
+        task.box_symbol);
     if (route.size() < 2) {
+        std::cerr << "[box-transport] failed route"
+                  << " agent=" << task.agent_id
+                  << " box=" << task.box_symbol
+                  << " from=(" << box_pos.row << "," << box_pos.col << ")"
+                  << " to=(" << task.destination.row << "," << task.destination.col << ")"
+                  << "\n";
         return {};
     }
 
@@ -62,39 +143,49 @@ std::vector<Action> BoxTransportPlanner::plan_for_task(const Level& level, State
         const Position current_box = route[i];
         const Position next_box = route[i + 1];
 
-        const int dr = next_box.row - current_box.row;
-        const int dc = next_box.col - current_box.col;
-        const std::optional<Direction> move_dir = direction_from_delta(dr, dc);
-        if (!move_dir.has_value()) {
+        bool applied = false;
+
+        const std::vector<BoxInteraction> interactions = interactions_for_box_step(current_box, next_box);
+        for (const BoxInteraction& interaction : interactions) {
+            if (!level.in_bounds(interaction.setup.row, interaction.setup.col)
+                || level.is_wall(interaction.setup.row, interaction.setup.col)) {
+                continue;
+            }
+
+            std::vector<Action> walk_actions = shortest_agent_walk(
+                level,
+                state,
+                task.agent_id,
+                state.agent_positions[task.agent_id],
+                interaction.setup);
+
+            if (walk_actions.empty() && state.agent_positions[task.agent_id] != interaction.setup) {
+                continue;
+            }
+
+            State try_state = state;
+            apply_actions(level, try_state, task.agent_id, walk_actions);
+            if (!ActionApplicator::is_applicable(level, try_state, task.agent_id, interaction.action)) {
+                continue;
+            }
+
+            const ActionEffect effect =
+                ActionSemantics::compute_effect(try_state.agent_positions[task.agent_id], interaction.action);
+            if (!effect.moves_box || effect.box_from != current_box || effect.box_to != next_box) {
+                continue;
+            }
+
+            apply_actions(level, state, task.agent_id, walk_actions);
+            total_actions.insert(total_actions.end(), walk_actions.begin(), walk_actions.end());
+            state = ActionApplicator::apply(level, state, task.agent_id, interaction.action);
+            total_actions.push_back(interaction.action);
+            applied = true;
             break;
         }
 
-        const Position setup_cell{current_box.row - dr, current_box.col - dc};
-        if (!level.in_bounds(setup_cell.row, setup_cell.col) || level.is_wall(setup_cell.row, setup_cell.col)) {
+        if (!applied) {
             break;
         }
-
-        std::vector<Action> walk_actions = shortest_agent_walk(
-            level,
-            state,
-            task.agent_id,
-            state.agent_positions[task.agent_id],
-            setup_cell);
-
-        if (walk_actions.empty() && state.agent_positions[task.agent_id] != setup_cell) {
-            break;
-        }
-
-        apply_actions(level, state, task.agent_id, walk_actions);
-        total_actions.insert(total_actions.end(), walk_actions.begin(), walk_actions.end());
-
-        const Action push = Action::push(*move_dir, *move_dir);
-        if (!ActionApplicator::is_applicable(level, state, task.agent_id, push)) {
-            break;
-        }
-
-        state = ActionApplicator::apply(level, state, task.agent_id, push);
-        total_actions.push_back(push);
     }
 
     return total_actions;
@@ -133,7 +224,8 @@ std::vector<Position> BoxTransportPlanner::shortest_box_path(
     const int agent,
     const Position& agent_start,
     const Position& box_start,
-    const Position& box_goal) const {
+    const Position& box_goal,
+    const char box_symbol) const {
     int grid_cells = state.rows * state.cols;
     auto key_for = [&](const Position& box, const Position& agent_pos) {
         return state.index(box.row, box.col) * grid_cells + state.index(agent_pos.row, agent_pos.col);
@@ -145,6 +237,15 @@ std::vector<Position> BoxTransportPlanner::shortest_box_path(
             Position{box_flat / state.cols, box_flat % state.cols},
             Position{agent_flat / state.cols, agent_flat % state.cols}
         };
+    };
+    auto make_virtual_state = [&](const BoxSearchNode& node) {
+        State virtual_state = state;
+
+        virtual_state.set_box(box_start.row, box_start.col, '\0');
+        virtual_state.set_box(node.box.row, node.box.col, box_symbol);
+        virtual_state.agent_positions[agent] = node.agent;
+
+        return virtual_state;
     };
 
     std::queue<int> q;
@@ -159,36 +260,56 @@ std::vector<Position> BoxTransportPlanner::shortest_box_path(
         q.pop();
 
         const BoxSearchNode node = decode(current_key);
+
         if (node.box == box_goal) {
             goal_key = current_key;
             break;
         }
 
+        State virtual_state = make_virtual_state(node);
+
         for (const Position& nxt_box : analysis_.neighbors(node.box)) {
-            if (state.has_box(nxt_box.row, nxt_box.col) && nxt_box != box_start) {
+            if (virtual_state.has_box(nxt_box.row, nxt_box.col) && nxt_box != node.box) {
                 continue;
             }
 
-            const int dr = nxt_box.row - node.box.row;
-            const int dc = nxt_box.col - node.box.col;
-            const Position setup{node.box.row - dr, node.box.col - dc};
-            if (!level.in_bounds(setup.row, setup.col) || level.is_wall(setup.row, setup.col)) {
-                continue;
-            }
+            const std::vector<BoxInteraction> interactions = interactions_for_box_step(node.box, nxt_box);
+            for (const BoxInteraction& interaction : interactions) {
+                if (!level.in_bounds(interaction.setup.row, interaction.setup.col)
+                    || level.is_wall(interaction.setup.row, interaction.setup.col)) {
+                    continue;
+                }
+                if (virtual_state.has_box(interaction.setup.row, interaction.setup.col) && interaction.setup != node.box) {
+                    continue;
+                }
 
-            std::vector<Action> setup_walk = shortest_agent_walk(level, state, agent, node.agent, setup);
-            if (setup_walk.empty() && node.agent != setup) {
-                continue;
-            }
+                std::vector<Action> setup_walk =
+                    shortest_agent_walk(level, virtual_state, agent, node.agent, interaction.setup);
+                if (setup_walk.empty() && node.agent != interaction.setup) {
+                    continue;
+                }
 
-            const Position nxt_agent = node.box;
-            const int nxt_key = key_for(nxt_box, nxt_agent);
-            if (parents.contains(nxt_key)) {
-                continue;
-            }
+                State transition = virtual_state;
+                apply_actions(level, transition, agent, setup_walk);
+                if (!ActionApplicator::is_applicable(level, transition, agent, interaction.action)) {
+                    continue;
+                }
 
-            parents[nxt_key] = BoxSearchParent{current_key, true, nxt_box};
-            q.push(nxt_key);
+                const ActionEffect effect =
+                    ActionSemantics::compute_effect(transition.agent_positions[agent], interaction.action);
+                if (!effect.moves_box || effect.box_from != node.box || effect.box_to != nxt_box) {
+                    continue;
+                }
+
+                transition = ActionApplicator::apply(level, transition, agent, interaction.action);
+                const int nxt_key = key_for(nxt_box, transition.agent_positions[agent]);
+                if (parents.contains(nxt_key)) {
+                    continue;
+                }
+
+                parents[nxt_key] = BoxSearchParent{current_key, true, nxt_box};
+                q.push(nxt_key);
+            }
         }
     }
 
@@ -268,6 +389,7 @@ std::vector<Action> BoxTransportPlanner::shortest_agent_walk(
     std::vector<Action> actions;
     actions.reserve(path.size());
     State simulated = state;
+    simulated.agent_positions[agent] = from;
     for (std::size_t i = 0; i + 1 < path.size(); ++i) {
         const int dr = path[i + 1].row - path[i].row;
         const int dc = path[i + 1].col - path[i].col;

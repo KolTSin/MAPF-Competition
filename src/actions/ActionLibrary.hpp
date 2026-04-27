@@ -30,21 +30,21 @@ inline constexpr std::array<Action, 29> ALL_ACTIONS = {
     Action::push(Direction::West, Direction::North),
     Action::push(Direction::West, Direction::South),
 
+    Action::pull(Direction::North, Direction::North),
     Action::pull(Direction::North, Direction::East),
     Action::pull(Direction::North, Direction::West),
-    Action::pull(Direction::North, Direction::South),
 
+    Action::pull(Direction::South, Direction::South),
     Action::pull(Direction::South, Direction::East),
     Action::pull(Direction::South, Direction::West),
-    Action::pull(Direction::South, Direction::North),
 
+    Action::pull(Direction::East, Direction::East),
     Action::pull(Direction::East, Direction::North),
     Action::pull(Direction::East, Direction::South),
-    Action::pull(Direction::East, Direction::West),
 
+    Action::pull(Direction::West, Direction::West),
     Action::pull(Direction::West, Direction::North),
-    Action::pull(Direction::West, Direction::South),
-    Action::pull(Direction::West, Direction::East)
+    Action::pull(Direction::West, Direction::South)
 };
 
 } // namespace ActionLibrary

@@ -22,6 +22,17 @@ std::optional<HospitalTask> find_relocation_for(const std::vector<HospitalTask>&
     return std::nullopt;
 }
 
+
+
+std::optional<int> find_task_index(const std::vector<HospitalTask>& tasks, HospitalTaskType type, char box_symbol) {
+    for (int i = 0; i < static_cast<int>(tasks.size()); ++i) {
+        if (tasks[i].type == type && tasks[i].box_symbol == box_symbol) {
+            return i;
+        }
+    }
+    return std::nullopt;
+}
+
 bool expect_true(const bool condition, const std::string& message) {
     if (!condition) {
         std::cerr << "[FAIL] " << message << '\n';
@@ -77,15 +88,31 @@ int main() {
     const std::optional<HospitalTask> relocate_a = find_relocation_for(tasks, 'A');
     ok &= expect_true(!relocate_a.has_value(), "Did not expect relocation task for non-blocking box A");
 
-    const bool has_b_transport_dependency = [&] {
-        for (const HospitalTask& task : tasks) {
-            if (task.type == HospitalTaskType::TransportBox && task.box_symbol == 'B') {
-                return true;
-            }
-        }
-        return false;
-    }();
-    ok &= expect_true(has_b_transport_dependency, "Expected dependent transport task for box B");
+    const std::optional<int> relocate_b_idx = find_task_index(tasks, HospitalTaskType::RelocateBox, 'B');
+    const std::optional<int> transport_a_idx = find_task_index(tasks, HospitalTaskType::TransportBox, 'A');
+    const std::optional<int> transport_b_idx = find_task_index(tasks, HospitalTaskType::TransportBox, 'B');
+
+    ok &= expect_true(relocate_b_idx.has_value(), "Expected a relocation task index for B");
+    ok &= expect_true(transport_b_idx.has_value(), "Expected dependent transport task for B");
+
+    if (relocate_b_idx.has_value() && transport_b_idx.has_value()) {
+        ok &= expect_true(*relocate_b_idx < *transport_b_idx, "Expected B relocation before restoring B");
+    }
+
+    if (transport_a_idx.has_value() && relocate_b_idx.has_value() && transport_b_idx.has_value()) {
+        ok &= expect_true(*relocate_b_idx < *transport_a_idx, "Expected B relocation before A transport");
+        ok &= expect_true(*transport_a_idx < *transport_b_idx, "Expected A transport before restoring B");
+    }
+
+    if (relocate_b.has_value()) {
+        ok &= expect_true(relocate_b->phase == HospitalTaskPhase::ClearBlockers, "Expected relocation in ClearBlockers phase");
+    }
+    if (transport_a_idx.has_value()) {
+        ok &= expect_true(tasks[*transport_a_idx].phase == HospitalTaskPhase::SolvePrimaryGoals, "Expected A transport in SolvePrimaryGoals phase");
+    }
+    if (transport_b_idx.has_value()) {
+        ok &= expect_true(tasks[*transport_b_idx].phase == HospitalTaskPhase::RestoreRelocatedBoxes, "Expected B transport in RestoreRelocatedBoxes phase");
+    }
 
     if (!ok) {
         return 1;

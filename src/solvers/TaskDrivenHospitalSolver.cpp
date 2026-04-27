@@ -150,15 +150,6 @@ Plan TaskDrivenHospitalSolver::solve(const Level& level, const State& initial_st
 
         bool progressed = false;
         for (const HospitalTask& task : tasks) {
-            if (task.type == HospitalTaskType::AssignBox) {
-                std::cerr << "[assign] agent=" << task.agent_id
-                          << " box=" << task.box_symbol
-                          << " -> goal=(" << task.destination.row << "," << task.destination.col << ")"
-                          << " reason=" << task.reason
-                          << '\n';
-                continue;
-            }
-
             const std::vector<Action> segment = planner.plan_for_task(level, current, task);
             if (segment.empty()) {
                 continue;
