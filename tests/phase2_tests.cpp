@@ -1,6 +1,9 @@
 #include "tasks/TaskGenerator.hpp"
 #include "tasks/Task.hpp"
+#include "tasks/TaskScheduler.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
+#include "solvers/CompetitiveSolver.hpp"
+#include "search/heuristics/Heuristic.hpp"
 
 #include <cassert>
 #include <iostream>
@@ -31,7 +34,58 @@ static State make_state() {
     return s;
 }
 
+class ConstantHeuristic : public IHeuristic {
+public:
+    int evaluate(const State&) const override { return 0; }
+    std::string name() const override { return "constant"; }
+};
+
 int main() {
+    {
+        Level l;
+        l.rows = 3; l.cols = 6;
+        l.walls.assign(18, false);
+        l.goals.assign(18, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        State s;
+        s.rows = 3; s.cols = 6;
+        s.agent_positions = {Position{1,1}, Position{1,4}};
+        s.box_pos.assign(18, '\0');
+
+        Task t0; t0.task_id = 0; t0.type = TaskType::MoveAgentToGoal; t0.agent_id = 0; t0.goal_pos = Position{1,2}; t0.priority = 10;
+        Task t1; t1.task_id = 1; t1.type = TaskType::MoveAgentToGoal; t1.agent_id = 1; t1.goal_pos = Position{1,5}; t1.priority = 10;
+
+        TaskScheduler sched;
+        Plan p = sched.build_plan(l, s, {t0, t1});
+        assert(!p.empty());
+        assert(p.steps.size() == 1);
+    }
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 5;
+        l.walls.assign(15, false);
+        l.goals.assign(15, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.box_colors['A' - 'A'] = Color::Blue;
+        l.goals[l.index(1,4)] = 'A';
+
+        State s;
+        s.rows = 3; s.cols = 5;
+        s.agent_positions = {Position{1,1}};
+        s.box_pos.assign(15, '\0');
+        s.set_box(1,2,'A');
+
+        CompetitiveSolver solver;
+        ConstantHeuristic h;
+        Plan p = solver.solve(l, s, h);
+        assert(!p.empty());
+        assert(p.steps.size() <= 6);
+    }
+
     {
         Level l = make_level();
         State s = make_state();

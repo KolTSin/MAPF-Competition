@@ -10,6 +10,7 @@
 #include "tasks/TaskPrioritizer.hpp"
 
 #include <algorithm>
+#include <unordered_map>
 #include <unordered_set>
 
 Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
@@ -27,9 +28,10 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
     prioritizer.score(level, simulated_state, mutable_tasks);
     const auto deps = deps_builder.build(mutable_tasks);
     std::unordered_set<int> completed;
+    std::unordered_map<int, int> completion_time;
+    std::vector<int> agent_available(initial_state.num_agents(), 0);
 
     bool progress = true;
-    int global_time = 0;
     while (progress) {
         progress = false;
         std::vector<Task> ready;
@@ -44,15 +46,30 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
         }
         std::sort(ready.begin(), ready.end(), [](const Task& a, const Task& b) { return a.priority > b.priority; });
 
-        for (const Task& task : ready) {
+        std::vector<Task> wave = ready;
+        std::sort(wave.begin(), wave.end(), [](const Task& a, const Task& b) { return a.priority > b.priority; });
+        std::unordered_set<int> used_agents;
+
+        for (const Task& task : wave) {
+            if (task.agent_id < 0 || task.agent_id >= initial_state.num_agents()) continue;
+            if (used_agents.count(task.agent_id)) continue;
+
+            int dep_time = 0;
+            auto it = deps.find(task.task_id);
+            if (it != deps.end()) {
+                for (int pre : it->second) dep_time = std::max(dep_time, completion_time[pre]);
+            }
+            const int start_time = std::max(agent_available[task.agent_id], dep_time);
+
             TaskPlan plan;
             if (task.type == TaskType::MoveAgentToGoal) plan = agent_planner.plan(level, simulated_state, task, reservations);
             else plan = box_planner.plan(level, simulated_state, task);
             if (!plan.success) continue;
 
-            scheduled.push_back(ScheduledTask{task, plan, global_time, global_time + static_cast<int>(plan.primitive_actions.size())});
+            const int end_time = start_time + static_cast<int>(plan.primitive_actions.size());
+            scheduled.push_back(ScheduledTask{task, plan, start_time, end_time});
             agent_plans[task.agent_id].insert(agent_plans[task.agent_id].end(), plan.primitive_actions.begin(), plan.primitive_actions.end());
-            reservations.reserve_path(plan.primitive_actions, simulated_state.agent_positions[task.agent_id], task.agent_id, global_time);
+            reservations.reserve_path(plan.primitive_actions, simulated_state.agent_positions[task.agent_id], task.agent_id, start_time);
 
             Position cur = simulated_state.agent_positions[task.agent_id];
             for (const Action& a : plan.primitive_actions) {
@@ -61,9 +78,10 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
             simulated_state.agent_positions[task.agent_id] = cur;
 
             completed.insert(task.task_id);
-            global_time += static_cast<int>(plan.primitive_actions.size());
+            completion_time[task.task_id] = end_time;
+            agent_available[task.agent_id] = end_time;
+            used_agents.insert(task.agent_id);
             progress = true;
-            break;
         }
     }
 
