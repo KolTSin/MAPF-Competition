@@ -14,7 +14,6 @@
 #include <unordered_set>
 
 Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
-    std::vector<std::vector<Action>> agent_plans(initial_state.num_agents());
     ReservationTable reservations;
     std::vector<ScheduledTask> scheduled;
 
@@ -26,7 +25,7 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
     State simulated_state = initial_state;
     std::vector<Task> mutable_tasks = tasks;
     prioritizer.score(level, simulated_state, mutable_tasks);
-    const auto deps = deps_builder.build(mutable_tasks);
+    const auto deps = deps_builder.build_graph(mutable_tasks);
     std::unordered_set<int> completed;
     std::unordered_map<int, int> completion_time;
     std::vector<int> agent_available(initial_state.num_agents(), 0);
@@ -35,15 +34,8 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
     while (progress) {
         progress = false;
         std::vector<Task> ready;
-        for (const Task& t : mutable_tasks) {
-            if (completed.count(t.task_id)) continue;
-            bool ok = true;
-            auto it = deps.find(t.task_id);
-            if (it != deps.end()) {
-                for (int pre : it->second) if (!completed.count(pre)) { ok = false; break; }
-            }
-            if (ok) ready.push_back(t);
-        }
+        const auto ready_ids = deps.ready_tasks(completed);
+        for (const Task& t : mutable_tasks) if (std::find(ready_ids.begin(), ready_ids.end(), t.task_id) != ready_ids.end()) ready.push_back(t);
         std::sort(ready.begin(), ready.end(), [](const Task& a, const Task& b) { return a.priority > b.priority; });
 
         std::vector<Task> wave = ready;
@@ -55,8 +47,8 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
             if (used_agents.count(task.agent_id)) continue;
 
             int dep_time = 0;
-            auto it = deps.find(task.task_id);
-            if (it != deps.end()) {
+            auto it = deps.predecessors.find(task.task_id);
+            if (it != deps.predecessors.end()) {
                 for (int pre : it->second) dep_time = std::max(dep_time, completion_time[pre]);
             }
             const int start_time = std::max(agent_available[task.agent_id], dep_time);
@@ -68,7 +60,6 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
 
             const int end_time = start_time + static_cast<int>(plan.primitive_actions.size());
             scheduled.push_back(ScheduledTask{task, plan, start_time, end_time});
-            agent_plans[task.agent_id].insert(agent_plans[task.agent_id].end(), plan.primitive_actions.begin(), plan.primitive_actions.end());
             reservations.reserve_path(plan.primitive_actions, simulated_state.agent_positions[task.agent_id], task.agent_id, start_time);
 
             Position cur = simulated_state.agent_positions[task.agent_id];
@@ -82,6 +73,20 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
             agent_available[task.agent_id] = end_time;
             used_agents.insert(task.agent_id);
             progress = true;
+        }
+    }
+
+    std::vector<std::vector<Action>> agent_plans(initial_state.num_agents());
+    for (const auto& st : scheduled) {
+        auto& timeline = agent_plans[st.task.agent_id];
+        if (static_cast<int>(timeline.size()) < st.start_time) {
+            timeline.resize(st.start_time, Action::noop());
+        }
+        if (static_cast<int>(timeline.size()) < st.end_time) {
+            timeline.resize(st.end_time, Action::noop());
+        }
+        for (int i = 0; i < static_cast<int>(st.plan.primitive_actions.size()); ++i) {
+            timeline[st.start_time + i] = st.plan.primitive_actions[static_cast<std::size_t>(i)];
         }
     }
 
