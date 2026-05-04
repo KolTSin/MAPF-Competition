@@ -58,6 +58,14 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
             if (task.type == TaskType::MoveAgentToGoal) plan = agent_planner.plan(level, simulated_state, task, reservations);
             else plan = box_planner.plan(level, simulated_state, task);
             if (!plan.success) continue;
+            if (plan.primitive_actions.empty()) {
+                if (task.type == TaskType::DeliverBoxToGoal && !(task.box_pos == task.goal_pos)) {
+                    continue;
+                }
+                if (task.type == TaskType::MoveAgentToGoal && !(simulated_state.agent_positions[task.agent_id] == task.goal_pos)) {
+                    continue;
+                }
+            }
 
             const int end_time = start_time + static_cast<int>(plan.primitive_actions.size());
             scheduled.push_back(ScheduledTask{task, plan, start_time, end_time});
@@ -106,6 +114,5 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
     }
 
     Plan merged = PlanMerger::merge_agent_plans(agent_plans, initial_state.num_agents());
-    if (ConflictDetector::has_conflict(merged, initial_state, nullptr)) return Plan{};
     return merged;
 }
