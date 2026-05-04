@@ -72,6 +72,37 @@ int main() {
         assert((plan.box_trajectory.back() == Position{1,4}));
     }
 
+    {
+        Level l = make_level();
+        State s = make_state();
+        Task t; t.task_id=1; t.agent_id=2; t.box_id='A'; t.box_pos={1,2}; t.goal_pos={1,3};
+        BoxTransportPlanner p;
+        TaskPlan plan = p.plan(l,s,t);
+        assert(!plan.success);
+        assert(plan.failure_reason == "invalid_agent");
+    }
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 4;
+        l.walls.assign(12, false);
+        l.walls[l.index(1,3)] = true;
+        l.goals.assign(12, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        State s;
+        s.rows = 3; s.cols = 4;
+        s.agent_positions = {Position{1,1}};
+        s.box_pos.assign(12, '\0');
+        s.set_box(1,2,'A');
+
+        Task t; t.task_id=2; t.agent_id=0; t.box_id='A'; t.box_pos={1,2}; t.goal_pos={1,3};
+        BoxTransportPlanner p;
+        TaskPlan plan = p.plan(l,s,t);
+        assert(!plan.success);
+        assert(plan.failure_reason == "no_path_for_single_box");
+    }
+
     std::cout << "phase2_tests passed\n";
     return 0;
 }

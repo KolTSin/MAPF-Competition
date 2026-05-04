@@ -1,5 +1,7 @@
 #include "hospital/BoxTransportPlanner.hpp"
 
+#include "actions/ActionSemantics.hpp"
+
 #include <array>
 #include <queue>
 #include <unordered_map>
@@ -36,6 +38,74 @@ bool is_free_cell(const Level& level, const State& state, const Position& p, con
     if (!level.in_bounds(p.row, p.col) || level.is_wall(p.row, p.col)) return false;
     const char b = state.box_at(p.row, p.col);
     if (b != '\0' && !(p == active_box)) return false;
+    return true;
+}
+
+bool validate_replay(const Level& level, const State& state, const Task& task, TaskPlan& out) {
+    Position agent = state.agent_positions[task.agent_id];
+    Position box = task.box_pos;
+
+    if (out.agent_trajectory.empty() || out.box_trajectory.empty()) {
+        out.success = false;
+        out.failure_reason = "invalid_empty_trajectory";
+        return false;
+    }
+    if (out.agent_trajectory.front() != agent || out.box_trajectory.front() != box) {
+        out.success = false;
+        out.failure_reason = "invalid_start_trajectory";
+        return false;
+    }
+    if (out.primitive_actions.size() + 1 != out.agent_trajectory.size() ||
+        out.primitive_actions.size() + 1 != out.box_trajectory.size()) {
+        out.success = false;
+        out.failure_reason = "invalid_trajectory_length_mismatch";
+        return false;
+    }
+
+    for (std::size_t i = 0; i < out.primitive_actions.size(); ++i) {
+        const Action action = out.primitive_actions[i];
+        const ActionEffect eff = ActionSemantics::compute_effect(agent, action);
+
+        if (!level.in_bounds(eff.agent_to.row, eff.agent_to.col) || level.is_wall(eff.agent_to.row, eff.agent_to.col)) {
+            out.success = false;
+            out.failure_reason = "invalid_agent_step_wall_or_oob";
+            return false;
+        }
+
+        if (action.type == ActionType::Push) {
+            if (eff.box_from != box) {
+                out.success = false;
+                out.failure_reason = "invalid_push_without_adjacent_box";
+                return false;
+            }
+            if (!level.in_bounds(eff.box_to.row, eff.box_to.col) || level.is_wall(eff.box_to.row, eff.box_to.col)) {
+                out.success = false;
+                out.failure_reason = "invalid_push_box_wall_or_oob";
+                return false;
+            }
+            if (state.box_at(eff.box_to.row, eff.box_to.col) != '\0' && eff.box_to != box) {
+                out.success = false;
+                out.failure_reason = "invalid_push_into_static_box";
+                return false;
+            }
+            box = eff.box_to;
+        } else if (action.type == ActionType::Move) {
+            if (eff.agent_to == box) {
+                out.success = false;
+                out.failure_reason = "invalid_move_into_box";
+                return false;
+            }
+        }
+
+        agent = eff.agent_to;
+
+        if (out.agent_trajectory[i + 1] != agent || out.box_trajectory[i + 1] != box) {
+            out.success = false;
+            out.failure_reason = "invalid_replay_trajectory_mismatch";
+            return false;
+        }
+    }
+
     return true;
 }
 
@@ -80,6 +150,9 @@ TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const
             out.primitive_actions = cur.actions;
             out.agent_trajectory = cur.agent_traj;
             out.box_trajectory = cur.box_traj;
+            if (!validate_replay(level, state, task, out)) {
+                return out;
+            }
             return out;
         }
 
