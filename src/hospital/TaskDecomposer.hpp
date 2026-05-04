@@ -1,15 +1,15 @@
 #pragma once
 
 #include "domain/Level.hpp"
-#include "hospital/HospitalTask.hpp"
+#include "hospital/Task.hpp"
 #include "hospital/MapAnalysis.hpp"
 #include "state/State.hpp"
 
 #include <vector>
 
-class HospitalTaskDecomposer {
+class TaskDecomposer {
 public:
-    std::vector<HospitalTask> decompose(
+    std::vector<Task> decompose(
         const Level& level,
         const State& state,
         const MapAnalysis& analysis) const;

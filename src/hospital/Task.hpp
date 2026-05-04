@@ -4,10 +4,15 @@
 
 #include <string>
 
-enum class HospitalTaskType {
-    AssignBox,
-    RelocateBox,
-    TransportBox
+enum class TaskType {
+    MoveAgentTo,
+    MoveBoxToGoal,
+    ClearCell,
+    ClearPath,
+    PositionAgentForBox,
+    PushBox,
+    PullBox,
+    PrimitiveAction
 };
 
 enum class HospitalTaskPhase {
@@ -16,8 +21,8 @@ enum class HospitalTaskPhase {
     RestoreRelocatedBoxes = 2
 };
 
-struct HospitalTask {
-    HospitalTaskType type{HospitalTaskType::TransportBox};
+struct Task {
+    TaskType type{TaskType::MoveAgentTo};
     int agent_id{-1};
     char box_symbol{'\0'};
     Position source{};

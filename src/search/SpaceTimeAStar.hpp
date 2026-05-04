@@ -34,6 +34,7 @@ public:
         const Level& level,
         const State& initial_state,
         const int agent,
+        const Position& goal_pos,
         const ReservationTable& reservations
     );
 private:

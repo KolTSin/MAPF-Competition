@@ -2,7 +2,7 @@
 
 #include "solvers/Solver.hpp"
 
-class TaskDrivenHospitalSolver final : public Solver {
+class TaskSolver final : public Solver {
 public:
     Plan solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) override;
 };

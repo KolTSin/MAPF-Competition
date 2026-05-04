@@ -1,4 +1,5 @@
 #include "state/State.hpp"
+#include <assert.h>
 
 int State::index(int r, int c) const noexcept {
     return r * cols + c;
@@ -24,5 +25,6 @@ bool State::has_box(int r, int c) const noexcept {
 }
 
 void State::set_box(int r, int c, char value) {
+    assert(in_bounds(r, c));
     box_pos[index(r, c)] = value;
 }

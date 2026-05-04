@@ -1,4 +1,4 @@
-#include "hospital/HospitalTaskDecomposer.hpp"
+#include "hospital/TaskDecomposer.hpp"
 
 #include <algorithm>
 #include <iostream>
@@ -82,10 +82,10 @@ bool task_has_access(
     const Level& level,
     const State& state,
     const MapAnalysis& analysis,
-    const HospitalTask& task) {
+    const Task& task) {
     (void) level;
 
-    if (task.type != HospitalTaskType::TransportBox) {
+    if (task.type != TaskType::TransportBox) {
         return true;
     }
 
@@ -151,7 +151,7 @@ std::optional<Position> find_safe_parking_cell(
     const State& state,
     const MapAnalysis& analysis,
     const BoxRecord& blocker,
-    const std::vector<HospitalTask>& goal_tasks,
+    const std::vector<Task>& goal_tasks,
     const std::vector<int>& blocked_task_indices) {
     const std::vector<Position> candidates = analysis.find_relocation_candidates(state, blocker.pos);
     if (candidates.empty()) {
@@ -217,14 +217,14 @@ std::optional<Position> find_safe_parking_cell(
 }
 }
 
-std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
+std::vector<Task> TaskDecomposer::decompose(
     const Level& level,
     const State& state,
     const MapAnalysis& analysis) const {
-    std::vector<HospitalTask> tasks;
+    std::vector<Task> tasks;
     const std::vector<BoxRecord> boxes = analysis.collect_boxes(state);
 
-    std::vector<HospitalTask> goal_tasks;
+    std::vector<Task> goal_tasks;
     for (int row = 0; row < level.rows; ++row) {
         for (int col = 0; col < level.cols; ++col) {
             const char goal = level.goal_at(row, col);
@@ -258,15 +258,15 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
                 continue;
             }
 
-            goal_tasks.push_back(HospitalTask{
-                HospitalTaskType::TransportBox,
+            goal_tasks.push_back(Task{
+                TaskType::TransportBox,
                 agent,
                 selected.symbol,
                 selected.pos,
                 Position{row, col},
                 best_cost,
                 "Transport box to goal",
-                HospitalTaskPhase::SolvePrimaryGoals,
+                TaskPhase::SolvePrimaryGoals,
                 Position{-1, -1}
             });
         }
@@ -282,7 +282,7 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
         without.set_box(candidate.pos.row, candidate.pos.col, '\0');
 
         for (int t = 0; t < static_cast<int>(goal_tasks.size()); ++t) {
-            const HospitalTask& task = goal_tasks[t];
+            const Task& task = goal_tasks[t];
             if (task.box_symbol == candidate.symbol && task.source == candidate.pos) {
                 continue;
             }
@@ -298,7 +298,7 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
     }
 
     for (int t = 0; t < static_cast<int>(goal_tasks.size()); ++t) {
-        const HospitalTask& task = goal_tasks[t];
+        const Task& task = goal_tasks[t];
         if (task_has_access(level, state, analysis, task)) {
             continue;
         }
@@ -340,34 +340,34 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             continue;
         }
 
-        tasks.push_back(HospitalTask{
-            HospitalTaskType::RelocateBox,
+        tasks.push_back(Task{
+            TaskType::RelocateBox,
             agent,
             blocker.symbol,
             blocker.pos,
             *parking,
             0,
             "Temporarily clear blocker",
-            HospitalTaskPhase::ClearBlockers,
+            TaskPhase::ClearBlockers,
             *final_goal
         });
 
-        tasks.push_back(HospitalTask{
-            HospitalTaskType::TransportBox,
+        tasks.push_back(Task{
+            TaskType::TransportBox,
             agent,
             blocker.symbol,
             *parking,
             *final_goal,
             1000,
             "Restore relocated box to final goal",
-            HospitalTaskPhase::RestoreRelocatedBoxes,
+            TaskPhase::RestoreRelocatedBoxes,
             *final_goal
         });
 
         relocated_box_cells.insert(state.index(blocker.pos.row, blocker.pos.col));
     }
 
-    for (const HospitalTask& goal_task : goal_tasks) {
+    for (const Task& goal_task : goal_tasks) {
         std::optional<Position> current_box = find_current_box(state, goal_task.box_symbol, goal_task.source);
         if (!current_box.has_value()) {
             continue;
@@ -377,12 +377,12 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
             continue;
         }
 
-        HospitalTask task = goal_task;
+        Task task = goal_task;
         task.source = *current_box;
         tasks.push_back(task);
     }
 
-    std::sort(tasks.begin(), tasks.end(), [](const HospitalTask& a, const HospitalTask& b) {
+    std::sort(tasks.begin(), tasks.end(), [](const Task& a, const Task& b) {
         if (a.phase != b.phase) {
             return static_cast<int>(a.phase) < static_cast<int>(b.phase);
         }
@@ -392,7 +392,7 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
         return a.agent_id < b.agent_id;
     });
 
-    for (const HospitalTask& task : tasks) {
+    for (const Task& task : tasks) {
         std::cerr << "[task] phase=" << static_cast<int>(task.phase)
                   << " type=" << static_cast<int>(task.type)
                   << " agent=" << task.agent_id
@@ -406,11 +406,11 @@ std::vector<HospitalTask> HospitalTaskDecomposer::decompose(
     return tasks;
 }
 
-int HospitalTaskDecomposer::manhattan(const Position& a, const Position& b) noexcept {
+int TaskDecomposer::manhattan(const Position& a, const Position& b) noexcept {
     return std::abs(a.row - b.row) + std::abs(a.col - b.col);
 }
 
-int HospitalTaskDecomposer::pick_agent_for_box(
+int TaskDecomposer::pick_agent_for_box(
     const Level& level,
     const State& state,
     const char box,

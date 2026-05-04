@@ -15,6 +15,7 @@ Plan SpaceTimeSolver::solve(const Level& level, const State& initial_state, cons
 
     ReservationTable reservations;
     SpaceTimeAStar astar(heuristic);
+    Position goal_pos = Position{0,0};
 
     std::cerr << "SpaceTimeSolver start, num_agents = " << num_agents << '\n';
     for (int agent=0; agent < num_agents; ++agent){
@@ -27,7 +28,7 @@ Plan SpaceTimeSolver::solve(const Level& level, const State& initial_state, cons
 
         try {
             std::cerr << "starting now.." << '\n';
-            agent_plans[agent] = astar.search(level, initial_state, agent, reservations);
+            agent_plans[agent] = astar.search(level, initial_state, agent, goal_pos,  reservations);
             reservations.reserve_path(agent_plans[agent],initial_state.agent_positions[agent],agent);
             std::cerr << "Agent " << agent << " plan length = "
                     << agent_plans[agent].size() << '\n';

@@ -37,9 +37,9 @@ struct SpaceTimeKeyHasher {
     }
 };
 
-[[nodiscard]] bool is_goal(const Level& level, const State& state, int agent_id) {
+[[nodiscard]] bool is_goal(const Level& level, const State& state, int agent_id, const Position& goal) {
     const Position pos = state.agent_positions[agent_id];
-    return level.goal_at(pos.row, pos.col) == static_cast<char>('0' + agent_id);
+    return (level.goal_at(pos.row, pos.col) == static_cast<char>('0' + agent_id)) || (pos == goal);
 }
 
 std::vector<Action> reconstruct_plan(const std::vector<Node>& nodes, int goal_index) {
@@ -134,6 +134,7 @@ std::vector<Action> SpaceTimeAStar::search(
     const Level& level,
     const State& initial_state,
     const int agent,
+    const Position& goal_pos,
     const ReservationTable& reservations
 ) {
     std::vector<Node> nodes;
@@ -172,7 +173,7 @@ std::vector<Action> SpaceTimeAStar::search(
             continue;
         }
 
-        if (is_goal(level, current.state, agent)) {
+        if (is_goal(level, current.state, agent, goal_pos)) {
             return reconstruct_plan(nodes, current_index);
         }
 

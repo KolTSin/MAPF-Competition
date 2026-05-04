@@ -60,7 +60,7 @@ std::vector<BoxInteraction> interactions_for_box_step(const Position& box_from, 
         return out;
     }
 
-    const Direction required_pull_box_dir = opposite(*box_move);
+    const Direction required_pull_box_dir = *box_move;
     for (const Action& action : ActionLibrary::ALL_ACTIONS) {
         if (action.type == ActionType::Push) {
             if (action.box_dir != *box_move) {
@@ -105,8 +105,8 @@ std::optional<Position> find_current_box(const State& state, const char symbol, 
 BoxTransportPlanner::BoxTransportPlanner(const MapAnalysis& analysis)
     : analysis_(analysis) {}
 
-std::vector<Action> BoxTransportPlanner::plan_for_task(const Level& level, State& state, const HospitalTask& task) const {
-    if (task.type != HospitalTaskType::RelocateBox && task.type != HospitalTaskType::TransportBox) {
+std::vector<Action> BoxTransportPlanner::plan_for_task(const Level& level, State& state, const Task& task) const {
+    if (task.type != TaskType::RelocateBox && task.type != TaskType::TransportBox) {
         return {};
     }
 
@@ -273,36 +273,46 @@ std::vector<Position> BoxTransportPlanner::shortest_box_path(
                 continue;
             }
 
-            const std::vector<BoxInteraction> interactions = interactions_for_box_step(node.box, nxt_box);
+            const std::vector<BoxInteraction> interactions =
+                interactions_for_box_step(node.box, nxt_box);
+
             for (const BoxInteraction& interaction : interactions) {
                 if (!level.in_bounds(interaction.setup.row, interaction.setup.col)
                     || level.is_wall(interaction.setup.row, interaction.setup.col)) {
                     continue;
                 }
-                if (virtual_state.has_box(interaction.setup.row, interaction.setup.col) && interaction.setup != node.box) {
+
+                if (virtual_state.has_box(interaction.setup.row, interaction.setup.col)
+                    && interaction.setup != node.box) {
                     continue;
                 }
 
                 std::vector<Action> setup_walk =
                     shortest_agent_walk(level, virtual_state, agent, node.agent, interaction.setup);
+
                 if (setup_walk.empty() && node.agent != interaction.setup) {
                     continue;
                 }
 
-                State transition = virtual_state;
-                apply_actions(level, transition, agent, setup_walk);
-                if (!ActionApplicator::is_applicable(level, transition, agent, interaction.action)) {
+                State try_state = virtual_state;
+                apply_actions(level, try_state, agent, setup_walk);
+
+                if (!ActionApplicator::is_applicable(level, try_state, agent, interaction.action)) {
                     continue;
                 }
 
+                State next_state = ActionApplicator::apply(level, try_state, agent, interaction.action);
+
                 const ActionEffect effect =
-                    ActionSemantics::compute_effect(transition.agent_positions[agent], interaction.action);
+                    ActionSemantics::compute_effect(try_state.agent_positions[agent], interaction.action);
+
                 if (!effect.moves_box || effect.box_from != node.box || effect.box_to != nxt_box) {
                     continue;
                 }
 
-                transition = ActionApplicator::apply(level, transition, agent, interaction.action);
-                const int nxt_key = key_for(nxt_box, transition.agent_positions[agent]);
+                const Position nxt_agent = next_state.agent_positions[agent];
+                const int nxt_key = key_for(nxt_box, nxt_agent);
+
                 if (parents.contains(nxt_key)) {
                     continue;
                 }

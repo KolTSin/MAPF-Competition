@@ -3,7 +3,7 @@
 #include "actions/Action.hpp"
 #include "domain/Level.hpp"
 #include "domain/Position.hpp"
-#include "hospital/HospitalTask.hpp"
+#include "hospital/Task.hpp"
 #include "hospital/MapAnalysis.hpp"
 #include "state/State.hpp"
 
@@ -14,7 +14,7 @@ class BoxTransportPlanner {
 public:
     explicit BoxTransportPlanner(const MapAnalysis& analysis);
 
-    std::vector<Action> plan_for_task(const Level& level, State& state, const HospitalTask& task) const;
+    std::vector<Action> plan_for_task(const Level& level, State& state, const Task& task) const;
 
 private:
     const MapAnalysis& analysis_;
