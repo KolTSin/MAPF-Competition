@@ -1,0 +1,385 @@
+Hospital Domain Mechanics - Plain Text Explanation
+==================================================
+
+Purpose
+-------
+The hospital domain is a grid-based planning environment inspired by hospital and warehouse robots. Agents are robots. Boxes are movable items. The goal is to produce a sequence of actions that moves the required agents and/or boxes onto their goal cells.
+
+Core Objects
+------------
+A level contains four main kinds of cells/objects:
+
+1. Walls
+   - Represented by '+'.
+   - Walls are immovable obstacles.
+   - Agents and boxes cannot move through walls.
+
+2. Agents
+   - Represented by digits: 0, 1, ..., 9.
+   - Each digit identifies one unique agent.
+   - Agents must be numbered consecutively starting from 0.
+   - There can be at most 10 agents in a level.
+
+3. Boxes
+   - Represented by capital letters: A, B, ..., Z.
+   - The letter is the box type.
+   - There can be multiple boxes of the same type.
+   - A goal with letter A can be satisfied by any A box.
+
+4. Goal cells
+   - Goal cells appear in the #goal section.
+   - A letter goal, such as A, requires a box of type A on that cell.
+   - A digit goal, such as 0, requires that exact agent on that cell.
+   - Objects without goals are allowed to end anywhere.
+
+Colors
+------
+Colors define which agents can move which boxes.
+
+Example:
+
+    red: 0, A
+    green: 1, B
+
+This means:
+
+    - Agent 0 is red.
+    - All A boxes are red.
+    - Agent 0 can move A boxes.
+    - Agent 1 is green.
+    - All B boxes are green.
+    - Agent 1 can move B boxes.
+
+Important rule:
+
+    An agent can only push or pull boxes of the same color as itself.
+
+All boxes of the same letter must have the same color. For example, there cannot be one red A box and one blue A box in the same level.
+
+Level Format
+------------
+A hospital-domain level has this structure:
+
+    #domain
+    hospital
+    #levelname
+    <name>
+    #colors
+    <color declarations>
+    #initial
+    <initial grid>
+    #goal
+    <goal grid>
+    #end
+
+The #initial grid gives the starting positions of walls, agents, and boxes.
+The #goal grid gives the required final positions.
+The wall layout in #initial and #goal must match exactly.
+
+Cell Occupancy
+--------------
+A cell is occupied if it contains:
+
+    - a wall,
+    - an agent,
+    - or a box.
+
+A cell is free if it contains none of those.
+
+Most actions require some neighboring cell to be free.
+
+Primitive Actions
+-----------------
+Each agent can perform one primitive action per timestep.
+
+The primitive actions are:
+
+    1. Move
+    2. Push
+    3. Pull
+    4. NoOp
+
+Directions are:
+
+    N = north
+    S = south
+    E = east
+    W = west
+
+Move
+----
+Syntax:
+
+    Move(<direction>)
+
+Example:
+
+    Move(N)
+
+Meaning:
+
+    The agent moves one cell north.
+
+Applicability:
+
+    The neighboring cell in the chosen direction must be free.
+
+Effect:
+
+    The agent moves into that neighboring cell.
+
+If the action is not applicable, the agent stays still.
+
+Push
+----
+Syntax:
+
+    Push(<agent direction>, <box direction>)
+
+Example:
+
+    Push(E,E)
+
+Meaning:
+
+    The agent moves east into the box's current cell, and the box moves east.
+
+More generally:
+
+    - The first direction says where the agent moves.
+    - The neighboring cell in that direction must contain a box of the same color.
+    - The second direction says where the box moves.
+
+Applicability:
+
+    1. The cell next to the agent in the agent direction must contain a same-color box.
+    2. The cell next to the box in the box direction must be free.
+
+Effect:
+
+    - The agent moves into the box's old cell.
+    - The box moves one cell in the box direction.
+
+Corner pushes are allowed. The agent direction and box direction do not have to be the same.
+
+Example:
+
+    Push(W,S)
+
+The agent moves west into the box's old cell, while the box moves south.
+
+Pull
+----
+Syntax:
+
+    Pull(<agent direction>, <box direction>)
+
+Example:
+
+    Pull(E,N)
+
+Meaning:
+
+    The agent moves in the agent direction while pulling a box into the cell the agent leaves behind.
+
+Applicability:
+
+    1. The neighboring cell in the agent direction must be free.
+    2. The cell opposite the box direction from the agent must contain a same-color box.
+
+Effect:
+
+    - The agent moves one cell in the agent direction.
+    - The box moves one cell in the box direction.
+
+The box direction describes the movement of the box, not where the box currently is.
+
+NoOp
+----
+Syntax:
+
+    NoOp
+
+Meaning:
+
+    The agent does nothing for one timestep.
+
+Applicability:
+
+    NoOp is always applicable.
+
+Effect:
+
+    The agent stays in the same cell.
+
+Failed Actions
+--------------
+If an agent tries an inapplicable action, the action fails.
+
+Failure means:
+
+    - the agent performs NoOp instead,
+    - the agent stays where it is,
+    - any intended box movement does not happen.
+
+Joint Actions
+-------------
+If there are multiple agents, they act at the same time.
+
+A joint action gives one primitive action for each agent.
+
+Syntax:
+
+    <action0>|<action1>|...|<actionN>
+
+Example with three agents:
+
+    Move(N)|NoOp|Push(E,E)
+
+This means:
+
+    - Agent 0 performs Move(N).
+    - Agent 1 performs NoOp.
+    - Agent 2 performs Push(E,E).
+
+Synchronized Execution
+----------------------
+All actions in a joint action are synchronized.
+
+Important rule:
+
+    Occupancy is checked at the beginning of the timestep.
+
+This means an agent cannot move into a cell in the same joint action where another agent is moving out of that cell. The cell is still considered occupied at the beginning of the joint action.
+
+This has major consequences for planning:
+
+    - Follow conflicts are not allowed.
+    - Edge swaps are not allowed.
+    - Two objects cannot move into the same destination cell.
+    - Two agents cannot move the same box at the same time.
+
+Conflicts
+---------
+A joint action can contain conflicts.
+
+Common conflicts include:
+
+    1. Vertex conflict
+       Two agents try to occupy the same cell.
+
+    2. Box vertex conflict
+       Two boxes are moved into the same cell.
+
+    3. Agent-box conflict
+       An agent tries to move into a cell occupied by a box, or a box is moved into a cell occupied by an agent.
+
+    4. Edge conflict / swap
+       Two objects try to swap positions in the same timestep.
+
+    5. Follow conflict
+       One object tries to enter a cell that another object leaves during the same joint action.
+       This is not allowed because occupancy is checked at the beginning of the timestep.
+
+    6. Same-box conflict
+       Two agents try to move the same box at the same time.
+
+Conflict Result
+---------------
+If two or more agents are involved in a conflict:
+
+    - the conflicting agents fail,
+    - those agents perform NoOp instead,
+    - their intended movements do not happen.
+
+Non-conflicting agents may still succeed.
+
+Solving a Level
+---------------
+A level is solved when every goal cell has the correct object on it.
+
+For box goals:
+
+    - A goal cell marked A must contain an A box.
+    - It does not matter which specific A box, if there are several.
+
+For agent goals:
+
+    - A goal cell marked 0 must contain agent 0.
+    - A goal cell marked 1 must contain agent 1.
+
+Objects without goal cells may end anywhere, as long as they do not prevent goals from being satisfied.
+
+Implementation Implications
+---------------------------
+A strong solver should model the following carefully:
+
+1. Static walls
+   These never change.
+
+2. Dynamic agents
+   Agents move every timestep and can block each other.
+
+3. Dynamic boxes
+   Boxes can be goals, obstacles, or temporary blockers.
+
+4. Color restrictions
+   Not every agent can move every box.
+
+5. Time-dependent reservations
+   The planner should reserve cells and edges for agents and boxes over time.
+
+6. Conservative conflict checks
+   Since occupancy is checked at the beginning of each joint action, the planner should not allow another object to enter a cell that is occupied at that timestep.
+
+7. Box relocation
+   Boxes that are not currently goal-relevant may still need to be moved because they block corridors, doors, agents, or other boxes.
+
+8. Parking cells
+   A solver should avoid parking boxes on goal cells, chokepoints, narrow corridors, or important transit routes.
+
+9. Replanning
+   If an action fails because of a conflict or unexpected inapplicability, the solver should update its internal state and replan.
+
+Client-Server Mechanics
+-----------------------
+The MAvis server runs the level and tracks the real state.
+
+The client-server loop is:
+
+    1. Client prints its name.
+    2. Server sends the level file to the client.
+    3. Client sends one joint action.
+    4. Server simulates the joint action.
+    5. Server replies with one success value per agent.
+    6. Repeat until the level is solved or the client/server stops.
+
+Example server response:
+
+    true|false|true
+
+This means:
+
+    - Agent 0's action succeeded.
+    - Agent 1's action failed and became NoOp.
+    - Agent 2's action succeeded.
+
+Anything the client writes to stderr is treated as debugging output and does not affect the simulation.
+
+Callouts
+--------
+An action can optionally include a visual debug message called a callout.
+
+Syntax:
+
+    <action>@<message>
+
+Example:
+
+    Move(N)@going_to_box
+
+Callouts are cosmetic. They do not affect action execution.
+
+Short Summary
+-------------
+The hospital domain is a synchronized multi-agent grid world with movable boxes. Agents can move, push, pull, or wait. Boxes can only be moved by agents of the same color. A level is solved when all goal cells contain the correct agent or box type. The hard part is that agents and boxes are dynamic obstacles, and simultaneous actions can conflict. A good solver therefore needs task decomposition, box-aware planning, time reservations, conflict detection, and local replanning.
