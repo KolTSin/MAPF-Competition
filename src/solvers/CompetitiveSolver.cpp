@@ -3,10 +3,12 @@
 #include "actions/ActionSemantics.hpp"
 #include "analysis/LevelAnalyzer.hpp"
 #include "hospital/LocalRepair.hpp"
+#include "solvers/SequentialSolver.hpp"
 #include "tasks/TaskGenerator.hpp"
 #include "tasks/TaskScheduler.hpp"
 
 #include <algorithm>
+#include <chrono>
 #include <cstdlib>
 
 namespace {
@@ -34,13 +36,22 @@ int configured_safe_prefix_horizon() {
     }
     return 6;
 }
+
+double configured_time_budget_seconds() {
+    if (const char* v = std::getenv("MAPF_COMP_TIME_BUDGET_SEC")) {
+        const double parsed = std::atof(v);
+        if (parsed > 0.0) return parsed;
+    }
+    return 175.0;
+}
 }
 
 Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) {
     (void)heuristic;
-    constexpr int kIterationBudget = 20;
     constexpr int kNoProgressBudget = 5;
     const int kSafePrefixHorizon = configured_safe_prefix_horizon();
+    const double kTimeBudgetSeconds = configured_time_budget_seconds();
+    const auto start_time = std::chrono::steady_clock::now();
 
     State current = initial_state;
     Plan accumulated;
@@ -59,7 +70,11 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         return done;
     };
 
-    for (int iter = 0; iter < kIterationBudget; ++iter) {
+    while (true) {
+        const auto now = std::chrono::steady_clock::now();
+        const double elapsed = std::chrono::duration<double>(now - start_time).count();
+        if (elapsed >= kTimeBudgetSeconds) break;
+
         (void)analyzer.analyze(level, current);
         std::vector<Task> tasks = generator.generate_delivery_tasks(level, current);
         if (tasks.empty()) break;
@@ -92,6 +107,11 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         } else if (++no_progress_iters >= kNoProgressBudget) {
             break;
         }
+    }
+
+    if (accumulated.empty()) {
+        SequentialSolver fallback;
+        return fallback.solve(level, initial_state, heuristic);
     }
 
     return accumulated;
