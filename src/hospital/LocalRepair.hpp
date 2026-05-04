@@ -14,9 +14,15 @@ enum class RepairStageOutcome {
     Unresolved
 };
 
+struct RepairResult {
+    RepairStageOutcome outcome{RepairStageOutcome::Unresolved};
+    TaskPlan plan{};
+    std::string reason;
+};
+
 class LocalRepair {
 public:
-    [[nodiscard]] TaskPlan repair(const Level& level, const State& state, const Task& task, const TaskPlan& failed) const;
+    [[nodiscard]] RepairResult repair(const Level& level, const State& state, const Task& task, const TaskPlan& failed) const;
     [[nodiscard]] RepairStageOutcome last_outcome() const { return last_outcome_; }
 private:
     mutable RepairStageOutcome last_outcome_{RepairStageOutcome::Unresolved};

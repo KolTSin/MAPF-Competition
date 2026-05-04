@@ -1,7 +1,7 @@
 #include "tasks/TaskGenerator.hpp"
 
 #include "analysis/LevelAnalyzer.hpp"
-#include "analysis/ParkingCellAnalyzer.hpp"
+#include "hospital/BlockerResolver.hpp"
 
 #include <set>
 #include <sstream>
@@ -80,26 +80,10 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
     }
 
     LevelAnalyzer analyzer;
-    ParkingCellAnalyzer parking_analyzer;
-    LevelAnalysis analysis = analyzer.analyze(level, state);
-    const std::vector<Position> parking_cells = parking_analyzer.find_parking_cells(level, state, analysis);
-    if (!parking_cells.empty()) {
-        for (int r = 0; r < state.rows; ++r) {
-            for (int c = 0; c < state.cols; ++c) {
-                char box = state.box_at(r, c);
-                if (box == '\0' || level.goal_at(r, c) != '\0') continue;
-                Task t;
-                t.type = TaskType::MoveBlockingBoxToParking;
-                t.task_id = next_task_id++;
-                t.agent_id = 0;
-                t.box_id = box;
-                t.box_pos = Position{r, c};
-                t.parking_pos = parking_cells.front();
-                t.goal_pos = t.parking_pos;
-                tasks.push_back(t);
-            }
-        }
-    }
+    const LevelAnalysis analysis = analyzer.analyze(level, state);
+    BlockerResolver blocker_resolver;
+    std::vector<Task> blocker_tasks = blocker_resolver.generate_blocker_tasks(level, state, analysis, next_task_id);
+    tasks.insert(tasks.end(), blocker_tasks.begin(), blocker_tasks.end());
 
     return tasks;
 }

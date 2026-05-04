@@ -1,4 +1,5 @@
 #include "hospital/BlockerResolver.hpp"
+#include <array>
 #include <limits>
 
 namespace {
@@ -13,12 +14,23 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
                                                           int& next_task_id) const {
     std::vector<Task> tasks;
     if (analysis.parking_cells.empty()) return tasks;
+    std::array<bool, 26> needed_for_goal{};
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            const char g = level.goal_at(r, c);
+            if (g < 'A' || g > 'Z') continue;
+            if (state.box_at(r, c) != g) {
+                needed_for_goal[static_cast<std::size_t>(g - 'A')] = true;
+            }
+        }
+    }
 
     for (int r = 0; r < state.rows; ++r) {
         for (int c = 0; c < state.cols; ++c) {
             const char b = state.box_at(r, c);
             if (b == '\0') continue;
             if (level.goal_at(r, c) != '\0') continue;
+            if (needed_for_goal[static_cast<std::size_t>(b - 'A')]) continue;
 
             Task t;
             t.type = TaskType::MoveBlockingBoxToParking;
