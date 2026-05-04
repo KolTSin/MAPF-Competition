@@ -2,8 +2,11 @@
 #include "tasks/Task.hpp"
 #include "tasks/TaskScheduler.hpp"
 #include "tasks/DependencyBuilder.hpp"
+#include "tasks/TaskPrioritizer.hpp"
+#include "actions/ActionApplicator.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
 #include "hospital/LocalRepair.hpp"
+#include "plan/ConflictDetector.hpp"
 #include "plan/ReservationTable.hpp"
 #include "solvers/CompetitiveSolver.hpp"
 #include "search/heuristics/Heuristic.hpp"
@@ -46,6 +49,111 @@ public:
 };
 
 int main() {
+    {
+        Level l;
+        l.rows = 4; l.cols = 4;
+        l.walls.assign(16, false);
+        l.goals.assign(16, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.box_colors['A' - 'A'] = Color::Blue;
+
+        State s;
+        s.rows = 4; s.cols = 4;
+        s.agent_positions = {Position{0,0}};
+        s.box_pos.assign(16, '\0');
+        s.set_box(1,1,'A');
+
+        Task deliver;
+        deliver.task_id = 0;
+        deliver.type = TaskType::DeliverBoxToGoal;
+        deliver.agent_id = 0;
+        deliver.box_id = 'A';
+        deliver.box_pos = Position{1,1};
+        deliver.goal_pos = Position{1,3};
+
+        Task blocker;
+        blocker.task_id = 1;
+        blocker.type = TaskType::MoveBlockingBoxToParking;
+        blocker.agent_id = 0;
+        blocker.box_id = 'A';
+        blocker.box_pos = Position{1,1};
+        blocker.parking_pos = Position{2,1};
+        blocker.goal_pos = blocker.parking_pos;
+
+        TaskPrioritizer prio;
+        std::vector<Task> tasks = {deliver, blocker};
+        prio.score(l, s, tasks);
+
+        // deliver: max(0,30-2)+20-(2+2) = 44
+        assert(tasks[0].priority == 44);
+        // blocker: 25+30-10-1 = 44
+        assert(tasks[1].priority == 44);
+    }
+
+    {
+        Level l;
+        l.rows = 5; l.cols = 5;
+        l.walls.assign(25, false);
+        l.goals.assign(25, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.box_colors['A' - 'A'] = Color::Blue;
+
+        State s;
+        s.rows = 5; s.cols = 5;
+        s.agent_positions = {Position{2,1}};
+        s.box_pos.assign(25, '\0');
+        s.set_box(2,2,'A');
+
+        // Simulate corridor unblocking first, then goal delivery for the same box.
+        Task unblock;
+        unblock.task_id = 0;
+        unblock.type = TaskType::MoveBlockingBoxToParking;
+        unblock.agent_id = 0;
+        unblock.box_id = 'A';
+        unblock.box_pos = Position{2,2};
+        unblock.parking_pos = Position{1,2};
+        unblock.goal_pos = unblock.parking_pos;
+        unblock.priority = 50;
+
+        Task deliver;
+        deliver.task_id = 1;
+        deliver.type = TaskType::DeliverBoxToGoal;
+        deliver.agent_id = 0;
+        deliver.box_id = 'A';
+        deliver.box_pos = Position{1,2};
+        deliver.goal_pos = Position{2,4};
+        deliver.priority = 40;
+
+        DependencyBuilder deps;
+        DependencyGraph graph = deps.build_graph({unblock, deliver});
+        // Unblock must happen before delivery of the same box.
+        assert(graph.predecessors[deliver.task_id].size() == 1);
+        assert(graph.predecessors[deliver.task_id][0] == unblock.task_id);
+
+        BoxTransportPlanner planner;
+        TaskPlan p0 = planner.plan(l, s, unblock);
+        assert(p0.success);
+        State after_unblock = s;
+        for (const Action& a : p0.primitive_actions) {
+            after_unblock = ActionApplicator::apply(l, after_unblock, 0, a);
+        }
+        assert(after_unblock.box_at(1,2) == 'A');
+
+        Task deliver_after = deliver;
+        deliver_after.box_pos = Position{1,2};
+        TaskPlan p1 = planner.plan(l, after_unblock, deliver_after);
+        assert(p1.success);
+        State final_state = after_unblock;
+        for (const Action& a : p1.primitive_actions) {
+            final_state = ActionApplicator::apply(l, final_state, 0, a);
+        }
+        assert(final_state.box_at(2,4) == 'A');
+    }
+
     {
         ReservationTable rt;
         Position a{1,1}, b{1,2};
