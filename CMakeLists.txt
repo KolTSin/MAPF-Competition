@@ -12,5 +12,14 @@ file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
 )
 
 add_executable(searchclient ${SRC_FILES})
-
 target_include_directories(searchclient PRIVATE src)
+
+file(GLOB_RECURSE CORE_SRC_FILES CONFIGURE_DEPENDS
+    src/*.cpp
+)
+list(FILTER CORE_SRC_FILES EXCLUDE REGEX ".*/main.cpp$")
+
+enable_testing()
+add_executable(phase2_tests tests/phase2_tests.cpp ${CORE_SRC_FILES})
+target_include_directories(phase2_tests PRIVATE src)
+add_test(NAME phase2_tests COMMAND phase2_tests)

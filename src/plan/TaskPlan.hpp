@@ -1,0 +1,21 @@
+#pragma once
+
+#include "actions/Action.hpp"
+#include "domain/Position.hpp"
+#include "tasks/Task.hpp"
+
+#include <string>
+#include <vector>
+
+struct TaskPlan {
+    int task_id{-1};
+    TaskType task_type{TaskType::DeliverBoxToGoal};
+    int agent_id{-1};
+
+    std::vector<Action> primitive_actions;
+    std::vector<Position> agent_trajectory;
+    std::vector<Position> box_trajectory;
+
+    bool success{false};
+    std::string failure_reason;
+};
