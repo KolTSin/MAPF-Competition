@@ -41,6 +41,14 @@ bool ReservationTable::is_edge_reserved(const Position& from,
     return it != edge_reservations_.end() && it->second != agent;
 }
 
+bool ReservationTable::is_incoming_reserved(const Position& to, int time, int agent) const {
+    for (const auto& [edge, owner] : edge_reservations_) {
+        if (owner == agent) continue;
+        if (edge.time == time && edge.to == to) return true;
+    }
+    return false;
+}
+
 void ReservationTable::reserve_cell(int row, int col, int time, int agent) {
     cell_reservations_[CellReservation{row, col, time}] = agent;
 }
@@ -50,6 +58,10 @@ void ReservationTable::reserve_edge(const Position& from,
                                     int time,
                                     int agent) {
     edge_reservations_[EdgeReservation{from, to, time}] = agent;
+}
+
+void ReservationTable::reserve_incoming(const Position& to, int time, int agent) {
+    reserve_edge(to, to, time, agent);
 }
 
 void ReservationTable::reserve_path(const std::vector<Action>& path, Position initial_pos, int agent, int start_time) {
@@ -67,6 +79,7 @@ void ReservationTable::reserve_path(const std::vector<Action>& path, Position in
 
         // Reserve destination cell at arrival time t+1
         reserve_cell(next_pos.row, next_pos.col, absolute_time + 1, agent);
+        reserve_incoming(next_pos, absolute_time, agent);
 
         current_pos = next_pos;
     }

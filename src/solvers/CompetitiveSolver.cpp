@@ -2,10 +2,12 @@
 
 #include "actions/ActionSemantics.hpp"
 #include "analysis/LevelAnalyzer.hpp"
+#include "hospital/LocalRepair.hpp"
 #include "tasks/TaskGenerator.hpp"
 #include "tasks/TaskScheduler.hpp"
 
 #include <algorithm>
+#include <cstdlib>
 
 namespace {
 void apply_prefix(State& state, const Plan& plan, int horizon) {
@@ -25,12 +27,20 @@ void apply_prefix(State& state, const Plan& plan, int horizon) {
         }
     }
 }
+int configured_safe_prefix_horizon() {
+    if (const char* v = std::getenv("MAPF_SAFE_PREFIX_HORIZON")) {
+        const int parsed = std::atoi(v);
+        if (parsed > 0) return parsed;
+    }
+    return 6;
+}
 }
 
 Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) {
     (void)heuristic;
     constexpr int kIterationBudget = 20;
-    constexpr int kSafePrefixHorizon = 6;
+    constexpr int kStallBudget = 3;
+    const int kSafePrefixHorizon = configured_safe_prefix_horizon();
 
     State current = initial_state;
     Plan accumulated;
@@ -38,6 +48,8 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     LevelAnalyzer analyzer;
     TaskGenerator generator;
     TaskScheduler scheduler;
+    LocalRepair repair;
+    int stalled_iters = 0;
 
     for (int iter = 0; iter < kIterationBudget; ++iter) {
         (void)analyzer.analyze(level, current);
@@ -45,7 +57,15 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         if (tasks.empty()) break;
 
         Plan wave = scheduler.build_plan(level, current, tasks);
-        if (wave.empty()) break;
+        if (wave.empty()) {
+            TaskPlan failed;
+            failed.success = false;
+            failed.failure_reason = "scheduler_empty";
+            (void)repair.repair(level, current, tasks.front(), failed);
+            if (++stalled_iters >= kStallBudget) break;
+            continue;
+        }
+        stalled_iters = 0;
 
         const int safe_prefix = std::max(1, std::min(kSafePrefixHorizon, static_cast<int>(wave.steps.size())));
         for (int i = 0; i < safe_prefix; ++i) {

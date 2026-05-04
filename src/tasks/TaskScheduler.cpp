@@ -10,6 +10,7 @@
 #include "tasks/TaskPrioritizer.hpp"
 
 #include <algorithm>
+#include <cassert>
 #include <unordered_map>
 #include <unordered_set>
 
@@ -64,7 +65,15 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
 
             Position cur = simulated_state.agent_positions[task.agent_id];
             for (const Action& a : plan.primitive_actions) {
-                cur = ActionSemantics::compute_effect(cur, a).agent_to;
+                const ActionEffect eff = ActionSemantics::compute_effect(cur, a);
+                cur = eff.agent_to;
+                if (eff.moves_box && simulated_state.in_bounds(eff.box_from.row, eff.box_from.col) && simulated_state.in_bounds(eff.box_to.row, eff.box_to.col)) {
+                    const char moved = simulated_state.box_at(eff.box_from.row, eff.box_from.col);
+                    if (moved != '\0') {
+                        simulated_state.set_box(eff.box_from.row, eff.box_from.col, '\0');
+                        simulated_state.set_box(eff.box_to.row, eff.box_to.col, moved);
+                    }
+                }
             }
             simulated_state.agent_positions[task.agent_id] = cur;
 
@@ -87,6 +96,12 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
         }
         for (int i = 0; i < static_cast<int>(st.plan.primitive_actions.size()); ++i) {
             timeline[st.start_time + i] = st.plan.primitive_actions[static_cast<std::size_t>(i)];
+        }
+    }
+    for (const auto& st : scheduled) {
+        const auto& timeline = agent_plans[st.task.agent_id];
+        for (int t = 0; t < st.start_time; ++t) {
+            assert(timeline[static_cast<std::size_t>(t)].type == ActionType::NoOp);
         }
     }
 

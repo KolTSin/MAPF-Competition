@@ -46,12 +46,16 @@ public:
                                         const Position& to,
                                         int time,
                                         int agent) const;
+    [[nodiscard]] bool is_incoming_reserved(const Position& to,
+                                            int time,
+                                            int agent) const;
 
     void reserve_cell(int row, int col, int time, int agent);
     void reserve_edge(const Position& from,
                       const Position& to,
                       int time,
                       int agent);
+    void reserve_incoming(const Position& to, int time, int agent);
 
     void reserve_path(const std::vector<Action>& path, Position initial_pos, int agent, int start_time = 0);
 

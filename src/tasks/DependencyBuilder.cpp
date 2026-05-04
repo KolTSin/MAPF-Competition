@@ -4,6 +4,14 @@
 #include <unordered_set>
 
 namespace {
+bool overlaps(Position a0, Position a1, Position b0, Position b1) {
+    return a0 == b0 || a0 == b1 || a1 == b0 || a1 == b1;
+}
+
+bool is_chokepoint_cell(const Position& p) {
+    return p.row % 2 == 0 || p.col % 2 == 0;
+}
+
 void add_edge(DependencyGraph& graph, int predecessor, int successor) {
     auto& preds = graph.predecessors[successor];
     if (std::find(preds.begin(), preds.end(), predecessor) == preds.end()) {
@@ -67,6 +75,17 @@ DependencyGraph DependencyBuilder::build_graph(const std::vector<Task>& tasks) c
                 add_edge(graph, a.task_id, b.task_id);
             }
             if (a.type == TaskType::DeliverBoxToGoal && b.type == TaskType::MoveAgentToGoal && a.agent_id == b.agent_id) {
+                add_edge(graph, a.task_id, b.task_id);
+            }
+            if (overlaps(a.box_pos, a.goal_pos, b.box_pos, b.goal_pos) ||
+                overlaps(a.box_pos, a.parking_pos, b.box_pos, b.parking_pos)) {
+                const int pred = (a.task_id < b.task_id) ? a.task_id : b.task_id;
+                const int succ = (a.task_id < b.task_id) ? b.task_id : a.task_id;
+                add_edge(graph, pred, succ);
+            }
+            if (a.type == TaskType::MoveBlockingBoxToParking &&
+                b.type == TaskType::DeliverBoxToGoal &&
+                is_chokepoint_cell(a.parking_pos)) {
                 add_edge(graph, a.task_id, b.task_id);
             }
         }
