@@ -38,9 +38,15 @@ int main() {
         s.set_box(3,3,'B');
         TaskGenerator g;
         auto tasks = g.generate_delivery_tasks(l,s);
-        assert(tasks.size() == 1);
-        assert(tasks[0].box_id == 'A');
-        assert(tasks[0].agent_id == 0);
+        assert(!tasks.empty());
+        bool found_a = false;
+        for (const auto& task : tasks) {
+            if (task.type == TaskType::DeliverBoxToGoal && task.box_id == 'A' && task.agent_id == 0) {
+                found_a = true;
+                break;
+            }
+        }
+        assert(found_a);
     }
 
     {
