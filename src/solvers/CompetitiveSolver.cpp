@@ -39,7 +39,7 @@ int configured_safe_prefix_horizon() {
 Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) {
     (void)heuristic;
     constexpr int kIterationBudget = 20;
-    constexpr int kStallBudget = 3;
+    constexpr int kNoProgressBudget = 5;
     const int kSafePrefixHorizon = configured_safe_prefix_horizon();
 
     State current = initial_state;
@@ -49,7 +49,15 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     TaskGenerator generator;
     TaskScheduler scheduler;
     LocalRepair repair;
-    int stalled_iters = 0;
+    int no_progress_iters = 0;
+    const auto goals_completed = [&level](const State& s) {
+        int done = 0;
+        for (int r = 0; r < level.rows; ++r) for (int c = 0; c < level.cols; ++c) {
+            const char g = level.goal_at(r, c);
+            if (g >= 'A' && g <= 'Z' && s.box_at(r, c) == g) ++done;
+        }
+        return done;
+    };
 
     for (int iter = 0; iter < kIterationBudget; ++iter) {
         (void)analyzer.analyze(level, current);
@@ -61,17 +69,29 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             TaskPlan failed;
             failed.success = false;
             failed.failure_reason = "scheduler_empty";
-            (void)repair.repair(level, current, tasks.front(), failed);
-            if (++stalled_iters >= kStallBudget) break;
+            const RepairResult repaired = repair.repair(level, current, tasks.front(), failed);
+            if (repaired.plan.success && repaired.outcome == RepairStageOutcome::SafePrefixFallback && !accumulated.steps.empty()) {
+                no_progress_iters = 0;
+                continue;
+            }
+            if (++no_progress_iters >= kNoProgressBudget) break;
             continue;
         }
-        stalled_iters = 0;
+        const State before = current;
+        const int goals_before = goals_completed(before);
 
         const int safe_prefix = std::max(1, std::min(kSafePrefixHorizon, static_cast<int>(wave.steps.size())));
         for (int i = 0; i < safe_prefix; ++i) {
             accumulated.steps.push_back(wave.steps[i]);
         }
         apply_prefix(current, wave, safe_prefix);
+        const int goals_after = goals_completed(current);
+        const bool progressed = (goals_after > goals_before) || !(current.agent_positions == before.agent_positions);
+        if (progressed) {
+            no_progress_iters = 0;
+        } else if (++no_progress_iters >= kNoProgressBudget) {
+            break;
+        }
     }
 
     return accumulated;
