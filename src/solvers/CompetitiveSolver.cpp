@@ -4,12 +4,15 @@
 #include "analysis/LevelAnalyzer.hpp"
 #include "hospital/LocalRepair.hpp"
 #include "solvers/SequentialSolver.hpp"
+#include "tasks/HTNTracePrinter.hpp"
 #include "tasks/TaskGenerator.hpp"
+#include "tasks/TaskPrioritizer.hpp"
 #include "tasks/TaskScheduler.hpp"
 
 #include <algorithm>
 #include <chrono>
 #include <cstdlib>
+#include <iostream>
 
 namespace {
 void apply_prefix(State& state, const Plan& plan, int horizon) {
@@ -44,6 +47,13 @@ double configured_time_budget_seconds() {
     }
     return 175.0;
 }
+
+bool configured_verbose_tasks() {
+    if (const char* v = std::getenv("MAPF_VERBOSE_TASKS")) {
+        return std::atoi(v) != 0;
+    }
+    return true;
+}
 }
 
 Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) {
@@ -51,6 +61,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     constexpr int kNoProgressBudget = 5;
     const int kSafePrefixHorizon = configured_safe_prefix_horizon();
     const double kTimeBudgetSeconds = configured_time_budget_seconds();
+    const bool kVerboseTasks = configured_verbose_tasks();
     const auto start_time = std::chrono::steady_clock::now();
 
     State current = initial_state;
@@ -59,6 +70,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     LevelAnalyzer analyzer;
     TaskGenerator generator;
     TaskScheduler scheduler;
+    TaskPrioritizer prioritizer;
     LocalRepair repair;
     int no_progress_iters = 0;
     const auto goals_completed = [&level](const State& s) {
@@ -77,14 +89,31 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
 
         (void)analyzer.analyze(level, current);
         std::vector<Task> tasks = generator.generate_delivery_tasks(level, current);
+        if (kVerboseTasks) {
+            std::vector<Task> scored = tasks;
+            prioritizer.score(level, current, scored);
+            std::cerr << "[HTN] competitive_wave tasks=" << scored.size()
+                      << " elapsed=" << elapsed << "s\n";
+            HTNTracePrinter::print_task_batch(scored, std::cerr);
+            for (const auto& reason : generator.skip_reasons()) {
+                std::cerr << "[HTN] " << reason << '\n';
+            }
+        }
         if (tasks.empty()) break;
 
         Plan wave = scheduler.build_plan(level, current, tasks);
         if (wave.empty()) {
+            if (kVerboseTasks) {
+                std::cerr << "[HTN] scheduler_empty; attempting local repair on first task\n";
+            }
             TaskPlan failed;
             failed.success = false;
             failed.failure_reason = "scheduler_empty";
             const RepairResult repaired = repair.repair(level, current, tasks.front(), failed);
+            if (kVerboseTasks) {
+                std::cerr << "[HTN] repair outcome=" << static_cast<int>(repaired.outcome)
+                          << " success=" << (repaired.plan.success ? "true" : "false") << '\n';
+            }
             if (repaired.plan.success && repaired.outcome == RepairStageOutcome::SafePrefixFallback && !accumulated.steps.empty()) {
                 no_progress_iters = 0;
                 continue;
