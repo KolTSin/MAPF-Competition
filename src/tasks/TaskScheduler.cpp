@@ -12,6 +12,7 @@
 #include <cassert>
 #include <unordered_map>
 #include <unordered_set>
+#include <iostream>
 
 namespace {
 int manhattan(const Position& a, const Position& b) {
@@ -126,8 +127,10 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
     }
 
     std::vector<std::vector<Action>> agent_plans(initial_state.num_agents());
+    std::cerr << "the size of the schedule: " << static_cast<int>(scheduled.size()) << std::endl;
     for (const auto& st : scheduled) {
         auto& timeline = agent_plans[st.task.agent_id];
+        std::cerr << "the size of the agent plan: " << static_cast<int>(timeline.size()) << std::endl;
         if (static_cast<int>(timeline.size()) < st.start_time) timeline.resize(st.start_time, Action::noop());
         if (static_cast<int>(timeline.size()) < st.end_time) timeline.resize(st.end_time, Action::noop());
         for (int i = 0; i < static_cast<int>(st.plan.primitive_actions.size()); ++i) {
@@ -140,6 +143,8 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
             assert(timeline[static_cast<std::size_t>(t)].type == ActionType::NoOp);
         }
     }
+
+    std::cerr << "plan length: " << static_cast<int>(agent_plans[1].size()) << std::endl;
 
     return PlanMerger::merge_agent_plans(agent_plans, initial_state.num_agents());
 }
