@@ -95,11 +95,19 @@ DependencyGraph DependencyBuilder::build_graph(const std::vector<Task>& tasks) c
         for (std::size_t j = i + 1; j < tasks.size(); ++j) {
             const Task& a = tasks[i];
             const Task& b = tasks[j];
-            if (a.type == TaskType::MoveBlockingBoxToParking && b.box_id == a.box_id) {
+            const bool a_blocks_same_box = (a.type == TaskType::MoveBlockingBoxToParking && b.box_id == a.box_id);
+            const bool b_blocks_same_box = (b.type == TaskType::MoveBlockingBoxToParking && a.box_id == b.box_id);
+            if (a_blocks_same_box) {
                 add_edge(graph, a.task_id, b.task_id);
             }
-            if (b.type == TaskType::MoveBlockingBoxToParking && a.box_id == b.box_id) {
+            if (b_blocks_same_box) {
                 add_edge(graph, b.task_id, a.task_id);
+            }
+            // When a parking-relocation task and a task for the same box coexist,
+            // enforce only relocation -> dependent ordering and skip generic
+            // overlap/risk edges that can introduce immediate 2-cycles.
+            if (a_blocks_same_box || b_blocks_same_box) {
+                continue;
             }
             if (a.type == TaskType::DeliverBoxToGoal && b.type == TaskType::MoveAgentToGoal && a.agent_id == b.agent_id) {
                 add_edge(graph, a.task_id, b.task_id);
