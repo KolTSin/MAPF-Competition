@@ -21,6 +21,10 @@ std::string Task::describe() const {
             out << "MoveAgentToGoal agent=" << agent_id
                 << " target_goal=" << goal_symbol;
             break;
+        case TaskType::ParkAgentSafely:
+            out << "ParkAgentSafely agent=" << agent_id
+                << " parking=(" << parking_pos.row << "," << parking_pos.col << ")";
+            break;
     }
 
     out << " prio=" << priority;

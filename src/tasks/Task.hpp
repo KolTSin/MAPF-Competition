@@ -3,11 +3,13 @@
 #include "domain/Position.hpp"
 
 #include <string>
+#include <vector>
 
 enum class TaskType {
     DeliverBoxToGoal,
     MoveBlockingBoxToParking,
     MoveAgentToGoal,
+    ParkAgentSafely,
 };
 
 struct Task {
@@ -23,6 +25,8 @@ struct Task {
 
     Position parking_pos{};
     int priority{0};
+    std::vector<int> dependencies{};
+    std::string debug_label{};
 
     [[nodiscard]] std::string describe() const;
 };

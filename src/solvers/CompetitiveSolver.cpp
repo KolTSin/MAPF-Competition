@@ -56,12 +56,14 @@ bool configured_verbose_tasks() {
 }
 }
 
+CompetitiveSolver::CompetitiveSolver(SolverConfig config) : config_(config) {}
+
 Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) {
     (void)heuristic;
     constexpr int kNoProgressBudget = 5;
-    const int kSafePrefixHorizon = configured_safe_prefix_horizon();
-    const double kTimeBudgetSeconds = configured_time_budget_seconds();
-    const bool kVerboseTasks = configured_verbose_tasks();
+    const int kSafePrefixHorizon = config_.safe_prefix_length > 0 ? config_.safe_prefix_length : configured_safe_prefix_horizon();
+    const double kTimeBudgetSeconds = static_cast<double>(config_.planning_time_budget_ms) / 1000.0;
+    const bool kVerboseTasks = config_.debug_htn_trace || configured_verbose_tasks();
     const auto start_time = std::chrono::steady_clock::now();
 
     State current = initial_state;
