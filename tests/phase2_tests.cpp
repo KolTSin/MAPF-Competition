@@ -10,8 +10,11 @@
 #include "plan/ReservationTable.hpp"
 #include "solvers/CompetitiveSolver.hpp"
 #include "search/heuristics/Heuristic.hpp"
+#include "parser/LevelParser.hpp"
 
 #include <cassert>
+#include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <unordered_map>
 #include <unordered_set>
@@ -238,6 +241,38 @@ int main() {
         TaskScheduler sched;
         Plan p = sched.build_plan(l, s, {t0, t1});
         assert(p.steps.size() <= 20);
+    }
+
+    {
+        const std::vector<std::string> ma_simple_levels{
+            "levels/MAsimple1.lvl",
+            "levels/MAsimple2.lvl",
+            "levels/MAsimple3.lvl",
+            "levels/MAsimple4.lvl",
+            "levels/MAsimple5.lvl"
+        };
+        for (const std::string& level_path : ma_simple_levels) {
+            std::string resolved = level_path;
+            if (!std::filesystem::exists(resolved)) {
+                resolved = "../" + level_path;
+            }
+            assert(std::filesystem::exists(resolved));
+            std::ifstream in(resolved);
+            assert(in.good());
+            ParsedLevel parsed = LevelParser::parse(in);
+            CompetitiveSolver solver;
+            ConstantHeuristic h;
+            Plan p = solver.solve(parsed.level, parsed.initial_state, h);
+            if (p.steps.empty()) {
+                std::cerr << "MAsimple failure: empty plan on " << level_path << "\n";
+                continue;
+            }
+            std::string reason;
+            if (ConflictDetector::has_conflict(p, parsed.initial_state, &reason)) {
+                std::cerr << "MAsimple failure: conflict (" << reason << ") on " << level_path << "\n";
+                continue;
+            }
+        }
     }
 
     {

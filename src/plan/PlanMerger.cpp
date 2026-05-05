@@ -2,7 +2,6 @@
 #include "actions/JointAction.hpp"
 
 #include <algorithm>
-#include <iostream>
 
 Plan PlanMerger::merge_agent_plans(const std::vector<std::vector<Action>>& agent_plans,
                                    int num_agents) {
@@ -13,7 +12,6 @@ Plan PlanMerger::merge_agent_plans(const std::vector<std::vector<Action>>& agent
 
     Plan result;
     result.steps.reserve(horizon);
-    std::cerr << horizon << '\n';
 
     for (std::size_t t = 0; t < horizon; ++t) {
         JointAction ja;
