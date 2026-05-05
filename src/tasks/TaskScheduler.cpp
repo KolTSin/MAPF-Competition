@@ -36,6 +36,14 @@ std::vector<int> candidate_agents_for_task(const Level& level, const State& stat
     for (const auto& [_, a] : scored) out.push_back(a);
     return out;
 }
+
+bool is_empty_plan_valid(const Task& task, const State& state) {
+    if (task.type == TaskType::DeliverBoxToGoal) return task.box_pos == task.goal_pos;
+    if (task.type == TaskType::MoveAgentToGoal || task.type == TaskType::ParkAgentSafely) {
+        return task.agent_id >= 0 && task.agent_id < state.num_agents() && state.agent_positions[task.agent_id] == task.goal_pos;
+    }
+    return true;
+}
 }
 
 Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
@@ -89,16 +97,11 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
                     plan = box_planner.plan(level, simulated_state, chosen_task);
                 }
                 if (!plan.success) continue;
+                if (plan.primitive_actions.empty() && !is_empty_plan_valid(chosen_task, simulated_state)) continue;
                 planned = true;
                 break;
             }
             if (!planned) continue;
-
-            if (plan.primitive_actions.empty()) {
-                if (chosen_task.type == TaskType::DeliverBoxToGoal && !(chosen_task.box_pos == chosen_task.goal_pos)) continue;
-                if ((chosen_task.type == TaskType::MoveAgentToGoal || chosen_task.type == TaskType::ParkAgentSafely) &&
-                    !(simulated_state.agent_positions[chosen_task.agent_id] == chosen_task.goal_pos)) continue;
-            }
 
             const int end_time = chosen_start + static_cast<int>(plan.primitive_actions.size());
             scheduled.push_back(ScheduledTask{chosen_task, plan, chosen_start, end_time});
