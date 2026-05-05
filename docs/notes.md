@@ -1,0 +1,1 @@
+I want to create HLA and derive a plan from it, if it fails it should constrain some agent by adding tasks, like relocation tasks which should work for both box conflicts and agent collision conflicts.
