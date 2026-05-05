@@ -1,0 +1,13 @@
+# Agent0; Agent1
+NoOp; Move(E)
+NoOp; Move(E)
+NoOp; Move(E)
+NoOp; Move(E)
+NoOp; Move(E)
+NoOp; Move(E)
+Move(W); Move(E)
+Move(W); Move(E)
+Move(S); Move(E)
+Push(S,E); Move(N)
+Push(E,E); Move(N)
+Push(E,E); Push(N,N)
