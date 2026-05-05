@@ -30,23 +30,37 @@ void SearchClient::initializeSearchComponents(
 void SearchClient::run() {
     std::cout << "MJES" << '\n';
     std::cout.flush();
+
     ParsedLevel parsed = LevelParser::parse(std::cin);
     HeuristicContext heuristic_context(parsed.level);
     initializeSearchComponents(parsed.level, heuristic_context);
+    std::string response;
+    std::cout << "NoOp|Move(E)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "NoOp|Move(E)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "NoOp|Move(E)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "NoOp|Move(E)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "NoOp|Move(E)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "NoOp|Move(E)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "Move(W)|Move(E)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "Move(W)|Move(E)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "Move(S)|Move(E)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "Push(S,E)|Move(N)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "Push(E,E)|Move(N)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
+    std::cout << "Push(E,E)|Push(N,N)" << std::endl; std::cout.flush(); std::getline(std::cin, response);
 
-    // SequentialSolver solver;
-    Plan plan = solver_ -> solve(parsed.level, parsed.initial_state, *heuristic_);
+    // // SequentialSolver solver;
+    // Plan plan = solver_ -> solve(parsed.level, parsed.initial_state, *heuristic_);
 
-    for (const JointAction& joint_action : plan.steps) {
-        std::cout << joint_action.to_string() << '\n';
-        std::cout.flush();
-        // std::cerr << joint_action.to_string() << '\n';
+    // for (const JointAction& joint_action : plan.steps) {
+    //     std::cout << joint_action.to_string() << '\n';
+    //     std::cout.flush();
+    //     // std::cerr << joint_action.to_string() << '\n';
 
-        std::string response;
-        if (!std::getline(std::cin, response)) {
-            break;
-        }
+    //     std::string response;
+    //     if (!std::getline(std::cin, response)) {
+    //         break;
+    //     }
 
-        // std::cerr << "Server response: " << response << '\n';
-    }
+    //     // std::cerr << "Server response: " << response << '\n';
+    // }
 }
