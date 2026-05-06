@@ -4,6 +4,7 @@
 #include "tasks/DependencyBuilder.hpp"
 #include "tasks/TaskPrioritizer.hpp"
 #include "actions/ActionApplicator.hpp"
+#include "actions/ActionSemantics.hpp"
 #include "hospital/AgentPathPlanner.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
 #include "hospital/LocalRepair.hpp"
@@ -17,6 +18,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <unordered_map>
 #include <unordered_set>
 
@@ -44,6 +46,163 @@ static State make_state() {
     s.set_box(1,2,'A');
     s.set_box(2,2,'B');
     return s;
+}
+
+
+struct PlanValidationResult {
+    bool valid{true};
+    State final_state{};
+    std::string reason{};
+};
+
+static bool is_box_goal(char goal) {
+    return goal >= 'A' && goal <= 'Z';
+}
+
+static bool is_agent_goal(char goal) {
+    return goal >= '0' && goal <= '9';
+}
+
+static std::string pos_to_string(Position p) {
+    return "(" + std::to_string(p.row) + "," + std::to_string(p.col) + ")";
+}
+
+static PlanValidationResult invalid_plan_result(State state, const std::string& reason) {
+    PlanValidationResult result;
+    result.valid = false;
+    result.final_state = std::move(state);
+    result.reason = reason;
+    return result;
+}
+
+static PlanValidationResult simulate_plan(const Level& level, const State& initial_state, const Plan& plan) {
+    State current = initial_state;
+
+    for (std::size_t t = 0; t < plan.steps.size(); ++t) {
+        const JointAction& joint_action = plan.steps[t];
+        if (joint_action.actions.size() != current.agent_positions.size()) {
+            std::ostringstream out;
+            out << "joint action at t=" << t << " has " << joint_action.actions.size()
+                << " actions for " << current.agent_positions.size() << " agents";
+            return invalid_plan_result(current, out.str());
+        }
+
+        std::vector<Position> next_agents = current.agent_positions;
+        std::vector<std::pair<char, ActionEffect>> box_moves;
+
+        for (std::size_t agent = 0; agent < joint_action.actions.size(); ++agent) {
+            const Action& action = joint_action.actions[agent];
+            if (!ActionApplicator::is_applicable(level, current, static_cast<int>(agent), action)) {
+                std::ostringstream out;
+                out << "inapplicable action at t=" << t << " agent=" << agent
+                    << " action=" << action.to_string();
+                return invalid_plan_result(current, out.str());
+            }
+
+            const ActionEffect effect = ActionSemantics::compute_effect(current.agent_positions[agent], action);
+            next_agents[agent] = effect.agent_to;
+
+            if (effect.moves_box) {
+                const char box = current.box_at(effect.box_from.row, effect.box_from.col);
+                box_moves.push_back({box, effect});
+            }
+        }
+
+        for (std::size_t i = 0; i < next_agents.size(); ++i) {
+            for (std::size_t j = i + 1; j < next_agents.size(); ++j) {
+                if (next_agents[i] == next_agents[j]) {
+                    std::ostringstream out;
+                    out << "agent vertex conflict at t=" << t << " cell=" << pos_to_string(next_agents[i]);
+                    return invalid_plan_result(current, out.str());
+                }
+                if (current.agent_positions[i] == next_agents[j] && current.agent_positions[j] == next_agents[i]) {
+                    std::ostringstream out;
+                    out << "agent edge-swap conflict at t=" << t;
+                    return invalid_plan_result(current, out.str());
+                }
+                if (next_agents[i] == current.agent_positions[j] && current.agent_positions[j] != next_agents[j]) {
+                    std::ostringstream out;
+                    out << "agent follow conflict at t=" << t;
+                    return invalid_plan_result(current, out.str());
+                }
+                if (next_agents[j] == current.agent_positions[i] && current.agent_positions[i] != next_agents[i]) {
+                    std::ostringstream out;
+                    out << "agent follow conflict at t=" << t;
+                    return invalid_plan_result(current, out.str());
+                }
+            }
+        }
+
+        for (std::size_t i = 0; i < box_moves.size(); ++i) {
+            for (std::size_t j = i + 1; j < box_moves.size(); ++j) {
+                if (box_moves[i].second.box_from == box_moves[j].second.box_from) {
+                    std::ostringstream out;
+                    out << "two agents move the same box at t=" << t;
+                    return invalid_plan_result(current, out.str());
+                }
+                if (box_moves[i].second.box_to == box_moves[j].second.box_to) {
+                    std::ostringstream out;
+                    out << "box vertex conflict at t=" << t << " cell=" << pos_to_string(box_moves[i].second.box_to);
+                    return invalid_plan_result(current, out.str());
+                }
+                if (box_moves[i].second.box_from == box_moves[j].second.box_to &&
+                    box_moves[j].second.box_from == box_moves[i].second.box_to) {
+                    std::ostringstream out;
+                    out << "box edge-swap conflict at t=" << t;
+                    return invalid_plan_result(current, out.str());
+                }
+            }
+        }
+
+        State next = current;
+        for (const auto& [_, effect] : box_moves) {
+            next.set_box(effect.box_from.row, effect.box_from.col, '\0');
+        }
+        for (const auto& [box, effect] : box_moves) {
+            if (next.box_at(effect.box_to.row, effect.box_to.col) != '\0') {
+                std::ostringstream out;
+                out << "box destination occupied after moves at t=" << t
+                    << " cell=" << pos_to_string(effect.box_to);
+                return invalid_plan_result(current, out.str());
+            }
+            next.set_box(effect.box_to.row, effect.box_to.col, box);
+        }
+        next.agent_positions = std::move(next_agents);
+        current = std::move(next);
+    }
+
+    PlanValidationResult result;
+    result.valid = true;
+    result.final_state = std::move(current);
+    return result;
+}
+
+static bool all_goals_satisfied(const Level& level, const State& state, std::string* reason = nullptr) {
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            const char goal = level.goal_at(r, c);
+            if (goal == '\0') {
+                continue;
+            }
+            if (is_box_goal(goal)) {
+                if (state.box_at(r, c) != goal) {
+                    if (reason) {
+                        *reason = "missing box goal " + std::string(1, goal) + " at " + pos_to_string(Position{r, c});
+                    }
+                    return false;
+                }
+            } else if (is_agent_goal(goal)) {
+                const int agent_id = goal - '0';
+                if (agent_id >= state.num_agents() || state.agent_positions[agent_id] != Position{r, c}) {
+                    if (reason) {
+                        *reason = "missing agent goal " + std::string(1, goal) + " at " + pos_to_string(Position{r, c});
+                    }
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
 }
 
 class ConstantHeuristic : public IHeuristic {
@@ -335,12 +494,21 @@ int main() {
             Plan p = solver.solve(parsed.level, parsed.initial_state, h);
             if (p.steps.empty()) {
                 std::cerr << "MAsimple failure: empty plan on " << level_path << "\n";
-                continue;
+                assert(false);
             }
             std::string reason;
             if (ConflictDetector::has_conflict(p, parsed.initial_state, &reason)) {
                 std::cerr << "MAsimple failure: conflict (" << reason << ") on " << level_path << "\n";
-                continue;
+                assert(false);
+            }
+            PlanValidationResult validation = simulate_plan(parsed.level, parsed.initial_state, p);
+            if (!validation.valid) {
+                std::cerr << "MAsimple failure: invalid action sequence (" << validation.reason << ") on " << level_path << "\n";
+                assert(false);
+            }
+            if (!all_goals_satisfied(parsed.level, validation.final_state, &reason)) {
+                std::cerr << "MAsimple failure: unsolved final state (" << reason << ") on " << level_path << "\n";
+                assert(false);
             }
         }
     }
