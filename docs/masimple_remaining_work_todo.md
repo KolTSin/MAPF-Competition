@@ -34,13 +34,16 @@ The scheduler currently reserves agent paths, but transported boxes also need ti
 
 Parking cells must be more than static high-score cells. A candidate is useful only if it preserves future routes.
 
-- [ ] For each parking candidate, simulate the blocker in that cell.
-- [ ] Reject parking cells that are goals for unsatisfied boxes or agents.
-- [ ] Reject parking cells that are chokepoints or disconnect required components.
-- [ ] Reject parking cells that block the active delivery box from reaching its goal.
-- [ ] Reject parking cells that block any agent from reaching its assigned box.
+- [x] For each parking candidate, simulate the blocker in that cell.
+- [x] Reject parking cells that are goals for unsatisfied boxes or agents.
+- [x] Reject parking cells that are chokepoints or disconnect required components.
+- [x] Reject parking cells that block the active delivery box from reaching its goal.
+- [x] Reject parking cells that block any agent from reaching its assigned box.
 - [ ] Prefer parking cells outside all coarse and planned future box routes.
-- [ ] Add a regression test where the highest static parking score is unsolvable but a lower-score parking cell solves the level.
+  - [x] Prefer parking cells outside coarse future box routes during blocker parking selection.
+  - [ ] Extend parking selection with exact planned future box routes once multi-task route planning exposes them.
+- [ ] Replace parking connectivity checks with push-feasibility checks from `BoxTransportPlanner` for candidates that pass the cheap filter.
+- [x] Add a regression test where the highest static parking score is unsolvable but a lower-score parking cell solves the level.
 
 ## 4. Complete blocker relocation before dependent delivery
 
@@ -118,7 +121,7 @@ The next failures should be easier to diagnose than `scheduler_empty`.
 
 1. [x] Add solved-state validation tests for `MAsimple1`--`MAsimple5` so failures are visible.
 2. [x] Add box reservations and make `BoxTransportPlanner` reservation-aware.
-3. [ ] Make parking validation route/reachability-aware.
+3. [x] Make parking validation route/reachability-aware.
 4. [ ] Replace debug-label blocker dependencies with structured dependencies.
 5. [ ] Add small ordering search for coupled box tasks.
 6. [ ] Support goal boxes as temporary blockers.

@@ -3,9 +3,11 @@
 #include "tasks/TaskScheduler.hpp"
 #include "tasks/DependencyBuilder.hpp"
 #include "tasks/TaskPrioritizer.hpp"
+#include "analysis/LevelAnalyzer.hpp"
 #include "actions/ActionApplicator.hpp"
 #include "actions/ActionSemantics.hpp"
 #include "hospital/AgentPathPlanner.hpp"
+#include "hospital/BlockerResolver.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
 #include "hospital/LocalRepair.hpp"
 #include "plan/ConflictDetector.hpp"
@@ -471,6 +473,56 @@ int main() {
         ConstantHeuristic h;
         Plan p = solver.solve(l, s, h);
         assert(p.steps.size() <= 6);
+    }
+
+
+    {
+        Level l;
+        l.rows = 5; l.cols = 7;
+        l.walls.assign(35, false);
+        l.goals.assign(35, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.agent_colors[1] = Color::Red;
+        l.box_colors['A' - 'A'] = Color::Blue;
+        l.box_colors['B' - 'A'] = Color::Red;
+        l.goals[l.index(2,6)] = 'A';
+
+        State s;
+        s.rows = 5; s.cols = 7;
+        s.agent_positions = {Position{2,0}, Position{0,0}};
+        s.box_pos.assign(35, '\0');
+        s.set_box(2,2,'A');
+        s.set_box(1,4,'B');
+
+        LevelAnalyzer analyzer;
+        LevelAnalysis analysis = analyzer.analyze(l, s);
+        for (Position candidate : analysis.parking_cells) {
+            if (candidate == Position{2,4}) {
+                analysis.at(candidate).parking_score = 10000;
+            } else if (candidate == Position{0,4}) {
+                analysis.at(candidate).parking_score = 100;
+            } else {
+                analysis.at(candidate).parking_score = 1;
+            }
+        }
+        std::sort(analysis.parking_cells.begin(), analysis.parking_cells.end(), [&](Position a, Position b) {
+            return analysis.at(a).parking_score > analysis.at(b).parking_score;
+        });
+
+        int next_task_id = 1;
+        BlockerResolver resolver;
+        auto tasks = resolver.generate_blocker_tasks(l, s, analysis, next_task_id);
+        bool checked_b = false;
+        for (const Task& task : tasks) {
+            if (task.type == TaskType::MoveBlockingBoxToParking && task.box_id == 'B') {
+                checked_b = true;
+                assert(!(task.parking_pos == Position{2,4}));
+                assert((task.parking_pos == Position{0,4}));
+            }
+        }
+        assert(checked_b);
     }
 
     {
