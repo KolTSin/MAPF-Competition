@@ -4,6 +4,7 @@
 #include "tasks/DependencyBuilder.hpp"
 #include "tasks/TaskPrioritizer.hpp"
 #include "actions/ActionApplicator.hpp"
+#include "actions/ActionSemantics.hpp"
 #include "hospital/AgentPathPlanner.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
 #include "hospital/LocalRepair.hpp"
@@ -16,6 +17,7 @@
 #include <cassert>
 #include <filesystem>
 #include <fstream>
+#include <sstream>
 #include <iostream>
 #include <unordered_map>
 #include <unordered_set>
@@ -44,6 +46,113 @@ static State make_state() {
     s.set_box(1,2,'A');
     s.set_box(2,2,'B');
     return s;
+}
+
+
+struct PlanValidationResult {
+    bool valid{true};
+    std::string reason;
+    State final_state;
+};
+
+static bool all_goals_satisfied(const Level& level, const State& state, std::string* reason) {
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            const char goal = level.goal_at(r, c);
+            if (goal >= 'A' && goal <= 'Z') {
+                if (state.box_at(r, c) != goal) {
+                    if (reason) {
+                        std::ostringstream out;
+                        out << "box_goal_unsatisfied " << goal << " at (" << r << "," << c << ")";
+                        *reason = out.str();
+                    }
+                    return false;
+                }
+            } else if (goal >= '0' && goal <= '9') {
+                const int agent_id = goal - '0';
+                if (agent_id >= state.num_agents() || !(state.agent_positions[agent_id] == Position{r, c})) {
+                    if (reason) {
+                        std::ostringstream out;
+                        out << "agent_goal_unsatisfied " << goal << " at (" << r << "," << c << ")";
+                        *reason = out.str();
+                    }
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+static PlanValidationResult validate_plan_solves(const Level& level,
+                                                 const State& initial_state,
+                                                 const Plan& plan) {
+    PlanValidationResult result;
+    result.final_state = initial_state;
+
+    if (plan.empty()) {
+        result.valid = false;
+        result.reason = "empty_plan";
+        return result;
+    }
+
+    std::string conflict_reason;
+    if (ConflictDetector::has_conflict(plan, initial_state, &conflict_reason)) {
+        result.valid = false;
+        result.reason = "conflict: " + conflict_reason;
+        return result;
+    }
+
+    State current = initial_state;
+    for (std::size_t t = 0; t < plan.steps.size(); ++t) {
+        const JointAction& step = plan.steps[t];
+        if (step.actions.size() != static_cast<std::size_t>(initial_state.num_agents())) {
+            std::ostringstream out;
+            out << "wrong_joint_action_arity at t=" << t << " expected=" << initial_state.num_agents()
+                << " actual=" << step.actions.size();
+            result.valid = false;
+            result.reason = out.str();
+            return result;
+        }
+
+        std::vector<ActionEffect> effects;
+        effects.reserve(step.actions.size());
+        for (int agent_id = 0; agent_id < current.num_agents(); ++agent_id) {
+            const Action& action = step.actions[static_cast<std::size_t>(agent_id)];
+            if (!ActionApplicator::is_applicable(level, current, agent_id, action)) {
+                std::ostringstream out;
+                out << "inapplicable_action at t=" << t << " agent=" << agent_id
+                    << " action=" << action.to_string();
+                result.valid = false;
+                result.reason = out.str();
+                return result;
+            }
+            effects.push_back(ActionSemantics::compute_effect(current.agent_positions[agent_id], action));
+        }
+
+        State next = current;
+        for (int agent_id = 0; agent_id < current.num_agents(); ++agent_id) {
+            const ActionEffect& effect = effects[static_cast<std::size_t>(agent_id)];
+            if (effect.moves_box) {
+                const char moved = current.box_at(effect.box_from.row, effect.box_from.col);
+                next.set_box(effect.box_from.row, effect.box_from.col, '\0');
+                next.set_box(effect.box_to.row, effect.box_to.col, moved);
+            }
+            next.agent_positions[agent_id] = effect.agent_to;
+        }
+        current = std::move(next);
+    }
+
+    std::string goal_reason;
+    if (!all_goals_satisfied(level, current, &goal_reason)) {
+        result.valid = false;
+        result.reason = goal_reason;
+        result.final_state = current;
+        return result;
+    }
+
+    result.final_state = current;
+    return result;
 }
 
 class ConstantHeuristic : public IHeuristic {
@@ -333,15 +442,11 @@ int main() {
             CompetitiveSolver solver;
             ConstantHeuristic h;
             Plan p = solver.solve(parsed.level, parsed.initial_state, h);
-            if (p.steps.empty()) {
-                std::cerr << "MAsimple failure: empty plan on " << level_path << "\n";
-                continue;
+            PlanValidationResult validation = validate_plan_solves(parsed.level, parsed.initial_state, p);
+            if (!validation.valid) {
+                std::cerr << "MAsimple failure: " << validation.reason << " on " << level_path << "\n";
             }
-            std::string reason;
-            if (ConflictDetector::has_conflict(p, parsed.initial_state, &reason)) {
-                std::cerr << "MAsimple failure: conflict (" << reason << ") on " << level_path << "\n";
-                continue;
-            }
+            assert(validation.valid);
         }
     }
 
