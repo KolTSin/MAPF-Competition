@@ -38,7 +38,7 @@ Parking cells must be more than static high-score cells. A candidate is useful o
 - [ ] Reject parking cells that are goals for unsatisfied boxes or agents.
 - [ ] Reject parking cells that are chokepoints or disconnect required components.
 - [ ] Reject parking cells that block the active delivery box from reaching its goal.
-- [ ] Reject parking cells that block any compatible agent from reaching its assigned box.
+- [ ] Reject parking cells that block any agent from reaching its assigned box.
 - [ ] Prefer parking cells outside all coarse and planned future box routes.
 - [ ] Add a regression test where the highest static parking score is unsolvable but a lower-score parking cell solves the level.
 
