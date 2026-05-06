@@ -109,6 +109,14 @@ DependencyGraph DependencyBuilder::build_graph(const std::vector<Task>& tasks) c
             if (a_blocks_same_box || b_blocks_same_box) {
                 continue;
             }
+            if (a.type == TaskType::MoveBlockingBoxToParking && b.type == TaskType::DeliverBoxToGoal &&
+                a.debug_label.find("_for_" + std::string(1, b.box_id)) != std::string::npos) {
+                add_edge(graph, a.task_id, b.task_id);
+            }
+            if (b.type == TaskType::MoveBlockingBoxToParking && a.type == TaskType::DeliverBoxToGoal &&
+                b.debug_label.find("_for_" + std::string(1, a.box_id)) != std::string::npos) {
+                add_edge(graph, b.task_id, a.task_id);
+            }
             if (a.type == TaskType::DeliverBoxToGoal && b.type == TaskType::MoveAgentToGoal && a.agent_id == b.agent_id) {
                 add_edge(graph, a.task_id, b.task_id);
             }

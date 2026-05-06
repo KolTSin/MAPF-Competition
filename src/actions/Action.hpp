@@ -52,7 +52,7 @@ struct Action {
 
     // For Move: move_dir is used
     // For Push: move_dir = agent direction, box_dir = box direction
-    // For Pull: move_dir = agent direction, box_dir = direction from agent to box before move
+    // For Pull: move_dir = agent direction, box_dir = box movement direction
     Direction move_dir{Direction::North};
     Direction box_dir{Direction::North};
 
