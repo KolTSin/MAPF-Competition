@@ -7,7 +7,7 @@ This checklist tracks the additional coordination, blocker, parking, and validat
 - [ ] Solve `levels/MAsimple3.lvl` in the MAvis server with `build/searchclient --solver comp`.
 - [ ] Solve `levels/MAsimple4.lvl` in the MAvis server with `build/searchclient --solver comp`.
 - [ ] Solve `levels/MAsimple5.lvl` in the MAvis server with `build/searchclient --solver comp`.
-- [ ] Add tests that fail if any `MAsimple` level produces an empty, invalid, conflicting, or non-solving plan.
+- [x] Add tests that fail if any `MAsimple` level produces an empty, invalid, conflicting, or non-solving plan.
 
 ## 1. Reserve boxes over time
 
@@ -97,11 +97,11 @@ Local repair should generate meaningful alternatives when scheduling fails.
 
 Existing tests should assert solved states, not just non-empty or conflict-free plans.
 
-- [ ] Add a plan simulator that applies joint actions with hospital-domain applicability checks.
-- [ ] Assert that all box goals are satisfied after applying the plan.
-- [ ] Assert that all agent goals are satisfied when present.
-- [ ] Assert no action attempts to move a box with an incompatible-color agent.
-- [ ] Convert the current `MAsimple` loop into hard assertions for `MAsimple1` through `MAsimple5`.
+- [x] Add a plan simulator that applies joint actions with hospital-domain applicability checks.
+- [x] Assert that all box goals are satisfied after applying the plan.
+- [x] Assert that all agent goals are satisfied when present.
+- [x] Assert no action attempts to move a box with an incompatible-color agent.
+- [x] Convert the current `MAsimple` loop into hard assertions for `MAsimple1` through `MAsimple5`.
 - [ ] Add a server-run smoke script or CTest wrapper for all `MAsimple` levels.
 
 ## 10. Diagnostics for future debugging
@@ -115,7 +115,7 @@ The next failures should be easier to diagnose than `scheduler_empty`.
 
 ## Suggested implementation order
 
-1. [ ] Add solved-state validation tests for `MAsimple1`--`MAsimple5` so failures are visible.
+1. [x] Add solved-state validation tests for `MAsimple1`--`MAsimple5` so failures are visible.
 2. [x] Add box reservations and make `BoxTransportPlanner` reservation-aware.
 3. [ ] Make parking validation route/reachability-aware.
 4. [ ] Replace debug-label blocker dependencies with structured dependencies.
@@ -124,3 +124,8 @@ The next failures should be easier to diagnose than `scheduler_empty`.
 7. [ ] Replace `AgentPathPlanner` with BFS/A*.
 8. [ ] Expand local repair to generate alternate parking and ordering attempts.
 9. [ ] Re-run MAvis server smoke tests for every `MAsimple` level and check off the goals above.
+
+## Newly discovered follow-up work
+
+- [ ] Fix the current `MAsimple3` unsolved-final-state failure exposed by the new hard validation test.
+- [ ] Re-check `MAsimple4` and `MAsimple5` with the hard validation test after the `MAsimple3` failure is fixed; earlier soft validation reported an empty plan for `MAsimple5`.
