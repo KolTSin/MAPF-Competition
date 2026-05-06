@@ -1,6 +1,7 @@
 #include "hospital/BoxTransportPlanner.hpp"
 
 #include "actions/ActionSemantics.hpp"
+#include "plan/ReservationTable.hpp"
 
 #include <array>
 #include <algorithm>
@@ -49,6 +50,24 @@ bool is_free_cell(const Level& level, const State& state, const Position& p, con
 
 bool is_free_for_box_destination(const Level& level, const State& state, const Position& p, const Position& original_active_box) {
     return is_free_cell(level, state, p, original_active_box);
+}
+
+
+bool can_move_agent_for_active_box_push(const ReservationTable& reservations,
+                                        int agent_id,
+                                        char box_id,
+                                        Position from,
+                                        Position to,
+                                        int time_from) {
+    const int active_box_owner = -1000 - static_cast<int>(box_id);
+    const bool destination_is_free_for_agent =
+        !reservations.is_cell_reserved(to.row, to.col, time_from + 1, agent_id) ||
+        !reservations.is_cell_reserved(to.row, to.col, time_from + 1, active_box_owner);
+
+    return destination_is_free_for_agent &&
+           !reservations.is_edge_reserved(to, from, time_from, agent_id) &&
+           !reservations.is_incoming_reserved(to, time_from, agent_id) &&
+           !reservations.is_outgoing_reserved(to, time_from, agent_id);
 }
 
 Direction opposite(Direction dir) noexcept {
@@ -150,6 +169,15 @@ constexpr std::array<Direction, 4> kDirs{Direction::North, Direction::South, Dir
 }
 
 TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const Task& task) const {
+    ReservationTable empty_reservations;
+    return plan(level, state, task, empty_reservations, 0);
+}
+
+TaskPlan BoxTransportPlanner::plan(const Level& level,
+                                   const State& state,
+                                   const Task& task,
+                                   const ReservationTable& reservations,
+                                   int start_time) const {
     TaskPlan out;
     out.task_id = task.task_id;
     out.task_type = task.type;
@@ -159,10 +187,16 @@ TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const
         out.failure_reason = "invalid_agent";
         return out;
     }
+    if (!reservations.can_occupy_agent(task.agent_id, state.agent_positions[task.agent_id], start_time) ||
+        !reservations.can_occupy_box(task.box_id, task.box_pos, start_time)) {
+        out.failure_reason = "reserved_start_cell";
+        return out;
+    }
 
     auto cmp = [](const Node& a, const Node& b) { return (a.g + a.h) > (b.g + b.h); };
     std::priority_queue<Node, std::vector<Node>, decltype(cmp)> open(cmp);
     std::unordered_map<Key, int, KeyHash> best;
+    const bool time_aware_closed_set = !reservations.empty();
 
     Node start;
     start.agent = state.agent_positions[task.agent_id];
@@ -173,7 +207,7 @@ TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const
     start.agent_traj.push_back(start.agent);
     start.box_traj.push_back(start.box);
     open.push(start);
-    best[Key{start.agent, start.box, 0}] = 0;
+    best[Key{start.agent, start.box, time_aware_closed_set ? start.time : 0}] = 0;
 
     const int max_expansions = level.rows * level.cols * 200;
     int expansions = 0;
@@ -202,6 +236,17 @@ TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const
                     Position next_box{cur.box.row + drow(box_dir), cur.box.col + dcol(box_dir)};
                     if (!is_free_for_box_destination(level, state, next_box, task.box_pos)) continue;
 
+                    const int absolute_time = start_time + cur.time;
+                    if (!can_move_agent_for_active_box_push(reservations,
+                                                            task.agent_id,
+                                                            task.box_id,
+                                                            cur.agent,
+                                                            next_agent,
+                                                            absolute_time) ||
+                        !reservations.can_move_box(task.box_id, cur.box, next_box, absolute_time, absolute_time + 1)) {
+                        continue;
+                    }
+
                     Node nxt = cur;
                     nxt.g = cur.g + 1;
                     nxt.time = cur.time + 1;
@@ -212,7 +257,7 @@ TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const
                     nxt.agent_traj.push_back(nxt.agent);
                     nxt.box_traj.push_back(nxt.box);
 
-                    Key k{nxt.agent, nxt.box, 0};
+                    Key k{nxt.agent, nxt.box, time_aware_closed_set ? nxt.time : 0};
                     auto it = best.find(k);
                     if (it != best.end() && it->second <= nxt.g) continue;
                     best[k] = nxt.g;
@@ -220,6 +265,10 @@ TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const
                 }
             } else {
                 if (!is_free_cell(level, state, next_agent, task.box_pos)) continue;
+
+                const int absolute_time = start_time + cur.time;
+                if (!reservations.can_move_agent(task.agent_id, cur.agent, next_agent, absolute_time, absolute_time + 1)) continue;
+                if (!reservations.can_occupy_box(task.box_id, cur.box, absolute_time + 1)) continue;
 
                 Node nxt = cur;
                 nxt.g = cur.g + 1;
@@ -230,7 +279,7 @@ TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const
                 nxt.agent_traj.push_back(nxt.agent);
                 nxt.box_traj.push_back(nxt.box);
 
-                Key k{nxt.agent, nxt.box, 0};
+                Key k{nxt.agent, nxt.box, time_aware_closed_set ? nxt.time : 0};
                 auto it = best.find(k);
                 if (it != best.end() && it->second <= nxt.g) continue;
                 best[k] = nxt.g;
@@ -247,6 +296,17 @@ TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const
                 if (next_agent == box_from) continue;
                 if (!is_free_cell(level, state, next_agent, task.box_pos)) continue;
 
+                const int absolute_time = start_time + cur.time;
+                if (!reservations.can_apply_transition(task.agent_id,
+                                                       cur.agent,
+                                                       next_agent,
+                                                       task.box_id,
+                                                       box_from,
+                                                       cur.agent,
+                                                       absolute_time)) {
+                    continue;
+                }
+
                 Node nxt = cur;
                 nxt.g = cur.g + 1;
                 nxt.time = cur.time + 1;
@@ -257,7 +317,7 @@ TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const
                 nxt.agent_traj.push_back(nxt.agent);
                 nxt.box_traj.push_back(nxt.box);
 
-                Key k{nxt.agent, nxt.box, 0};
+                Key k{nxt.agent, nxt.box, time_aware_closed_set ? nxt.time : 0};
                 auto it = best.find(k);
                 if (it != best.end() && it->second <= nxt.g) continue;
                 best[k] = nxt.g;

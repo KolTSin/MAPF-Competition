@@ -4,6 +4,7 @@
 #include "tasks/DependencyBuilder.hpp"
 #include "tasks/TaskPrioritizer.hpp"
 #include "actions/ActionApplicator.hpp"
+#include "hospital/AgentPathPlanner.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
 #include "hospital/LocalRepair.hpp"
 #include "plan/ConflictDetector.hpp"
@@ -162,6 +163,75 @@ int main() {
         Position a{1,1}, b{1,2};
         rt.reserve_edge(a,b,0,0);
         assert(rt.is_incoming_reserved(b,0,1));
+    }
+
+    {
+        ReservationTable rt;
+        rt.reserve_box_path('B', {Position{1,2}}, 0, 20);
+        assert(!rt.can_occupy_agent(0, Position{1,2}, 10));
+        assert(!rt.can_occupy_box('A', Position{1,2}, 10));
+        assert(rt.can_occupy_box('B', Position{1,2}, 10));
+    }
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 5;
+        l.walls.assign(15, false);
+        l.goals.assign(15, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.box_colors['A' - 'A'] = Color::Blue;
+
+        State s;
+        s.rows = 3; s.cols = 5;
+        s.agent_positions = {Position{1,1}};
+        s.box_pos.assign(15, '\0');
+        s.set_box(1,2,'A');
+
+        Task push_to_reserved;
+        push_to_reserved.task_id = 10;
+        push_to_reserved.type = TaskType::DeliverBoxToGoal;
+        push_to_reserved.agent_id = 0;
+        push_to_reserved.box_id = 'A';
+        push_to_reserved.box_pos = Position{1,2};
+        push_to_reserved.goal_pos = Position{1,3};
+
+        ReservationTable rt;
+        for (int t = 1; t <= 5000; ++t) rt.reserve_cell(1, 3, t, -1000 - static_cast<int>('B'));
+
+        BoxTransportPlanner planner;
+        TaskPlan blocked = planner.plan(l, s, push_to_reserved, rt, 0);
+        assert(!blocked.success);
+        assert(blocked.failure_reason == "no_path_for_single_box");
+    }
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 5;
+        l.walls.assign(15, false);
+        l.goals.assign(15, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+
+        State s;
+        s.rows = 3; s.cols = 5;
+        s.agent_positions = {Position{1,1}};
+        s.box_pos.assign(15, '\0');
+
+        Task walk_through_reserved;
+        walk_through_reserved.task_id = 11;
+        walk_through_reserved.type = TaskType::MoveAgentToGoal;
+        walk_through_reserved.agent_id = 0;
+        walk_through_reserved.goal_pos = Position{1,3};
+
+        ReservationTable rt;
+        rt.reserve_box_path('B', {Position{1,2}}, 0, 20);
+
+        AgentPathPlanner planner;
+        TaskPlan blocked = planner.plan(l, s, walk_through_reserved, rt);
+        assert(!blocked.success);
+        assert(blocked.failure_reason == "no_path_for_agent_reposition");
     }
 
     {

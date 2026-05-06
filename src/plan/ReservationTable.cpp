@@ -37,6 +37,10 @@ void ReservationTable::clear() {
     edge_reservations_.clear();
 }
 
+bool ReservationTable::empty() const {
+    return cell_reservations_.empty() && edge_reservations_.empty();
+}
+
 bool ReservationTable::is_edge_reserved(const Position& from,
                                                  const Position& to,
                                                  int time,
@@ -49,6 +53,14 @@ bool ReservationTable::is_incoming_reserved(const Position& to, int time, int ag
     for (const auto& [edge, owner] : edge_reservations_) {
         if (owner == agent) continue;
         if (edge.time == time && edge.to == to) return true;
+    }
+    return false;
+}
+
+bool ReservationTable::is_outgoing_reserved(const Position& from, int time, int agent) const {
+    for (const auto& [edge, owner] : edge_reservations_) {
+        if (owner == agent) continue;
+        if (edge.time == time && edge.from == from) return true;
     }
     return false;
 }
@@ -110,8 +122,17 @@ void ReservationTable::reserve_agent_path(int agent_id, const std::vector<Positi
     }
 }
 
-void ReservationTable::reserve_box_path(char box_char, const std::vector<Position>& trajectory, int start_time) {
-    reserve_agent_path(-1000 - static_cast<int>(box_char), trajectory, start_time);
+void ReservationTable::reserve_box_path(char box_char, const std::vector<Position>& trajectory, int start_time, int persistence_horizon) {
+    if (trajectory.empty()) return;
+
+    const int box_owner = -1000 - static_cast<int>(box_char);
+    reserve_agent_path(box_owner, trajectory, start_time);
+
+    const Position final_cell = trajectory.back();
+    const int final_time = start_time + static_cast<int>(trajectory.size()) - 1;
+    for (int t = final_time + 1; t <= final_time + persistence_horizon; ++t) {
+        reserve_cell(final_cell.row, final_cell.col, t, box_owner);
+    }
 }
 
 bool ReservationTable::can_occupy_agent(int agent_id, Position pos, int time) const {
@@ -120,7 +141,8 @@ bool ReservationTable::can_occupy_agent(int agent_id, Position pos, int time) co
 bool ReservationTable::can_move_agent(int agent_id, Position from, Position to, int time_from, int) const {
     return !is_edge_reserved(to, from, time_from, agent_id) &&
            !is_cell_reserved(to.row, to.col, time_from + 1, agent_id) &&
-           !is_incoming_reserved(to, time_from, agent_id);
+           !is_incoming_reserved(to, time_from, agent_id) &&
+           !is_outgoing_reserved(to, time_from, agent_id);
 }
 bool ReservationTable::can_occupy_box(char box_char, Position pos, int time) const {
     return can_occupy_agent(-1000 - static_cast<int>(box_char), pos, time);
