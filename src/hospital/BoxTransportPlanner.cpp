@@ -3,6 +3,7 @@
 #include "actions/ActionSemantics.hpp"
 
 #include <array>
+#include <algorithm>
 #include <queue>
 #include <unordered_map>
 
@@ -34,11 +35,30 @@ int manhattan(const Position& a, const Position& b) {
     return std::abs(a.row - b.row) + std::abs(a.col - b.col);
 }
 
-bool is_free_cell(const Level& level, const State& state, const Position& p, const Position& active_box) {
+bool cell_has_agent(const State& state, const Position& p) {
+    return std::find(state.agent_positions.begin(), state.agent_positions.end(), p) != state.agent_positions.end();
+}
+
+bool is_free_cell(const Level& level, const State& state, const Position& p, const Position& original_active_box) {
     if (!level.in_bounds(p.row, p.col) || level.is_wall(p.row, p.col)) return false;
     const char b = state.box_at(p.row, p.col);
-    if (b != '\0' && !(p == active_box)) return false;
+    if (b != '\0' && !(p == original_active_box)) return false;
+    if (cell_has_agent(state, p)) return false;
     return true;
+}
+
+bool is_free_for_box_destination(const Level& level, const State& state, const Position& p, const Position& original_active_box) {
+    return is_free_cell(level, state, p, original_active_box);
+}
+
+Direction opposite(Direction dir) noexcept {
+    switch (dir) {
+        case Direction::North: return Direction::South;
+        case Direction::South: return Direction::North;
+        case Direction::East: return Direction::West;
+        case Direction::West: return Direction::East;
+    }
+    return Direction::North;
 }
 
 bool validate_replay(const Level& level, const State& state, const Task& task, TaskPlan& out) {
@@ -175,64 +195,74 @@ TaskPlan BoxTransportPlanner::plan(const Level& level, const State& state, const
 
         for (Direction d : kDirs) {
             Position next_agent{cur.agent.row + drow(d), cur.agent.col + dcol(d)};
-            if (!is_free_cell(level, state, next_agent, cur.box)) continue;
-
-            Node nxt = cur;
-            nxt.g = cur.g + 1;
-            nxt.time = cur.time + 1;
 
             if (next_agent == cur.box) {
-                Position next_box{cur.box.row + drow(d), cur.box.col + dcol(d)};
-                if (!is_free_cell(level, state, next_box, cur.box)) continue;
-                nxt.agent = next_agent;
-                nxt.box = next_box;
-                nxt.actions.push_back(Action::push(d, d));
+                for (Direction box_dir : kDirs) {
+                    if (box_dir == opposite(d)) continue;
+                    Position next_box{cur.box.row + drow(box_dir), cur.box.col + dcol(box_dir)};
+                    if (!is_free_for_box_destination(level, state, next_box, task.box_pos)) continue;
+
+                    Node nxt = cur;
+                    nxt.g = cur.g + 1;
+                    nxt.time = cur.time + 1;
+                    nxt.agent = next_agent;
+                    nxt.box = next_box;
+                    nxt.actions.push_back(Action::push(d, box_dir));
+                    nxt.h = manhattan(nxt.box, task.goal_pos);
+                    nxt.agent_traj.push_back(nxt.agent);
+                    nxt.box_traj.push_back(nxt.box);
+
+                    Key k{nxt.agent, nxt.box, 0};
+                    auto it = best.find(k);
+                    if (it != best.end() && it->second <= nxt.g) continue;
+                    best[k] = nxt.g;
+                    open.push(std::move(nxt));
+                }
             } else {
+                if (!is_free_cell(level, state, next_agent, task.box_pos)) continue;
+
+                Node nxt = cur;
+                nxt.g = cur.g + 1;
+                nxt.time = cur.time + 1;
                 nxt.agent = next_agent;
                 nxt.actions.push_back(Action::move(d));
+                nxt.h = manhattan(nxt.box, task.goal_pos);
+                nxt.agent_traj.push_back(nxt.agent);
+                nxt.box_traj.push_back(nxt.box);
+
+                Key k{nxt.agent, nxt.box, 0};
+                auto it = best.find(k);
+                if (it != best.end() && it->second <= nxt.g) continue;
+                best[k] = nxt.g;
+                open.push(std::move(nxt));
             }
-
-            nxt.h = manhattan(nxt.box, task.goal_pos);
-            nxt.agent_traj.push_back(nxt.agent);
-            nxt.box_traj.push_back(nxt.box);
-
-            Key k{nxt.agent, nxt.box, nxt.time};
-            auto it = best.find(k);
-            if (it != best.end() && it->second <= nxt.g) continue;
-            best[k] = nxt.g;
-            open.push(std::move(nxt));
         }
 
         for (Direction move_dir : kDirs) {
-            Position pulled_from{cur.agent.row - drow(move_dir), cur.agent.col - dcol(move_dir)};
-            if (!(pulled_from == cur.box)) continue;
-
             Position next_agent{cur.agent.row + drow(move_dir), cur.agent.col + dcol(move_dir)};
-            if (!is_free_cell(level, state, next_agent, cur.box)) continue;
 
-            Node nxt = cur;
-            nxt.g = cur.g + 1;
-            nxt.time = cur.time + 1;
-            nxt.agent = next_agent;
-            nxt.box = cur.agent;
-            nxt.actions.push_back(Action::pull(move_dir, Direction::North)); // placeholder, set below
+            for (Direction box_dir : kDirs) {
+                Position box_from{cur.agent.row - drow(box_dir), cur.agent.col - dcol(box_dir)};
+                if (!(box_from == cur.box)) continue;
+                if (next_agent == box_from) continue;
+                if (!is_free_cell(level, state, next_agent, task.box_pos)) continue;
 
-            Direction box_dir = Direction::North;
-            if (pulled_from.row == cur.agent.row - 1 && pulled_from.col == cur.agent.col) box_dir = Direction::North;
-            else if (pulled_from.row == cur.agent.row + 1 && pulled_from.col == cur.agent.col) box_dir = Direction::South;
-            else if (pulled_from.row == cur.agent.row && pulled_from.col == cur.agent.col + 1) box_dir = Direction::East;
-            else if (pulled_from.row == cur.agent.row && pulled_from.col == cur.agent.col - 1) box_dir = Direction::West;
-            nxt.actions.back() = Action::pull(move_dir, box_dir);
+                Node nxt = cur;
+                nxt.g = cur.g + 1;
+                nxt.time = cur.time + 1;
+                nxt.agent = next_agent;
+                nxt.box = cur.agent;
+                nxt.actions.push_back(Action::pull(move_dir, box_dir));
+                nxt.h = manhattan(nxt.box, task.goal_pos);
+                nxt.agent_traj.push_back(nxt.agent);
+                nxt.box_traj.push_back(nxt.box);
 
-            nxt.h = manhattan(nxt.box, task.goal_pos);
-            nxt.agent_traj.push_back(nxt.agent);
-            nxt.box_traj.push_back(nxt.box);
-
-            Key k{nxt.agent, nxt.box, nxt.time};
-            auto it = best.find(k);
-            if (it != best.end() && it->second <= nxt.g) continue;
-            best[k] = nxt.g;
-            open.push(std::move(nxt));
+                Key k{nxt.agent, nxt.box, 0};
+                auto it = best.find(k);
+                if (it != best.end() && it->second <= nxt.g) continue;
+                best[k] = nxt.g;
+                open.push(std::move(nxt));
+            }
         }
     }
 

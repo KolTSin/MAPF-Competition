@@ -137,7 +137,7 @@ void parse_initial_grid(const std::vector<std::string>& grid_lines, Level& level
         const std::string& line = grid_lines[r];
 
         for (int c = 0; c < cols; ++c) {
-            const char ch = c < static_cast<int>(line.size()) ? line[c] : ' ';
+            const char ch = c < static_cast<int>(line.size()) ? line[c] : '+';
 
             if (ch == '+') {
                 level.walls[level.index(r, c)] = true;
@@ -160,7 +160,7 @@ void parse_initial_grid(const std::vector<std::string>& grid_lines, Level& level
             const std::string& line = grid_lines[r];
 
             for (int c = 0; c < cols; ++c) {
-                const char ch = c < static_cast<int>(line.size()) ? line[c] : ' ';
+                const char ch = c < static_cast<int>(line.size()) ? line[c] : '+';
 
                 if (is_agent_char(ch)) {
                     const int id = ch - '0';
@@ -188,7 +188,7 @@ void parse_goal_grid(const std::vector<std::string>& goal_lines, Level& level) {
         const std::string& line = goal_lines[r];
 
         for (int c = 0; c < level.cols; ++c) {
-            const char ch = c < static_cast<int>(line.size()) ? line[c] : ' ';
+            const char ch = c < static_cast<int>(line.size()) ? line[c] : '+';
             const bool initial_is_wall = level.walls[level.index(r, c)];
             if (is_goal_char(ch)) {
                 level.goals[level.index(r, c)] = ch;

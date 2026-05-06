@@ -32,22 +32,6 @@ void apply_prefix(State& state, const Plan& plan, int horizon) {
         }
     }
 }
-int configured_safe_prefix_horizon() {
-    if (const char* v = std::getenv("MAPF_SAFE_PREFIX_HORIZON")) {
-        const int parsed = std::atoi(v);
-        if (parsed > 0) return parsed;
-    }
-    return 6;
-}
-
-double configured_time_budget_seconds() {
-    if (const char* v = std::getenv("MAPF_COMP_TIME_BUDGET_SEC")) {
-        const double parsed = std::atof(v);
-        if (parsed > 0.0) return parsed;
-    }
-    return 175.0;
-}
-
 bool configured_verbose_tasks() {
     if (const char* v = std::getenv("MAPF_VERBOSE_TASKS")) {
         return std::atoi(v) != 0;
@@ -61,7 +45,6 @@ CompetitiveSolver::CompetitiveSolver(SolverConfig config) : config_(config) {}
 Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) {
     (void)heuristic;
     constexpr int kNoProgressBudget = 5;
-    const int kSafePrefixHorizon = config_.safe_prefix_length > 0 ? config_.safe_prefix_length : configured_safe_prefix_horizon();
     const double kTimeBudgetSeconds = static_cast<double>(config_.planning_time_budget_ms) / 1000.0;
     const bool kVerboseTasks = config_.debug_htn_trace || configured_verbose_tasks();
     const auto start_time = std::chrono::steady_clock::now();
@@ -126,7 +109,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         const State before = current;
         const int goals_before = goals_completed(before);
 
-        const int safe_prefix = std::max(1, std::min(kSafePrefixHorizon, static_cast<int>(wave.steps.size())));
+        const int safe_prefix = static_cast<int>(wave.steps.size());
         for (int i = 0; i < safe_prefix; ++i) {
             accumulated.steps.push_back(wave.steps[i]);
         }
