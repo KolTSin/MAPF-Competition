@@ -43,12 +43,16 @@ struct EdgeReservationHasher {
 class ReservationTable {
 public:
     void clear();
+    [[nodiscard]] bool empty() const;
     [[nodiscard]] bool is_cell_reserved(int row, int col, int time, int agent) const;
     [[nodiscard]] bool is_edge_reserved(const Position& from,
                                         const Position& to,
                                         int time,
                                         int agent) const;
     [[nodiscard]] bool is_incoming_reserved(const Position& to,
+                                            int time,
+                                            int agent) const;
+    [[nodiscard]] bool is_outgoing_reserved(const Position& from,
                                             int time,
                                             int agent) const;
 
@@ -61,7 +65,7 @@ public:
 
     void reserve_path(const std::vector<Action>& path, Position initial_pos, int agent, int start_time = 0);
     void reserve_agent_path(int agent_id, const std::vector<Position>& trajectory, int start_time);
-    void reserve_box_path(char box_char, const std::vector<Position>& trajectory, int start_time);
+    void reserve_box_path(char box_char, const std::vector<Position>& trajectory, int start_time, int persistence_horizon = 20);
     [[nodiscard]] bool can_occupy_agent(int agent_id, Position pos, int time) const;
     [[nodiscard]] bool can_move_agent(int agent_id, Position from, Position to, int time_from, int time_to) const;
     [[nodiscard]] bool can_occupy_box(char box_char, Position pos, int time) const;

@@ -105,7 +105,7 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
                 if (chosen_task.type == TaskType::MoveAgentToGoal || chosen_task.type == TaskType::ParkAgentSafely) {
                     plan = agent_planner.plan(level, simulated_state, chosen_task, reservations);
                 } else {
-                    plan = box_planner.plan(level, simulated_state, chosen_task);
+                    plan = box_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
                 }
                 if (!plan.success) continue;
                 if (plan.primitive_actions.empty() && !is_empty_plan_valid(chosen_task, simulated_state)) continue;
@@ -117,6 +117,9 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
             const int end_time = chosen_start + static_cast<int>(plan.primitive_actions.size());
             scheduled.push_back(ScheduledTask{chosen_task, plan, chosen_start, end_time});
             reservations.reserve_path(plan.primitive_actions, simulated_state.agent_positions[chosen_task.agent_id], chosen_task.agent_id, chosen_start);
+            if (chosen_task.box_id >= 'A' && chosen_task.box_id <= 'Z' && !plan.box_trajectory.empty()) {
+                reservations.reserve_box_path(chosen_task.box_id, plan.box_trajectory, chosen_start);
+            }
 
             Position cur = simulated_state.agent_positions[chosen_task.agent_id];
             for (const Action& a : plan.primitive_actions) {

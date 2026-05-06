@@ -13,21 +13,21 @@ This checklist tracks the additional coordination, blocker, parking, and validat
 
 The scheduler currently reserves agent paths, but transported boxes also need time-dependent reservations.
 
-- [ ] Extend `ReservationTable` with box/object cell reservations.
-- [ ] Reserve each transported box cell in every `TaskPlan::box_trajectory` timestep.
-- [ ] Reserve moved-box final cells for a persistence horizon.
-- [ ] Make later planning reject cells occupied or reserved by previously moved boxes.
-- [ ] Add tests for two tasks where the second task attempts to walk through, push through, or park on a reserved box cell.
+- [x] Extend `ReservationTable` with box/object cell reservations.
+- [x] Reserve each transported box cell in every `TaskPlan::box_trajectory` timestep.
+- [x] Reserve moved-box final cells for a persistence horizon.
+- [x] Make later planning reject cells occupied or reserved by previously moved boxes.
+- [x] Add tests for two tasks where the second task attempts to walk through, push through, or park on a reserved box cell.
 
 ## 2. Make `BoxTransportPlanner` reservation-aware
 
 `BoxTransportPlanner` is still a single-box planner over the static/simulated state. It should account for scheduled agents and boxes.
 
-- [ ] Add a `ReservationTable` parameter or overload for `BoxTransportPlanner::plan`.
-- [ ] Reject agent destinations reserved at `t + 1`.
-- [ ] Reject box destinations reserved at `t + 1`.
-- [ ] Reject follow conflicts, incoming conflicts, and edge swaps using the reservation table.
-- [ ] Keep the single-box no-time closed set only for reservation-free planning; use time-aware keys when reservations are present.
+- [x] Add a `ReservationTable` parameter or overload for `BoxTransportPlanner::plan`.
+- [x] Reject agent destinations reserved at `t + 1`.
+- [x] Reject box destinations reserved at `t + 1`.
+- [x] Reject follow conflicts, incoming conflicts, and edge swaps using the reservation table.
+- [x] Keep the single-box no-time closed set only for reservation-free planning; use time-aware keys when reservations are present.
 - [ ] Make the expansion limit configurable through `SolverConfig` rather than hard-coded from map size.
 
 ## 3. Validate parking cells by future reachability
@@ -116,7 +116,7 @@ The next failures should be easier to diagnose than `scheduler_empty`.
 ## Suggested implementation order
 
 1. [ ] Add solved-state validation tests for `MAsimple1`--`MAsimple5` so failures are visible.
-2. [ ] Add box reservations and make `BoxTransportPlanner` reservation-aware.
+2. [x] Add box reservations and make `BoxTransportPlanner` reservation-aware.
 3. [ ] Make parking validation route/reachability-aware.
 4. [ ] Replace debug-label blocker dependencies with structured dependencies.
 5. [ ] Add small ordering search for coupled box tasks.
