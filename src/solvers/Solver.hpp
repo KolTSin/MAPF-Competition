@@ -5,6 +5,7 @@
 #include "state/State.hpp"
 #include "search/heuristics/Heuristic.hpp"
 
+// Strategy interface for all complete planning algorithms.
 class Solver {
 public:
     virtual ~Solver() = default;

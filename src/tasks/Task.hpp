@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+// High-level work item types used by the HTN-style competitive solver.
 enum class TaskType {
     DeliverBoxToGoal,
     MoveBlockingBoxToParking,
@@ -12,6 +13,8 @@ enum class TaskType {
     ParkAgentSafely,
 };
 
+// Declarative task description. Planners translate this into primitive actions,
+// while the scheduler uses dependencies and priority to decide ordering.
 struct Task {
     TaskType type{TaskType::DeliverBoxToGoal};
     int task_id{-1};

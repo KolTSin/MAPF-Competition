@@ -5,6 +5,8 @@
 #include <queue>
 #include <vector>
 
+// Priority queue of indices into a node arena. Storing indices avoids invalidating
+// queue entries when the vector grows and keeps copies cheap.
 class Frontier {
 public:
     explicit Frontier(const std::vector<Node>* nodes);

@@ -3,6 +3,8 @@
 #include "actions/Action.hpp"
 #include "domain/Position.hpp"
 
+// Pure geometric effect of an action before checking walls, boxes, colors, or
+// collisions. ActionApplicator adds those legality checks.
 struct ActionEffect {
     Position agent_from{};
     Position agent_to{};
