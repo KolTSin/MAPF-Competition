@@ -70,7 +70,7 @@ public:
 
     // Reserve full trajectories. Box reservations use the box character as the
     // owner id so they cannot collide with agent reservations.
-    void reserve_path(const std::vector<Action>& path, Position initial_pos, int agent, int start_time = 0);
+    void reserve_path(const AgentPlan& plan, int start_time = 0);
     void reserve_agent_path(int agent_id, const std::vector<Position>& trajectory, int start_time);
     void reserve_box_path(char box_char, const std::vector<Position>& trajectory, int start_time, int persistence_horizon = 20);
 
@@ -87,6 +87,6 @@ public:
                                             int time_from) const;
 
 private:
-    std::unordered_map<CellReservation, int, CellReservationHasher> cell_reservations_;
-    std::unordered_map<EdgeReservation, int, EdgeReservationHasher> edge_reservations_;
+    std::unordered_map<CellReservation, std::vector<int>, CellReservationHasher> cell_reservations_;
+    std::unordered_map<EdgeReservation, std::vector<int>, EdgeReservationHasher> edge_reservations_;
 };

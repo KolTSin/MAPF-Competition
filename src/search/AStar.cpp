@@ -23,24 +23,24 @@ namespace {
     return level.goal_at(pos.row, pos.col) == static_cast<char>('0' + agent_id);
 }
 
-[[nodiscard]] std::vector<Action> reconstruct_plan(const std::vector<Node>& nodes,
-                                    int goal_index) {
+[[nodiscard]] AgentPlan reconstruct_plan(const std::vector<Node>& nodes,
+                                         int goal_index,
+                                         int agent_id) {
     // Nodes store parent links, so walk backward from the goal and then reverse
-    // to obtain the chronological action sequence.
-    std::vector<Action> reversed_steps;
+    // to obtain the chronological single-agent action/position sequence.
+    AgentPlan reversed_steps;
+    reversed_steps.agent = agent_id;
 
     int current = goal_index;
     while (nodes[current].parent_index != -1) {
-        reversed_steps.add(nodes[current].action,nodes[current].state.agent_positions[agent]);
-
+        reversed_steps.add(nodes[current].action, nodes[current].state.agent_positions[agent_id]);
         current = nodes[current].parent_index;
     }
+    reversed_steps.positions.push_back(nodes[current].state.agent_positions[agent_id]);
 
     std::reverse(reversed_steps.actions.begin(), reversed_steps.actions.end());
     std::reverse(reversed_steps.positions.begin(), reversed_steps.positions.end());
 
-    AgentPlan plan;
-    plan.steps = std::move(reversed_steps);
     return reversed_steps;
 }
 
@@ -87,7 +87,7 @@ AgentPlan AStar::search(const Level& level,
         }
 
         if (is_goal(level, current.state, agent_id)) {
-            return reconstruct_plan(nodes, current_index);
+            return reconstruct_plan(nodes, current_index, agent_id);
         }
 
         SuccessorGenerator::expand_agent(level, current.state, agent_id, 0, successors);

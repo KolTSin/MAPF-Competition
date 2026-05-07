@@ -31,7 +31,11 @@ std::size_t EdgeReservationHasher::operator()(const EdgeReservation& r) const no
 
 bool ReservationTable::is_cell_reserved(int row, int col, int time, int agent) const {
     auto it = cell_reservations_.find(CellReservation{row, col, time});
-    return it != cell_reservations_.end() && it->second.size() != 0;
+    if (it == cell_reservations_.end()) return false;
+    for (int owner : it->second) {
+        if (owner != agent) return true;
+    }
+    return false;
 }
 void ReservationTable::clear() {
     cell_reservations_.clear();
@@ -47,21 +51,29 @@ bool ReservationTable::is_edge_reserved(const Position& from,
                                                  int time,
                                                  int agent) const {
     auto it = edge_reservations_.find(EdgeReservation{from, to, time});
-    return it != edge_reservations_.end() && it->second.size() != 0;
+    if (it == edge_reservations_.end()) return false;
+    for (int owner : it->second) {
+        if (owner != agent) return true;
+    }
+    return false;
 }
 
 bool ReservationTable::is_incoming_reserved(const Position& to, int time, int agent) const {
-    for (const auto& [edge, owner] : edge_reservations_) {
-        if (owner == agent) continue;
-        if (edge.time == time && edge.to == to) return true;
+    for (const auto& [edge, owners] : edge_reservations_) {
+        if (edge.time != time || edge.to != to) continue;
+        for (int owner : owners) {
+            if (owner != agent) return true;
+        }
     }
     return false;
 }
 
 bool ReservationTable::is_outgoing_reserved(const Position& from, int time, int agent) const {
-    for (const auto& [edge, owner] : edge_reservations_) {
-        if (owner == agent) continue;
-        if (edge.time == time && edge.from == from) return true;
+    for (const auto& [edge, owners] : edge_reservations_) {
+        if (edge.time != time || edge.from != from) continue;
+        for (int owner : owners) {
+            if (owner != agent) return true;
+        }
     }
     return false;
 }
@@ -81,31 +93,28 @@ void ReservationTable::reserve_incoming(const Position& to, int time, int agent)
     reserve_edge(to, to, time, agent);
 }
 
-void ReservationTable::reserve_path(const std::vector<Action>& path, Position initial_pos, int agent, int start_time) {
-    Position current_pos = initial_pos;
+void ReservationTable::reserve_path(const AgentPlan& plan, int start_time) {
+    if (plan.positions.empty()) return;
 
-    // Reserve the start cell at time 0
-    reserve_cell(current_pos.row, current_pos.col, start_time, agent);
+    const int agent = plan.agent;
+    reserve_cell(plan.positions.front().row, plan.positions.front().col, start_time, agent);
 
-    for (int t = 0; t < static_cast<int>(path.size()); ++t) {
-        Position next_pos = ActionSemantics::compute_effect(current_pos, path[t]).agent_to;
-        const int absolute_time = start_time + t;
+    for (std::size_t i = 0; i < plan.actions.size(); ++i) {
+        const Position current_pos = plan.positions[i];
+        const Position next_pos = (i + 1 < plan.positions.size())
+            ? plan.positions[i + 1]
+            : ActionSemantics::compute_effect(current_pos, plan.actions[i]).agent_to;
+        const int absolute_time = start_time + static_cast<int>(i);
 
-        // Reserve traversal from time t to t+1
         reserve_edge(current_pos, next_pos, absolute_time, agent);
-
-        // Reserve destination cell at arrival time t+1
         reserve_cell(next_pos.row, next_pos.col, absolute_time + 1, agent);
         reserve_incoming(next_pos, absolute_time, agent);
-
-        current_pos = next_pos;
     }
 
-    // Keep the final position occupied for some extra horizon.
-    // This is a simple first approximation to prevent later agents from
-    // walking through an agent that has already reached its destination.
-    const Position goal = current_pos;
-    const int final_time = start_time + static_cast<int>(path.size()) - 1;
+    const Position goal = (plan.positions.size() == plan.actions.size() + 1)
+        ? plan.positions.back()
+        : plan.position_at(static_cast<int>(plan.actions.size()));
+    const int final_time = start_time + static_cast<int>(plan.actions.size());
 
     for (int t = final_time + 1; t <= final_time + 20; ++t) {
         reserve_cell(goal.row, goal.col, t, agent);

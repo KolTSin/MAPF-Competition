@@ -104,7 +104,7 @@ Plan CBSSolver::solve(const Level& level, const State& initial_state, const IHeu
             // search for the constrained agent
             plan = stastar.search(level, initial_state, conflict.agents[i], 20'000, res_table);
             // std::cerr << "search for agent " << conflict.agents[i] << " complete" << std::endl;
-            res_table.clear_reservations();
+            res_table.clear();
             // std::cerr << "reservations cleared!" << std::endl;
             if (!plan.valid()){
                 continue;

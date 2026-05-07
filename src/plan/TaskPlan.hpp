@@ -1,7 +1,7 @@
 #pragma once
 
-#include "actions/Action.hpp"
 #include "domain/Position.hpp"
+#include "plan/AgentPlan.hpp"
 #include "tasks/Task.hpp"
 
 #include <string>
@@ -14,8 +14,7 @@ struct TaskPlan {
     TaskType task_type{TaskType::DeliverBoxToGoal};
     int agent_id{-1};
 
-    std::vector<Action> primitive_actions;
-    std::vector<Position> agent_trajectory;
+    AgentPlan agent_plan;
     std::vector<Position> box_trajectory;
 
     bool success{false};

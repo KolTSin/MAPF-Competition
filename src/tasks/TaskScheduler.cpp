@@ -108,21 +108,21 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
                     plan = box_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
                 }
                 if (!plan.success) continue;
-                if (plan.primitive_actions.empty() && !is_empty_plan_valid(chosen_task, simulated_state)) continue;
+                if (plan.agent_plan.actions.empty() && !is_empty_plan_valid(chosen_task, simulated_state)) continue;
                 planned = true;
                 break;
             }
             if (!planned) continue;
 
-            const int end_time = chosen_start + static_cast<int>(plan.primitive_actions.size());
+            const int end_time = chosen_start + static_cast<int>(plan.agent_plan.actions.size());
             scheduled.push_back(ScheduledTask{chosen_task, plan, chosen_start, end_time});
-            reservations.reserve_path(plan.primitive_actions, simulated_state.agent_positions[chosen_task.agent_id], chosen_task.agent_id, chosen_start);
+            reservations.reserve_path(plan.agent_plan, chosen_start);
             if (chosen_task.box_id >= 'A' && chosen_task.box_id <= 'Z' && !plan.box_trajectory.empty()) {
                 reservations.reserve_box_path(chosen_task.box_id, plan.box_trajectory, chosen_start);
             }
 
             Position cur = simulated_state.agent_positions[chosen_task.agent_id];
-            for (const Action& a : plan.primitive_actions) {
+            for (const Action& a : plan.agent_plan.actions) {
                 const ActionEffect eff = ActionSemantics::compute_effect(cur, a);
                 cur = eff.agent_to;
                 if (eff.moves_box && simulated_state.in_bounds(eff.box_from.row, eff.box_from.col) && simulated_state.in_bounds(eff.box_to.row, eff.box_to.col)) {
@@ -143,14 +143,27 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
         }
     }
 
-    std::vector<std::vector<Action>> agent_plans(initial_state.num_agents());
+    std::vector<AgentPlan> agent_plans(initial_state.num_agents());
     if (scheduled.empty()) return {};
+    for (int agent = 0; agent < initial_state.num_agents(); ++agent) {
+        agent_plans[agent].agent = agent;
+    }
     for (const auto& st : scheduled) {
-        auto& timeline = agent_plans[st.task.agent_id];
+        auto& timeline = agent_plans[st.task.agent_id].actions;
         if (static_cast<int>(timeline.size()) < st.start_time) timeline.resize(st.start_time, Action::noop());
         if (static_cast<int>(timeline.size()) < st.end_time) timeline.resize(st.end_time, Action::noop());
-        for (int i = 0; i < static_cast<int>(st.plan.primitive_actions.size()); ++i) {
-            timeline[st.start_time + i] = st.plan.primitive_actions[static_cast<std::size_t>(i)];
+        for (int i = 0; i < static_cast<int>(st.plan.agent_plan.actions.size()); ++i) {
+            timeline[st.start_time + i] = st.plan.agent_plan.actions[static_cast<std::size_t>(i)];
+        }
+    }
+    for (int agent = 0; agent < initial_state.num_agents(); ++agent) {
+        AgentPlan& plan = agent_plans[agent];
+        Position cur = initial_state.agent_positions[agent];
+        plan.positions.clear();
+        plan.positions.push_back(cur);
+        for (const Action& action : plan.actions) {
+            cur = ActionSemantics::compute_effect(cur, action).agent_to;
+            plan.positions.push_back(cur);
         }
     }
     return PlanMerger::merge_agent_plans(agent_plans, initial_state.num_agents());
