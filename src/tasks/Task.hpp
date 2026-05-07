@@ -26,6 +26,11 @@ struct Task {
     Position parking_pos{};
     int priority{0};
     std::vector<int> dependencies{};
+
+    // Structured blocker relationship metadata. For relocation tasks,
+    // unblocks_box_id identifies the delivery box that cannot be planned until
+    // this blocker has been moved out of the way. Keep debug_label diagnostic-only.
+    char unblocks_box_id{'\0'};
     std::string debug_label{};
 
     [[nodiscard]] std::string describe() const;

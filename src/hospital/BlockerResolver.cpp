@@ -334,6 +334,7 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
                 t.goal_pos = t.parking_pos;
                 t.agent_id = blocker_agent;
                 t.priority = selected_score + 100;
+                t.unblocks_box_id = goal;
                 t.debug_label = "agent_access_blocker_for_" + std::string(1, goal);
                 tasks.push_back(t);
                 already_selected.insert(blocker);
@@ -372,6 +373,7 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
                 t.task_id = next_task_id++;
                 t.box_id = b;
                 t.box_pos = q;
+                t.unblocks_box_id = goal;
                 t.debug_label = "route_blocker_for_" + std::string(1, goal);
 
                 int best_score = 0;
