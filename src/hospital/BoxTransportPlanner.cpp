@@ -84,25 +84,25 @@ bool validate_replay(const Level& level, const State& state, const Task& task, T
     Position agent = state.agent_positions[task.agent_id];
     Position box = task.box_pos;
 
-    if (out.agent_trajectory.empty() || out.box_trajectory.empty()) {
+    if (out.agent_plan.positions.empty() || out.box_trajectory.empty()) {
         out.success = false;
         out.failure_reason = "invalid_empty_trajectory";
         return false;
     }
-    if (out.agent_trajectory.front() != agent || out.box_trajectory.front() != box) {
+    if (out.agent_plan.positions.front() != agent || out.box_trajectory.front() != box) {
         out.success = false;
         out.failure_reason = "invalid_start_trajectory";
         return false;
     }
-    if (out.primitive_actions.size() + 1 != out.agent_trajectory.size() ||
-        out.primitive_actions.size() + 1 != out.box_trajectory.size()) {
+    if (out.agent_plan.actions.size() + 1 != out.agent_plan.positions.size() ||
+        out.agent_plan.actions.size() + 1 != out.box_trajectory.size()) {
         out.success = false;
         out.failure_reason = "invalid_trajectory_length_mismatch";
         return false;
     }
 
-    for (std::size_t i = 0; i < out.primitive_actions.size(); ++i) {
-        const Action action = out.primitive_actions[i];
+    for (std::size_t i = 0; i < out.agent_plan.actions.size(); ++i) {
+        const Action action = out.agent_plan.actions[i];
         const ActionEffect eff = ActionSemantics::compute_effect(agent, action);
 
         if (!level.in_bounds(eff.agent_to.row, eff.agent_to.col) || level.is_wall(eff.agent_to.row, eff.agent_to.col)) {
@@ -155,7 +155,7 @@ bool validate_replay(const Level& level, const State& state, const Task& task, T
 
         agent = eff.agent_to;
 
-        if (out.agent_trajectory[i + 1] != agent || out.box_trajectory[i + 1] != box) {
+        if (out.agent_plan.positions[i + 1] != agent || out.box_trajectory[i + 1] != box) {
             out.success = false;
             out.failure_reason = "invalid_replay_trajectory_mismatch";
             return false;
@@ -182,6 +182,7 @@ TaskPlan BoxTransportPlanner::plan(const Level& level,
     out.task_id = task.task_id;
     out.task_type = task.type;
     out.agent_id = task.agent_id;
+    out.agent_plan.agent = task.agent_id;
 
     if (task.agent_id < 0 || task.agent_id >= state.num_agents()) {
         out.failure_reason = "invalid_agent";
@@ -218,8 +219,8 @@ TaskPlan BoxTransportPlanner::plan(const Level& level,
 
         if (cur.box == task.goal_pos) {
             out.success = true;
-            out.primitive_actions = cur.actions;
-            out.agent_trajectory = cur.agent_traj;
+            out.agent_plan.actions = cur.actions;
+            out.agent_plan.positions = cur.agent_traj;
             out.box_trajectory = cur.box_traj;
             if (!validate_replay(level, state, task, out)) {
                 return out;

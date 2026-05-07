@@ -55,6 +55,7 @@ bool has_agent_goal(const Level& level, int agent_id) {
 [[nodiscard]] AgentPlan reconstruct_plan(const std::vector<Node>& nodes,
                                     int goal_index, int agent) {
     AgentPlan reversed_steps;
+    reversed_steps.agent = agent;
 
     int current = goal_index;
     while (nodes[current].parent_index != -1) {
@@ -62,6 +63,7 @@ bool has_agent_goal(const Level& level, int agent_id) {
 
         current = nodes[current].parent_index;
     }
+    reversed_steps.positions.push_back(nodes[current].state.agent_positions[agent]);
 
     std::reverse(reversed_steps.actions.begin(), reversed_steps.actions.end());
     std::reverse(reversed_steps.positions.begin(), reversed_steps.positions.end());

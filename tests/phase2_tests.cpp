@@ -253,7 +253,7 @@ int main() {
         TaskPlan p0 = planner.plan(l, s, unblock);
         assert(p0.success);
         State after_unblock = s;
-        for (const Action& a : p0.primitive_actions) {
+        for (const Action& a : p0.agent_plan.actions) {
             after_unblock = ActionApplicator::apply(l, after_unblock, 0, a);
         }
         assert(after_unblock.box_at(1,2) == 'A');
@@ -263,7 +263,7 @@ int main() {
         TaskPlan p1 = planner.plan(l, after_unblock, deliver_after);
         assert(p1.success);
         State final_state = after_unblock;
-        for (const Action& a : p1.primitive_actions) {
+        for (const Action& a : p1.agent_plan.actions) {
             final_state = ActionApplicator::apply(l, final_state, 0, a);
         }
         assert(final_state.box_at(2,4) == 'A');
@@ -602,7 +602,7 @@ int main() {
         BoxTransportPlanner p;
         TaskPlan plan = p.plan(l,s,t);
         assert(plan.success);
-        assert(!plan.primitive_actions.empty());
+        assert(!plan.agent_plan.actions.empty());
         assert((plan.box_trajectory.back() == Position{1,4}));
     }
 

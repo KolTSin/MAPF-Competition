@@ -29,7 +29,7 @@ Plan SpaceTimeSolver::solve(const Level& level, const State& initial_state, cons
         try {
             std::cerr << "starting now.." << '\n';
             agent_plans[agent] = astar.search(level, initial_state, agent, max_time, reservations);
-            reservations.reserve_path(agent_plans[agent],initial_state.agent_positions[agent],agent);
+            reservations.reserve_path(agent_plans[agent]);
             
             std::cerr << "Agent " << agent << " plan length = "
                     << agent_plans[agent].actions.size() << '\n';

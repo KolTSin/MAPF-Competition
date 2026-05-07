@@ -3,6 +3,8 @@
 #include "tasks/HTNTracePrinter.hpp"
 #include "tasks/TaskGenerator.hpp"
 #include "tasks/TaskScheduler.hpp"
+#include "search/AStar.hpp"
+#include "plan/PlanMerger.hpp"
 
 #include <iostream>
 
@@ -31,6 +33,5 @@ Plan SequentialSolver::solve(const Level& level, const State& initial_state, con
         std::cerr << "Finished agent " << agent << '\n';
     }
 
-    TaskScheduler scheduler;
-    return scheduler.build_plan(level, initial_state, tasks);
+    return PlanMerger::merge_agent_plans(agent_plans, num_agents);
 }
