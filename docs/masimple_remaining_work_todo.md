@@ -49,8 +49,8 @@ Parking cells must be more than static high-score cells. A candidate is useful o
 
 `MAsimple3` needs relocation of an access-blocking box, followed by the originally blocked delivery. This ordering must be explicit and robust.
 
-- [ ] Represent blocker relationships structurally instead of relying on `Task::debug_label` string matching.
-- [ ] Ensure access-blocker relocation tasks are hard dependencies of the affected delivery tasks.
+- [x] Represent blocker relationships structurally instead of relying on `Task::debug_label` string matching.
+- [x] Ensure access-blocker relocation tasks are hard dependencies of the affected delivery tasks.
 - [ ] After a blocker relocation, regenerate delivery tasks from the updated simulated state.
 - [ ] If the selected parking cell still blocks the dependent delivery, reject it and try another candidate.
 - [ ] Add a test based on `MAsimple3` where `B` blocks agent `0` from reaching `A`, requiring `B` to move first.
@@ -122,7 +122,7 @@ The next failures should be easier to diagnose than `scheduler_empty`.
 1. [x] Add solved-state validation tests for `MAsimple1`--`MAsimple5` so failures are visible.
 2. [x] Add box reservations and make `BoxTransportPlanner` reservation-aware.
 3. [x] Make parking validation route/reachability-aware.
-4. [ ] Replace debug-label blocker dependencies with structured dependencies.
+4. [x] Replace debug-label blocker dependencies with structured dependencies.
 5. [ ] Add small ordering search for coupled box tasks.
 6. [ ] Support goal boxes as temporary blockers.
 7. [ ] Replace `AgentPathPlanner` with BFS/A*.

@@ -405,6 +405,41 @@ int main() {
     }
 
     {
+        Task access_blocker;
+        access_blocker.task_id = 10;
+        access_blocker.type = TaskType::MoveBlockingBoxToParking;
+        access_blocker.box_id = 'B';
+        access_blocker.box_pos = Position{1, 1};
+        access_blocker.parking_pos = Position{1, 2};
+        access_blocker.goal_pos = access_blocker.parking_pos;
+        access_blocker.unblocks_box_id = 'A';
+        access_blocker.debug_label = "diagnostic_only_without_for_suffix";
+
+        Task deliver;
+        deliver.task_id = 11;
+        deliver.type = TaskType::DeliverBoxToGoal;
+        deliver.box_id = 'A';
+        deliver.box_pos = Position{3, 3};
+        deliver.goal_pos = Position{3, 4};
+
+        DependencyBuilder builder;
+        DependencyGraph graph = builder.build_graph({deliver, access_blocker});
+        assert(graph.predecessors[deliver.task_id].size() == 1);
+        assert(graph.predecessors[deliver.task_id][0] == access_blocker.task_id);
+
+        Task explicit_dependency;
+        explicit_dependency.task_id = 12;
+        explicit_dependency.type = TaskType::MoveAgentToGoal;
+        explicit_dependency.box_pos = Position{5, 5};
+        explicit_dependency.goal_pos = Position{5, 6};
+        explicit_dependency.parking_pos = explicit_dependency.goal_pos;
+        explicit_dependency.dependencies.push_back(deliver.task_id);
+        graph = builder.build_graph({access_blocker, deliver, explicit_dependency});
+        assert(graph.predecessors[explicit_dependency.task_id].size() == 1);
+        assert(graph.predecessors[explicit_dependency.task_id][0] == deliver.task_id);
+    }
+
+    {
         Level l;
         l.rows = 3; l.cols = 6;
         l.walls.assign(18, false);

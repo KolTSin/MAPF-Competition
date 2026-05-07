@@ -87,9 +87,18 @@ std::unordered_map<int, std::vector<int>> DependencyBuilder::build(const std::ve
 
 DependencyGraph DependencyBuilder::build_graph(const std::vector<Task>& tasks) const {
     DependencyGraph graph;
+    std::unordered_set<int> task_ids;
     for (const Task& task : tasks) {
         graph.predecessors[task.task_id] = {};
         graph.successors[task.task_id] = {};
+        task_ids.insert(task.task_id);
+    }
+    for (const Task& task : tasks) {
+        for (int predecessor : task.dependencies) {
+            if (task_ids.count(predecessor)) {
+                add_edge(graph, predecessor, task.task_id);
+            }
+        }
     }
     for (std::size_t i = 0; i < tasks.size(); ++i) {
         for (std::size_t j = i + 1; j < tasks.size(); ++j) {
@@ -110,11 +119,11 @@ DependencyGraph DependencyBuilder::build_graph(const std::vector<Task>& tasks) c
                 continue;
             }
             if (a.type == TaskType::MoveBlockingBoxToParking && b.type == TaskType::DeliverBoxToGoal &&
-                a.debug_label.find("_for_" + std::string(1, b.box_id)) != std::string::npos) {
+                a.unblocks_box_id == b.box_id) {
                 add_edge(graph, a.task_id, b.task_id);
             }
             if (b.type == TaskType::MoveBlockingBoxToParking && a.type == TaskType::DeliverBoxToGoal &&
-                b.debug_label.find("_for_" + std::string(1, a.box_id)) != std::string::npos) {
+                b.unblocks_box_id == a.box_id) {
                 add_edge(graph, b.task_id, a.task_id);
             }
             if (a.type == TaskType::DeliverBoxToGoal && b.type == TaskType::MoveAgentToGoal && a.agent_id == b.agent_id) {
