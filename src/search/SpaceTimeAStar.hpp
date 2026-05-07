@@ -8,6 +8,7 @@
 
 #include <vector>
 
+// Lightweight position/time node kept for compatibility with earlier planners.
 struct SpaceTimeNode {
     Position pos{};
     int time{0};
@@ -23,19 +24,17 @@ struct SpaceTimeNode {
     }
 };
 
+// A* variant that includes timestep in the closed-list key and rejects moves
+// that conflict with reservations made by previously scheduled agents/boxes.
 class SpaceTimeAStar {
 public:
-    explicit SpaceTimeAStar(const IHeuristic& heuristic):
-        heuristic_(heuristic)
-        {
-        }
+    explicit SpaceTimeAStar(const IHeuristic& heuristic)
+        : heuristic_(heuristic) {}
 
-    std::vector<Action> search(
-        const Level& level,
-        const State& initial_state,
-        const int agent,
-        const ReservationTable& reservations
-    );
+    std::vector<Action> search(const Level& level,
+                               const State& initial_state,
+                               int agent,
+                               const ReservationTable& reservations);
 private:
     const IHeuristic& heuristic_;
 };

@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <vector>
 
+// Lazily cached BFS distances over the static wall map.
 class StaticDistances {
 public:
     explicit StaticDistances(const Level& level);

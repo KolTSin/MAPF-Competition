@@ -7,6 +7,8 @@ bool ActionApplicator::cell_has_other_agent(const State& state,
                                             int acting_agent,
                                             int row,
                                             int col) {
+    // Agents are tracked separately from boxes, so a target cell is blocked if
+    // any non-acting agent currently occupies it.
     for (int i = 0; i < state.num_agents(); ++i) {
         if (i == acting_agent) {
             continue;
@@ -23,6 +25,8 @@ bool ActionApplicator::cell_is_free(const Level& level,
                                     int acting_agent,
                                     int row,
                                     int col) {
+    // A free cell must be on the board, not a wall, and not occupied by either
+    // dynamic object type.
     if (!level.in_bounds(row, col)) {
         return false;
     }
@@ -53,6 +57,8 @@ bool ActionApplicator::is_applicable(const Level& level,
             return cell_is_free(level, state, agent_id, effect.agent_to.row, effect.agent_to.col);
 
         case ActionType::Push: {
+            // Push requires a box directly in the agent's movement direction and
+            // an empty destination cell for that box.
             if (!level.in_bounds(effect.box_from.row, effect.box_from.col)) {
                 return false;
             }
@@ -64,6 +70,8 @@ bool ActionApplicator::is_applicable(const Level& level,
 
             const Color agent_color = level.agent_colors[agent_id];
             const Color box_color = level.box_colors[box - 'A'];
+            // Competition rules only allow agents to manipulate boxes of the
+            // same color.
             if (agent_color != box_color) {
                 return false;
             }
@@ -72,6 +80,8 @@ bool ActionApplicator::is_applicable(const Level& level,
         }
 
         case ActionType::Pull: {
+            // Pull first moves the agent into a free cell, then drags a same-
+            // colored adjacent box into the agent's old cell.
             if (!cell_is_free(level, state, agent_id, effect.agent_to.row, effect.agent_to.col)) {
                 return false;
             }
@@ -107,6 +117,8 @@ State ActionApplicator::apply(const Level& level,
     State next = state;
 
     if (!is_applicable(level, state, agent_id, action)) {
+        // Keep callers simple: illegal actions are treated as no-ops rather
+        // than throwing from inside successor generation.
         return next;
     }
 

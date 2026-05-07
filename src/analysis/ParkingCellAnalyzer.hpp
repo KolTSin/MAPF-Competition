@@ -5,6 +5,7 @@
 #include "state/State.hpp"
 #include <vector>
 
+// Scores safe temporary storage cells for agents or blocking boxes.
 class ParkingCellAnalyzer {
 public:
     [[nodiscard]] std::vector<Position> find_parking_cells(const Level& level, const State& state, const LevelAnalysis& analysis) const;

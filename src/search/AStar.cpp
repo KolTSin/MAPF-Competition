@@ -17,12 +17,15 @@
 
 namespace {
 [[nodiscard]] bool is_goal(const Level& level, const State& state, int agent_id) {
+    // This search targets an agent-specific digit goal, not box goals.
     const Position pos = state.agent_positions[agent_id];
     return level.goal_at(pos.row, pos.col) == static_cast<char>('0' + agent_id);
 }
 
 [[nodiscard]] std::vector<Action> reconstruct_plan(const std::vector<Node>& nodes,
                                     int goal_index) {
+    // Nodes store parent links, so walk backward from the goal and then reverse
+    // to obtain the chronological action sequence.
     std::vector<Action> reversed_steps;
 
     int current = goal_index;
@@ -53,6 +56,8 @@ std::vector<Action> AStar::search(const Level& level,
 
     Frontier open(&nodes);
 
+    // best_g is the closed-list cost table. If a state is reached again with an
+    // equal or worse path cost it cannot improve the solution and is skipped.
     std::unordered_map<State, int, StateHasher, StateEqual> best_g;
     best_g.reserve(2048);
 
@@ -87,6 +92,7 @@ std::vector<Action> AStar::search(const Level& level,
         SuccessorGenerator::expand_agent(level, current.state, agent_id, 0, successors);
 
         for (const Successor& succ : successors) {
+            // Every primitive action has unit cost in the competition domain.
             const int tentative_g = current.g + 1;
 
             auto it = best_g.find(succ.next_state);

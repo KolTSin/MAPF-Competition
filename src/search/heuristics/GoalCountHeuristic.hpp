@@ -6,6 +6,7 @@
 #include "search/heuristics/HeuristicContext.hpp"
 
 
+// Counts unsatisfied goals; cheap but coarse progress estimate.
 class GoalCountHeuristic : public IHeuristic {
 public:
     GoalCountHeuristic(const Level& level, const HeuristicContext& context);

@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 
+// Name-based registry so command-line heuristic choices stay decoupled from concrete classes.
 class HeuristicFactory
 {
 public:

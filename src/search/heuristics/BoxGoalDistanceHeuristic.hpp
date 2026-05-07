@@ -6,6 +6,7 @@
 #include "search/heuristics/HeuristicContext.hpp"
 
 
+// Sums static distances from boxes to matching lowercase goal cells.
 class BoxGoalDistanceHeuristic : public IHeuristic {
 public:
     BoxGoalDistanceHeuristic(const Level& level, const HeuristicContext& context);

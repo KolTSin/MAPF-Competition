@@ -7,6 +7,8 @@
 #include <array>
 #include <vector>
 
+// Precomputed static map data shared by all heuristic implementations. Building
+// this once avoids repeating graph construction and BFS distance maps per state.
 class HeuristicContext
 {
 public:
@@ -53,6 +55,7 @@ private:
     std::vector<bool> walls_;
     std::vector<char> goals_;
 
+    // Mapping between dense free-cell ids and original grid coordinates.
     std::vector<int> cellIdOf_;
     std::vector<Position> positionOfCell_;
     std::vector<std::vector<int>> neighbors_;
@@ -64,6 +67,7 @@ private:
     std::array<std::vector<int>, MAX_BOX_TYPES> boxGoalCells_;
     std::array<std::vector<int>, MAX_AGENT_IDS> agentGoalCells_;
 
+    // Multi-source BFS distance from every cell to the nearest matching goal.
     std::array<std::vector<int>, MAX_BOX_TYPES> distToBoxGoal_;
     std::array<std::vector<int>, MAX_AGENT_IDS> distToAgentGoal_;
 

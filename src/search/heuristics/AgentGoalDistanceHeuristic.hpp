@@ -6,6 +6,7 @@
 #include "search/heuristics/HeuristicContext.hpp"
 
 
+// Sums static distances from each agent to its digit goal.
 class AgentGoalDistanceHeuristic : public IHeuristic {
 public:
     AgentGoalDistanceHeuristic(const Level& level, const HeuristicContext& context);

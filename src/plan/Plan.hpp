@@ -1,8 +1,10 @@
 #pragma once
 
 #include "actions/JointAction.hpp"
+
 #include <vector>
 
+// Complete server-facing plan: each timestep contains one action per agent.
 class Plan {
 public:
     std::vector<JointAction> steps;
