@@ -30,11 +30,10 @@ ActionEffect ActionSemantics::compute_effect(const Position& agent_pos, const Ac
             effect.agent_to.col += dcol(action.move_dir);
 
             effect.moves_box = true;
-            effect.box_from = agent_pos;
-            effect.box_from.row += drow(action.box_dir);
-            effect.box_from.col += dcol(action.box_dir);
-
             effect.box_to = agent_pos;
+            effect.box_from = agent_pos;
+            effect.box_from.row -= drow(action.box_dir);
+            effect.box_from.col -= dcol(action.box_dir);
             break;
     }
 

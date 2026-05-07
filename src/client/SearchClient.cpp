@@ -30,6 +30,7 @@ void SearchClient::initializeSearchComponents(
 void SearchClient::run() {
     std::cout << "MJES" << '\n';
     std::cout.flush();
+
     ParsedLevel parsed = LevelParser::parse(std::cin);
     HeuristicContext heuristic_context(parsed.level);
     initializeSearchComponents(parsed.level, heuristic_context);

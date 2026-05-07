@@ -11,7 +11,8 @@ SolverType parseSolver(const std::string& s) {
         {"naive", SolverType::NAIVE},
         {"sequential", SolverType::SEQUENTIAL},
         {"spacetime_astar", SolverType::SPACETIME_ASTAR},
-        {"cbs", SolverType::CBS}
+        {"cbs", SolverType::CBS},
+        {"comp", SolverType::COMPETITIVE},
     };
 
     auto it = table.find(s);

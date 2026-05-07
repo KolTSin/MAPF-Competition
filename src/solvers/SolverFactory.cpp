@@ -5,6 +5,7 @@
 #include "solvers/SequentialSolver.hpp"
 #include "solvers/SpaceTimeSolver.hpp"
 #include "solvers/CBSSolver.hpp"
+#include "solvers/CompetitiveSolver.hpp"
 // #include "search/heuristics/Heuristic.hpp"
 
 #include <memory>
@@ -29,6 +30,10 @@ std::unique_ptr<Solver> makeSolver(
 
         case SolverType::CBS:
             return std::make_unique<CBSSolver>();
+            
+        case SolverType::COMPETITIVE:
+            // if (!heuristic) throw std::runtime_error("SpaceTimeAStar requires a heuristic");
+            return std::make_unique<CompetitiveSolver>();
 
         default:
             throw std::runtime_error("Unsupported solver type");

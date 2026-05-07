@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <string>
 
+// Cardinal directions used by the competition action syntax.
 enum class Direction {
     North,
     South,
@@ -10,6 +11,7 @@ enum class Direction {
     West
 };
 
+// Row delta for moving one cell in a direction.
 inline int drow(Direction dir) noexcept {
     switch (dir) {
         case Direction::North: return -1;
@@ -20,6 +22,7 @@ inline int drow(Direction dir) noexcept {
     return 0;
 }
 
+// Column delta for moving one cell in a direction.
 inline int dcol(Direction dir) noexcept {
     switch (dir) {
         case Direction::North: return 0;
@@ -30,6 +33,7 @@ inline int dcol(Direction dir) noexcept {
     return 0;
 }
 
+// Short form expected by the server protocol.
 inline char dir_to_char(Direction dir) noexcept {
     switch (dir) {
         case Direction::North: return 'N';
@@ -47,12 +51,15 @@ enum class ActionType {
     NoOp
 };
 
+// One primitive action for a single agent. Push/Pull contain both the agent
+// movement direction and the box movement direction because those may differ
+// when turning a corner around a box.
 struct Action {
     ActionType type{ActionType::NoOp};
 
-    // For Move: move_dir is used
-    // For Push: move_dir = agent direction, box_dir = box direction
-    // For Pull: move_dir = agent direction, box_dir = direction from agent to box before move
+    // For Move: move_dir is used.
+    // For Push: move_dir = agent direction, box_dir = box direction.
+    // For Pull: move_dir = agent direction, box_dir = box movement direction.
     Direction move_dir{Direction::North};
     Direction box_dir{Direction::North};
 
@@ -72,6 +79,7 @@ struct Action {
         return Action{ActionType::NoOp, Direction::North, Direction::North};
     }
 
+    // Convert to the exact text token consumed by the Java competition server.
     [[nodiscard]] std::string to_string() const {
         switch (type) {
             case ActionType::Move:

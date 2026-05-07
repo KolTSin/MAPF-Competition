@@ -136,8 +136,8 @@ void parse_initial_grid(const std::vector<std::string>& grid_lines, Level& level
     for (int r = 0; r < rows; ++r) {
         const std::string& line = grid_lines[r];
 
-        for (int c = 0; c < static_cast<int>(line.size()); ++c) {
-            const char ch = line[c];
+        for (int c = 0; c < cols; ++c) {
+            const char ch = c < static_cast<int>(line.size()) ? line[c] : '+';
 
             if (ch == '+') {
                 level.walls[level.index(r, c)] = true;
@@ -147,6 +147,8 @@ void parse_initial_grid(const std::vector<std::string>& grid_lines, Level& level
                 max_agent_id = std::max(max_agent_id, id);
             } else if (is_box_char(ch)) {
                 state.set_box(r, c, ch);
+            } else if (ch != ' ') {
+                throw std::runtime_error("Invalid token in initial grid: '" + std::string(1, ch) + "'");
             }
         }
     }
@@ -157,8 +159,8 @@ void parse_initial_grid(const std::vector<std::string>& grid_lines, Level& level
         for (int r = 0; r < rows; ++r) {
             const std::string& line = grid_lines[r];
 
-            for (int c = 0; c < static_cast<int>(line.size()); ++c) {
-                const char ch = line[c];
+            for (int c = 0; c < cols; ++c) {
+                const char ch = c < static_cast<int>(line.size()) ? line[c] : '+';
 
                 if (is_agent_char(ch)) {
                     const int id = ch - '0';
@@ -185,10 +187,21 @@ void parse_goal_grid(const std::vector<std::string>& goal_lines, Level& level) {
     for (int r = 0; r < level.rows; ++r) {
         const std::string& line = goal_lines[r];
 
-        for (int c = 0; c < static_cast<int>(line.size()); ++c) {
-            const char ch = line[c];
+        for (int c = 0; c < level.cols; ++c) {
+            const char ch = c < static_cast<int>(line.size()) ? line[c] : '+';
+            const bool initial_is_wall = level.walls[level.index(r, c)];
             if (is_goal_char(ch)) {
                 level.goals[level.index(r, c)] = ch;
+            } else if (ch == '+') {
+                if (!initial_is_wall) {
+                    throw std::runtime_error("Goal grid wall layout must match initial grid");
+                }
+            } else if (ch == ' ') {
+                if (initial_is_wall) {
+                    throw std::runtime_error("Goal grid wall layout must match initial grid");
+                }
+            } else {
+                throw std::runtime_error("Invalid token in goal grid: '" + std::string(1, ch) + "'");
             }
         }
     }

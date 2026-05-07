@@ -9,6 +9,7 @@
 class Solver;
 class IHeuristic;
 
+// Orchestrates parsing a level from stdin, constructing solver/heuristic components, and printing a plan.
 class SearchClient {
 public:
     explicit SearchClient(SearchConfig config);

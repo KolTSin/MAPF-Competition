@@ -129,6 +129,9 @@ bool is_move_valid(const Level& level,
 
     const int next_time = current_time + 1;
 
+    // Space-time planning treats the same board position at different timesteps
+    // as different nodes, then filters each transition through reservations.
+
     // Follow-conflict prevention:
     // destination cannot be occupied at the start of the timestep
     if (reservations.is_cell_reserved(next.row, next.col, current_time, agent) || 
@@ -208,6 +211,8 @@ AgentPlan SpaceTimeAStar::search(
         SpaceTimeKey current_key{current.state, current.time};
         auto it_best = best_g.find(current_key);
         if (it_best != best_g.end() && current.g > it_best->second) {
+            // This queue entry was made obsolete by a cheaper path to the same
+            // state at the same time.
             continue;
         }
 
@@ -238,6 +243,8 @@ AgentPlan SpaceTimeAStar::search(
 
                 Position next_pos = succ.next_state.agent_positions[agent];
 
+                // Reservation checks reject collisions with already committed
+                // plans before the successor enters the open list.
                 if (!is_move_valid(level, reservations, current.state.agent_positions[agent], next_pos, current.time, agent)) {
                     continue;
                 }
