@@ -1,5 +1,6 @@
 #include "search/AStar.hpp"
 
+#include "plan/AgentPlan.hpp"
 #include "actions/Action.hpp"
 #include "actions/JointAction.hpp"
 #include "search/Frontier.hpp"
@@ -21,18 +22,19 @@ namespace {
     return level.goal_at(pos.row, pos.col) == static_cast<char>('0' + agent_id);
 }
 
-[[nodiscard]] std::vector<Action> reconstruct_plan(const std::vector<Node>& nodes,
-                                    int goal_index) {
-    std::vector<Action> reversed_steps;
+[[nodiscard]] AgentPlan reconstruct_plan(const std::vector<Node>& nodes,
+                                    int goal_index, int agent) {
+    AgentPlan reversed_steps;
 
     int current = goal_index;
     while (nodes[current].parent_index != -1) {
-        reversed_steps.push_back(nodes[current].action);
+        reversed_steps.add(nodes[current].action,nodes[current].state.agent_positions[agent]);
 
         current = nodes[current].parent_index;
     }
 
-    std::reverse(reversed_steps.begin(), reversed_steps.end());
+    std::reverse(reversed_steps.actions.begin(), reversed_steps.actions.end());
+    std::reverse(reversed_steps.positions.begin(), reversed_steps.positions.end());
 
     // Plan plan;
     // plan.steps = std::move(reversed_steps);
@@ -41,7 +43,7 @@ namespace {
 
 } // namespace
 
-std::vector<Action> AStar::search(const Level& level,
+AgentPlan AStar::search(const Level& level,
                    const State& initial_state,
                    int agent_id) {
     if (agent_id < 0 || agent_id >= initial_state.num_agents()) {
@@ -49,7 +51,7 @@ std::vector<Action> AStar::search(const Level& level,
     }
     std::cerr << "Starting search for agent: " << agent_id <<'\n';
     std::vector<Node> nodes;
-    nodes.reserve(1024);
+    nodes.reserve(2048);
 
     Frontier open(&nodes);
 
@@ -80,8 +82,7 @@ std::vector<Action> AStar::search(const Level& level,
         }
 
         if (is_goal(level, current.state, agent_id)) {
-            return reconstruct_plan(nodes,
-                                    current_index);
+            return reconstruct_plan(nodes, current_index,agent_id);
         }
 
         SuccessorGenerator::expand_agent(level, current.state, agent_id, 0, successors);
@@ -109,5 +110,5 @@ std::vector<Action> AStar::search(const Level& level,
         }
     }
 
-    return std::vector<Action>{};
+    return AgentPlan{};
 }

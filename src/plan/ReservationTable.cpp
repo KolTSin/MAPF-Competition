@@ -1,6 +1,7 @@
 #include "plan/ReservationTable.hpp"
 #include "actions/Action.hpp"
 #include "actions/ActionSemantics.hpp"
+#include "plan/AgentPlan.hpp"
 
 namespace {
 
@@ -30,7 +31,7 @@ std::size_t EdgeReservationHasher::operator()(const EdgeReservation& r) const no
 
 bool ReservationTable::is_cell_reserved(int row, int col, int time, int agent) const {
     auto it = cell_reservations_.find(CellReservation{row, col, time});
-    return it != cell_reservations_.end() && it->second != agent;
+    return it != cell_reservations_.end() && it->second.size() != 0;
 }
 
 bool ReservationTable::is_edge_reserved(const Position& from,
@@ -38,28 +39,28 @@ bool ReservationTable::is_edge_reserved(const Position& from,
                                                  int time,
                                                  int agent) const {
     auto it = edge_reservations_.find(EdgeReservation{from, to, time});
-    return it != edge_reservations_.end() && it->second != agent;
+    return it != edge_reservations_.end() && it->second.size() != 0;
 }
 
 void ReservationTable::reserve_cell(int row, int col, int time, int agent) {
-    cell_reservations_[CellReservation{row, col, time}] = agent;
+    cell_reservations_[CellReservation{row, col, time}].push_back(agent);
 }
 
 void ReservationTable::reserve_edge(const Position& from,
                                     const Position& to,
                                     int time,
                                     int agent) {
-    edge_reservations_[EdgeReservation{from, to, time}] = agent;
+    edge_reservations_[EdgeReservation{from, to, time}].push_back(agent);
 }
 
-void ReservationTable::reserve_path(const std::vector<Action>& path, Position initial_pos, int agent) {
+void ReservationTable::reserve_path(const AgentPlan& path, Position initial_pos, int agent) {
     Position current_pos = initial_pos;
 
     // Reserve the start cell at time 0
     reserve_cell(current_pos.row, current_pos.col, 0, agent);
 
-    for (int t = 0; t < static_cast<int>(path.size()); ++t) {
-        Position next_pos = ActionSemantics::compute_effect(current_pos, path[t]).agent_to;
+    for (int t = 0; t < static_cast<int>(path.actions.size()); ++t) {
+        Position next_pos = ActionSemantics::compute_effect(current_pos, path.actions[t]).agent_to;
 
         // Reserve traversal from time t to t+1
         reserve_edge(current_pos, next_pos, t, agent);
@@ -74,7 +75,7 @@ void ReservationTable::reserve_path(const std::vector<Action>& path, Position in
     // This is a simple first approximation to prevent later agents from
     // walking through an agent that has already reached its destination.
     const Position goal = current_pos;
-    const int final_time = static_cast<int>(path.size()) - 1;
+    const int final_time = static_cast<int>(path.actions.size()) - 1;
 
     for (int t = final_time + 1; t <= final_time + 20; ++t) {
         reserve_cell(goal.row, goal.col, t, agent);

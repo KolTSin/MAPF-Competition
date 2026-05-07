@@ -1,14 +1,15 @@
 #include "plan/PlanMerger.hpp"
+#include "plan/AgentPlan.hpp"
 #include "actions/JointAction.hpp"
 
 #include <algorithm>
 #include <iostream>
 
-Plan PlanMerger::merge_agent_plans(const std::vector<std::vector<Action>>& agent_plans,
+Plan PlanMerger::merge_agent_plans(const std::vector<AgentPlan>& agent_plans,
                                    int num_agents) {
     std::size_t horizon = 0;
     for (const auto& plan : agent_plans) {
-        horizon = std::max(horizon, plan.size());
+        horizon = std::max(horizon, plan.actions.size());
     }
 
     Plan result;
@@ -20,9 +21,9 @@ Plan PlanMerger::merge_agent_plans(const std::vector<std::vector<Action>>& agent
         ja.actions.resize(num_agents, Action::noop());
 
         for (int agent = 0; agent < num_agents; ++agent) {
-            if (t < agent_plans[agent].size()) {
+            if (t < agent_plans[agent].cost()) {
                 // std::cerr << agent_plans[agent][t].to_string() << '\n';
-                ja.actions[agent] = agent_plans[agent][t];
+                ja.actions[agent] = agent_plans[agent].actions[t];
             }
         }
         // std::cerr << ja.to_string() << '\n';

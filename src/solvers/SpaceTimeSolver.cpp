@@ -11,10 +11,11 @@
 Plan SpaceTimeSolver::solve(const Level& level, const State& initial_state, const IHeuristic& heuristic) {
     int num_agents = initial_state.num_agents();
 
-    std::vector<std::vector<Action>> agent_plans(num_agents);
+    std::vector<AgentPlan> agent_plans(num_agents);
 
     ReservationTable reservations;
     SpaceTimeAStar astar(heuristic);
+    int max_time = 20'000;
 
     std::cerr << "SpaceTimeSolver start, num_agents = " << num_agents << '\n';
     for (int agent=0; agent < num_agents; ++agent){
@@ -27,10 +28,11 @@ Plan SpaceTimeSolver::solve(const Level& level, const State& initial_state, cons
 
         try {
             std::cerr << "starting now.." << '\n';
-            agent_plans[agent] = astar.search(level, initial_state, agent, reservations);
+            agent_plans[agent] = astar.search(level, initial_state, agent, max_time, reservations);
             reservations.reserve_path(agent_plans[agent],initial_state.agent_positions[agent],agent);
+            
             std::cerr << "Agent " << agent << " plan length = "
-                    << agent_plans[agent].size() << '\n';
+                    << agent_plans[agent].actions.size() << '\n';
         } catch (const std::exception& e) {
             std::cerr << "AStar failed for agent " << agent
                     << " with exception: " << e.what() << '\n';

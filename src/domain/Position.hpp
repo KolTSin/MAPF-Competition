@@ -1,10 +1,11 @@
 #pragma once
 
 #include <cstddef>
+#include <sstream>
 
 struct Position {
-    int row{};
-    int col{};
+    int row{-1};
+    int col{-1};
 
     bool operator==(const Position& other) const noexcept {
         return row == other.row && col == other.col;
@@ -12,6 +13,12 @@ struct Position {
 
     bool operator!=(const Position& other) const noexcept {
         return !(*this == other);
+    }
+
+    std::string to_string() const {
+        std::ostringstream os;
+        os << "(" << row << ", " << col << ")";
+        return os.str();
     }
 };
 

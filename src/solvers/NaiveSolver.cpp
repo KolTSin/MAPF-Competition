@@ -4,6 +4,7 @@
 #include "actions/JointAction.hpp"
 #include "search/AStar.hpp"
 #include "plan/PlanMerger.hpp"
+#include "plan/AgentPlan.hpp"
 #include "search/heuristics/Heuristic.hpp"
 
 #include <iostream>
@@ -12,9 +13,9 @@ Plan NaiveSolver::solve(const Level& level, const State& initial_state, const IH
     (void) level;
     int num_agents = initial_state.num_agents();
     AStar astar(heuristic);
-    std::vector<std::vector<Action>> agent_plans(num_agents);
+    std::vector<AgentPlan> agent_plans(num_agents);
     
-    std::vector<Action> plan = astar.search(level, initial_state, 0);
+    AgentPlan plan = astar.search(level, initial_state, 0);
     for(int agent = 0 ; agent < initial_state.num_agents() ; agent++) {
         std::cerr << "this is the agent id: " << agent <<'\n';
         plan = astar.search(level, initial_state, agent);
