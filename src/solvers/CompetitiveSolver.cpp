@@ -3,6 +3,7 @@
 #include "actions/ActionSemantics.hpp"
 #include "analysis/LevelAnalyzer.hpp"
 #include "hospital/LocalRepair.hpp"
+#include "plan/PlanConflictRepairer.hpp"
 #include "solvers/SequentialSolver.hpp"
 #include "tasks/HTNTracePrinter.hpp"
 #include "tasks/TaskGenerator.hpp"
@@ -94,6 +95,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     TaskScheduler scheduler;
     TaskPrioritizer prioritizer;
     LocalRepair repair;
+    PlanConflictRepairer conflict_repairer;
     int no_progress_iters = 0;
 
     // Count completed box goals in a State. The value is used only as a simple
@@ -157,21 +159,40 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             TaskPlan failed;
             failed.success = false;
             failed.failure_reason = "scheduler_empty";
-            const RepairResult repaired = repair.repair(level, current, tasks.front(), failed);
-            if (kVerboseTasks) {
-                std::cerr << "[HTN] repair outcome=" << static_cast<int>(repaired.outcome)
-                          << " success=" << (repaired.plan.success ? "true" : "false") << '\n';
-            }
-            if (repaired.plan.success && repaired.outcome == RepairStageOutcome::SafePrefixFallback && !accumulated.steps.empty()) {
-                // Repair may validate that the already accumulated safe prefix is
-                // the best available output. Reset the stagnation counter so the
-                // solver can re-analyze from the unchanged state once more.
-                no_progress_iters = 0;
+            for (int i = 0 ; i < static_cast<int>(tasks.size()); i++){
+                const RepairResult repaired = repair.repair(level, current, tasks[i], failed);
+                if (kVerboseTasks) {
+                    std::cerr << "[HTN] repair outcome=" << static_cast<int>(repaired.outcome)
+                            << " success=" << (repaired.plan.success ? "true" : "false") << '\n';
+                }
+                if (repaired.plan.success && repaired.outcome == RepairStageOutcome::SafePrefixFallback && !accumulated.steps.empty()) {
+                    // Repair may validate that the already accumulated safe prefix is
+                    // the best available output. Reset the stagnation counter so the
+                    // solver can re-analyze from the unchanged state once more.
+                    no_progress_iters = 0;
+                    continue;
+                }
+                if (++no_progress_iters >= kNoProgressBudget) break;
                 continue;
             }
-            if (++no_progress_iters >= kNoProgressBudget) break;
-            continue;
         }
+        
+        // The scheduler normally uses reservations, but a competitive wave can
+        // still be treated as a naive HLA batch: first build each selected
+        // task/agent timeline, then run a bounded CBS-style delay repair over
+        // the merged joint actions before committing anything to the answer.
+        // for (JointAction ja : wave.steps) std::cerr << ja.to_string() << std::endl;
+        const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave);
+        if (repaired_wave.conflict_free) {
+            if (kVerboseTasks && repaired_wave.changed) {
+                std::cerr << "[HTN] cbs_style_repair inserted waits iterations="
+                          << repaired_wave.iterations << " steps=" << repaired_wave.plan.steps.size() << '\n';
+            }
+            wave = repaired_wave.plan;
+        } else if (kVerboseTasks) {
+            std::cerr << "[HTN] cbs_style_repair could not prove conflict-free wave; using scheduler wave\n";
+        }
+
         // Snapshot state before committing the wave so we can determine whether
         // it made meaningful progress after simulation.
         const State before = current;
@@ -201,12 +222,28 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         }
     }
 
-    // If the competitive pipeline produced no executable actions, return a
-    // simpler complete-solver attempt rather than an empty plan. This preserves a
-    // useful answer for small levels where sequential planning is sufficient.
-    if (accumulated.empty()) {
+   // If the competitive pipeline produced no executable actions, or if it only
+    // made partial progress before getting stuck, return a simpler complete-solver
+    // attempt. This preserves a useful answer for small levels where sequential
+    // planning is sufficient and prevents a partial HLA prefix from masquerading
+    // as a complete solution.
+    const auto all_goals_satisfied = [&level](const State& s) {
+        for (int r = 0; r < level.rows; ++r) {
+            for (int c = 0; c < level.cols; ++c) {
+                const char g = level.goal_at(r, c);
+                if (g >= 'A' && g <= 'Z' && s.box_at(r, c) != g) return false;
+                if (g >= '0' && g <= '9') {
+                    const int agent = g - '0';
+                    if (agent >= s.num_agents() || !(s.agent_positions[agent] == Position{r, c})) return false;
+                }
+            }
+        }
+        return true;
+    };
+    if (accumulated.empty() || !all_goals_satisfied(current)) {
         SequentialSolver fallback;
-        return fallback.solve(level, initial_state, heuristic);
+        Plan fallback_plan = fallback.solve(level, initial_state, heuristic);
+        if (!fallback_plan.empty()) return fallback_plan;
     }
 
     return accumulated;

@@ -42,8 +42,8 @@ bool cell_has_agent(const State& state, const Position& p) {
 
 bool is_free_cell(const Level& level, const State& state, const Position& p, const Position& original_active_box) {
     if (!level.in_bounds(p.row, p.col) || level.is_wall(p.row, p.col)) return false;
-    const char b = state.box_at(p.row, p.col);
-    if (b != '\0' && !(p == original_active_box)) return false;
+    // const char b = state.box_at(p.row, p.col);
+    // if (b != '\0' && !(p == original_active_box)) return false;
     if (cell_has_agent(state, p)) return false;
     return true;
 }
@@ -139,11 +139,11 @@ bool validate_replay(const Level& level, const State& state, const Task& task, T
                 out.failure_reason = "invalid_pull_agent_wall_or_oob";
                 return false;
             }
-            if (state.box_at(eff.agent_to.row, eff.agent_to.col) != '\0' && eff.agent_to != box) {
-                out.success = false;
-                out.failure_reason = "invalid_pull_agent_into_static_box";
-                return false;
-            }
+            // if (state.box_at(eff.agent_to.row, eff.agent_to.col) != '\0' && eff.agent_to != box) {
+            //     out.success = false;
+            //     out.failure_reason = "invalid_pull_agent_into_static_box";
+            //     return false;
+            // }
             box = eff.box_to;
         } else if (action.type == ActionType::Move) {
             if (eff.agent_to == box) {

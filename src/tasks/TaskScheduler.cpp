@@ -164,9 +164,14 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
                 // use transport planning, which plans both agent actions and the
                 // box trajectory starting at chosen_start in the global timeline.
                 if (chosen_task.type == TaskType::MoveAgentToGoal || chosen_task.type == TaskType::ParkAgentSafely) {
+                    std::cerr << "path planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
                     plan = agent_planner.plan(level, simulated_state, chosen_task, reservations);
+                    std::cerr << "success: " << (plan.success ? "true" : "false") << std::endl;
                 } else {
+                    std::cerr << "box planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
+                    reservations.clear();
                     plan = box_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
+                    std::cerr << "success: " << (plan.success ? "true" : "false") << " reason: " << plan.failure_reason << std::endl;
                 }
 
                 if (!plan.success) continue;

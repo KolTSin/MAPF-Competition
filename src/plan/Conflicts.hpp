@@ -29,27 +29,51 @@ struct Constraint {
     }
 };
 
+enum class ConflictType {
+    None,
+
+    // Agent-agent conflicts.
+    AgentVertex,
+    AgentEdgeSwap,
+    AgentFollow,
+
+    // Agent-box conflicts.
+    AgentIntoBoxStartCell,
+    AgentBoxSameDestination,
+    BoxIntoAgentStartCell,
+
+    // Box-box / box manipulation conflicts.
+    BoxVertex,
+    BoxIntoBoxStartCell,
+    SameBoxMovedByTwoAgents
+};
+
 struct Conflict {
-    std::vector<int> agents{-1,-1};
-    int time;
+    ConflictType type{ConflictType::None};
 
-    Position cell;
-    std::array<Position, 2> from{};
-    std::array<Position, 2> to{};
+    // Agents involved. For box-only conflicts, these are the movers if known.
+    std::array<int, 2> agents{{-1, -1}};
 
-    bool operator==(const Conflict& other) const noexcept {
-        return cell == other.cell &&
-               agents[0] == other.agents[0] &&
-               agents[1] == other.agents[1];
-    }
+    // Time of the conflict.
+    // For destination conflicts, this is usually t + 1.
+    // For transition conflicts, this is the step t.
+    int time{-1};
 
-    std::string to_string() const {
-        std::ostringstream os;
-        os << "(a" << agents[0]
-        << ", a" << agents[1]
-        << ") @ (" << cell.row
-        << "," << cell.col
-        << "), t=" << time;
-        return os.str();
+    // Main conflict cell, when there is one.
+    Position cell{-1, -1};
+
+    // Transition info, useful for swaps.
+    std::array<Position, 2> from{{Position{-1, -1}, Position{-1, -1}}};
+    std::array<Position, 2> to{{Position{-1, -1}, Position{-1, -1}}};
+
+    // Box info. box_ids are synthetic ids assigned by initial scan order.
+    std::array<int, 2> boxes{{-1, -1}};
+    std::array<char, 2> box_letters{{'\0', '\0'}};
+
+    bool valid() const noexcept {
+        return type != ConflictType::None;
     }
 };
+
+std::string to_string(ConflictType type);
+std::string to_string(const Conflict& c);
