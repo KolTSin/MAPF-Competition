@@ -165,11 +165,10 @@ std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, cons
                 // box trajectory starting at chosen_start in the global timeline.
                 if (chosen_task.type == TaskType::MoveAgentToGoal || chosen_task.type == TaskType::ParkAgentSafely) {
                     std::cerr << "path planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
-                    plan = agent_planner.plan(level, simulated_state, chosen_task, reservations);
+                    plan = agent_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
                     std::cerr << "success: " << (plan.success ? "true" : "false") << std::endl;
                 } else {
                     std::cerr << "box planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
-                    reservations.clear();
                     plan = box_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
                     std::cerr << "success: " << (plan.success ? "true" : "false") << " reason: " << plan.failure_reason << std::endl;
                 }
@@ -258,6 +257,8 @@ std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, cons
 Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
     const std::vector<AgentPlan> agent_plans = build_agent_plans(level, initial_state, tasks);
     if (agent_plans.empty()) return {};
-    return PlanMerger::merge_agent_plans(agent_plans, initial_state.num_agents());
+    Plan plan = PlanMerger::merge_agent_plans(agent_plans, initial_state.num_agents());
+    PlanMerger::compact_independent_actions(level, initial_state, plan);
+    return plan;
 }
 

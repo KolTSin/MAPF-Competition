@@ -13,6 +13,7 @@
 #include "plan/ConflictDetector.hpp"
 #include "plan/ReservationTable.hpp"
 #include "plan/PlanConflictRepairer.hpp"
+#include "plan/PlanMerger.hpp"
 #include "solvers/CompetitiveSolver.hpp"
 #include "search/heuristics/Heuristic.hpp"
 #include "parser/LevelParser.hpp"
@@ -391,6 +392,49 @@ int main() {
             }
         }
         assert(inserted_move_for_blocker);
+    }
+
+    {
+        AgentPlan a0;
+        a0.agent = 0;
+        a0.actions = {Action::move(Direction::East), Action::noop(), Action::move(Direction::East)};
+        AgentPlan a1;
+        a1.agent = 1;
+        a1.actions = {Action::noop(), Action::noop(), Action::noop()};
+
+        Plan compressed = PlanMerger::merge_agent_plans({a0, a1}, 2);
+        assert(compressed.steps.size() == 2);
+        assert(compressed.steps[0].actions[0].type == ActionType::Move);
+        assert(compressed.steps[1].actions[0].type == ActionType::Move);
+    }
+
+    {
+        Level l;
+        l.rows = 4; l.cols = 5;
+        l.walls.assign(20, false);
+        l.goals.assign(20, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+
+        State s;
+        s.rows = 4; s.cols = 5;
+        s.agent_positions = {Position{1,1}, Position{2,3}};
+        s.box_pos.assign(20, '\0');
+
+        Plan staggered;
+        staggered.steps = {
+            JointAction{{Action::noop(), Action::move(Direction::West)}},
+            JointAction{{Action::noop(), Action::move(Direction::West)}},
+            JointAction{{Action::move(Direction::East), Action::noop()}},
+            JointAction{{Action::move(Direction::East), Action::noop()}},
+        };
+
+        PlanMerger::compact_independent_actions(l, s, staggered);
+        assert(staggered.steps.size() == 2);
+        assert(staggered.steps[0].actions[0].type == ActionType::Move);
+        assert(staggered.steps[0].actions[1].type == ActionType::Move);
+        assert(staggered.steps[1].actions[0].type == ActionType::Move);
+        assert(staggered.steps[1].actions[1].type == ActionType::Move);
     }
 
     {

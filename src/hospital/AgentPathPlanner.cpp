@@ -3,6 +3,10 @@
 #include "actions/ActionSemantics.hpp"
 
 TaskPlan AgentPathPlanner::plan(const Level& level, const State& state, const Task& task, const ReservationTable& reservations) const {
+    return plan(level, state, task, reservations, 0);
+}
+
+TaskPlan AgentPathPlanner::plan(const Level& level, const State& state, const Task& task, const ReservationTable& reservations, int start_time) const {
     TaskPlan out;
     out.task_id = task.task_id;
     out.task_type = task.type;
@@ -22,7 +26,7 @@ TaskPlan AgentPathPlanner::plan(const Level& level, const State& state, const Ta
         Direction d = (cur.row < task.goal_pos.row) ? Direction::South : Direction::North;
         Action a = Action::move(d);
         Position nxt = ActionSemantics::compute_effect(cur, a).agent_to;
-        if (!level.in_bounds(nxt.row, nxt.col) || level.is_wall(nxt.row, nxt.col) || reservations.is_cell_reserved(nxt.row, nxt.col, static_cast<int>(out.agent_plan.actions.size())+1, task.agent_id)) {
+        if (!level.in_bounds(nxt.row, nxt.col) || level.is_wall(nxt.row, nxt.col) || reservations.is_cell_reserved(nxt.row, nxt.col, start_time + static_cast<int>(out.agent_plan.actions.size()) + 1, task.agent_id)) {
             out.failure_reason = "no_path_for_agent_reposition";
             return out;
         }
@@ -35,7 +39,7 @@ TaskPlan AgentPathPlanner::plan(const Level& level, const State& state, const Ta
         Direction d = (cur.col < task.goal_pos.col) ? Direction::East : Direction::West;
         Action a = Action::move(d);
         Position nxt = ActionSemantics::compute_effect(cur, a).agent_to;
-        if (!level.in_bounds(nxt.row, nxt.col) || level.is_wall(nxt.row, nxt.col) || reservations.is_cell_reserved(nxt.row, nxt.col, static_cast<int>(out.agent_plan.actions.size())+1, task.agent_id)) {
+        if (!level.in_bounds(nxt.row, nxt.col) || level.is_wall(nxt.row, nxt.col) || reservations.is_cell_reserved(nxt.row, nxt.col, start_time + static_cast<int>(out.agent_plan.actions.size()) + 1, task.agent_id)) {
             out.failure_reason = "no_path_for_agent_reposition";
             return out;
         }
