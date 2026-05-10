@@ -247,7 +247,7 @@ std::vector<Position> ParkingCellAnalyzer::find_parking_cells(const Level& level
     scored.reserve(analysis.free_cells.size());
     for (const Position p : analysis.free_cells) {
         const int score = score_parking_cell(p, level, state, analysis, initial_agent_plans);
-        std::cerr << "pos: " << p.to_string() << " score: " << score << std::endl;
+        // std::cerr << "pos: " << p.to_string() << " score: " << score << std::endl;
         if (score > 0) scored.emplace_back(p, score);
     }
 
