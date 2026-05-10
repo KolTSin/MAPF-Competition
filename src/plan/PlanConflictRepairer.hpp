@@ -28,11 +28,11 @@ public:
     [[nodiscard]] Result repair(const Level& level,
                                 const State& initial_state,
                                 const Plan& input,
-                                int max_iterations = 128,
+                                int max_iterations = 1024,
                                 int max_extra_steps = 256) const;
     [[nodiscard]] Result repair(const Level& level,
                                 const State& initial_state,
                                 const std::vector<AgentPlan>& input,
-                                int max_iterations = 128,
+                                int max_iterations = 1024,
                                 int max_extra_steps = 256) const;
 };

@@ -6,7 +6,7 @@
 #include "plan/AgentPlan.hpp"
 #include "plan/PlanConflictRepairer.hpp"
 #include "plan/PlanMerger.hpp"
-#include "solvers/SequentialSolver.hpp"
+#include "solvers/CBSSolver.hpp"
 #include "tasks/HTNTracePrinter.hpp"
 #include "tasks/TaskGenerator.hpp"
 #include "tasks/TaskPrioritizer.hpp"
@@ -249,7 +249,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         return true;
     };
     if (accumulated.empty() || !all_goals_satisfied(current)) {
-        SequentialSolver fallback;
+        CBSSolver fallback;
         Plan fallback_plan = fallback.solve(level, initial_state, heuristic);
         if (!fallback_plan.empty()) return fallback_plan;
     }
