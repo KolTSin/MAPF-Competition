@@ -3,6 +3,7 @@
 #include "actions/ActionSemantics.hpp"
 #include "hospital/AgentPathPlanner.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
+#include "plan/ConflictDetector.hpp"
 #include "plan/PlanMerger.hpp"
 #include "plan/ReservationTable.hpp"
 #include "tasks/DependencyBuilder.hpp"
@@ -10,9 +11,10 @@
 
 #include <algorithm>
 #include <cassert>
+#include <iostream>
+#include <optional>
 #include <unordered_map>
 #include <unordered_set>
-#include <iostream>
 
 namespace {
 // Simple distance heuristic used only for ranking candidate agents.  It ignores
@@ -67,9 +69,130 @@ bool is_empty_plan_valid(const Task& task, const State& state) {
     }
     return true;
 }
+
+std::vector<AgentPlan> expand_scheduled_tasks(const State& initial_state, const std::vector<ScheduledTask>& scheduled) {
+    std::vector<AgentPlan> agent_plans(initial_state.num_agents());
+    if (scheduled.empty()) return {};
+    for (int agent = 0; agent < initial_state.num_agents(); ++agent) {
+        agent_plans[agent].agent = agent;
+    }
+    for (const auto& st : scheduled) {
+        auto& timeline = agent_plans[st.task.agent_id].actions;
+        if (static_cast<int>(timeline.size()) < st.start_time) timeline.resize(st.start_time, Action::noop());
+        if (static_cast<int>(timeline.size()) < st.end_time) timeline.resize(st.end_time, Action::noop());
+        for (int i = 0; i < static_cast<int>(st.plan.agent_plan.actions.size()); ++i) {
+            timeline[st.start_time + i] = st.plan.agent_plan.actions[static_cast<std::size_t>(i)];
+        }
+    }
+
+    // Reconstruct positions from actions for each agent because PlanMerger and
+    // downstream validators consume both the action sequence and the derived
+    // trajectory.  The input is an action timeline; the output is positions[0]
+    // at the initial state plus one position after each action.
+    for (int agent = 0; agent < initial_state.num_agents(); ++agent) {
+        AgentPlan& plan = agent_plans[agent];
+        Position cur = initial_state.agent_positions[agent];
+        plan.positions.clear();
+        plan.positions.push_back(cur);
+        for (const Action& action : plan.actions) {
+            cur = ActionSemantics::compute_effect(cur, action).agent_to;
+            plan.positions.push_back(cur);
+        }
+    }
+
+    return agent_plans;
 }
 
-std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
+Plan make_uncompressed_plan(const std::vector<AgentPlan>& agent_plans, int num_agents) {
+    std::size_t horizon = 0;
+    for (const AgentPlan& plan : agent_plans) horizon = std::max(horizon, plan.actions.size());
+
+    Plan out;
+    out.steps.reserve(horizon);
+    for (std::size_t t = 0; t < horizon; ++t) {
+        JointAction step;
+        step.actions.resize(num_agents, Action::noop());
+        for (int agent = 0; agent < num_agents; ++agent) {
+            if (t < agent_plans[agent].actions.size()) {
+                step.actions[agent] = agent_plans[agent].actions[t];
+            }
+        }
+        out.steps.push_back(std::move(step));
+    }
+    return out;
+}
+
+const ScheduledTask* task_active_for_agent(const std::vector<ScheduledTask>& scheduled, int agent_id, int time) {
+    if (agent_id < 0) return nullptr;
+    for (const ScheduledTask& st : scheduled) {
+        if (st.task.agent_id != agent_id) continue;
+        if (st.start_time <= time && time < st.end_time) return &st;
+    }
+    if (time > 0) {
+        for (const ScheduledTask& st : scheduled) {
+            if (st.task.agent_id != agent_id) continue;
+            if (st.start_time <= time - 1 && time - 1 < st.end_time) return &st;
+        }
+    }
+    return nullptr;
+}
+
+const ScheduledTask* task_active_for_box(const std::vector<ScheduledTask>& scheduled, char box_letter, int time) {
+    if (box_letter == '\0') return nullptr;
+    for (const ScheduledTask& st : scheduled) {
+        if (st.task.box_id != box_letter) continue;
+        if (st.start_time <= time && time < st.end_time) return &st;
+    }
+    if (time > 0) {
+        for (const ScheduledTask& st : scheduled) {
+            if (st.task.box_id != box_letter) continue;
+            if (st.start_time <= time - 1 && time - 1 < st.end_time) return &st;
+        }
+    }
+    return nullptr;
+}
+
+void add_unique_task(std::vector<const ScheduledTask*>& tasks, const ScheduledTask* task) {
+    if (task == nullptr) return;
+    const auto same_id = [task](const ScheduledTask* other) {
+        return other != nullptr && other->task.task_id == task->task.task_id;
+    };
+    if (std::find_if(tasks.begin(), tasks.end(), same_id) == tasks.end()) tasks.push_back(task);
+}
+
+std::optional<std::pair<int, int>> dependency_from_conflict(const std::vector<ScheduledTask>& scheduled, const Conflict& conflict) {
+    std::vector<const ScheduledTask*> involved;
+    add_unique_task(involved, task_active_for_agent(scheduled, conflict.agents[0], conflict.time));
+    add_unique_task(involved, task_active_for_agent(scheduled, conflict.agents[1], conflict.time));
+    add_unique_task(involved, task_active_for_box(scheduled, conflict.box_letters[0], conflict.time));
+    add_unique_task(involved, task_active_for_box(scheduled, conflict.box_letters[1], conflict.time));
+    if (involved.size() < 2) return std::nullopt;
+
+    std::sort(involved.begin(), involved.end(), [](const ScheduledTask* a, const ScheduledTask* b) {
+        if (a->task.priority != b->task.priority) return a->task.priority > b->task.priority;
+        return a->task.task_id < b->task.task_id;
+    });
+
+    // The task that should run first becomes the predecessor.  Prefer the task
+    // that the prioritizer ranked higher, and use task id as a stable tie-break.
+    return std::make_pair(involved.front()->task.task_id, involved.back()->task.task_id);
+}
+
+bool add_dependency(std::vector<Task>& tasks, int predecessor, int successor) {
+    for (Task& task : tasks) {
+        if (task.task_id != successor) continue;
+        if (std::find(task.dependencies.begin(), task.dependencies.end(), predecessor) != task.dependencies.end()) return false;
+        task.dependencies.push_back(predecessor);
+        return true;
+    }
+    return false;
+}
+
+std::vector<ScheduledTask> schedule_once(
+    const Level& level,
+    const State& initial_state,
+    const std::vector<Task>& mutable_tasks
+) {
     // Global reservation state is the contract between independently planned
     // tasks.  Each successful task contributes occupied cells/edges to this
     // table so later planning attempts avoid collisions in space and time.
@@ -81,14 +204,11 @@ std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, cons
     BoxTransportPlanner box_planner;
     AgentPathPlanner agent_planner;
     DependencyBuilder deps_builder;
-    TaskPrioritizer prioritizer;
 
     // simulated_state is advanced after every accepted task.  It represents the
     // world at the frontier of the partial schedule, so later tasks see the new
     // agent positions and current box locations rather than the original input.
     State simulated_state = initial_state;
-    std::vector<Task> mutable_tasks = tasks;
-    prioritizer.score(level, simulated_state, mutable_tasks);
     const auto deps = deps_builder.build_graph(mutable_tasks);
 
     // completed/completion_time track the dependency graph.  agent_available is
@@ -219,39 +339,48 @@ std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, cons
         }
     }
 
-    // Transform sparse scheduled tasks into dense per-agent timelines.  Missing
-    // time slots become NoOp actions so all agent plans share a common global
-    // clock before they are merged into the final joint Plan output.
-    std::vector<AgentPlan> agent_plans(initial_state.num_agents());
-    if (scheduled.empty()) return {};
-    for (int agent = 0; agent < initial_state.num_agents(); ++agent) {
-        agent_plans[agent].agent = agent;
-    }
-    for (const auto& st : scheduled) {
-        auto& timeline = agent_plans[st.task.agent_id].actions;
-        if (static_cast<int>(timeline.size()) < st.start_time) timeline.resize(st.start_time, Action::noop());
-        if (static_cast<int>(timeline.size()) < st.end_time) timeline.resize(st.end_time, Action::noop());
-        for (int i = 0; i < static_cast<int>(st.plan.agent_plan.actions.size()); ++i) {
-            timeline[st.start_time + i] = st.plan.agent_plan.actions[static_cast<std::size_t>(i)];
+    return scheduled;
+}
+}
+
+std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
+    TaskPrioritizer prioritizer;
+    std::vector<Task> mutable_tasks = tasks;
+    prioritizer.score(level, initial_state, mutable_tasks);
+
+    // Schedule first, then validate the composed result.  If independently
+    // planned tasks still conflict, convert the conflict into an explicit
+    // dependency and retry so the next pass plans the successor after the
+    // predecessor's committed finish time.
+    const int max_dependency_repairs = std::max(1, static_cast<int>(mutable_tasks.size()) * static_cast<int>(mutable_tasks.size()));
+    std::vector<ScheduledTask> scheduled;
+    for (int repair = 0; repair <= max_dependency_repairs; ++repair) {
+        scheduled = schedule_once(level, initial_state, mutable_tasks);
+        std::vector<AgentPlan> agent_plans = expand_scheduled_tasks(initial_state, scheduled);
+        if (agent_plans.empty()) return {};
+
+        const Plan raw_plan = make_uncompressed_plan(agent_plans, initial_state.num_agents());
+        const Conflict conflict = ConflictDetector::findFirstConflict(raw_plan, initial_state);
+        if (!conflict.valid()) return agent_plans;
+
+        const auto dependency = dependency_from_conflict(scheduled, conflict);
+        if (!dependency.has_value()) {
+            std::cerr << "[HTN] unresolved schedule conflict without task mapping: " << to_string(conflict) << '\n';
+            return agent_plans;
         }
+
+        const auto [predecessor, successor] = *dependency;
+        if (!add_dependency(mutable_tasks, predecessor, successor)) {
+            std::cerr << "[HTN] unresolved schedule conflict for existing dependency "
+                      << predecessor << " -> " << successor << ": " << to_string(conflict) << '\n';
+            return agent_plans;
+        }
+
+        std::cerr << "[HTN] conflict_dependency " << predecessor << " -> " << successor
+                  << " due to " << to_string(conflict) << '\n';
     }
 
-    // Reconstruct positions from actions for each agent because PlanMerger and
-    // downstream validators consume both the action sequence and the derived
-    // trajectory.  The input is an action timeline; the output is positions[0]
-    // at the initial state plus one position after each action.
-    for (int agent = 0; agent < initial_state.num_agents(); ++agent) {
-        AgentPlan& plan = agent_plans[agent];
-        Position cur = initial_state.agent_positions[agent];
-        plan.positions.clear();
-        plan.positions.push_back(cur);
-        for (const Action& action : plan.actions) {
-            cur = ActionSemantics::compute_effect(cur, action).agent_to;
-            plan.positions.push_back(cur);
-        }
-    }
-
-    return agent_plans;
+    return expand_scheduled_tasks(initial_state, scheduled);
 }
 
 Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
@@ -261,4 +390,3 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
     PlanMerger::compact_independent_actions(level, initial_state, plan);
     return plan;
 }
-

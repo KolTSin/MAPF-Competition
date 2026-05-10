@@ -34,8 +34,10 @@ struct ScheduledTask {
 //   1. score and dependency-order tasks,
 //   2. choose a legal agent and start time for each ready task,
 //   3. ask the specialized low-level planner for primitive actions,
-//   4. reserve the resulting time/space trajectory so later tasks avoid it, and
-//   5. merge all accepted single-task plans into the final Plan output.
+//   4. reserve the resulting time/space trajectory so later tasks avoid it,
+//   5. validate the composed schedule and add conflict-derived dependencies when
+//      two accepted tasks still need an explicit ordering, and
+//   6. merge all accepted single-task plans into the final Plan output.
 //
 // Inputs are immutable level geometry, the initial multi-agent state, and a list
 // of declarative Task objects.  The output is a joint Plan whose rows are the
