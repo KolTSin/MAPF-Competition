@@ -511,12 +511,52 @@ ConflictDetector::findAllConflicts(
     return conflicts;
 }
 
+std::vector<Conflict>
+ConflictDetector::findAllConflicts(
+    const std::vector<AgentPlan>& plans,
+    const State& initial_state,
+    bool stop_at_first_conflicting_timestep
+) {
+    std::size_t horizon = 0;
+    for (const AgentPlan& plan : plans) {
+        horizon = std::max(horizon, plan.actions.size());
+    }
+
+    Plan joint_plan;
+    joint_plan.steps.resize(horizon);
+    for (std::size_t t = 0; t < horizon; ++t) {
+        JointAction& step = joint_plan.steps[t];
+        step.actions.resize(plans.size(), Action::noop());
+        for (std::size_t agent = 0; agent < plans.size(); ++agent) {
+            if (t < plans[agent].actions.size()) {
+                step.actions[agent] = plans[agent].actions[t];
+            }
+        }
+    }
+
+    return findAllConflicts(joint_plan, initial_state, stop_at_first_conflicting_timestep);
+}
+
 Conflict ConflictDetector::findFirstConflict(
     const Plan& plan,
     const State& initial_state
 ) {
     const std::vector<Conflict> conflicts =
         findAllConflicts(plan, initial_state, true);
+
+    if (conflicts.empty()) {
+        return Conflict{};
+    }
+
+    return conflicts.front();
+}
+
+Conflict ConflictDetector::findFirstConflict(
+    const std::vector<AgentPlan>& plans,
+    const State& initial_state
+) {
+    const std::vector<Conflict> conflicts =
+        findAllConflicts(plans, initial_state, true);
 
     if (conflicts.empty()) {
         return Conflict{};

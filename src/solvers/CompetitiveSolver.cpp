@@ -51,28 +51,6 @@ void apply_prefix(State& state, const Plan& plan, int horizon) {
 // Returning true keeps the solver explainable by default: each wave can print
 // which tasks were generated, how they were scored, and why goals were skipped.
 
-std::vector<AgentPlan> agent_plans_from_plan(const Plan& plan, const State& initial_state) {
-    std::vector<AgentPlan> agent_plans(initial_state.num_agents());
-    for (int agent = 0; agent < initial_state.num_agents(); ++agent) {
-        AgentPlan& agent_plan = agent_plans[static_cast<std::size_t>(agent)];
-        agent_plan.agent = agent;
-        Position cur = initial_state.agent_positions[static_cast<std::size_t>(agent)];
-        agent_plan.positions.push_back(cur);
-
-        for (const JointAction& step : plan.steps) {
-            Action action = Action::noop();
-            if (agent < static_cast<int>(step.actions.size())) {
-                action = step.actions[static_cast<std::size_t>(agent)];
-            }
-            agent_plan.actions.push_back(action);
-            cur = ActionSemantics::compute_effect(cur, action).agent_to;
-            agent_plan.positions.push_back(cur);
-        }
-    }
-
-    return agent_plans;
-}
-
 bool configured_verbose_tasks() {
     if (const char* v = std::getenv("MAPF_VERBOSE_TASKS")) {
         return std::atoi(v) != 0;
@@ -205,19 +183,20 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         }
         
         // The scheduler normally uses reservations, but a competitive wave can
-        // still be treated as a naive HLA batch: first build each selected
-        // task/agent timeline, then run a bounded CBS-style delay repair over
-        // the merged joint actions before committing anything to the answer.
+        // still expose a conflict once the selected task/agent timelines are
+        // composed. Repair operates on the AgentPlan wave directly so it can add
+        // conflict constraints and replan alternate routes without changing task
+        // priorities or reshuffling the accepted schedule.
         // for (JointAction ja : wave.steps) std::cerr << ja.to_string() << std::endl;
-        const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave);
+        const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave_agent_plans);
         if (repaired_wave.conflict_free) {
             if (kVerboseTasks && repaired_wave.changed) {
                 std::cerr << "[HTN] cbs_style_repair inserted waits iterations="
                           << repaired_wave.iterations << " steps=" << repaired_wave.plan.steps.size() << '\n';
             }
-            wave = repaired_wave.plan;
+            wave_agent_plans = repaired_wave.agent_plans;
+            wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
             PlanMerger::compact_independent_actions(level, current, wave);
-            wave_agent_plans = agent_plans_from_plan(wave, current);
         } else if (kVerboseTasks) {
             std::cerr << "[HTN] cbs_style_repair could not prove conflict-free wave; using scheduler wave\n";
         }

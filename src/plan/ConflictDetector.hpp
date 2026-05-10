@@ -22,9 +22,18 @@ public:
         const State& initial_state,
         bool stop_at_first_conflicting_timestep = true
     );
+    static std::vector<Conflict> findAllConflicts(
+        const std::vector<AgentPlan>& plans,
+        const State& initial_state,
+        bool stop_at_first_conflicting_timestep = true
+    );
 
     static Conflict findFirstConflict(
         const Plan& plan,
+        const State& initial_state
+    );
+    static Conflict findFirstConflict(
+        const std::vector<AgentPlan>& plans,
         const State& initial_state
     );
 

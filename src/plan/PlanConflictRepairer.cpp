@@ -6,14 +6,19 @@
 #include "plan/AgentPlan.hpp"
 #include "plan/ConflictDetector.hpp"
 #include "plan/Conflicts.hpp"
+#include "plan/PlanMerger.hpp"
+#include "plan/ReservationTable.hpp"
 
 #include <algorithm>
 #include <cstddef>
+#include <functional>
 #include <limits>
+#include <optional>
 #include <queue>
 #include <set>
 #include <sstream>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace {
@@ -28,6 +33,31 @@ int num_agents_for(const State& state, const Plan& plan) {
     }
 
     return 0;
+}
+
+Plan plan_from_agent_plans(const std::vector<AgentPlan>& plans, int num_agents) {
+    return PlanMerger::merge_agent_plans(plans, num_agents);
+}
+
+Plan uncompressed_plan_from_agent_plans(const std::vector<AgentPlan>& plans, int num_agents) {
+    std::size_t horizon = 0;
+    for (const AgentPlan& plan : plans) {
+        horizon = std::max(horizon, plan.actions.size());
+    }
+
+    Plan out;
+    out.steps.resize(horizon);
+    for (std::size_t t = 0; t < horizon; ++t) {
+        out.steps[t].actions.resize(static_cast<std::size_t>(num_agents), Action::noop());
+        for (int agent = 0; agent < num_agents && agent < static_cast<int>(plans.size()); ++agent) {
+            const AgentPlan& plan = plans[static_cast<std::size_t>(agent)];
+            if (t < plan.actions.size()) {
+                out.steps[t].actions[static_cast<std::size_t>(agent)] = plan.actions[t];
+            }
+        }
+    }
+
+    return out;
 }
 
 Plan normalize_plan(const Plan& input, int num_agents) {
@@ -112,6 +142,18 @@ bool is_executable(const Level& level, const State& initial_state, const Plan& p
     return true;
 }
 
+std::vector<Conflict> conflicts_for(const std::vector<AgentPlan>& plans, const State& initial_state) {
+    ConflictDetector detector;
+    return detector.findAllConflicts(plans, initial_state, true);
+}
+
+bool is_executable(const Level& level,
+                   const State& initial_state,
+                   const std::vector<AgentPlan>& plans) {
+    const Plan plan = uncompressed_plan_from_agent_plans(plans, initial_state.num_agents());
+    return is_executable(level, initial_state, plan);
+}
+
 std::vector<Conflict> conflicts_for(const Plan& plan, const State& initial_state) {
     ConflictDetector detector;
 
@@ -124,6 +166,10 @@ bool is_conflict_free(const Plan& plan, const State& initial_state) {
     return conflicts_for(plan, initial_state).empty();
 }
 
+bool is_conflict_free(const std::vector<AgentPlan>& plans, const State& initial_state) {
+    return conflicts_for(plans, initial_state).empty();
+}
+
 int first_conflict_time(const Plan& plan, const State& initial_state) {
     const std::vector<Conflict> conflicts = conflicts_for(plan, initial_state);
 
@@ -132,6 +178,301 @@ int first_conflict_time(const Plan& plan, const State& initial_state) {
     }
 
     return conflicts.front().time;
+}
+
+struct ReplanTarget {
+    Position agent{-1, -1};
+    std::vector<char> boxes;
+};
+
+ReplanTarget target_from_agent_plan(const State& initial_state, const AgentPlan& plan) {
+    ReplanTarget target;
+    target.agent = plan.positions.empty() ? Position{-1, -1} : plan.positions.back();
+    target.boxes = initial_state.box_pos;
+
+    for (std::size_t i = 0; i < plan.actions.size(); ++i) {
+        if (i >= plan.positions.size()) {
+            break;
+        }
+
+        const Action& action = plan.actions[i];
+        if (action.type != ActionType::Push && action.type != ActionType::Pull) {
+            continue;
+        }
+
+        const ActionEffect effect = ActionSemantics::compute_effect(plan.positions[i], action);
+        if (!initial_state.in_bounds(effect.box_from.row, effect.box_from.col) ||
+            !initial_state.in_bounds(effect.box_to.row, effect.box_to.col)) {
+            continue;
+        }
+
+        const int from_index = initial_state.index(effect.box_from.row, effect.box_from.col);
+        const int to_index = initial_state.index(effect.box_to.row, effect.box_to.col);
+        const char moved = target.boxes[static_cast<std::size_t>(from_index)];
+        if (moved == '\0') {
+            continue;
+        }
+
+        target.boxes[static_cast<std::size_t>(from_index)] = '\0';
+        target.boxes[static_cast<std::size_t>(to_index)] = moved;
+    }
+
+    return target;
+}
+
+bool matches_replan_target(const State& state, int agent, const ReplanTarget& target) {
+    if (agent < 0 || agent >= state.num_agents()) {
+        return false;
+    }
+    return state.agent_positions[static_cast<std::size_t>(agent)] == target.agent &&
+           state.box_pos == target.boxes;
+}
+
+struct ReplanKey {
+    Position agent;
+    std::vector<char> boxes;
+    int time{0};
+
+    bool operator==(const ReplanKey& other) const noexcept {
+        return agent == other.agent && time == other.time && boxes == other.boxes;
+    }
+};
+
+struct ReplanKeyHasher {
+    std::size_t operator()(const ReplanKey& key) const noexcept {
+        std::size_t seed = std::hash<int>{}(key.agent.row);
+        auto combine = [&seed](std::size_t value) {
+            seed ^= value + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        };
+        combine(std::hash<int>{}(key.agent.col));
+        combine(std::hash<int>{}(key.time));
+        for (char box : key.boxes) {
+            combine(std::hash<int>{}(static_cast<int>(box)));
+        }
+        return seed;
+    }
+};
+
+struct ReplanNode {
+    State state;
+    int time{0};
+    int g{0};
+    int h{0};
+    int parent{-1};
+    Action action{Action::noop()};
+
+    int f() const noexcept { return g + h; }
+};
+
+int replan_heuristic(const State& state, int agent, const ReplanTarget& target) {
+    int h = 0;
+    if (agent >= 0 && agent < state.num_agents()) {
+        const Position pos = state.agent_positions[static_cast<std::size_t>(agent)];
+        h += std::abs(pos.row - target.agent.row) + std::abs(pos.col - target.agent.col);
+    }
+
+    for (int i = 0; i < static_cast<int>(state.box_pos.size()) && i < static_cast<int>(target.boxes.size()); ++i) {
+        const char box = state.box_pos[static_cast<std::size_t>(i)];
+        if (box == '\0') {
+            continue;
+        }
+        if (target.boxes[static_cast<std::size_t>(i)] == box) {
+            continue;
+        }
+
+        Position from{i / state.cols, i % state.cols};
+        int best = state.rows + state.cols;
+        for (int j = 0; j < static_cast<int>(target.boxes.size()); ++j) {
+            if (target.boxes[static_cast<std::size_t>(j)] != box ||
+                (j < static_cast<int>(state.box_pos.size()) && state.box_pos[static_cast<std::size_t>(j)] == box)) {
+                continue;
+            }
+            Position to{j / state.cols, j % state.cols};
+            best = std::min(best, std::abs(from.row - to.row) + std::abs(from.col - to.col));
+        }
+        h += best;
+    }
+
+    return h;
+}
+
+std::optional<AgentPlan> reconstruct_replanned_agent(const std::vector<ReplanNode>& nodes,
+                                                     int goal_index,
+                                                     int agent) {
+    AgentPlan plan;
+    plan.agent = agent;
+
+    int current = goal_index;
+    while (current >= 0) {
+        plan.positions.push_back(nodes[static_cast<std::size_t>(current)].state.agent_positions[static_cast<std::size_t>(agent)]);
+        if (nodes[static_cast<std::size_t>(current)].parent >= 0) {
+            plan.actions.push_back(nodes[static_cast<std::size_t>(current)].action);
+        }
+        current = nodes[static_cast<std::size_t>(current)].parent;
+    }
+
+    std::reverse(plan.positions.begin(), plan.positions.end());
+    std::reverse(plan.actions.begin(), plan.actions.end());
+    if (!plan.valid()) {
+        return std::nullopt;
+    }
+    return plan;
+}
+
+ReservationTable reservations_for_other_plans(const std::vector<AgentPlan>& plans, int replanned_agent) {
+    ReservationTable reservations;
+    for (int agent = 0; agent < static_cast<int>(plans.size()); ++agent) {
+        if (agent == replanned_agent) {
+            continue;
+        }
+        if (plans[static_cast<std::size_t>(agent)].valid()) {
+            reservations.reserve_path(plans[static_cast<std::size_t>(agent)]);
+        }
+    }
+    return reservations;
+}
+
+bool violates_conflict_constraint(const Conflict& conflict,
+                                  int agent,
+                                  const ActionEffect& effect,
+                                  int time) {
+    const bool conflict_mentions_agent =
+        conflict.agents[0] == agent || conflict.agents[1] == agent;
+    if (!conflict_mentions_agent) {
+        return false;
+    }
+
+    if (time + 1 == conflict.time && effect.agent_to == conflict.cell) {
+        return true;
+    }
+    if (time == conflict.time && effect.agent_to == conflict.cell) {
+        return true;
+    }
+    return false;
+}
+
+std::optional<AgentPlan> replan_agent_with_constraints(const Level& level,
+                                                       const State& initial_state,
+                                                       const std::vector<AgentPlan>& plans,
+                                                       int agent,
+                                                       const Conflict& conflict,
+                                                       int max_extra_steps) {
+    if (agent < 0 || agent >= static_cast<int>(plans.size()) || !plans[static_cast<std::size_t>(agent)].valid()) {
+        return std::nullopt;
+    }
+
+    const AgentPlan& original = plans[static_cast<std::size_t>(agent)];
+    const ReplanTarget target = target_from_agent_plan(initial_state, original);
+    if (target.agent.row < 0 || target.agent.col < 0) {
+        return std::nullopt;
+    }
+
+    const int max_time = static_cast<int>(original.actions.size()) + std::max(8, max_extra_steps);
+    const int max_expansions = std::max(1000, level.rows * level.cols * std::max(50, max_time) * 20);
+    const ReservationTable reservations = reservations_for_other_plans(plans, agent);
+
+    std::vector<ReplanNode> nodes;
+    nodes.reserve(2048);
+    struct QueueCompare {
+        const std::vector<ReplanNode>* nodes{nullptr};
+        bool operator()(int a, int b) const {
+            const ReplanNode& lhs = (*nodes)[static_cast<std::size_t>(a)];
+            const ReplanNode& rhs = (*nodes)[static_cast<std::size_t>(b)];
+            if (lhs.f() != rhs.f()) return lhs.f() > rhs.f();
+            if (lhs.g != rhs.g) return lhs.g < rhs.g;
+            return a > b;
+        }
+    };
+    std::priority_queue<int, std::vector<int>, QueueCompare> open{QueueCompare{&nodes}};
+    std::unordered_map<ReplanKey, int, ReplanKeyHasher> best_g;
+
+    ReplanNode start;
+    start.state = initial_state;
+    start.h = replan_heuristic(initial_state, agent, target);
+    nodes.push_back(start);
+    open.push(0);
+    best_g[ReplanKey{initial_state.agent_positions[static_cast<std::size_t>(agent)], initial_state.box_pos, 0}] = 0;
+
+    int expansions = 0;
+    while (!open.empty() && expansions < max_expansions) {
+        const int current_index = open.top();
+        open.pop();
+        const ReplanNode current = nodes[static_cast<std::size_t>(current_index)];
+        const ReplanKey current_key{
+            current.state.agent_positions[static_cast<std::size_t>(agent)],
+            current.state.box_pos,
+            current.time
+        };
+        const auto best_it = best_g.find(current_key);
+        if (best_it != best_g.end() && current.g > best_it->second) {
+            continue;
+        }
+
+        if (matches_replan_target(current.state, agent, target)) {
+            return reconstruct_replanned_agent(nodes, current_index, agent);
+        }
+        if (current.time >= max_time) {
+            continue;
+        }
+
+        for (const Action& action : ActionLibrary::ALL_ACTIONS) {
+            if (!ActionApplicator::is_applicable(level, current.state, agent, action)) {
+                continue;
+            }
+
+            const Position agent_from = current.state.agent_positions[static_cast<std::size_t>(agent)];
+            const ActionEffect effect = ActionSemantics::compute_effect(agent_from, action);
+            if (violates_conflict_constraint(conflict, agent, effect, current.time)) {
+                continue;
+            }
+
+            std::optional<char> moved_box;
+            std::optional<Position> box_from;
+            std::optional<Position> box_to;
+            if (effect.moves_box && current.state.in_bounds(effect.box_from.row, effect.box_from.col)) {
+                const char box = current.state.box_at(effect.box_from.row, effect.box_from.col);
+                if (box != '\0') {
+                    moved_box = box;
+                    box_from = effect.box_from;
+                    box_to = effect.box_to;
+                }
+            }
+
+            if (!reservations.can_apply_transition(agent,
+                                                   agent_from,
+                                                   effect.agent_to,
+                                                   moved_box,
+                                                   box_from,
+                                                   box_to,
+                                                   current.time)) {
+                continue;
+            }
+
+            ReplanNode next;
+            next.state = ActionApplicator::apply(level, current.state, agent, action);
+            next.time = current.time + 1;
+            next.g = current.g + 1;
+            next.h = replan_heuristic(next.state, agent, target);
+            next.parent = current_index;
+            next.action = action;
+
+            const ReplanKey key{
+                next.state.agent_positions[static_cast<std::size_t>(agent)],
+                next.state.box_pos,
+                next.time
+            };
+            const auto it = best_g.find(key);
+            if (it != best_g.end() && it->second <= next.g) {
+                continue;
+            }
+            best_g[key] = next.g;
+            nodes.push_back(std::move(next));
+            open.push(static_cast<int>(nodes.size()) - 1);
+        }
+        ++expansions;
+    }
+
+    return std::nullopt;
 }
 
 std::vector<int> affected_agents(const Conflict& conflict, int num_agents) {
@@ -590,5 +931,90 @@ PlanConflictRepairer::Result PlanConflictRepairer::repair(
     result.changed = result.plan.steps.size() != root_plan.steps.size();
     result.iterations = expansions;
 
+    return result;
+}
+
+PlanConflictRepairer::Result PlanConflictRepairer::repair(
+    const Level& level,
+    const State& initial_state,
+    const std::vector<AgentPlan>& input,
+    int max_iterations,
+    int max_extra_steps
+) const {
+    Result result;
+    const int num_agents = initial_state.num_agents();
+    std::vector<AgentPlan> plans = input;
+    plans.resize(static_cast<std::size_t>(num_agents));
+    for (int agent = 0; agent < num_agents; ++agent) {
+        AgentPlan& plan = plans[static_cast<std::size_t>(agent)];
+        plan.agent = agent;
+        if (plan.positions.empty()) {
+            plan.positions.push_back(initial_state.agent_positions[static_cast<std::size_t>(agent)]);
+        }
+    }
+
+    result.agent_plans = plans;
+    result.plan = plan_from_agent_plans(plans, num_agents);
+
+    if (num_agents <= 0) {
+        result.conflict_free = true;
+        return result;
+    }
+
+    for (int iteration = 0; iteration < max_iterations; ++iteration) {
+        result.iterations = iteration;
+        const std::vector<Conflict> conflicts = conflicts_for(plans, initial_state);
+        if (conflicts.empty()) {
+            result.conflict_free = is_executable(level, initial_state, plans);
+            result.agent_plans = plans;
+            result.plan = plan_from_agent_plans(plans, num_agents);
+            return result;
+        }
+
+        const Conflict& conflict = conflicts.front();
+        const std::vector<int> agents = affected_agents(conflict, num_agents);
+        if (agents.empty()) {
+            break;
+        }
+
+        bool repaired_this_conflict = false;
+        for (int agent : agents) {
+            std::optional<AgentPlan> replanned = replan_agent_with_constraints(
+                level,
+                initial_state,
+                plans,
+                agent,
+                conflict,
+                max_extra_steps
+            );
+            if (!replanned.has_value()) {
+                continue;
+            }
+
+            std::vector<AgentPlan> candidate = plans;
+            candidate[static_cast<std::size_t>(agent)] = *replanned;
+            const int old_first = first_conflict_time(uncompressed_plan_from_agent_plans(plans, num_agents), initial_state);
+            const int new_first = first_conflict_time(uncompressed_plan_from_agent_plans(candidate, num_agents), initial_state);
+            if (new_first < old_first && !is_conflict_free(candidate, initial_state)) {
+                continue;
+            }
+
+            plans = std::move(candidate);
+            result.changed = true;
+            repaired_this_conflict = true;
+            break;
+        }
+
+        result.agent_plans = plans;
+        result.plan = plan_from_agent_plans(plans, num_agents);
+        if (!repaired_this_conflict) {
+            break;
+        }
+    }
+
+    result.conflict_free = is_conflict_free(plans, initial_state) &&
+                           is_executable(level, initial_state, plans);
+    result.agent_plans = plans;
+    result.plan = plan_from_agent_plans(plans, num_agents);
     return result;
 }
