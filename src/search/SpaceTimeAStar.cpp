@@ -163,7 +163,10 @@ AgentPlan SpaceTimeAStar::search(
     const ReservationTable& reservations
 ) {
     if (!has_agent_goal(level, agent)) {
-        return {};
+        AgentPlan stationary_plan;
+        stationary_plan.agent = agent;
+        stationary_plan.positions.push_back(initial_state.agent_positions[agent]);
+        return stationary_plan;
     }
     std::vector<Node> nodes;
     nodes.reserve(2048);
