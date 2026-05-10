@@ -694,6 +694,67 @@ int main() {
 
     {
         Level l;
+        l.rows = 3; l.cols = 4;
+        l.walls.assign(12, false);
+        l.goals.assign(12, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.goals[l.index(1,3)] = '0';
+
+        State s;
+        s.rows = 3; s.cols = 4;
+        s.agent_positions = {Position{1,1}};
+        s.box_pos.assign(12, '\0');
+
+        TaskGenerator generator;
+        const auto tasks = generator.generate_delivery_tasks(l, s);
+        assert(tasks.size() == 1);
+        assert(tasks[0].type == TaskType::MoveAgentToGoal);
+        assert(tasks[0].agent_id == 0);
+        assert((tasks[0].goal_pos == Position{1,3}));
+        assert(tasks[0].dependencies.empty());
+    }
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 5;
+        l.walls.assign(15, false);
+        l.goals.assign(15, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.box_colors['A' - 'A'] = Color::Blue;
+        l.goals[l.index(0,0)] = '0';
+        l.goals[l.index(1,4)] = 'A';
+
+        State s;
+        s.rows = 3; s.cols = 5;
+        s.agent_positions = {Position{0,0}};
+        s.box_pos.assign(15, '\0');
+        s.set_box(1,2,'A');
+
+        TaskGenerator generator;
+        const auto tasks = generator.generate_delivery_tasks(l, s);
+        const Task* delivery = nullptr;
+        const Task* final_agent_goal = nullptr;
+        for (const Task& task : tasks) {
+            if (task.type == TaskType::DeliverBoxToGoal && task.box_id == 'A') delivery = &task;
+            if (task.type == TaskType::MoveAgentToGoal && task.agent_id == 0) final_agent_goal = &task;
+        }
+        assert(delivery != nullptr);
+        assert(final_agent_goal != nullptr);
+        assert((final_agent_goal->goal_pos == Position{0,0}));
+        assert(std::find(final_agent_goal->dependencies.begin(), final_agent_goal->dependencies.end(), delivery->task_id) != final_agent_goal->dependencies.end());
+
+        DependencyBuilder deps;
+        const DependencyGraph graph = deps.build_graph(tasks);
+        const auto pred_it = graph.predecessors.find(final_agent_goal->task_id);
+        assert(pred_it != graph.predecessors.end());
+        assert(std::find(pred_it->second.begin(), pred_it->second.end(), delivery->task_id) != pred_it->second.end());
+    }
+
+    {
+        Level l;
         l.rows = 3; l.cols = 5;
         l.walls.assign(15, false);
         l.goals.assign(15, '\0');

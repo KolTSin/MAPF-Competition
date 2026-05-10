@@ -20,7 +20,9 @@ public:
     // Output:
     // - one DeliverBoxToGoal task for each unsatisfied box goal that has a
     //   matching box and at least one color-compatible agent;
-    // - additional blocker-clearing tasks that make those deliveries easier.
+    // - additional blocker-clearing tasks that make those deliveries easier;
+    // - final MoveAgentToGoal tasks for agents with digit goals, sequenced after
+    //   the generated box/blocker work.
     //
     // Any goal that cannot produce a delivery task is recorded in
     // `skip_reasons()` so callers can explain why the task list is smaller
@@ -39,6 +41,18 @@ private:
     // Goal cells can contain several kinds of symbols. Only uppercase letters
     // represent box goals; all other symbols are ignored by this generator.
     [[nodiscard]] static bool is_box_goal(char goal_symbol) noexcept;
+
+    // Digit goals belong to the agent with the same id. These are emitted as
+    // final repositioning tasks after box and blocker work has been generated.
+    [[nodiscard]] static bool is_agent_goal(char goal_symbol) noexcept;
+
+    // Adds one final MoveAgentToGoal task for each agent digit goal that still
+    // needs attention. Existing task ids are recorded as dependencies so these
+    // cleanup moves happen after the generated delivery/blocker work.
+    void append_agent_goal_tasks(const Level& level,
+                                 const State& state,
+                                 int& next_task_id,
+                                 std::vector<Task>& tasks);
 
     // Returns whether `agent_id` is allowed to move `box_id` according to the
     // level's color table. Invalid agent indices or non-box symbols are treated
