@@ -16,6 +16,47 @@ bool TaskGenerator::is_box_goal(char goal_symbol) noexcept {
     return goal_symbol >= 'A' && goal_symbol <= 'Z';
 }
 
+bool TaskGenerator::is_agent_goal(char goal_symbol) noexcept {
+    return goal_symbol >= '0' && goal_symbol <= '9';
+}
+
+void TaskGenerator::append_agent_goal_tasks(const Level& level,
+                                            const State& state,
+                                            int& next_task_id,
+                                            std::vector<Task>& tasks) {
+    std::vector<int> final_task_dependencies;
+    final_task_dependencies.reserve(tasks.size());
+    for (const Task& task : tasks) {
+        final_task_dependencies.push_back(task.task_id);
+    }
+
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            const char goal = level.goal_at(r, c);
+            if (!is_agent_goal(goal)) continue;
+
+            const int agent_id = goal - '0';
+            if (agent_id < 0 || agent_id >= state.num_agents()) {
+                skip_reasons_.push_back("skip agent goal " + std::string(1, goal) + " at (" + std::to_string(r) + "," + std::to_string(c) + "): missing agent");
+                continue;
+            }
+
+            const bool already_at_goal = state.agent_positions[agent_id] == Position{r, c};
+            if (already_at_goal && final_task_dependencies.empty()) continue;
+
+            Task task;
+            task.type = TaskType::MoveAgentToGoal;
+            task.task_id = next_task_id++;
+            task.agent_id = agent_id;
+            task.goal_symbol = goal;
+            task.goal_pos = Position{r, c};
+            task.box_pos = state.agent_positions[agent_id];
+            task.dependencies = final_task_dependencies;
+            tasks.push_back(task);
+        }
+    }
+}
+
 bool TaskGenerator::can_agent_move_box(const Level& level, int agent_id, char box_id) {
     // The input may come from generated levels or tests, so validate both sides
     // before indexing into the color arrays. A false result simply means this
@@ -140,6 +181,12 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
     std::vector<Task> blocker_tasks = blocker_resolver.generate_blocker_tasks(level, state, analysis, next_task_id);
 
     tasks.insert(tasks.end(), blocker_tasks.begin(), blocker_tasks.end());
+
+    // Final phase: once all generated box/blocker work has completed, agents
+    // that have digit goals should return to their own goal cells.  These tasks
+    // are intentionally appended last and depend on the earlier task ids so they
+    // do not steal an agent away before its useful work is done.
+    append_agent_goal_tasks(level, state, next_task_id, tasks);
 
     return tasks;
 }
