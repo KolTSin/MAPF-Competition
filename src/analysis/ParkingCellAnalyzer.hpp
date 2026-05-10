@@ -3,6 +3,7 @@
 #include "analysis/LevelAnalysis.hpp"
 #include "domain/Level.hpp"
 #include "state/State.hpp"
+#include "plan/AgentPlan.hpp"
 #include <vector>
 
 // Ranks cells that are safe places to temporarily move an agent or blocking box.
@@ -22,5 +23,9 @@
 class ParkingCellAnalyzer {
 public:
     [[nodiscard]] std::vector<Position> find_parking_cells(const Level& level, const State& state, const LevelAnalysis& analysis) const;
+    // Plan-aware ranking variant: cells that appear in initial_agent_plans keep
+    // their hard validity, but receive a path-conflict penalty.
+    [[nodiscard]] std::vector<Position> find_parking_cells(const Level& level, const State& state, const LevelAnalysis& analysis, const std::vector<AgentPlan>& initial_agent_plans) const;
     [[nodiscard]] int score_parking_cell(Position p, const Level& level, const State& state, const LevelAnalysis& analysis) const;
+    [[nodiscard]] int score_parking_cell(Position p, const Level& level, const State& state, const LevelAnalysis& analysis, const std::vector<AgentPlan>& initial_agent_plans) const;
 };

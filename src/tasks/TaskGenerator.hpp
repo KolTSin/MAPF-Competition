@@ -3,6 +3,7 @@
 #include "domain/Level.hpp"
 #include "state/State.hpp"
 #include "tasks/Task.hpp"
+#include "plan/AgentPlan.hpp"
 
 #include <string>
 #include <vector>
@@ -26,6 +27,9 @@ public:
     // than the number of visible goals.
     [[nodiscard]] std::vector<Task> generate_delivery_tasks(const Level& level,
                                                             const State& state);
+    [[nodiscard]] std::vector<Task> generate_delivery_tasks(const Level& level,
+                                                            const State& state,
+                                                            const std::vector<AgentPlan>& initial_agent_plans);
 
     // Human-readable explanations for goals that were intentionally ignored
     // during the last call to `generate_delivery_tasks`.

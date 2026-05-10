@@ -14,6 +14,11 @@ static constexpr int DDC[4] = {-1, 1, -1, 1};
 }
 
 LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state) const {
+    static const std::vector<AgentPlan> kNoInitialAgentPlans;
+    return analyze(level, state, kNoInitialAgentPlans);
+}
+
+LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state, const std::vector<AgentPlan>& initial_agent_plans) const {
     // Allocate a grid-shaped result. The cells vector has one CellInfo for
     // every coordinate, including walls; wall entries keep their default flags
     // while traversable entries are filled in by the scan below.
@@ -188,9 +193,9 @@ LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state) con
     // parking_score written back to every free cell for callers that need the
     // raw numeric heuristic.
     ParkingCellAnalyzer parking;
-    analysis.parking_cells = parking.find_parking_cells(level, state, analysis);
+    analysis.parking_cells = parking.find_parking_cells(level, state, analysis, initial_agent_plans);
     for (const Position p : analysis.free_cells) {
-        analysis.at(p).parking_score = parking.score_parking_cell(p, level, state, analysis);
+        analysis.at(p).parking_score = parking.score_parking_cell(p, level, state, analysis, initial_agent_plans);
     }
 
     return analysis;

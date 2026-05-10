@@ -69,7 +69,7 @@ bool is_empty_plan_valid(const Task& task, const State& state) {
 }
 }
 
-Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
+std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
     // Global reservation state is the contract between independently planned
     // tasks.  Each successful task contributes occupied cells/edges to this
     // table so later planning attempts avoid collisions in space and time.
@@ -252,5 +252,12 @@ Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, c
         }
     }
 
+    return agent_plans;
+}
+
+Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
+    const std::vector<AgentPlan> agent_plans = build_agent_plans(level, initial_state, tasks);
+    if (agent_plans.empty()) return {};
     return PlanMerger::merge_agent_plans(agent_plans, initial_state.num_agents());
 }
+
