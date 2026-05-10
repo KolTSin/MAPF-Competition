@@ -3,6 +3,8 @@
 #include "plan/Conflicts.hpp"
 #include "domain/Position.hpp"
 
+#include <vector>
+
 class ConstraintTable {
 public:
     void addConstraint(const Constraint& c);
@@ -11,5 +13,5 @@ public:
     bool forbidsFollow(int agent, Position to, int t) const;
 
 private:
-    
+    std::vector<Constraint> constraints_;
 };

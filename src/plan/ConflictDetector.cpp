@@ -128,6 +128,10 @@ void add_agent_agent_conflicts(
                     t
                 );
                 c.cell = b.agent_from;
+                c.from[0] = a.agent_from;
+                c.to[0] = a.agent_to;
+                c.from[1] = b.agent_from;
+                c.to[1] = b.agent_to;
                 out.push_back(c);
             }
 
@@ -142,6 +146,10 @@ void add_agent_agent_conflicts(
                     t
                 );
                 c.cell = a.agent_from;
+                c.from[0] = b.agent_from;
+                c.to[0] = b.agent_to;
+                c.from[1] = a.agent_from;
+                c.to[1] = a.agent_to;
                 out.push_back(c);
             }
         }
