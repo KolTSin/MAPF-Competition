@@ -175,6 +175,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // synchronized actions that can be appended to the final plan.
         std::vector<AgentPlan> wave_agent_plans = scheduler.build_agent_plans(level, current, tasks);
         Plan wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
+        PlanMerger::compact_independent_actions(level, current, wave);
         if (wave.empty()) {
             // An empty wave means the scheduler could not safely reserve paths
             // for the generated tasks. Local repair tries one focused fallback
@@ -215,6 +216,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
                           << repaired_wave.iterations << " steps=" << repaired_wave.plan.steps.size() << '\n';
             }
             wave = repaired_wave.plan;
+            PlanMerger::compact_independent_actions(level, current, wave);
             wave_agent_plans = agent_plans_from_plan(wave, current);
         } else if (kVerboseTasks) {
             std::cerr << "[HTN] cbs_style_repair could not prove conflict-free wave; using scheduler wave\n";
