@@ -28,5 +28,8 @@ std::string Task::describe() const {
     }
 
     out << " prio=" << priority;
+    out << " deps=";
+    for (int i : dependencies) out <<", " << i;
+
     return out.str();
 }
