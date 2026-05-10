@@ -27,9 +27,14 @@ bool is_agent_only_task(const Task& task) {
     return task.type == TaskType::MoveAgentToGoal || task.type == TaskType::ParkAgentSafely;
 }
 
+Position route_end(const Task& task) {
+    if (task.type == TaskType::MoveBlockingBoxToParking) return task.parking_pos;
+    return task.goal_pos;
+}
+
 bool has_route_overlap_risk(const Task& a, const Task& b) {
-    const auto ra = coarse_route(a.box_pos, a.goal_pos);
-    const auto rb = coarse_route(b.box_pos, b.goal_pos);
+    const auto ra = coarse_route(a.box_pos, route_end(a));
+    const auto rb = coarse_route(b.box_pos, route_end(b));
     for (std::size_t i = 0; i < ra.size(); ++i) {
         for (std::size_t j = 0; j < rb.size(); ++j) {
             if (ra[i] == rb[j]) return true;
@@ -40,6 +45,9 @@ bool has_route_overlap_risk(const Task& a, const Task& b) {
 }
 
 void add_edge(DependencyGraph& graph, int predecessor, int successor) {
+    auto& reverse_preds = graph.predecessors[predecessor];
+    if (std::find(reverse_preds.begin(), reverse_preds.end(), successor) != reverse_preds.end()) return;
+
     auto& preds = graph.predecessors[successor];
     if (std::find(preds.begin(), preds.end(), predecessor) == preds.end()) {
         preds.push_back(predecessor);

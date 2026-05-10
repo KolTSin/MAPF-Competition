@@ -188,6 +188,37 @@ bool add_dependency(std::vector<Task>& tasks, int predecessor, int successor) {
     return false;
 }
 
+bool is_box_goal(char goal) {
+    return goal >= 'A' && goal <= 'Z';
+}
+
+void add_corridor_access_dependencies(const Level& level, const State& state, std::vector<Task>& tasks) {
+    for (const Task& far_task : tasks) {
+        if (far_task.type != TaskType::DeliverBoxToGoal) continue;
+        if (far_task.agent_id < 0 || far_task.agent_id >= state.num_agents()) continue;
+
+        const Position agent = state.agent_positions[static_cast<std::size_t>(far_task.agent_id)];
+        if (agent.row != far_task.goal_pos.row || agent.col == far_task.goal_pos.col) continue;
+
+        const int step = (far_task.goal_pos.col > agent.col) ? 1 : -1;
+        for (int c = agent.col + step; c != far_task.goal_pos.col; c += step) {
+            if (!level.in_bounds(agent.row, c) || level.is_wall(agent.row, c)) break;
+            const char goal = level.goal_at(agent.row, c);
+            if (!is_box_goal(goal) || goal == far_task.box_id) continue;
+            if (state.box_at(agent.row, c) == goal) continue;
+
+            for (Task& near_task : tasks) {
+                if (near_task.type != TaskType::DeliverBoxToGoal) continue;
+                if (near_task.task_id == far_task.task_id) continue;
+                if (near_task.goal_pos == Position{agent.row, c}) {
+                    add_dependency(tasks, far_task.task_id, near_task.task_id);
+                    break;
+                }
+            }
+        }
+    }
+}
+
 std::vector<ScheduledTask> schedule_once(
     const Level& level,
     const State& initial_state,
@@ -347,6 +378,7 @@ std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, cons
     TaskPrioritizer prioritizer;
     std::vector<Task> mutable_tasks = tasks;
     prioritizer.score(level, initial_state, mutable_tasks);
+    add_corridor_access_dependencies(level, initial_state, mutable_tasks);
 
     // Schedule first, then validate the composed result.  If independently
     // planned tasks still conflict, convert the conflict into an explicit
