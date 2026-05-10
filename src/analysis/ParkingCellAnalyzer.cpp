@@ -1,5 +1,6 @@
 #include "analysis/ParkingCellAnalyzer.hpp"
 #include <algorithm>
+#include <iostream>
 
 namespace {
 // Four-neighbor offsets used to inspect the immediate surroundings of a
@@ -24,7 +25,8 @@ int ParkingCellAnalyzer::score_parking_cell(Position p, const Level& level, cons
     // object, making them safer than narrow passages.
     int score = 0;
     score += 50;
-    if (cell.is_room) score += 30;
+    if (cell.is_room) score += 50000;
+    if (cell.is_intersection) score -= 50000;
 
     // Topology penalties: the more a cell behaves like a bottleneck, the more
     // expensive it is to park there. Articulation/chokepoint penalties are large
@@ -33,7 +35,7 @@ int ParkingCellAnalyzer::score_parking_cell(Position p, const Level& level, cons
     if (cell.is_articulation) score -= 50000;
     if (cell.is_chokepoint) score -= 10000;
     if (cell.is_corridor) score -= 1000;
-    if (cell.is_dead_end) score -= 200;
+    if (cell.is_dead_end) score += 200;
 
     // Neighborhood scan: a cell can be locally valid but still risky if it sits
     // next to an important connector or a goal. We record whether any traversable
@@ -67,7 +69,8 @@ std::vector<Position> ParkingCellAnalyzer::find_parking_cells(const Level& level
     scored.reserve(analysis.free_cells.size());
     for (const Position p : analysis.free_cells) {
         const int score = score_parking_cell(p, level, state, analysis);
-        if (score > 0) scored.emplace_back(p, score);
+        std::cerr << "pos: " << p.to_string() << " score: " << score << std::endl;
+        if (score > -50000) scored.emplace_back(p, score);
     }
 
     // Highest scores should be tried first by callers. Ties intentionally keep

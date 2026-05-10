@@ -5,6 +5,7 @@
 
 #include <set>
 #include <sstream>
+#include <iostream>
 
 
 bool TaskGenerator::is_box_goal(char goal_symbol) noexcept {
@@ -126,6 +127,9 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
     LevelAnalyzer analyzer;
     const LevelAnalysis analysis = analyzer.analyze(level, state);
     BlockerResolver blocker_resolver;
+    std::cerr << "Parking cells on the level" << static_cast<int>(analysis.parking_cells.size()) << std::endl;
+    for (int i = 0; i < static_cast<int>(analysis.parking_cells.size()); i++) std::cerr << "parking cell: " 
+    << analysis.parking_cells[i].to_string() << std::endl;
     std::vector<Task> blocker_tasks = blocker_resolver.generate_blocker_tasks(level, state, analysis, next_task_id);
 
     tasks.insert(tasks.end(), blocker_tasks.begin(), blocker_tasks.end());

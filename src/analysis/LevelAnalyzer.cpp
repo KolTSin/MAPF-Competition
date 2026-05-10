@@ -8,6 +8,9 @@ namespace {
 // the same movement model used by agents and boxes.
 constexpr int DR[4] = {-1, 1, 0, 0};
 constexpr int DC[4] = {0, 0, -1, 1};
+// Diagonal directions: NW, NE, SW, SE
+static constexpr int DDR[4] = {-1, -1, 1, 1};
+static constexpr int DDC[4] = {-1, 1, -1, 1};
 }
 
 LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state) const {
@@ -40,16 +43,81 @@ LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state) con
             //   2 neighbors: corridor-like passage
             //   3-4 neighbors: room/intersection with maneuvering space
             int degree = 0;
+            int blocked_diagonals = 0;
+
+            // Cardinal openness flags.
+            // DR/DC order is currently: north, south, west, east.
+            bool north_free = false;
+            bool south_free = false;
+            bool west_free = false;
+            bool east_free = false;
+
+            // Count free cardinal neighbors.
             for (int i = 0; i < 4; ++i) {
                 const int nr = r + DR[i];
                 const int nc = c + DC[i];
-                if (!level.in_bounds(nr, nc) || level.is_wall(nr, nc)) continue;
+
+                const bool free =
+                    level.in_bounds(nr, nc) &&
+                    !level.is_wall(nr, nc);
+
+                if (!free) continue;
+
                 ++degree;
+
+                if (DR[i] == -1 && DC[i] == 0) north_free = true;
+                if (DR[i] ==  1 && DC[i] == 0) south_free = true;
+                if (DR[i] ==  0 && DC[i] == -1) west_free = true;
+                if (DR[i] ==  0 && DC[i] ==  1) east_free = true;
             }
+
+            // Count blocked diagonals.
+            // A diagonal is "not free" if it is out of bounds or a wall.
+            for (int i = 0; i < 4; ++i) {
+                const int nr = r + DDR[i];
+                const int nc = c + DDC[i];
+
+                if (!level.in_bounds(nr, nc) || level.is_wall(nr, nc)) {
+                    ++blocked_diagonals;
+                }
+            }
+
+            const bool vertical_corridor =
+                north_free && south_free && !west_free && !east_free;
+
+            const bool horizontal_corridor =
+                west_free && east_free && !north_free && !south_free;
+
+            const bool straight_corridor =
+                degree == 2 && (vertical_corridor || horizontal_corridor);
+
+            const bool corner =
+                degree == 2 && !straight_corridor;
+
+            const bool three_way_intersection = degree == 3 && blocked_diagonals >= 3;
+            const bool four_way_intersection = degree == 4 && blocked_diagonals >= 3;
+
+            // Your diagonal rule.
+            // I would apply it only to straight corridor cells, not corners.
+            const bool diagonal_intersection =
+                straight_corridor && blocked_diagonals >= 2;
+
             info.degree = degree;
+            info.blocked_diagonals = blocked_diagonals;
+
             info.is_dead_end = degree <= 1;
+            info.is_corner = corner;
+
+            info.is_three_way_intersection = three_way_intersection;
+            info.is_four_way_intersection = four_way_intersection;
+
+            info.is_intersection =
+                three_way_intersection ||
+                four_way_intersection;
+
+            // Keep your old broad labels.
             info.is_corridor = degree == 2;
-            info.is_room = degree >= 3;
+            info.is_room = (degree - blocked_diagonals) >= 3;
 
             // Goal cells are annotated separately because parking or blocking a
             // goal can make a future task harder. The raw goal character also
