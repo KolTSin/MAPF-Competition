@@ -5,12 +5,9 @@
 #include "state/StateHasher.hpp"
 
 #include <algorithm>
-#include <limits>
 #include <queue>
-#include <stdexcept>
 #include <unordered_map>
 #include <vector>
-#include <iostream>
 
 namespace {
 
@@ -137,13 +134,11 @@ bool is_move_valid(const Level& level,
     if (reservations.is_cell_reserved(next.row, next.col, current_time, agent) || 
         reservations.is_cell_reserved(next.row, next.col, next_time, agent) || 
         reservations.is_cell_reserved(next.row, next.col, next_time + 1, agent)) {
-        // std::cerr << "follow conflict!" << '\n';
         return false;
     }
 
     // Vertex reservation
     if (reservations.is_cell_reserved(next.row, next.col, next_time, agent)) {
-        // std::cerr << "vertex conflict!" << '\n';
         return false;
     }
 
@@ -151,13 +146,9 @@ bool is_move_valid(const Level& level,
     // If someone else already reserved next -> current at current_time,
     // then current -> next is forbidden.
     if (reservations.is_edge_reserved(next, current, current_time, agent)) {
-        // std::cerr << "edge conflict!" << '\n';
         return false;
     }
     // if (agent == 2){
-    //     std::cerr << "No conflict detected! " 
-    //     << current_time << " : " << reservations.is_cell_reserved(next.row, next.col, current_time, agent) 
-    //     << next_time << " : " << reservations.is_cell_reserved(next.row, next.col, next_time, agent) << '\n';
     // }
     return true;
 }
@@ -172,9 +163,10 @@ AgentPlan SpaceTimeAStar::search(
     const ReservationTable& reservations
 ) {
     if (!has_agent_goal(level, agent)) {
-        std::cerr << "agent " << agent
-                  << " has no personal goal; returning empty plan\n";
-        return {};
+        AgentPlan stationary_plan;
+        stationary_plan.agent = agent;
+        stationary_plan.positions.push_back(initial_state.agent_positions[agent]);
+        return stationary_plan;
     }
     std::vector<Node> nodes;
     nodes.reserve(2048);
@@ -199,15 +191,9 @@ AgentPlan SpaceTimeAStar::search(
     std::vector<Successor> successors;
     successors.reserve(29);
 
-    std::size_t expansions = 0;
-    std::size_t generated = 0;
-
     while (!open.empty()) {
         int current_index = open.pop();
         Node current = nodes[current_index];
-        const Node* current_ptr = &current;
-        const Node* data_before = nodes.data();
-
         SpaceTimeKey current_key{current.state, current.time};
         auto it_best = best_g.find(current_key);
         if (it_best != best_g.end() && current.g > it_best->second) {
@@ -217,85 +203,41 @@ AgentPlan SpaceTimeAStar::search(
         }
 
         if (is_goal(level, current.state, agent)) {
-            std::cerr << "agent " << agent
-                    << " reached goal after expansions=" << expansions
-                    << ", nodes=" << nodes.size()
-                    << ", best_g=" << best_g.size()
-                    << '\n';
             return reconstruct_plan(nodes, current_index, agent);
         }
 
         SuccessorGenerator::expand_agent(level, current.state, agent, current.time, successors);
-        generated += successors.size();
-        try {
-            for (const Successor& succ : successors) {
-                // std::cerr << "trying move: " << succ.action.to_string() << '\n';
+        for (const Successor& succ : successors) {
+            Position next_pos = succ.next_state.agent_positions[agent];
 
-                ++expansions;
-                if (expansions % 100 == 0) {
-                    std::cerr << "agent=" << agent
-                            << " expansions=" << expansions
-                            << " nodes=" << nodes.size()
-                            << " best_g=" << best_g.size()
-                            << " current_time=" << current.time
-                            << '\n';
-                }
-
-                Position next_pos = succ.next_state.agent_positions[agent];
-
-                // Reservation checks reject collisions with already committed
-                // plans before the successor enters the open list.
-                if (!is_move_valid(level, reservations, current.state.agent_positions[agent], next_pos, current.time, agent)) {
-                    continue;
-                }
-
-                
-                Node next;
-                next.state = succ.next_state;
-                next.time = current.time + 1;
-                next.g = current.g + 1;
-                next.h = heuristic_.evaluate(next.state);
-                next.parent_index = current_index;
-                next.action = succ.action;
-
-                SpaceTimeKey key{next.state, next.time};
-
-                auto it = best_g.find(key);
-                if (next.time == max_time){
-                    continue;
-                }
-                if (it != best_g.end() && next.g >= it->second) {
-                    continue;
-                }
-                // if (agent == 2){
-                //     std::cerr << "found next move: " << succ.action.to_string() << '\n';
-                // }
-                nodes.push_back(next);
-                int next_index = static_cast<int>(nodes.size()) - 1;
-                best_g[key] = next.g;
-                open.push(next_index);
-                if (nodes.data() != data_before) {
-                    std::cerr << "REALLOCATION happened while current ref was alive. "
-                            << "current_ptr=" << current_ptr
-                            << " new_ptr=" << &nodes[current_index]
-                            << " current_index=" << current_index
-                            << '\n';
-                }
-                
+            // Reservation checks reject collisions with already committed
+            // plans before the successor enters the open list.
+            if (!is_move_valid(level, reservations, current.state.agent_positions[agent], next_pos, current.time, agent)) {
+                continue;
             }
-        } catch (const std::exception& e) {
-            std::cerr << "AStar failed for agent " << agent
-                    << " with exception: " << e.what() << '\n';
-            throw;
+
+            Node next;
+            next.state = succ.next_state;
+            next.time = current.time + 1;
+            next.g = current.g + 1;
+            next.h = heuristic_.evaluate(next.state);
+            next.parent_index = current_index;
+            next.action = succ.action;
+
+            SpaceTimeKey key{next.state, next.time};
+
+            auto it = best_g.find(key);
+            if (next.time == max_time) {
+                continue;
+            }
+            if (it != best_g.end() && next.g >= it->second) {
+                continue;
+            }
+            nodes.push_back(next);
+            int next_index = static_cast<int>(nodes.size()) - 1;
+            best_g[key] = next.g;
+            open.push(next_index);
         }
-        // std::cerr << "finished searching for agent " << agent << '\n';
     }
-    std::cerr << "agent " << agent
-          << " search failed: open list exhausted"
-          << ", expansions=" << expansions
-          << ", generated=" << generated
-          << ", nodes=" << nodes.size()
-          << ", best_g=" << best_g.size()
-          << '\n';
     return AgentPlan{};
 }

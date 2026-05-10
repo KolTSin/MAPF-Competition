@@ -2,32 +2,10 @@
 
 #include "domain/Position.hpp"
 
-#include <vector>
 #include <array>
-#include <string>
 #include <sstream>
-
-// struct ConflictHasher {
-//     std::size_t operator()(const Conflict& r) const noexcept;
-// };
-
-struct Constraint {
-    int agent_id;
-    int time;
-
-    Position cell;
-    std::array<Position, 2> from{};
-    std::array<Position, 2> to{};
-
-    std::string to_string() const {
-        std::ostringstream os;
-        os << "(a" << agent_id
-        << ") @ (" << cell.row
-        << "," << cell.col
-        << "), t=" << time;
-        return os.str();
-    }
-};
+#include <string>
+#include <vector>
 
 enum class ConflictType {
     None,
@@ -46,6 +24,29 @@ enum class ConflictType {
     BoxVertex,
     BoxIntoBoxStartCell,
     SameBoxMovedByTwoAgents
+};
+
+// struct ConflictHasher {
+//     std::size_t operator()(const Conflict& r) const noexcept;
+// };
+
+struct Constraint {
+    int agent_id{-1};
+    int time{-1};
+    ConflictType type{ConflictType::None};
+
+    Position cell{-1, -1};
+    std::array<Position, 2> from{{Position{-1, -1}, Position{-1, -1}}};
+    std::array<Position, 2> to{{Position{-1, -1}, Position{-1, -1}}};
+
+    std::string to_string() const {
+        std::ostringstream os;
+        os << "(" << static_cast<int>(type) << ", a" << agent_id
+           << ") @ (" << cell.row
+           << "," << cell.col
+           << "), t=" << time;
+        return os.str();
+    }
 };
 
 struct Conflict {
