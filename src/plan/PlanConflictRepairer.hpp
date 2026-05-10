@@ -1,6 +1,7 @@
 #pragma once
 
 #include "domain/Level.hpp"
+#include "plan/AgentPlan.hpp"
 #include "plan/Plan.hpp"
 #include "state/State.hpp"
 
@@ -18,6 +19,7 @@ class PlanConflictRepairer {
 public:
     struct Result {
         Plan plan;
+        std::vector<AgentPlan> agent_plans;
         bool changed{false};
         bool conflict_free{false};
         int iterations{0};
@@ -26,6 +28,11 @@ public:
     [[nodiscard]] Result repair(const Level& level,
                                 const State& initial_state,
                                 const Plan& input,
+                                int max_iterations = 128,
+                                int max_extra_steps = 256) const;
+    [[nodiscard]] Result repair(const Level& level,
+                                const State& initial_state,
+                                const std::vector<AgentPlan>& input,
                                 int max_iterations = 128,
                                 int max_extra_steps = 256) const;
 };
