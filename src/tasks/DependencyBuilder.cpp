@@ -23,6 +23,10 @@ std::vector<Position> coarse_route(Position from, Position to) {
     return route;
 }
 
+bool is_agent_only_task(const Task& task) {
+    return task.type == TaskType::MoveAgentToGoal || task.type == TaskType::ParkAgentSafely;
+}
+
 bool has_route_overlap_risk(const Task& a, const Task& b) {
     const auto ra = coarse_route(a.box_pos, a.goal_pos);
     const auto rb = coarse_route(b.box_pos, b.goal_pos);
@@ -132,16 +136,21 @@ DependencyGraph DependencyBuilder::build_graph(const std::vector<Task>& tasks) c
             if (b.type == TaskType::DeliverBoxToGoal && a.type == TaskType::MoveAgentToGoal && a.agent_id == b.agent_id) {
                 add_edge(graph, b.task_id, a.task_id);
             }
-            if (overlaps(a.box_pos, a.goal_pos, b.box_pos, b.goal_pos) ||
-                overlaps(a.box_pos, a.parking_pos, b.box_pos, b.parking_pos)) {
-                const int pred = (a.task_id < b.task_id) ? a.task_id : b.task_id;
-                const int succ = (a.task_id < b.task_id) ? b.task_id : a.task_id;
-                add_edge(graph, pred, succ);
-            }
-            if (has_route_overlap_risk(a, b)) {
-                const int pred = (a.priority > b.priority || (a.priority == b.priority && a.task_id < b.task_id)) ? a.task_id : b.task_id;
-                const int succ = (pred == a.task_id) ? b.task_id : a.task_id;
-                add_edge(graph, pred, succ);
+            // Agent-only cleanup tasks have no box route, so do not feed their
+            // placeholder box_pos/parking_pos values into box-route dependency
+            // heuristics. Explicit task dependencies above decide when they run.
+            if (!is_agent_only_task(a) && !is_agent_only_task(b)) {
+                if (overlaps(a.box_pos, a.goal_pos, b.box_pos, b.goal_pos) ||
+                    overlaps(a.box_pos, a.parking_pos, b.box_pos, b.parking_pos)) {
+                    const int pred = (a.task_id < b.task_id) ? a.task_id : b.task_id;
+                    const int succ = (a.task_id < b.task_id) ? b.task_id : a.task_id;
+                    add_edge(graph, pred, succ);
+                }
+                if (has_route_overlap_risk(a, b)) {
+                    const int pred = (a.priority > b.priority || (a.priority == b.priority && a.task_id < b.task_id)) ? a.task_id : b.task_id;
+                    const int succ = (pred == a.task_id) ? b.task_id : a.task_id;
+                    add_edge(graph, pred, succ);
+                }
             }
             if (a.type == TaskType::MoveBlockingBoxToParking &&
                 b.type == TaskType::DeliverBoxToGoal &&
