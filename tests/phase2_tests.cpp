@@ -496,6 +496,34 @@ int main() {
         assert(p.steps.size() <= 20);
     }
 
+
+    {
+        std::string resolved = "levels/MAsimple3.lvl";
+        if (!std::filesystem::exists(resolved)) {
+            resolved = "../" + resolved;
+        }
+        assert(std::filesystem::exists(resolved));
+        std::ifstream in(resolved);
+        ParsedLevel parsed = LevelParser::parse(in);
+
+        LevelAnalyzer analyzer;
+        const LevelAnalysis analysis = analyzer.analyze(parsed.level, parsed.initial_state);
+        assert(analysis.at(Position{3,10}).parking_score < analysis.at(Position{4,10}).parking_score);
+        assert(analysis.at(Position{1,8}).parking_score > analysis.at(Position{4,10}).parking_score);
+
+        int next_task_id = 100;
+        BlockerResolver resolver;
+        const auto tasks = resolver.generate_blocker_tasks(parsed.level, parsed.initial_state, analysis, next_task_id);
+        bool found_b_relocation = false;
+        for (const Task& task : tasks) {
+            if (task.type == TaskType::MoveBlockingBoxToParking && task.box_id == 'B') {
+                found_b_relocation = true;
+                assert(!(task.parking_pos == Position{3,10}));
+            }
+        }
+        assert(found_b_relocation);
+    }
+
     {
         const std::vector<std::string> ma_simple_levels{
             "levels/MAsimple1.lvl",
