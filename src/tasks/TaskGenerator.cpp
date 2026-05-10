@@ -34,6 +34,13 @@ bool TaskGenerator::can_agent_move_box(const Level& level, int agent_id, char bo
 
 std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
                                                          const State& state) {
+    static const std::vector<AgentPlan> kNoInitialAgentPlans;
+    return generate_delivery_tasks(level, state, kNoInitialAgentPlans);
+}
+
+std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
+                                                         const State& state,
+                                                         const std::vector<AgentPlan>& initial_agent_plans) {
     // Start each run with a clean output surface: callers receive only tasks
     // and skip reasons that describe the current level/state pair.
     skip_reasons_.clear();
@@ -125,7 +132,7 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
     // vector so solvers can plan deliveries and prerequisite clearing work from
     // one ordered task list.
     LevelAnalyzer analyzer;
-    const LevelAnalysis analysis = analyzer.analyze(level, state);
+    const LevelAnalysis analysis = analyzer.analyze(level, state, initial_agent_plans);
     BlockerResolver blocker_resolver;
     std::cerr << "Parking cells on the level" << static_cast<int>(analysis.parking_cells.size()) << std::endl;
     for (int i = 0; i < static_cast<int>(analysis.parking_cells.size()); i++) std::cerr << "parking cell: " 

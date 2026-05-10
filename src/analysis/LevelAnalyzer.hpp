@@ -2,6 +2,8 @@
 #include "analysis/LevelAnalysis.hpp"
 #include "domain/Level.hpp"
 #include "state/State.hpp"
+#include "plan/AgentPlan.hpp"
+#include <vector>
 
 // Converts a raw level grid into reusable topology facts.
 //
@@ -21,4 +23,5 @@
 class LevelAnalyzer {
 public:
     [[nodiscard]] LevelAnalysis analyze(const Level& level, const State& state) const;
+    [[nodiscard]] LevelAnalysis analyze(const Level& level, const State& state, const std::vector<AgentPlan>& initial_agent_plans) const;
 };

@@ -5,6 +5,7 @@
 #include "state/State.hpp"
 #include "tasks/Task.hpp"
 #include "plan/TaskPlan.hpp"
+#include "plan/AgentPlan.hpp"
 
 #include <vector>
 
@@ -41,5 +42,6 @@ struct ScheduledTask {
 // timestep-by-timestep actions for all agents.
 class TaskScheduler {
 public:
+    [[nodiscard]] std::vector<AgentPlan> build_agent_plans(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const;
     [[nodiscard]] Plan build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const;
 };

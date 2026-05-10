@@ -8,9 +8,33 @@ namespace {
 // but also on whether parking there would sit beside goals or chokepoints.
 constexpr int DR[4] = {-1, 1, 0, 0};
 constexpr int DC[4] = {0, 0, -1, 1};
+
+constexpr int kAgentPathCellPenalty = 5000;
+constexpr int kAgentPathExtraVisitPenalty = 250;
+
+int agent_path_penalty(Position p, const std::vector<AgentPlan>& initial_agent_plans) {
+    int visits = 0;
+    for (const AgentPlan& plan : initial_agent_plans) {
+        for (const Position& pos : plan.positions) {
+            if (pos == p) ++visits;
+        }
+    }
+
+    if (visits == 0) return 0;
+    return kAgentPathCellPenalty + (visits - 1) * kAgentPathExtraVisitPenalty;
+}
 }
 
 int ParkingCellAnalyzer::score_parking_cell(Position p, const Level& level, const State& state, const LevelAnalysis& analysis) const {
+    static const std::vector<AgentPlan> kNoInitialAgentPlans;
+    return score_parking_cell(p, level, state, analysis, kNoInitialAgentPlans);
+}
+
+int ParkingCellAnalyzer::score_parking_cell(Position p,
+                                            const Level& level,
+                                            const State& state,
+                                            const LevelAnalysis& analysis,
+                                            const std::vector<AgentPlan>& initial_agent_plans) const {
     // Hard rejection: cells outside the map, walls, occupied cells, and goals
     // are invalid parking spots. Returning the same very negative score keeps
     // them below every usable candidate while preserving a numeric API.
@@ -58,17 +82,31 @@ int ParkingCellAnalyzer::score_parking_cell(Position p, const Level& level, cons
     if (!adjacent_chokepoint) score += 20;
     if (!adjacent_goal) score += 10;
 
+    // Dynamic plan-awareness: a parking cell that lies on one of the already
+    // planned agent trajectories is still legal, but it is less desirable
+    // because parking a blocker there is likely to force CBS-style repair to
+    // add waits or detours for that agent.
+    score -= agent_path_penalty(p, initial_agent_plans);
+
     return score;
 }
 
 std::vector<Position> ParkingCellAnalyzer::find_parking_cells(const Level& level, const State& state, const LevelAnalysis& analysis) const {
+    static const std::vector<AgentPlan> kNoInitialAgentPlans;
+    return find_parking_cells(level, state, analysis, kNoInitialAgentPlans);
+}
+
+std::vector<Position> ParkingCellAnalyzer::find_parking_cells(const Level& level,
+                                                              const State& state,
+                                                              const LevelAnalysis& analysis,
+                                                              const std::vector<AgentPlan>& initial_agent_plans) const {
     // Score every statically free cell produced by LevelAnalyzer. The input list
     // already excludes walls, and score_parking_cell applies dynamic exclusions
     // such as current box occupancy.
     std::vector<std::pair<Position, int>> scored;
     scored.reserve(analysis.free_cells.size());
     for (const Position p : analysis.free_cells) {
-        const int score = score_parking_cell(p, level, state, analysis);
+        const int score = score_parking_cell(p, level, state, analysis, initial_agent_plans);
         std::cerr << "pos: " << p.to_string() << " score: " << score << std::endl;
         if (score > -50000) scored.emplace_back(p, score);
     }

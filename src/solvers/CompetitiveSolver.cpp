@@ -3,7 +3,9 @@
 #include "actions/ActionSemantics.hpp"
 #include "analysis/LevelAnalyzer.hpp"
 #include "hospital/LocalRepair.hpp"
+#include "plan/AgentPlan.hpp"
 #include "plan/PlanConflictRepairer.hpp"
+#include "plan/PlanMerger.hpp"
 #include "solvers/SequentialSolver.hpp"
 #include "tasks/HTNTracePrinter.hpp"
 #include "tasks/TaskGenerator.hpp"
@@ -48,6 +50,29 @@ void apply_prefix(State& state, const Plan& plan, int horizon) {
 // Read the optional environment toggle used while diagnosing HTN task choices.
 // Returning true keeps the solver explainable by default: each wave can print
 // which tasks were generated, how they were scored, and why goals were skipped.
+
+std::vector<AgentPlan> agent_plans_from_plan(const Plan& plan, const State& initial_state) {
+    std::vector<AgentPlan> agent_plans(initial_state.num_agents());
+    for (int agent = 0; agent < initial_state.num_agents(); ++agent) {
+        AgentPlan& agent_plan = agent_plans[static_cast<std::size_t>(agent)];
+        agent_plan.agent = agent;
+        Position cur = initial_state.agent_positions[static_cast<std::size_t>(agent)];
+        agent_plan.positions.push_back(cur);
+
+        for (const JointAction& step : plan.steps) {
+            Action action = Action::noop();
+            if (agent < static_cast<int>(step.actions.size())) {
+                action = step.actions[static_cast<std::size_t>(agent)];
+            }
+            agent_plan.actions.push_back(action);
+            cur = ActionSemantics::compute_effect(cur, action).agent_to;
+            agent_plan.positions.push_back(cur);
+        }
+    }
+
+    return agent_plans;
+}
+
 bool configured_verbose_tasks() {
     if (const char* v = std::getenv("MAPF_VERBOSE_TASKS")) {
         return std::atoi(v) != 0;
@@ -148,7 +173,8 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // Ask the scheduler to turn high-level tasks into a concrete joint plan.
         // Input: current world state plus the candidate tasks. Output: a wave of
         // synchronized actions that can be appended to the final plan.
-        Plan wave = scheduler.build_plan(level, current, tasks);
+        std::vector<AgentPlan> wave_agent_plans = scheduler.build_agent_plans(level, current, tasks);
+        Plan wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
         if (wave.empty()) {
             // An empty wave means the scheduler could not safely reserve paths
             // for the generated tasks. Local repair tries one focused fallback
@@ -189,6 +215,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
                           << repaired_wave.iterations << " steps=" << repaired_wave.plan.steps.size() << '\n';
             }
             wave = repaired_wave.plan;
+            wave_agent_plans = agent_plans_from_plan(wave, current);
         } else if (kVerboseTasks) {
             std::cerr << "[HTN] cbs_style_repair could not prove conflict-free wave; using scheduler wave\n";
         }
