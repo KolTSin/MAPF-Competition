@@ -3,7 +3,7 @@ build/
 cmake-build-*/
 
 # Levels
-*.lvl
+# *.lvl
 
 # Prerequisites
 *.d
