@@ -210,6 +210,49 @@ int main() {
     }
 
     {
+        const std::string level_text = R"LVL(#domain
+hospital
+#levelname
+MAsimple4
+#colors
+blue: 0, A, B
+red: 1, C
+#initial
+++++++
++0ABC++
++1    +
++++++++
+#goal
+++++++
++    ++
++ AB C+
++++++++
+#end
+)LVL";
+        std::istringstream in(level_text);
+        ParsedLevel parsed = LevelParser::parse(in);
+        TaskGenerator generator;
+        std::vector<Task> tasks = generator.generate_delivery_tasks(parsed.level, parsed.initial_state);
+        TaskPrioritizer prio;
+        prio.score(parsed.level, parsed.initial_state, tasks);
+
+        const Task* deliver_a = nullptr;
+        const Task* deliver_b = nullptr;
+        const Task* deliver_c = nullptr;
+        for (const Task& task : tasks) {
+            if (task.type == TaskType::DeliverBoxToGoal && task.box_id == 'A') deliver_a = &task;
+            if (task.type == TaskType::DeliverBoxToGoal && task.box_id == 'B') deliver_b = &task;
+            if (task.type == TaskType::DeliverBoxToGoal && task.box_id == 'C') deliver_c = &task;
+        }
+        assert(deliver_a != nullptr);
+        assert(deliver_b != nullptr);
+        assert(deliver_c != nullptr);
+        assert(deliver_a->priority == 47);
+        assert(deliver_b->priority == 46);
+        assert(deliver_c->priority == 48);
+    }
+
+    {
         Level l;
         l.rows = 5; l.cols = 5;
         l.walls.assign(25, false);
