@@ -7,10 +7,11 @@
 // Greedy CBS-style temporal repair for already-planned joint actions.
 //
 // The high-level solver can first create independent/naive per-agent timelines.
-// This repairer then repeatedly finds the earliest agent-agent conflict and
-// branches on the two involved agents by inserting a single wait into one
-// timeline, keeping the branch that pushes the next conflict furthest into the
-// future. It is intentionally bounded and conservative: if repair cannot prove
+// This repairer then repeatedly finds the earliest conflict and
+// branches on the involved agents by inserting waits or bounded rejoining
+// detours made from any applicable primitive actions, keeping the branch that
+// pushes the next conflict furthest into the future. It is intentionally bounded
+// and conservative: if repair cannot prove
 // that the resulting plan is executable, it returns the original plan so callers
 // can fall back to their existing solver strategy.
 class PlanConflictRepairer {

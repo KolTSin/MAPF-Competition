@@ -12,6 +12,7 @@
 #include "hospital/LocalRepair.hpp"
 #include "plan/ConflictDetector.hpp"
 #include "plan/ReservationTable.hpp"
+#include "plan/PlanConflictRepairer.hpp"
 #include "solvers/CompetitiveSolver.hpp"
 #include "search/heuristics/Heuristic.hpp"
 #include "parser/LevelParser.hpp"
@@ -354,6 +355,42 @@ int main() {
         RepairResult repaired = lr.repair(make_level(), make_state(), dummy, failed);
         assert(repaired.plan.success);
         assert(lr.last_outcome() == RepairStageOutcome::AlternateAgent);
+    }
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 5;
+        l.walls.assign(15, false);
+        l.goals.assign(15, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+
+        State s;
+        s.rows = 3; s.cols = 5;
+        s.agent_positions = {Position{1,1}, Position{1,3}};
+        s.box_pos.assign(15, '\0');
+
+        Plan naive;
+        naive.steps.resize(2);
+        naive.steps[0].actions = {Action::move(Direction::East), Action::noop()};
+        naive.steps[1].actions = {Action::move(Direction::East), Action::noop()};
+        assert(ConflictDetector::has_conflict(naive, s, nullptr));
+
+        PlanConflictRepairer repairer;
+        PlanConflictRepairer::Result repaired = repairer.repair(l, s, naive, 64, 8);
+        assert(repaired.conflict_free);
+        assert(repaired.changed);
+        assert(!ConflictDetector::has_conflict(repaired.plan, s, nullptr));
+
+        bool inserted_move_for_blocker = false;
+        for (const JointAction& step : repaired.plan.steps) {
+            if (step.actions.size() > 1 &&
+                step.actions[1].type == ActionType::Move) {
+                inserted_move_for_blocker = true;
+                break;
+            }
+        }
+        assert(inserted_move_for_blocker);
     }
 
     {
