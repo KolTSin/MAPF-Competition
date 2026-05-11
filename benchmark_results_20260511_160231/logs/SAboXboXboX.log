@@ -1,0 +1,28 @@
+[server][info] Running client on level: ./levels/SAboXboXboX.lvl
+Move(E)
+Move(S)
+Move(S)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(N,N)
+Push(S,E)
+Push(E,E)
+Push(E,N)
+Push(N,N)
+Move(S)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(N,N)
+Push(S,W)
+Push(W,W)
+Push(W,N)
+Push(N,N)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 22.
+[server][info] Time to solve: 0.838 seconds.

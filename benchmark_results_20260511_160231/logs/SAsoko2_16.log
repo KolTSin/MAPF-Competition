@@ -1,0 +1,20 @@
+[server][info] Running client on level: ./levels/SAsoko2_16.lvl
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 14.
+[server][info] Time to solve: 0.033 seconds.

@@ -23,7 +23,7 @@ struct SearchConfig {
     SolverType solver = SolverType::NAIVE;
     std::string heuristic_name = "bgd";
 
-    bool verbose = false;
+    bool verbose = true;
     bool help = false;
 
     // optional extras

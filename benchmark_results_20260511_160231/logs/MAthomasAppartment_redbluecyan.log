@@ -1,0 +1,36 @@
+[server][info] Running client on level: ./levels/MAthomasAppartment_redbluecyan.lvl
+Move(N)|NoOp|NoOp
+Move(N)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(N)|NoOp|NoOp
+Move(N)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(N)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp
+Pull(N,E)|NoOp|NoOp
+Push(S,S)|NoOp|NoOp
+Push(S,E)|NoOp|NoOp
+Push(E,E)|NoOp|NoOp
+Push(E,E)|NoOp|NoOp
+Push(E,E)|NoOp|NoOp
+Push(E,E)|NoOp|NoOp
+Push(E,N)|NoOp|NoOp
+Push(N,N)|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 30.
+[server][info] Time to solve: 7.369 seconds.

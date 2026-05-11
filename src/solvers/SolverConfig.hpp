@@ -1,7 +1,7 @@
 #pragma once
 
 struct SolverConfig {
-    bool debug_htn_trace{false};
+    bool debug_htn_trace{true};
     bool debug_analysis{false};
     int max_replans{256};
     int max_batch_tasks{4};

@@ -1,0 +1,11 @@
+[server][info] Running client on level: ./levels/SAsimple0.lvl
+Move(N)
+Move(N)
+Push(E,S)
+Push(S,S)
+Push(S,W)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 5.
+[server][info] Time to solve: 0.028 seconds.

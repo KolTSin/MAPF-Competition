@@ -1,0 +1,20 @@
+[server][info] Running client on level: ./levels/MAPF02.lvl
+Move(S)|NoOp|NoOp
+Move(S)|NoOp|NoOp
+Move(E)|NoOp|NoOp
+Move(E)|NoOp|NoOp
+Move(E)|NoOp|NoOp
+Move(E)|NoOp|NoOp
+Move(E)|NoOp|NoOp
+Move(E)|NoOp|NoOp
+Move(E)|NoOp|NoOp
+Move(E)|NoOp|NoOp
+Move(E)|NoOp|NoOp
+Move(E)|NoOp|NoOp
+Move(S)|NoOp|NoOp
+Move(S)|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 14.
+[server][info] Time to solve: 0.023 seconds.

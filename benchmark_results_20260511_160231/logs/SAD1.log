@@ -1,0 +1,25 @@
+[server][info] Running client on level: ./levels/SAD1.lvl
+Move(S)
+Move(S)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(S,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 19.
+[server][info] Time to solve: 0.062 seconds.

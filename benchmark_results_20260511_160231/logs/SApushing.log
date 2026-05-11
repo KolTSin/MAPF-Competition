@@ -1,0 +1,27 @@
+[server][info] Running client on level: ./levels/SApushing.lvl
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Pull(S,E)
+Pull(E,S)
+Pull(N,E)
+Push(S,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 21.
+[server][info] Time to solve: 0.050 seconds.
