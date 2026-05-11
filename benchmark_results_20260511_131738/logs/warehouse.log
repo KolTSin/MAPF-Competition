@@ -1,0 +1,42 @@
+[server][info] Running client on level: ./complevels/warehouse.lvl
+NoOp|NoOp|Move(W)|NoOp|NoOp
+NoOp|NoOp|Move(W)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|NoOp
+NoOp|NoOp|Push(S,E)|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp
+NoOp|NoOp|Push(E,N)|NoOp|NoOp
+NoOp|NoOp|Push(N,N)|NoOp|NoOp
+NoOp|NoOp|Push(N,N)|NoOp|NoOp
+NoOp|NoOp|Push(N,N)|NoOp|NoOp
+NoOp|NoOp|Push(N,N)|NoOp|NoOp
+NoOp|NoOp|Push(N,N)|NoOp|NoOp
+NoOp|NoOp|Push(N,N)|NoOp|NoOp
+NoOp|NoOp|Push(N,N)|NoOp|NoOp
+NoOp|NoOp|Push(N,E)|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp
+NoOp|NoOp|Push(E,N)|NoOp|NoOp
+Move(S)|NoOp|NoOp|NoOp|Move(N)
+Move(S)|NoOp|NoOp|NoOp|Move(N)
+Move(S)|NoOp|NoOp|NoOp|Move(E)
+Move(S)|NoOp|NoOp|NoOp|Move(E)
+Move(S)|NoOp|NoOp|NoOp|Move(E)
+Move(S)|NoOp|NoOp|NoOp|Move(E)
+Push(W,W)|NoOp|NoOp|NoOp|Move(E)
+Push(W,S)|NoOp|NoOp|NoOp|Push(E,E)
+Push(S,S)|NoOp|NoOp|NoOp|Push(E,E)
+Push(S,S)|NoOp|NoOp|NoOp|Push(E,S)
+Push(S,S)|NoOp|NoOp|NoOp|Push(S,S)
+Push(S,W)|NoOp|NoOp|NoOp|Push(S,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 36.
+[server][info] Time to solve: 4.177 seconds.

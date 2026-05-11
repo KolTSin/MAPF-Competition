@@ -1,0 +1,40 @@
+[server][info] Running client on level: ./complevels/crayCray.lvl
+NoOp|NoOp|Move(E)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|Move(N)|NoOp|NoOp
+NoOp|NoOp|Move(S)|NoOp|Move(N)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Move(E)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Pull(W,W)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Pull(W,W)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Pull(W,W)|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|Pull(N,W)|NoOp|NoOp
+NoOp|NoOp|Pull(W,W)|NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|NoOp|Pull(W,W)|NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|NoOp|Pull(W,W)|NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|NoOp|Pull(N,W)|NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp
+NoOp|Pull(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Pull(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,W)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 34.
+[server][info] Time to solve: 4.462 seconds.

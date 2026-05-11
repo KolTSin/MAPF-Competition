@@ -1,0 +1,18 @@
+[server][info] Running client on level: ./complevels/noone.lvl
+Move(S)|Move(W)|NoOp
+Push(E,S)|Move(W)|NoOp
+Push(S,S)|Move(W)|NoOp
+Push(S,S)|Move(W)|NoOp
+Push(S,S)|Move(S)|Move(E)
+Move(W)|NoOp|Move(E)
+Move(S)|Move(S)|Move(E)
+Move(S)|Move(W)|Move(E)
+NoOp|NoOp|Move(E)
+NoOp|NoOp|Move(N)
+NoOp|NoOp|Move(E)
+NoOp|NoOp|Move(N)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 12.
+[server][info] Time to solve: 0.108 seconds.
