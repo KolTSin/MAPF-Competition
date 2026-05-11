@@ -130,6 +130,9 @@ bool reachable_without_boxes(const Level& level,
 // Locates a box in the simulated state. If the requested box is the one being
 // moved, the output is parked_at; otherwise the output is its current state cell
 // unless that cell is exactly the vacated moved_from position.
+std::vector<Position> coarse_route(Position from, Position to);
+bool on_future_coarse_route(const Level& level, const State& state, Position p);
+
 Position find_box_after_parking(const State& state, char box, char moved_box, Position moved_from, Position parked_at) {
     if (box == moved_box) return parked_at;
     for (int r = 0; r < state.rows; ++r) {
@@ -157,6 +160,7 @@ bool parking_preserves_future_reachability(const Level& level,
     if (parked_at == moved_from || parked_at == forbidden) return false;
     if (state.has_box(parked_at.row, parked_at.col) && !(parked_at == moved_from)) return false;
     if (level.goal_at(parked_at.row, parked_at.col) != '\0') return false;
+    if (on_future_coarse_route(level, state, parked_at)) return false;
     if (analysis.rows == level.rows && analysis.cols == level.cols && !analysis.cells.empty()) {
         const CellInfo& cell = analysis.at(parked_at);
         if (cell.is_intersection) return false;
