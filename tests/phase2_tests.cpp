@@ -408,9 +408,13 @@ red: 1, C
         rt.reserve_box_path('B', {Position{1,2}}, 0, 20);
 
         AgentPathPlanner planner;
-        TaskPlan blocked = planner.plan(l, s, walk_through_reserved, rt);
-        assert(!blocked.success);
-        assert(blocked.failure_reason == "no_path_for_agent_reposition");
+        TaskPlan rerouted = planner.plan(l, s, walk_through_reserved, rt);
+        assert(rerouted.success);
+        assert((rerouted.agent_plan.positions.front() == Position{1,1}));
+        assert((rerouted.agent_plan.positions.back() == Position{1,3}));
+        for (std::size_t i = 1; i < rerouted.agent_plan.positions.size(); ++i) {
+            assert((rerouted.agent_plan.positions[i] != Position{1,2}));
+        }
     }
 
     {
