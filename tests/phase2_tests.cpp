@@ -419,13 +419,104 @@ red: 1, C
 
     {
         LocalRepair lr;
+        Task delayed_move;
+        delayed_move.task_id = 50;
+        delayed_move.type = TaskType::MoveAgentToGoal;
+        delayed_move.agent_id = 0;
+        delayed_move.goal_pos = Position{1,3};
+
         TaskPlan failed;
         failed.success = false;
-        failed.failure_reason = "stage_ok_1";
-        Task dummy;
-        RepairResult repaired = lr.repair(make_level(), make_state(), dummy, failed);
+        failed.failure_reason = "reserved_start_cell";
+
+        ReservationTable reservations;
+        reservations.reserve_cell(1, 1, 0, 99);
+
+        RepairResult repaired = lr.repair(make_level(), make_state(), delayed_move, failed, reservations, 0);
         assert(repaired.plan.success);
-        assert(lr.last_outcome() == RepairStageOutcome::AlternateAgent);
+        assert(repaired.outcome == RepairStageOutcome::Delay);
+        assert(lr.last_outcome() == RepairStageOutcome::Delay);
+        assert(repaired.reason.find("delay_start_to_t1") != std::string::npos);
+    }
+
+    {
+        Level l;
+        l.rows = 5; l.cols = 5;
+        l.walls.assign(25, false);
+        l.goals.assign(25, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.agent_colors[1] = Color::Blue;
+        l.box_colors['A' - 'A'] = Color::Blue;
+        l.goals[l.index(2,3)] = 'A';
+
+        State s;
+        s.rows = 5; s.cols = 5;
+        s.agent_positions = {Position{1,1}, Position{3,1}};
+        s.box_pos.assign(25, '\0');
+        s.set_box(2,2,'A');
+
+        Task deliver;
+        deliver.task_id = 51;
+        deliver.type = TaskType::DeliverBoxToGoal;
+        deliver.agent_id = 0;
+        deliver.box_id = 'A';
+        deliver.box_pos = Position{2,2};
+        deliver.goal_pos = Position{2,3};
+
+        TaskPlan failed;
+        failed.success = false;
+        failed.failure_reason = "reserved_start_cell";
+
+        ReservationTable reservations;
+        for (int t = 0; t <= 8; ++t) reservations.reserve_cell(1, 1, t, 99);
+
+        LocalRepair lr;
+        RepairResult repaired = lr.repair(l, s, deliver, failed, reservations, 0);
+        assert(repaired.plan.success);
+        assert(repaired.outcome == RepairStageOutcome::AlternateAgent);
+        assert(repaired.plan.agent_id == 1);
+        assert(repaired.reason.find("alternate_agent=1") != std::string::npos);
+    }
+
+    {
+        Level l;
+        l.rows = 5; l.cols = 5;
+        l.walls.assign(25, false);
+        l.goals.assign(25, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.box_colors['A' - 'A'] = Color::Blue;
+        l.walls[l.index(0,0)] = true;
+
+        State s;
+        s.rows = 5; s.cols = 5;
+        s.agent_positions = {Position{2,1}};
+        s.box_pos.assign(25, '\0');
+        s.set_box(2,2,'A');
+
+        Task park_blocker;
+        park_blocker.task_id = 52;
+        park_blocker.type = TaskType::MoveBlockingBoxToParking;
+        park_blocker.agent_id = 0;
+        park_blocker.box_id = 'A';
+        park_blocker.box_pos = Position{2,2};
+        park_blocker.goal_pos = Position{0,0};
+        park_blocker.parking_pos = Position{0,0};
+
+        TaskPlan failed;
+        failed.success = false;
+        failed.failure_reason = "blocked_parking_target";
+
+        LocalRepair lr;
+        RepairResult repaired = lr.repair(l, s, park_blocker, failed);
+        assert(repaired.plan.success);
+        assert(repaired.outcome == RepairStageOutcome::AlternateParking);
+        assert(!repaired.plan.box_trajectory.empty());
+        assert(!(repaired.plan.box_trajectory.back() == Position{0,0}));
+        assert(repaired.reason.find("alternate_parking=") != std::string::npos);
     }
 
     {
