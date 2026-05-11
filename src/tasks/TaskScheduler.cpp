@@ -1,6 +1,8 @@
 #include "tasks/TaskScheduler.hpp"
 
 #include "actions/ActionSemantics.hpp"
+#include "analysis/LevelAnalyzer.hpp"
+#include "analysis/ParkingCellAnalyzer.hpp"
 #include "hospital/AgentPathPlanner.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
 #include "plan/ConflictDetector.hpp"
@@ -12,6 +14,7 @@
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <limits>
 #include <optional>
 #include <unordered_map>
 #include <unordered_set>
@@ -68,6 +71,95 @@ bool is_empty_plan_valid(const Task& task, const State& state) {
         return task.agent_id >= 0 && task.agent_id < state.num_agents() && state.agent_positions[task.agent_id] == task.goal_pos;
     }
     return true;
+}
+
+int agent_at_position(const State& state, Position pos, int ignored_agent = -1) {
+    for (int agent = 0; agent < state.num_agents(); ++agent) {
+        if (agent == ignored_agent) continue;
+        if (state.agent_positions[static_cast<std::size_t>(agent)] == pos) return agent;
+    }
+    return -1;
+}
+
+bool is_free_non_goal_agent_parking_cell(const Level& level, const State& state, Position pos, int moving_agent) {
+    if (!level.in_bounds(pos.row, pos.col) || level.is_wall(pos.row, pos.col)) return false;
+    if (level.goal_at(pos.row, pos.col) != '\0') return false;
+    if (state.has_box(pos.row, pos.col)) return false;
+    return agent_at_position(state, pos, moving_agent) == -1;
+}
+
+std::vector<Position> parking_candidates_for_agent(const Level& level, const State& state, int moving_agent) {
+    LevelAnalyzer analyzer;
+    const LevelAnalysis analysis = analyzer.analyze(level, state);
+    ParkingCellAnalyzer parking_analyzer;
+    std::vector<Position> candidates = parking_analyzer.find_parking_cells(level, state, analysis);
+
+    for (const Position pos : analysis.free_cells) {
+        if (std::find(candidates.begin(), candidates.end(), pos) != candidates.end()) continue;
+        candidates.push_back(pos);
+    }
+
+    const Position start = state.agent_positions[static_cast<std::size_t>(moving_agent)];
+    candidates.erase(std::remove_if(candidates.begin(), candidates.end(), [&](Position pos) {
+        return pos == start || !is_free_non_goal_agent_parking_cell(level, state, pos, moving_agent);
+    }), candidates.end());
+
+    std::stable_sort(candidates.begin(), candidates.end(), [&](Position a, Position b) {
+        const int score_a = analysis.at(a).parking_score;
+        const int score_b = analysis.at(b).parking_score;
+        if (score_a != score_b) return score_a > score_b;
+        return manhattan(start, a) < manhattan(start, b);
+    });
+    return candidates;
+}
+
+TaskPlan plan_agent_parking(const Level& level,
+                            const State& state,
+                            int moving_agent,
+                            const ReservationTable& reservations,
+                            int start_time,
+                            int task_id,
+                            Position blocked_goal) {
+    AgentPathPlanner agent_planner;
+    TaskPlan best_failure;
+    best_failure.task_id = task_id;
+    best_failure.task_type = TaskType::ParkAgentSafely;
+    best_failure.agent_id = moving_agent;
+    best_failure.failure_reason = "no_safe_agent_parking_cell";
+
+    for (const Position candidate : parking_candidates_for_agent(level, state, moving_agent)) {
+        Task park;
+        park.type = TaskType::ParkAgentSafely;
+        park.task_id = task_id;
+        park.agent_id = moving_agent;
+        park.goal_pos = candidate;
+        park.parking_pos = candidate;
+        park.box_pos = state.agent_positions[static_cast<std::size_t>(moving_agent)];
+        park.priority = std::numeric_limits<int>::max() / 4;
+        park.debug_label = "clear_agent_from_goal_(" + std::to_string(blocked_goal.row) + "," + std::to_string(blocked_goal.col) + ")";
+
+        TaskPlan plan = agent_planner.plan(level, state, park, reservations, start_time);
+        if (plan.success && !plan.agent_plan.actions.empty()) return plan;
+        if (!plan.failure_reason.empty()) best_failure.failure_reason = plan.failure_reason;
+    }
+
+    return best_failure;
+}
+
+void replay_task_plan_into_state(State& simulated_state, const Task& task, const TaskPlan& plan) {
+    Position cur = simulated_state.agent_positions[static_cast<std::size_t>(task.agent_id)];
+    for (const Action& a : plan.agent_plan.actions) {
+        const ActionEffect eff = ActionSemantics::compute_effect(cur, a);
+        cur = eff.agent_to;
+        if (eff.moves_box && simulated_state.in_bounds(eff.box_from.row, eff.box_from.col) && simulated_state.in_bounds(eff.box_to.row, eff.box_to.col)) {
+            const char moved = simulated_state.box_at(eff.box_from.row, eff.box_from.col);
+            if (moved != '\0') {
+                simulated_state.set_box(eff.box_from.row, eff.box_from.col, '\0');
+                simulated_state.set_box(eff.box_to.row, eff.box_to.col, moved);
+            }
+        }
+    }
+    simulated_state.agent_positions[static_cast<std::size_t>(task.agent_id)] = cur;
 }
 
 std::vector<AgentPlan> expand_scheduled_tasks(const State& initial_state, const std::vector<ScheduledTask>& scheduled) {
@@ -247,6 +339,7 @@ std::vector<ScheduledTask> schedule_once(
     std::unordered_set<int> completed;
     std::unordered_map<int, int> completion_time;
     std::vector<int> agent_available(initial_state.num_agents(), 0);
+    int next_dynamic_task_id = -1;
 
     // Repeatedly schedule every currently ready task that can be planned.  The
     // loop stops when a full pass cannot add anything, which means all remaining
@@ -296,6 +389,54 @@ std::vector<ScheduledTask> schedule_once(
                 }
             }
 
+            // If another agent is currently parked on this delivery's goal,
+            // synthesize and schedule a just-in-time ParkAgentSafely task for
+            // that blocker before attempting the box planner.  This turns the
+            // detected dynamic obstruction into explicit work instead of letting
+            // the following delivery fail against a static occupied goal cell.
+            if (chosen_task.type == TaskType::DeliverBoxToGoal) {
+                const int blocking_agent = agent_at_position(simulated_state, chosen_task.goal_pos, chosen_task.agent_id);
+                if (blocking_agent >= 0) {
+                    const int parking_start = std::max(agent_available[static_cast<std::size_t>(blocking_agent)], dep_time);
+                    const int parking_task_id = next_dynamic_task_id--;
+                    TaskPlan parking_plan = plan_agent_parking(level,
+                                                               simulated_state,
+                                                               blocking_agent,
+                                                               reservations,
+                                                               parking_start,
+                                                               parking_task_id,
+                                                               chosen_task.goal_pos);
+                    if (parking_plan.success) {
+                        Task parking_task;
+                        parking_task.type = TaskType::ParkAgentSafely;
+                        parking_task.task_id = parking_task_id;
+                        parking_task.agent_id = blocking_agent;
+                        parking_task.goal_pos = parking_plan.agent_plan.positions.back();
+                        parking_task.parking_pos = parking_task.goal_pos;
+                        parking_task.box_pos = simulated_state.agent_positions[static_cast<std::size_t>(blocking_agent)];
+                        parking_task.priority = std::numeric_limits<int>::max() / 4;
+                        parking_task.unblocks_box_id = chosen_task.box_id;
+                        parking_task.debug_label = "dynamic_goal_agent_blocker_for_" + std::string(1, chosen_task.box_id);
+
+                        const int parking_end = parking_start + static_cast<int>(parking_plan.agent_plan.actions.size());
+                        scheduled.push_back(ScheduledTask{parking_task, parking_plan, parking_start, parking_end});
+                        reservations.reserve_path(parking_plan.agent_plan, parking_start);
+                        replay_task_plan_into_state(simulated_state, parking_task, parking_plan);
+                        agent_available[static_cast<std::size_t>(blocking_agent)] = parking_end;
+                        dep_time = std::max(dep_time, parking_end);
+                        progress = true;
+                        std::cerr << "[HTN] dynamic_agent_goal_blocker agent=" << blocking_agent
+                                  << " goal=(" << chosen_task.goal_pos.row << "," << chosen_task.goal_pos.col << ")"
+                                  << " park=(" << parking_task.parking_pos.row << "," << parking_task.parking_pos.col << ")"
+                                  << " unblock=" << chosen_task.box_id << '\n';
+                    } else {
+                        std::cerr << "[HTN] dynamic_agent_goal_blocker_failed agent=" << blocking_agent
+                                  << " goal=(" << chosen_task.goal_pos.row << "," << chosen_task.goal_pos.col << ")"
+                                  << " reason=" << parking_plan.failure_reason << '\n';
+                    }
+                }
+            }
+
             // Try legal candidate agents in preference order.  The first
             // successful low-level plan becomes the schedule entry for this
             // high-level task; failed candidates leave the task available for a
@@ -303,7 +444,7 @@ std::vector<ScheduledTask> schedule_once(
             TaskPlan plan;
             int chosen_start = 0;
             bool planned = false;
-            const std::vector<int> candidates = candidate_agents_for_task(level, simulated_state, task);
+            const std::vector<int> candidates = candidate_agents_for_task(level, simulated_state, chosen_task);
             for (int candidate_agent : candidates) {
                 if (candidate_agent < 0 || candidate_agent >= initial_state.num_agents()) continue;
                 if (used_agents.count(candidate_agent)) continue;
@@ -345,19 +486,7 @@ std::vector<ScheduledTask> schedule_once(
             // updates the scheduler's working copy of agent and box positions so
             // the next task receives intuitive inputs: the world after all work
             // accepted so far has completed.
-            Position cur = simulated_state.agent_positions[chosen_task.agent_id];
-            for (const Action& a : plan.agent_plan.actions) {
-                const ActionEffect eff = ActionSemantics::compute_effect(cur, a);
-                cur = eff.agent_to;
-                if (eff.moves_box && simulated_state.in_bounds(eff.box_from.row, eff.box_from.col) && simulated_state.in_bounds(eff.box_to.row, eff.box_to.col)) {
-                    const char moved = simulated_state.box_at(eff.box_from.row, eff.box_from.col);
-                    if (moved != '\0') {
-                        simulated_state.set_box(eff.box_from.row, eff.box_from.col, '\0');
-                        simulated_state.set_box(eff.box_to.row, eff.box_to.col, moved);
-                    }
-                }
-            }
-            simulated_state.agent_positions[chosen_task.agent_id] = cur;
+            replay_task_plan_into_state(simulated_state, chosen_task, plan);
 
             // Mark the task as finished in both the dependency graph and the
             // per-agent timeline.  These values become inputs to future start
