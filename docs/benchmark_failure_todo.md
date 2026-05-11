@@ -83,7 +83,7 @@ This checklist turns the current benchmark results in `benchmark_results_2026051
 
 ## 4. Improve low-level box-planner failure reporting
 
-- [ ] Split `no_path_for_single_box` into specific failure causes.
+- [x] Split `no_path_for_single_box` into specific failure causes.
 
 **Current signal**
 
