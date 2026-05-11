@@ -1,0 +1,101 @@
+[server][info] Running client on level: ./levels/SAtowersOfSaigon05.lvl
+[HTN] competitive_wave tasks=9 elapsed=1.556e-06s
+[HTN] task_batch size=9
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(6,3) agent=0 prio=42
+[HTN] Task#7 MoveBlockingBoxToParking box=A parking=(6,3) agent=0 prio=41
+[HTN] Task#6 MoveBlockingBoxToParking box=B parking=(6,3) agent=0 prio=40
+[HTN] Task#5 MoveBlockingBoxToParking box=D parking=(6,3) agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=38
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=35
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=34
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=33
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+box planning for task: 5 and assigned agent: 0
+success: true reason: 
+box planning for task: 6 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] competitive_wave tasks=9 elapsed=0.132861s
+[HTN] task_batch size=9
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=43
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(1,4) agent=0 prio=40
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=39
+[HTN] Task#6 MoveBlockingBoxToParking box=A parking=(1,4) agent=0 prio=39
+[HTN] Task#8 MoveBlockingBoxToParking box=D parking=(1,4) agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=38
+[HTN] Task#7 MoveBlockingBoxToParking box=C parking=(1,4) agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+box planning for task: 5 and assigned agent: 0
+success: true reason: 
+box planning for task: 6 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] competitive_wave tasks=8 elapsed=0.278993s
+[HTN] task_batch size=8
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=43
+[HTN] Task#5 MoveBlockingBoxToParking box=A parking=(3,3) agent=0 prio=42
+[HTN] Task#7 MoveBlockingBoxToParking box=D parking=(3,3) agent=0 prio=42
+[HTN] Task#6 MoveBlockingBoxToParking box=C parking=(3,3) agent=0 prio=41
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=39
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=35
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=34
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=33
+box planning for task: 5 and assigned agent: 0
+success: true reason: 
+box planning for task: 6 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] competitive_wave tasks=8 elapsed=0.315994s
+[HTN] task_batch size=8
+[HTN] Task#7 MoveBlockingBoxToParking box=D parking=(5,3) agent=0 prio=44
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=43
+[HTN] Task#5 MoveBlockingBoxToParking box=A parking=(5,3) agent=0 prio=43
+[HTN] Task#6 MoveBlockingBoxToParking box=C parking=(5,3) agent=0 prio=43
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=40
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+box planning for task: 5 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+Move(W)
+Move(W)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Push(W,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(S,E)
+Push(N,E)
+Move(W)
+Move(W)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(S,E)
+Pull(S,S)
+Pull(S,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 33.
+[server][info] Time to solve: 0.463 seconds.

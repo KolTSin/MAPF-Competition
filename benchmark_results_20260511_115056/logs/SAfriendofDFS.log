@@ -1,0 +1,19 @@
+[server][info] Running client on level: ./levels/SAfriendofDFS.lvl
+[HTN] competitive_wave tasks=4 elapsed=2.947e-06s
+[HTN] task_batch size=4
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=43
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=43
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+box planning for task: 0 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

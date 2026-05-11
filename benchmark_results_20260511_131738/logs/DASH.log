@@ -1,0 +1,12 @@
+[server][info] Running client on level: ./complevels/DASH.lvl
+Argument/config error: Goal grid wall layout must match initial grid
+Usage: searchclient [options]
+  --solver <bfs|dfs|astar|greedy|spacetime_astar>
+  --heuristic <none|goal_count|agent_goal_distance|box_goal_distance>
+  --verbose
+  --help
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

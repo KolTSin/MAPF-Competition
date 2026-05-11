@@ -1,0 +1,24 @@
+[server][info] Running client on level: ./levels/SAsokobanLevel96.lvl
+[HTN] competitive_wave tasks=8 elapsed=2.618e-06s
+[HTN] task_batch size=8
+[HTN] Task#0 DeliverBoxToGoal box=S goal=S agent=0 prio=29
+[HTN] Task#1 DeliverBoxToGoal box=S goal=S agent=0 prio=27
+[HTN] Task#6 DeliverBoxToGoal box=S goal=S agent=0 prio=27
+[HTN] Task#2 DeliverBoxToGoal box=S goal=S agent=0 prio=25
+[HTN] Task#3 DeliverBoxToGoal box=S goal=S agent=0 prio=23
+[HTN] Task#4 DeliverBoxToGoal box=S goal=S agent=0 prio=23
+[HTN] Task#5 DeliverBoxToGoal box=S goal=S agent=0 prio=21
+[HTN] Task#7 DeliverBoxToGoal box=S goal=S agent=0 prio=21
+box planning for task: 0 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

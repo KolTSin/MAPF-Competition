@@ -1,0 +1,69 @@
+[server][info] Running client on level: ./levels/SAWatsOn.lvl
+[HTN] competitive_wave tasks=53 elapsed=3.205e-06s
+[HTN] task_batch size=53
+[HTN] Task#49 MoveBlockingBoxToParking box=C parking=(19,0) agent=0 prio=35
+[HTN] Task#12 DeliverBoxToGoal box=C goal=C agent=0 prio=33
+[HTN] Task#50 MoveBlockingBoxToParking box=A parking=(19,0) agent=0 prio=33
+[HTN] Task#10 DeliverBoxToGoal box=C goal=C agent=0 prio=31
+[HTN] Task#13 DeliverBoxToGoal box=C goal=C agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=C goal=C agent=0 prio=29
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#9 DeliverBoxToGoal box=C goal=C agent=0 prio=29
+[HTN] Task#14 DeliverBoxToGoal box=C goal=C agent=0 prio=29
+[HTN] Task#51 MoveBlockingBoxToParking box=D parking=(19,0) agent=0 prio=28
+[HTN] Task#5 DeliverBoxToGoal box=C goal=C agent=0 prio=27
+[HTN] Task#15 DeliverBoxToGoal box=C goal=C agent=0 prio=27
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=25
+[HTN] Task#16 DeliverBoxToGoal box=C goal=C agent=0 prio=25
+[HTN] Task#52 MoveBlockingBoxToParking box=B parking=(19,0) agent=0 prio=25
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=23
+[HTN] Task#11 DeliverBoxToGoal box=C goal=C agent=0 prio=23
+[HTN] Task#30 DeliverBoxToGoal box=D goal=D agent=0 prio=23
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=21
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=19
+[HTN] Task#6 DeliverBoxToGoal box=C goal=C agent=0 prio=19
+[HTN] Task#27 DeliverBoxToGoal box=B goal=B agent=0 prio=19
+[HTN] Task#39 DeliverBoxToGoal box=D goal=D agent=0 prio=19
+[HTN] Task#4 DeliverBoxToGoal box=C goal=C agent=0 prio=17
+[HTN] Task#28 DeliverBoxToGoal box=B goal=B agent=0 prio=17
+[HTN] Task#32 DeliverBoxToGoal box=B goal=B agent=0 prio=17
+[HTN] Task#17 DeliverBoxToGoal box=D goal=D agent=0 prio=15
+[HTN] Task#29 DeliverBoxToGoal box=B goal=B agent=0 prio=15
+[HTN] Task#36 DeliverBoxToGoal box=B goal=B agent=0 prio=15
+[HTN] Task#18 DeliverBoxToGoal box=D goal=D agent=0 prio=13
+[HTN] Task#24 DeliverBoxToGoal box=D goal=D agent=0 prio=13
+[HTN] Task#33 DeliverBoxToGoal box=B goal=B agent=0 prio=13
+[HTN] Task#34 DeliverBoxToGoal box=D goal=D agent=0 prio=13
+[HTN] Task#37 DeliverBoxToGoal box=B goal=B agent=0 prio=13
+[HTN] Task#19 DeliverBoxToGoal box=D goal=D agent=0 prio=11
+[HTN] Task#26 DeliverBoxToGoal box=D goal=D agent=0 prio=11
+[HTN] Task#38 DeliverBoxToGoal box=B goal=B agent=0 prio=11
+[HTN] Task#20 DeliverBoxToGoal box=D goal=D agent=0 prio=9
+[HTN] Task#31 DeliverBoxToGoal box=D goal=D agent=0 prio=9
+[HTN] Task#21 DeliverBoxToGoal box=D goal=D agent=0 prio=7
+[HTN] Task#35 DeliverBoxToGoal box=D goal=D agent=0 prio=7
+[HTN] Task#22 DeliverBoxToGoal box=D goal=D agent=0 prio=5
+[HTN] Task#40 DeliverBoxToGoal box=D goal=D agent=0 prio=5
+[HTN] Task#23 DeliverBoxToGoal box=D goal=D agent=0 prio=3
+[HTN] Task#42 DeliverBoxToGoal box=D goal=D agent=0 prio=3
+[HTN] Task#25 DeliverBoxToGoal box=D goal=D agent=0 prio=1
+[HTN] Task#43 DeliverBoxToGoal box=D goal=D agent=0 prio=1
+[HTN] Task#44 DeliverBoxToGoal box=D goal=D agent=0 prio=-1
+[HTN] Task#45 DeliverBoxToGoal box=D goal=D agent=0 prio=-3
+[HTN] Task#46 DeliverBoxToGoal box=D goal=D agent=0 prio=-5
+[HTN] Task#41 DeliverBoxToGoal box=D goal=D agent=0 prio=-7
+[HTN] Task#47 DeliverBoxToGoal box=D goal=D agent=0 prio=-7
+[HTN] Task#48 DeliverBoxToGoal box=D goal=D agent=0 prio=-9
+box planning for task: 49 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

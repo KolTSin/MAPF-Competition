@@ -1,0 +1,56 @@
+[server][info] Running client on level: ./levels/SAOptimal.lvl
+[HTN] competitive_wave tasks=42 elapsed=7.937e-06s
+[HTN] task_batch size=42
+[HTN] Task#26 MoveBlockingBoxToParking box=X parking=(5,36) agent=0 prio=42
+[HTN] Task#37 MoveBlockingBoxToParking box=S parking=(3,33) agent=0 prio=41
+[HTN] Task#33 MoveBlockingBoxToParking box=A parking=(3,33) agent=0 prio=36
+[HTN] Task#28 MoveBlockingBoxToParking box=B parking=(3,33) agent=0 prio=32
+[HTN] Task#25 MoveBlockingBoxToParking box=U parking=(3,33) agent=0 prio=31
+[HTN] Task#29 MoveBlockingBoxToParking box=P parking=(3,33) agent=0 prio=31
+[HTN] Task#30 MoveBlockingBoxToParking box=F parking=(3,33) agent=0 prio=27
+[HTN] Task#36 MoveBlockingBoxToParking box=J parking=(3,33) agent=0 prio=24
+[HTN] Task#24 MoveBlockingBoxToParking box=X parking=(3,33) agent=0 prio=23
+[HTN] Task#31 MoveBlockingBoxToParking box=C parking=(3,33) agent=0 prio=23
+[HTN] Task#39 MoveBlockingBoxToParking box=I parking=(3,33) agent=0 prio=22
+[HTN] Task#16 DeliverBoxToGoal box=R goal=R agent=0 prio=21
+[HTN] Task#32 MoveBlockingBoxToParking box=K parking=(3,33) agent=0 prio=21
+[HTN] Task#38 MoveBlockingBoxToParking box=T parking=(3,33) agent=0 prio=21
+[HTN] Task#35 MoveBlockingBoxToParking box=L parking=(3,33) agent=0 prio=20
+[HTN] Task#10 DeliverBoxToGoal box=B goal=B agent=0 prio=18
+[HTN] Task#34 MoveBlockingBoxToParking box=M parking=(3,33) agent=0 prio=18
+[HTN] Task#40 MoveBlockingBoxToParking box=H parking=(3,33) agent=0 prio=18
+[HTN] Task#21 MoveBlockingBoxToParking box=W parking=(3,33) agent=0 prio=17
+[HTN] Task#8 DeliverBoxToGoal box=I goal=I agent=0 prio=16
+[HTN] Task#12 DeliverBoxToGoal box=J goal=J agent=0 prio=16
+[HTN] Task#20 MoveBlockingBoxToParking box=W parking=(3,33) agent=0 prio=16
+[HTN] Task#23 MoveBlockingBoxToParking box=W parking=(3,33) agent=0 prio=16
+[HTN] Task#27 MoveBlockingBoxToParking box=Q parking=(3,33) agent=0 prio=16
+[HTN] Task#22 MoveBlockingBoxToParking box=W parking=(3,33) agent=0 prio=15
+[HTN] Task#41 MoveBlockingBoxToParking box=R parking=(3,33) agent=0 prio=15
+[HTN] Task#0 DeliverBoxToGoal box=M goal=M agent=0 prio=14
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=12
+[HTN] Task#7 DeliverBoxToGoal box=D goal=D agent=0 prio=12
+[HTN] Task#4 DeliverBoxToGoal box=H goal=H agent=0 prio=10
+[HTN] Task#19 DeliverBoxToGoal box=T goal=T agent=0 prio=9
+[HTN] Task#13 DeliverBoxToGoal box=Q goal=Q agent=0 prio=8
+[HTN] Task#17 DeliverBoxToGoal box=L goal=L agent=0 prio=8
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=5
+[HTN] Task#15 DeliverBoxToGoal box=K goal=K agent=0 prio=3
+[HTN] Task#11 DeliverBoxToGoal box=E goal=E agent=0 prio=1
+[HTN] Task#1 DeliverBoxToGoal box=G goal=G agent=0 prio=-5
+[HTN] Task#14 DeliverBoxToGoal box=F goal=F agent=0 prio=-5
+[HTN] Task#5 DeliverBoxToGoal box=O goal=O agent=0 prio=-8
+[HTN] Task#18 DeliverBoxToGoal box=S goal=S agent=0 prio=-13
+[HTN] Task#9 DeliverBoxToGoal box=P goal=P agent=0 prio=-19
+[HTN] Task#2 DeliverBoxToGoal box=N goal=N agent=0 prio=-25
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

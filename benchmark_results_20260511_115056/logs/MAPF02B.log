@@ -1,0 +1,4167 @@
+[server][info] Running client on level: ./levels/MAPF02B.lvl
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=5.596e-06s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=40
+[HTN] Task#1 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=37
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-4 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=0.457013s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=B parking=(5,9) agent=0 prio=41
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(5,9) agent=0 prio=39
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=0.848507s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=37
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=1.25189s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=1.64763s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=2.06891s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=2.48752s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=2.89052s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=3.25521s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=3.66689s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=4.05954s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=4.44574s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=4.84734s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=5.24842s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=5.64197s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=6.03238s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=6.45139s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=6.84796s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=7.23616s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=7.63785s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=8.0373s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=8.46516s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=8.87533s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=9.27934s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=9.65883s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=10.0701s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=10.4497s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=10.8609s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=11.2495s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=11.6737s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=12.0696s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=12.4527s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=12.8325s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=13.2583s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=13.629s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=14.0227s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=14.3914s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=14.8271s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=15.2737s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=15.7377s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=16.1811s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=16.6193s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=17.0497s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=17.5174s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=17.9655s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=18.4298s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=18.9021s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=19.3661s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=19.8124s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=20.3031s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=20.7575s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=21.2162s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=21.6696s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=22.0989s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=22.5185s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=22.9604s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=23.4256s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=23.8626s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=24.3184s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=24.7802s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=25.2387s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=25.7064s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=26.1514s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=26.6147s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=27.0504s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=27.4986s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=27.9403s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=28.3632s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=28.802s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=29.2327s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=29.6907s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=30.1551s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=30.6303s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=31.0976s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=31.5167s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=31.9235s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=32.3571s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=32.8128s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=33.2497s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=33.6568s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=34.1022s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=34.5371s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=35.0077s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=35.4391s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=35.8532s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=36.2996s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=36.7426s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=37.1651s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=37.622s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=38.0661s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=38.5283s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=38.9335s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=39.364s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=39.833s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=40.2851s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=40.7435s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=41.2173s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=41.703s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=42.1905s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=42.7286s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=43.2001s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=43.6914s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=44.1655s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=44.6692s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=45.1594s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=45.6487s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=46.1013s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=46.5739s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=47.0723s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=47.5811s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=48.0333s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=48.5354s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=49.009s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=49.4948s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=49.9599s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=50.4302s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=50.9479s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=51.4582s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=51.9639s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=52.4013s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=52.8543s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=53.3433s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=53.7987s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=54.2489s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=54.7152s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=55.1705s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=55.6563s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=56.1653s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=56.6229s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=57.053s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=57.5091s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=57.9535s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=58.4402s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=58.9037s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=59.3544s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=59.862s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=60.4286s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=60.8875s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=61.3363s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=61.8145s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=62.2641s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=62.753s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=63.2184s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=63.6972s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=64.1944s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=64.6665s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=65.1184s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=65.5819s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=66.0437s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=66.5065s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=66.9827s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=67.4689s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=67.9898s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=68.4795s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=68.9544s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=69.4851s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=69.9806s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=70.4972s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=70.9866s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=71.5192s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=72.0065s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=72.4994s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=72.9926s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=73.5064s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=74.0014s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=74.5034s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=74.9502s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=75.4476s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=75.9483s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=76.4119s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=76.8674s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=77.3702s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=77.8196s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=78.3022s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=78.7689s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=79.2372s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=79.7115s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=80.1831s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=80.6203s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=81.1153s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=81.5512s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=82.0246s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=82.4937s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=82.9878s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=83.4403s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=83.8609s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=84.3389s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=84.7845s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=85.2586s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=85.749s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=86.1894s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=86.6323s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=87.0713s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=87.5457s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=88.0233s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=88.4955s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=88.9116s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=89.442s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=89.9275s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=90.4317s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=90.8917s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=91.3785s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=91.8735s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=92.3681s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=92.8517s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=93.3523s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=93.8434s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=94.3285s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=94.8228s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=95.339s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=95.8698s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=96.451s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=96.9545s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=97.4704s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=97.9598s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=98.5001s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=98.9973s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=99.5035s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=99.9999s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=100.498s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=100.994s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=101.484s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=101.963s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=102.447s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=102.877s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=103.355s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=103.793s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=104.238s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=104.725s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=105.184s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=105.653s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=106.142s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=106.659s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=107.175s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=107.688s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=108.24s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=108.762s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=109.275s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=109.741s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=110.234s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=110.723s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=111.186s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=111.633s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=112.112s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=112.579s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=113.038s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=113.484s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=113.951s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=114.425s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=114.904s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=115.36s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=115.832s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=116.294s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=116.771s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=117.246s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=117.734s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=118.2s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=118.728s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=119.257s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=119.754s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=120.222s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=120.695s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=121.19s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=121.683s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=122.144s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=122.66s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=123.119s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=123.606s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=124.106s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=124.548s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=125.008s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=125.469s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=125.968s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=126.6s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=127.232s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=127.84s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=128.414s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=128.984s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=129.493s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=130.015s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=130.512s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=130.981s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=131.483s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=131.993s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=132.484s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=132.982s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=133.461s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=133.966s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=134.435s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=134.933s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=135.412s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=135.885s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=136.377s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=136.848s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=137.34s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=137.868s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=138.343s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=138.861s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=139.374s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=139.796s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=140.289s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=140.795s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=141.266s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=141.759s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=142.25s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=142.766s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=143.262s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=143.739s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=144.219s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=144.705s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=145.137s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=145.578s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=146.039s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=146.536s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=147.025s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=147.49s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=147.94s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=148.405s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=148.885s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=149.306s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=149.697s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=150.131s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=150.565s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=151.017s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=151.474s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=151.904s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=152.322s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=152.748s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=153.194s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=153.657s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=154.112s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=154.563s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=155.008s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=155.463s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=155.886s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=156.355s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=156.825s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=157.321s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=157.787s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=158.217s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=158.651s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=159.088s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=159.516s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=159.948s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=160.396s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=160.809s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=161.214s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=161.607s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=162.035s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=162.502s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=162.957s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=163.397s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=163.795s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=164.259s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=164.674s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=165.127s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=165.568s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=166.044s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=166.459s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=166.897s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=167.341s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=167.837s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=168.244s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=168.677s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=169.198s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=169.671s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=170.129s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=170.566s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=170.998s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=171.475s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=171.938s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=172.374s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=172.825s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=173.269s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=173.692s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=174.194s
+[HTN] task_batch size=3
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=35
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=5 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+starting level analysis
+level analysis finished
+[HTN] competitive_wave tasks=3 elapsed=174.632s
+[HTN] task_batch size=3
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(1,11) agent=0 prio=39
+[HTN] Task#0 MoveBlockingBoxToParking box=B parking=(1,11) agent=0 prio=35
+[HTN] Task#2 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+Move(S)
+Move(S)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(S)
+Move(S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 14.
+[server][info] Time to solve: 176.669 seconds.

@@ -1,0 +1,32 @@
+[server][info] Running client on level: ./levels/SAD1.lvl
+[HTN] competitive_wave tasks=1 elapsed=2.556e-06s
+[HTN] task_batch size=1
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+[HTN] competitive_wave tasks=0 elapsed=0.0111797s
+[HTN] task_batch size=0
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(S)
+Move(S)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(S,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 19.
+[server][info] Time to solve: 0.032 seconds.

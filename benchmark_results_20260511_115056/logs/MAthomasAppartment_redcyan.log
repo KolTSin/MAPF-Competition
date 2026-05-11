@@ -1,0 +1,26 @@
+[server][info] Running client on level: ./levels/MAthomasAppartment_redcyan.lvl
+[HTN] competitive_wave tasks=10 elapsed=2.312e-06s
+[HTN] task_batch size=10
+[HTN] Task#9 MoveBlockingBoxToParking box=H parking=(2,25) agent=1 prio=25
+[HTN] Task#8 MoveBlockingBoxToParking box=B parking=(2,25) agent=0 prio=20
+[HTN] Task#4 DeliverBoxToGoal box=J goal=J agent=1 prio=15
+[HTN] Task#2 DeliverBoxToGoal box=H goal=H agent=1 prio=1
+[HTN] Task#3 DeliverBoxToGoal box=I goal=I agent=1 prio=-2
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=-15
+[HTN] Task#5 DeliverBoxToGoal box=K goal=K agent=1 prio=-16
+[HTN] Task#6 DeliverBoxToGoal box=L goal=L agent=1 prio=-17
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=-29
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=-35
+box planning for task: 8 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

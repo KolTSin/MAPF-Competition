@@ -1,0 +1,128 @@
+[server][info] Running client on level: ./levels/MAthomasAppartment_redbluepurple.lvl
+[HTN] competitive_wave tasks=14 elapsed=7.636e-06s
+[HTN] task_batch size=14
+[HTN] Task#2 DeliverBoxToGoal box=F goal=F agent=1 prio=44
+[HTN] Task#1 DeliverBoxToGoal box=E goal=E agent=1 prio=41
+[HTN] Task#0 DeliverBoxToGoal box=D goal=D agent=1 prio=36
+[HTN] Task#13 MoveBlockingBoxToParking box=B parking=(14,3) agent=0 prio=36
+[HTN] Task#11 MoveBlockingBoxToParking box=N parking=(11,17) agent=2 prio=35
+[HTN] Task#3 DeliverBoxToGoal box=G goal=G agent=1 prio=34
+[HTN] Task#12 MoveBlockingBoxToParking box=O parking=(11,17) agent=2 prio=34
+[HTN] Task#10 MoveBlockingBoxToParking box=D parking=(11,17) agent=1 prio=32
+[HTN] Task#6 DeliverBoxToGoal box=O goal=O agent=2 prio=15
+[HTN] Task#5 DeliverBoxToGoal box=N goal=N agent=2 prio=14
+[HTN] Task#4 DeliverBoxToGoal box=M goal=M agent=2 prio=13
+[HTN] Task#8 DeliverBoxToGoal box=B goal=B agent=0 prio=-29
+[HTN] Task#7 DeliverBoxToGoal box=C goal=C agent=0 prio=-35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=-39
+box planning for task: 13 and assigned agent: 0
+success: true reason: 
+box planning for task: 10 and assigned agent: 1
+success: true reason: 
+box planning for task: 0 and assigned agent: 1
+success: true reason: 
+box planning for task: 11 and assigned agent: 2
+success: true reason: 
+box planning for task: 1 and assigned agent: 1
+success: true reason: 
+box planning for task: 12 and assigned agent: 2
+success: false reason: no_path_for_single_box
+box planning for task: 2 and assigned agent: 1
+success: true reason: 
+box planning for task: 12 and assigned agent: 2
+success: false reason: no_path_for_single_box
+box planning for task: 3 and assigned agent: 1
+success: true reason: 
+box planning for task: 12 and assigned agent: 2
+success: false reason: no_path_for_single_box
+box planning for task: 12 and assigned agent: 2
+success: false reason: no_path_for_single_box
+[HTN] competitive_wave tasks=7 elapsed=36.0048s
+[HTN] task_batch size=7
+[HTN] Task#1 DeliverBoxToGoal box=N goal=N agent=2 prio=37
+[HTN] Task#6 MoveBlockingBoxToParking box=O parking=(8,22) agent=2 prio=32
+[HTN] Task#0 DeliverBoxToGoal box=M goal=M agent=2 prio=18
+[HTN] Task#2 DeliverBoxToGoal box=O goal=O agent=2 prio=16
+[HTN] Task#4 DeliverBoxToGoal box=B goal=B agent=0 prio=5
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=-22
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=-24
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+Move(N)|Move(W)|Move(W)
+Move(W)|Move(N)|Move(W)
+Move(W)|Move(W)|Move(S)
+Move(W)|Move(W)|Move(W)
+Move(W)|Move(N)|Move(S)
+Move(W)|Move(N)|Move(W)
+Move(W)|Move(W)|Move(W)
+Move(W)|Pull(S,S)|NoOp
+Move(W)|Pull(S,S)|NoOp
+Move(W)|Pull(E,S)|NoOp
+Move(N)|Pull(S,E)|NoOp
+Move(N)|Pull(S,S)|NoOp
+Move(N)|Pull(S,S)|NoOp
+Move(W)|Pull(S,S)|NoOp
+Move(W)|Pull(S,S)|NoOp
+Move(W)|Pull(S,S)|NoOp
+Move(W)|Push(N,W)|NoOp
+Move(W)|Push(W,W)|NoOp
+Move(W)|Push(W,W)|NoOp
+Move(W)|Push(W,W)|NoOp
+Pull(E,S)|Push(W,S)|NoOp
+Pull(E,E)|Push(S,S)|NoOp
+Pull(E,E)|Push(S,E)|NoOp
+Pull(E,E)|Push(E,E)|NoOp
+Pull(E,E)|Push(E,E)|NoOp
+Pull(E,E)|Push(E,E)|NoOp
+Pull(E,E)|Push(E,E)|NoOp
+Pull(S,E)|Push(E,N)|NoOp
+Pull(S,S)|Push(N,N)|NoOp
+Pull(S,S)|Push(N,N)|Move(W)
+Pull(S,S)|Push(N,N)|Move(S)
+Pull(S,S)|Push(N,N)|Move(S)
+Push(N,W)|Push(N,N)|Move(S)
+Push(W,W)|Push(N,N)|NoOp
+Push(W,W)|Push(N,N)|Move(S)
+Push(W,W)|Push(N,N)|Move(W)
+Push(W,W)|Push(N,N)|Move(W)
+Push(W,W)|Push(N,E)|Move(W)
+Push(W,W)|Move(S)|Move(N)
+Push(W,W)|Move(E)|Move(N)
+Push(W,S)|Push(S,E)|Pull(W,W)
+Push(S,S)|Push(E,N)|Push(E,S)
+Push(S,S)|Push(N,N)|Push(S,S)
+NoOp|Move(W)|Push(S,E)
+NoOp|Move(W)|Push(E,E)
+NoOp|Move(W)|Push(E,E)
+NoOp|Move(W)|Push(E,E)
+NoOp|Move(S)|Push(E,E)
+NoOp|Move(S)|Push(E,E)
+NoOp|Push(S,E)|Push(E,E)
+NoOp|Push(E,E)|Push(E,E)
+NoOp|Push(E,E)|Push(E,E)
+NoOp|Push(E,E)|NoOp
+NoOp|Push(E,E)|NoOp
+NoOp|Push(E,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Move(S)|NoOp
+NoOp|Move(S)|NoOp
+NoOp|Move(S)|NoOp
+NoOp|Move(S)|NoOp
+NoOp|Move(E)|NoOp
+NoOp|Pull(N,N)|NoOp
+NoOp|Pull(N,N)|NoOp
+NoOp|Pull(N,N)|NoOp
+NoOp|Pull(N,N)|NoOp
+NoOp|Pull(W,N)|NoOp
+NoOp|Push(E,N)|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 69.
+[server][info] Time to solve: 37.100 seconds.

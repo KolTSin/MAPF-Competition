@@ -1,0 +1,33 @@
+[server][info] Running client on level: ./levels/MAsimple5.lvl
+[HTN] competitive_wave tasks=2 elapsed=6.511e-06s
+[HTN] task_batch size=2
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=1 prio=48
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=45
+box planning for task: 0 and assigned agent: 1
+success: true reason: 
+[HTN] dynamic_agent_goal_blocker agent=1 goal=(2,3) park=(2,5) unblock=A
+box planning for task: 1 and assigned agent: 0
+success: true reason: 
+[HTN] competitive_wave tasks=0 elapsed=0.0175326s
+[HTN] task_batch size=0
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(N)
+NoOp|Push(E,S)
+Push(E,E)|Push(S,W)
+Push(E,E)|Push(W,W)
+NoOp|Move(E)
+NoOp|Move(E)
+Push(E,S)|NoOp
+Move(W)|NoOp
+Move(E)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Push(S,W)|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 16.
+[server][info] Time to solve: 0.037 seconds.

@@ -1,0 +1,255 @@
+[server][info] Running client on level: ./levels/MAthomasAppartment_bluepurple.lvl
+[HTN] competitive_wave tasks=10 elapsed=3.231e-06s
+[HTN] task_batch size=10
+[HTN] Task#2 DeliverBoxToGoal box=F goal=F agent=0 prio=44
+[HTN] Task#1 DeliverBoxToGoal box=E goal=E agent=0 prio=41
+[HTN] Task#0 DeliverBoxToGoal box=D goal=D agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=G goal=G agent=0 prio=34
+[HTN] Task#8 MoveBlockingBoxToParking box=N parking=(14,17) agent=1 prio=32
+[HTN] Task#9 MoveBlockingBoxToParking box=O parking=(14,17) agent=1 prio=31
+[HTN] Task#7 MoveBlockingBoxToParking box=D parking=(14,17) agent=0 prio=29
+[HTN] Task#6 DeliverBoxToGoal box=O goal=O agent=1 prio=15
+[HTN] Task#5 DeliverBoxToGoal box=N goal=N agent=1 prio=14
+[HTN] Task#4 DeliverBoxToGoal box=M goal=M agent=1 prio=13
+box planning for task: 7 and assigned agent: 0
+success: true reason: 
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 8 and assigned agent: 1
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: true reason: 
+box planning for task: 9 and assigned agent: 1
+success: false reason: no_path_for_single_box
+box planning for task: 2 and assigned agent: 0
+success: true reason: 
+box planning for task: 9 and assigned agent: 1
+success: false reason: no_path_for_single_box
+box planning for task: 3 and assigned agent: 0
+success: true reason: 
+box planning for task: 9 and assigned agent: 1
+success: false reason: no_path_for_single_box
+box planning for task: 9 and assigned agent: 1
+success: false reason: no_path_for_single_box
+[HTN] competitive_wave tasks=4 elapsed=30.8589s
+[HTN] task_batch size=4
+[HTN] Task#3 MoveBlockingBoxToParking box=O parking=(4,2) agent=1 prio=34
+[HTN] Task#1 DeliverBoxToGoal box=N goal=N agent=1 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=M goal=M agent=1 prio=15
+[HTN] Task#2 DeliverBoxToGoal box=O goal=O agent=1 prio=13
+box planning for task: 3 and assigned agent: 1
+success: true reason: 
+box planning for task: 0 and assigned agent: 1
+success: true reason: 
+box planning for task: 1 and assigned agent: 1
+success: true reason: 
+box planning for task: 2 and assigned agent: 1
+success: true reason: 
+[HTN] competitive_wave tasks=0 elapsed=32.4796s
+[HTN] task_batch size=0
+Move(N)|Move(W)
+Move(W)|Move(W)
+Move(W)|Move(S)
+Move(W)|Move(W)
+Move(W)|Move(S)
+Move(N)|Move(W)
+Move(N)|Move(W)
+Pull(S,S)|Move(W)
+Pull(S,S)|Move(S)
+Pull(E,S)|Move(S)
+Pull(S,E)|Move(S)
+Pull(S,S)|Move(S)
+Pull(S,S)|Move(W)
+Pull(S,S)|Move(W)
+Pull(S,S)|Move(W)
+Pull(S,S)|Move(N)
+Push(N,W)|Move(N)
+Push(W,W)|Pull(W,W)
+Push(W,W)|Push(E,S)
+Push(W,W)|Push(S,S)
+Push(W,S)|Push(S,S)
+Push(S,S)|Push(S,E)
+Push(S,S)|Push(E,E)
+Push(S,S)|Push(E,E)
+Push(S,S)|Push(E,E)
+Push(S,E)|Push(E,E)
+Push(E,E)|Push(E,E)
+Push(E,E)|Push(E,E)
+Push(E,E)|Push(E,E)
+Push(E,E)|Push(E,E)
+Push(E,N)|Push(E,S)
+Push(N,N)|Push(S,S)
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,E)|NoOp
+Move(S)|NoOp
+Move(E)|NoOp
+Push(S,E)|NoOp
+Push(E,N)|NoOp
+Push(N,N)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(S)|NoOp
+Move(S)|NoOp
+Push(S,E)|NoOp
+Push(E,E)|NoOp
+Push(E,E)|NoOp
+Push(E,E)|NoOp
+Push(E,E)|NoOp
+Push(E,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Move(S)|NoOp
+Move(S)|NoOp
+Move(S)|NoOp
+Move(S)|NoOp
+Move(E)|NoOp
+Pull(N,N)|NoOp
+Pull(N,N)|NoOp
+Pull(N,N)|NoOp
+Pull(N,N)|NoOp
+Pull(W,N)|NoOp
+Push(E,N)|NoOp
+NoOp|Move(N)
+NoOp|Move(N)
+NoOp|Move(N)
+NoOp|Move(W)
+NoOp|Move(N)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(N)
+NoOp|Move(N)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Pull(N,N)
+NoOp|Push(S,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(S)
+NoOp|Move(E)
+NoOp|Move(S)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Pull(N,N)
+NoOp|Pull(N,N)
+NoOp|Pull(N,N)
+NoOp|Push(S,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Pull(W,N)
+NoOp|Pull(N,W)
+NoOp|Pull(N,N)
+NoOp|Pull(N,N)
+NoOp|Pull(N,N)
+NoOp|Pull(W,N)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(S,W)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Move(W)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(N)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(N)
+NoOp|Move(W)
+NoOp|Move(N)
+NoOp|Pull(E,E)
+NoOp|Pull(E,E)
+NoOp|Pull(E,E)
+NoOp|Pull(S,E)
+NoOp|Pull(S,S)
+NoOp|Pull(S,S)
+NoOp|Pull(W,S)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 201.
+[server][info] Time to solve: 32.599 seconds.

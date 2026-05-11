@@ -1,0 +1,286 @@
+[server][info] Running client on level: ./levels/SAsoko3_128.lvl
+[HTN] competitive_wave tasks=128 elapsed=8.465e-06s
+[HTN] task_batch size=128
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=-107
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=-108
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=-109
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=-110
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=-111
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=-112
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=-113
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=-114
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=-115
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=-116
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=-117
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=-118
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=-119
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=-120
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=-121
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=-122
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=-123
+[HTN] Task#17 DeliverBoxToGoal box=A goal=A agent=0 prio=-124
+[HTN] Task#18 DeliverBoxToGoal box=A goal=A agent=0 prio=-125
+[HTN] Task#19 DeliverBoxToGoal box=A goal=A agent=0 prio=-126
+[HTN] Task#20 DeliverBoxToGoal box=A goal=A agent=0 prio=-127
+[HTN] Task#21 DeliverBoxToGoal box=A goal=A agent=0 prio=-128
+[HTN] Task#22 DeliverBoxToGoal box=A goal=A agent=0 prio=-129
+[HTN] Task#23 DeliverBoxToGoal box=A goal=A agent=0 prio=-130
+[HTN] Task#24 DeliverBoxToGoal box=A goal=A agent=0 prio=-131
+[HTN] Task#25 DeliverBoxToGoal box=A goal=A agent=0 prio=-132
+[HTN] Task#26 DeliverBoxToGoal box=A goal=A agent=0 prio=-133
+[HTN] Task#27 DeliverBoxToGoal box=A goal=A agent=0 prio=-134
+[HTN] Task#28 DeliverBoxToGoal box=A goal=A agent=0 prio=-135
+[HTN] Task#29 DeliverBoxToGoal box=A goal=A agent=0 prio=-136
+[HTN] Task#30 DeliverBoxToGoal box=A goal=A agent=0 prio=-137
+[HTN] Task#31 DeliverBoxToGoal box=A goal=A agent=0 prio=-138
+[HTN] Task#32 DeliverBoxToGoal box=A goal=A agent=0 prio=-139
+[HTN] Task#33 DeliverBoxToGoal box=A goal=A agent=0 prio=-140
+[HTN] Task#34 DeliverBoxToGoal box=A goal=A agent=0 prio=-141
+[HTN] Task#35 DeliverBoxToGoal box=A goal=A agent=0 prio=-142
+[HTN] Task#36 DeliverBoxToGoal box=A goal=A agent=0 prio=-143
+[HTN] Task#37 DeliverBoxToGoal box=A goal=A agent=0 prio=-144
+[HTN] Task#38 DeliverBoxToGoal box=A goal=A agent=0 prio=-145
+[HTN] Task#39 DeliverBoxToGoal box=A goal=A agent=0 prio=-146
+[HTN] Task#40 DeliverBoxToGoal box=A goal=A agent=0 prio=-147
+[HTN] Task#41 DeliverBoxToGoal box=A goal=A agent=0 prio=-148
+[HTN] Task#42 DeliverBoxToGoal box=A goal=A agent=0 prio=-149
+[HTN] Task#43 DeliverBoxToGoal box=A goal=A agent=0 prio=-150
+[HTN] Task#44 DeliverBoxToGoal box=A goal=A agent=0 prio=-151
+[HTN] Task#45 DeliverBoxToGoal box=A goal=A agent=0 prio=-152
+[HTN] Task#46 DeliverBoxToGoal box=A goal=A agent=0 prio=-153
+[HTN] Task#47 DeliverBoxToGoal box=A goal=A agent=0 prio=-154
+[HTN] Task#48 DeliverBoxToGoal box=A goal=A agent=0 prio=-155
+[HTN] Task#49 DeliverBoxToGoal box=A goal=A agent=0 prio=-156
+[HTN] Task#50 DeliverBoxToGoal box=A goal=A agent=0 prio=-157
+[HTN] Task#51 DeliverBoxToGoal box=A goal=A agent=0 prio=-158
+[HTN] Task#52 DeliverBoxToGoal box=A goal=A agent=0 prio=-159
+[HTN] Task#53 DeliverBoxToGoal box=A goal=A agent=0 prio=-160
+[HTN] Task#54 DeliverBoxToGoal box=A goal=A agent=0 prio=-161
+[HTN] Task#55 DeliverBoxToGoal box=A goal=A agent=0 prio=-162
+[HTN] Task#56 DeliverBoxToGoal box=A goal=A agent=0 prio=-163
+[HTN] Task#57 DeliverBoxToGoal box=A goal=A agent=0 prio=-164
+[HTN] Task#58 DeliverBoxToGoal box=A goal=A agent=0 prio=-165
+[HTN] Task#59 DeliverBoxToGoal box=A goal=A agent=0 prio=-166
+[HTN] Task#60 DeliverBoxToGoal box=A goal=A agent=0 prio=-167
+[HTN] Task#61 DeliverBoxToGoal box=A goal=A agent=0 prio=-168
+[HTN] Task#62 DeliverBoxToGoal box=A goal=A agent=0 prio=-169
+[HTN] Task#63 DeliverBoxToGoal box=A goal=A agent=0 prio=-170
+[HTN] Task#64 DeliverBoxToGoal box=A goal=A agent=0 prio=-171
+[HTN] Task#65 DeliverBoxToGoal box=A goal=A agent=0 prio=-172
+[HTN] Task#66 DeliverBoxToGoal box=A goal=A agent=0 prio=-173
+[HTN] Task#67 DeliverBoxToGoal box=A goal=A agent=0 prio=-174
+[HTN] Task#68 DeliverBoxToGoal box=A goal=A agent=0 prio=-175
+[HTN] Task#69 DeliverBoxToGoal box=A goal=A agent=0 prio=-176
+[HTN] Task#70 DeliverBoxToGoal box=A goal=A agent=0 prio=-177
+[HTN] Task#71 DeliverBoxToGoal box=A goal=A agent=0 prio=-178
+[HTN] Task#72 DeliverBoxToGoal box=A goal=A agent=0 prio=-179
+[HTN] Task#73 DeliverBoxToGoal box=A goal=A agent=0 prio=-180
+[HTN] Task#74 DeliverBoxToGoal box=A goal=A agent=0 prio=-181
+[HTN] Task#75 DeliverBoxToGoal box=A goal=A agent=0 prio=-182
+[HTN] Task#76 DeliverBoxToGoal box=A goal=A agent=0 prio=-183
+[HTN] Task#77 DeliverBoxToGoal box=A goal=A agent=0 prio=-184
+[HTN] Task#78 DeliverBoxToGoal box=A goal=A agent=0 prio=-185
+[HTN] Task#79 DeliverBoxToGoal box=A goal=A agent=0 prio=-186
+[HTN] Task#80 DeliverBoxToGoal box=A goal=A agent=0 prio=-187
+[HTN] Task#81 DeliverBoxToGoal box=A goal=A agent=0 prio=-188
+[HTN] Task#82 DeliverBoxToGoal box=A goal=A agent=0 prio=-189
+[HTN] Task#83 DeliverBoxToGoal box=A goal=A agent=0 prio=-190
+[HTN] Task#84 DeliverBoxToGoal box=A goal=A agent=0 prio=-191
+[HTN] Task#85 DeliverBoxToGoal box=A goal=A agent=0 prio=-192
+[HTN] Task#86 DeliverBoxToGoal box=A goal=A agent=0 prio=-193
+[HTN] Task#87 DeliverBoxToGoal box=A goal=A agent=0 prio=-194
+[HTN] Task#88 DeliverBoxToGoal box=A goal=A agent=0 prio=-195
+[HTN] Task#89 DeliverBoxToGoal box=A goal=A agent=0 prio=-196
+[HTN] Task#90 DeliverBoxToGoal box=A goal=A agent=0 prio=-197
+[HTN] Task#91 DeliverBoxToGoal box=A goal=A agent=0 prio=-198
+[HTN] Task#92 DeliverBoxToGoal box=A goal=A agent=0 prio=-199
+[HTN] Task#93 DeliverBoxToGoal box=A goal=A agent=0 prio=-200
+[HTN] Task#94 DeliverBoxToGoal box=A goal=A agent=0 prio=-201
+[HTN] Task#95 DeliverBoxToGoal box=A goal=A agent=0 prio=-202
+[HTN] Task#96 DeliverBoxToGoal box=A goal=A agent=0 prio=-203
+[HTN] Task#97 DeliverBoxToGoal box=A goal=A agent=0 prio=-204
+[HTN] Task#98 DeliverBoxToGoal box=A goal=A agent=0 prio=-205
+[HTN] Task#99 DeliverBoxToGoal box=A goal=A agent=0 prio=-206
+[HTN] Task#100 DeliverBoxToGoal box=A goal=A agent=0 prio=-207
+[HTN] Task#101 DeliverBoxToGoal box=A goal=A agent=0 prio=-208
+[HTN] Task#102 DeliverBoxToGoal box=A goal=A agent=0 prio=-209
+[HTN] Task#103 DeliverBoxToGoal box=A goal=A agent=0 prio=-210
+[HTN] Task#104 DeliverBoxToGoal box=A goal=A agent=0 prio=-211
+[HTN] Task#105 DeliverBoxToGoal box=A goal=A agent=0 prio=-212
+[HTN] Task#106 DeliverBoxToGoal box=A goal=A agent=0 prio=-213
+[HTN] Task#107 DeliverBoxToGoal box=A goal=A agent=0 prio=-214
+[HTN] Task#108 DeliverBoxToGoal box=A goal=A agent=0 prio=-215
+[HTN] Task#109 DeliverBoxToGoal box=A goal=A agent=0 prio=-216
+[HTN] Task#110 DeliverBoxToGoal box=A goal=A agent=0 prio=-217
+[HTN] Task#111 DeliverBoxToGoal box=A goal=A agent=0 prio=-218
+[HTN] Task#112 DeliverBoxToGoal box=A goal=A agent=0 prio=-219
+[HTN] Task#113 DeliverBoxToGoal box=A goal=A agent=0 prio=-220
+[HTN] Task#114 DeliverBoxToGoal box=A goal=A agent=0 prio=-221
+[HTN] Task#115 DeliverBoxToGoal box=A goal=A agent=0 prio=-222
+[HTN] Task#116 DeliverBoxToGoal box=A goal=A agent=0 prio=-223
+[HTN] Task#117 DeliverBoxToGoal box=A goal=A agent=0 prio=-224
+[HTN] Task#118 DeliverBoxToGoal box=A goal=A agent=0 prio=-225
+[HTN] Task#119 DeliverBoxToGoal box=A goal=A agent=0 prio=-226
+[HTN] Task#120 DeliverBoxToGoal box=A goal=A agent=0 prio=-227
+[HTN] Task#121 DeliverBoxToGoal box=A goal=A agent=0 prio=-228
+[HTN] Task#122 DeliverBoxToGoal box=A goal=A agent=0 prio=-229
+[HTN] Task#123 DeliverBoxToGoal box=A goal=A agent=0 prio=-230
+[HTN] Task#124 DeliverBoxToGoal box=A goal=A agent=0 prio=-231
+[HTN] Task#125 DeliverBoxToGoal box=A goal=A agent=0 prio=-232
+[HTN] Task#126 DeliverBoxToGoal box=A goal=A agent=0 prio=-233
+[HTN] Task#127 DeliverBoxToGoal box=A goal=A agent=0 prio=-234
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: true reason: 
+box planning for task: 2 and assigned agent: 0
+success: false reason: reserved_start_cell
+[HTN] competitive_wave tasks=127 elapsed=1.3195s
+[HTN] task_batch size=127
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=-234
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=-234
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=-235
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=-236
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=-237
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=-238
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=-239
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=-240
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=-241
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=-242
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=-243
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=-244
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=-245
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=-246
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=-247
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=-248
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=-249
+[HTN] Task#17 DeliverBoxToGoal box=A goal=A agent=0 prio=-250
+[HTN] Task#18 DeliverBoxToGoal box=A goal=A agent=0 prio=-251
+[HTN] Task#19 DeliverBoxToGoal box=A goal=A agent=0 prio=-252
+[HTN] Task#20 DeliverBoxToGoal box=A goal=A agent=0 prio=-253
+[HTN] Task#21 DeliverBoxToGoal box=A goal=A agent=0 prio=-254
+[HTN] Task#22 DeliverBoxToGoal box=A goal=A agent=0 prio=-255
+[HTN] Task#23 DeliverBoxToGoal box=A goal=A agent=0 prio=-256
+[HTN] Task#24 DeliverBoxToGoal box=A goal=A agent=0 prio=-257
+[HTN] Task#25 DeliverBoxToGoal box=A goal=A agent=0 prio=-258
+[HTN] Task#26 DeliverBoxToGoal box=A goal=A agent=0 prio=-259
+[HTN] Task#27 DeliverBoxToGoal box=A goal=A agent=0 prio=-260
+[HTN] Task#28 DeliverBoxToGoal box=A goal=A agent=0 prio=-261
+[HTN] Task#29 DeliverBoxToGoal box=A goal=A agent=0 prio=-262
+[HTN] Task#30 DeliverBoxToGoal box=A goal=A agent=0 prio=-263
+[HTN] Task#31 DeliverBoxToGoal box=A goal=A agent=0 prio=-264
+[HTN] Task#32 DeliverBoxToGoal box=A goal=A agent=0 prio=-265
+[HTN] Task#33 DeliverBoxToGoal box=A goal=A agent=0 prio=-266
+[HTN] Task#34 DeliverBoxToGoal box=A goal=A agent=0 prio=-267
+[HTN] Task#35 DeliverBoxToGoal box=A goal=A agent=0 prio=-268
+[HTN] Task#36 DeliverBoxToGoal box=A goal=A agent=0 prio=-269
+[HTN] Task#37 DeliverBoxToGoal box=A goal=A agent=0 prio=-270
+[HTN] Task#38 DeliverBoxToGoal box=A goal=A agent=0 prio=-271
+[HTN] Task#39 DeliverBoxToGoal box=A goal=A agent=0 prio=-272
+[HTN] Task#40 DeliverBoxToGoal box=A goal=A agent=0 prio=-273
+[HTN] Task#41 DeliverBoxToGoal box=A goal=A agent=0 prio=-274
+[HTN] Task#42 DeliverBoxToGoal box=A goal=A agent=0 prio=-275
+[HTN] Task#43 DeliverBoxToGoal box=A goal=A agent=0 prio=-276
+[HTN] Task#44 DeliverBoxToGoal box=A goal=A agent=0 prio=-277
+[HTN] Task#45 DeliverBoxToGoal box=A goal=A agent=0 prio=-278
+[HTN] Task#46 DeliverBoxToGoal box=A goal=A agent=0 prio=-279
+[HTN] Task#47 DeliverBoxToGoal box=A goal=A agent=0 prio=-280
+[HTN] Task#48 DeliverBoxToGoal box=A goal=A agent=0 prio=-281
+[HTN] Task#49 DeliverBoxToGoal box=A goal=A agent=0 prio=-282
+[HTN] Task#50 DeliverBoxToGoal box=A goal=A agent=0 prio=-283
+[HTN] Task#51 DeliverBoxToGoal box=A goal=A agent=0 prio=-284
+[HTN] Task#52 DeliverBoxToGoal box=A goal=A agent=0 prio=-285
+[HTN] Task#53 DeliverBoxToGoal box=A goal=A agent=0 prio=-286
+[HTN] Task#54 DeliverBoxToGoal box=A goal=A agent=0 prio=-287
+[HTN] Task#55 DeliverBoxToGoal box=A goal=A agent=0 prio=-288
+[HTN] Task#56 DeliverBoxToGoal box=A goal=A agent=0 prio=-289
+[HTN] Task#57 DeliverBoxToGoal box=A goal=A agent=0 prio=-290
+[HTN] Task#58 DeliverBoxToGoal box=A goal=A agent=0 prio=-291
+[HTN] Task#59 DeliverBoxToGoal box=A goal=A agent=0 prio=-292
+[HTN] Task#60 DeliverBoxToGoal box=A goal=A agent=0 prio=-293
+[HTN] Task#61 DeliverBoxToGoal box=A goal=A agent=0 prio=-294
+[HTN] Task#62 DeliverBoxToGoal box=A goal=A agent=0 prio=-295
+[HTN] Task#63 DeliverBoxToGoal box=A goal=A agent=0 prio=-296
+[HTN] Task#64 DeliverBoxToGoal box=A goal=A agent=0 prio=-297
+[HTN] Task#65 DeliverBoxToGoal box=A goal=A agent=0 prio=-298
+[HTN] Task#66 DeliverBoxToGoal box=A goal=A agent=0 prio=-299
+[HTN] Task#67 DeliverBoxToGoal box=A goal=A agent=0 prio=-300
+[HTN] Task#68 DeliverBoxToGoal box=A goal=A agent=0 prio=-301
+[HTN] Task#69 DeliverBoxToGoal box=A goal=A agent=0 prio=-302
+[HTN] Task#70 DeliverBoxToGoal box=A goal=A agent=0 prio=-303
+[HTN] Task#71 DeliverBoxToGoal box=A goal=A agent=0 prio=-304
+[HTN] Task#72 DeliverBoxToGoal box=A goal=A agent=0 prio=-305
+[HTN] Task#73 DeliverBoxToGoal box=A goal=A agent=0 prio=-306
+[HTN] Task#74 DeliverBoxToGoal box=A goal=A agent=0 prio=-307
+[HTN] Task#75 DeliverBoxToGoal box=A goal=A agent=0 prio=-308
+[HTN] Task#76 DeliverBoxToGoal box=A goal=A agent=0 prio=-309
+[HTN] Task#77 DeliverBoxToGoal box=A goal=A agent=0 prio=-310
+[HTN] Task#78 DeliverBoxToGoal box=A goal=A agent=0 prio=-311
+[HTN] Task#79 DeliverBoxToGoal box=A goal=A agent=0 prio=-312
+[HTN] Task#80 DeliverBoxToGoal box=A goal=A agent=0 prio=-313
+[HTN] Task#81 DeliverBoxToGoal box=A goal=A agent=0 prio=-314
+[HTN] Task#82 DeliverBoxToGoal box=A goal=A agent=0 prio=-315
+[HTN] Task#83 DeliverBoxToGoal box=A goal=A agent=0 prio=-316
+[HTN] Task#84 DeliverBoxToGoal box=A goal=A agent=0 prio=-317
+[HTN] Task#85 DeliverBoxToGoal box=A goal=A agent=0 prio=-318
+[HTN] Task#86 DeliverBoxToGoal box=A goal=A agent=0 prio=-319
+[HTN] Task#87 DeliverBoxToGoal box=A goal=A agent=0 prio=-320
+[HTN] Task#88 DeliverBoxToGoal box=A goal=A agent=0 prio=-321
+[HTN] Task#89 DeliverBoxToGoal box=A goal=A agent=0 prio=-322
+[HTN] Task#90 DeliverBoxToGoal box=A goal=A agent=0 prio=-323
+[HTN] Task#91 DeliverBoxToGoal box=A goal=A agent=0 prio=-324
+[HTN] Task#92 DeliverBoxToGoal box=A goal=A agent=0 prio=-325
+[HTN] Task#93 DeliverBoxToGoal box=A goal=A agent=0 prio=-326
+[HTN] Task#94 DeliverBoxToGoal box=A goal=A agent=0 prio=-327
+[HTN] Task#95 DeliverBoxToGoal box=A goal=A agent=0 prio=-328
+[HTN] Task#96 DeliverBoxToGoal box=A goal=A agent=0 prio=-329
+[HTN] Task#97 DeliverBoxToGoal box=A goal=A agent=0 prio=-330
+[HTN] Task#98 DeliverBoxToGoal box=A goal=A agent=0 prio=-331
+[HTN] Task#99 DeliverBoxToGoal box=A goal=A agent=0 prio=-332
+[HTN] Task#100 DeliverBoxToGoal box=A goal=A agent=0 prio=-333
+[HTN] Task#101 DeliverBoxToGoal box=A goal=A agent=0 prio=-334
+[HTN] Task#102 DeliverBoxToGoal box=A goal=A agent=0 prio=-335
+[HTN] Task#103 DeliverBoxToGoal box=A goal=A agent=0 prio=-336
+[HTN] Task#104 DeliverBoxToGoal box=A goal=A agent=0 prio=-337
+[HTN] Task#105 DeliverBoxToGoal box=A goal=A agent=0 prio=-338
+[HTN] Task#106 DeliverBoxToGoal box=A goal=A agent=0 prio=-339
+[HTN] Task#107 DeliverBoxToGoal box=A goal=A agent=0 prio=-340
+[HTN] Task#108 DeliverBoxToGoal box=A goal=A agent=0 prio=-341
+[HTN] Task#109 DeliverBoxToGoal box=A goal=A agent=0 prio=-342
+[HTN] Task#110 DeliverBoxToGoal box=A goal=A agent=0 prio=-343
+[HTN] Task#111 DeliverBoxToGoal box=A goal=A agent=0 prio=-344
+[HTN] Task#112 DeliverBoxToGoal box=A goal=A agent=0 prio=-345
+[HTN] Task#113 DeliverBoxToGoal box=A goal=A agent=0 prio=-346
+[HTN] Task#114 DeliverBoxToGoal box=A goal=A agent=0 prio=-347
+[HTN] Task#115 DeliverBoxToGoal box=A goal=A agent=0 prio=-348
+[HTN] Task#116 DeliverBoxToGoal box=A goal=A agent=0 prio=-349
+[HTN] Task#117 DeliverBoxToGoal box=A goal=A agent=0 prio=-350
+[HTN] Task#118 DeliverBoxToGoal box=A goal=A agent=0 prio=-351
+[HTN] Task#119 DeliverBoxToGoal box=A goal=A agent=0 prio=-352
+[HTN] Task#120 DeliverBoxToGoal box=A goal=A agent=0 prio=-353
+[HTN] Task#121 DeliverBoxToGoal box=A goal=A agent=0 prio=-354
+[HTN] Task#122 DeliverBoxToGoal box=A goal=A agent=0 prio=-355
+[HTN] Task#123 DeliverBoxToGoal box=A goal=A agent=0 prio=-356
+[HTN] Task#124 DeliverBoxToGoal box=A goal=A agent=0 prio=-357
+[HTN] Task#125 DeliverBoxToGoal box=A goal=A agent=0 prio=-358
+[HTN] Task#126 DeliverBoxToGoal box=A goal=A agent=0 prio=-359
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: true reason: 
+box planning for task: 2 and assigned agent: 0
+success: true reason: 
+box planning for task: 3 and assigned agent: 0
+success: true reason: 
+box planning for task: 4 and assigned agent: 0
+success: true reason: 
+box planning for task: 5 and assigned agent: 0
+success: true reason: 
+box planning for task: 6 and assigned agent: 0
+success: true reason: 
+box planning for task: 7 and assigned agent: 0
+[client][info] Client timed out.
+[client][info] Sending termination signal to client process (PID = 215516).
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

@@ -1,0 +1,33 @@
+[server][info] Running client on level: ./levels/SAtowersOfSaigon10.lvl
+[HTN] competitive_wave tasks=19 elapsed=1.806e-06s
+[HTN] task_batch size=19
+[HTN] Task#18 MoveBlockingBoxToParking box=H parking=(11,3) agent=0 prio=42
+[HTN] Task#17 MoveBlockingBoxToParking box=F parking=(11,3) agent=0 prio=41
+[HTN] Task#16 MoveBlockingBoxToParking box=D parking=(11,3) agent=0 prio=40
+[HTN] Task#15 MoveBlockingBoxToParking box=B parking=(11,3) agent=0 prio=39
+[HTN] Task#14 MoveBlockingBoxToParking box=A parking=(11,3) agent=0 prio=38
+[HTN] Task#13 MoveBlockingBoxToParking box=C parking=(11,3) agent=0 prio=37
+[HTN] Task#12 MoveBlockingBoxToParking box=E parking=(11,3) agent=0 prio=36
+[HTN] Task#11 MoveBlockingBoxToParking box=G parking=(11,3) agent=0 prio=35
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=34
+[HTN] Task#10 MoveBlockingBoxToParking box=I parking=(11,3) agent=0 prio=34
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=33
+[HTN] Task#9 DeliverBoxToGoal box=J goal=J agent=0 prio=30
+[HTN] Task#7 DeliverBoxToGoal box=H goal=H agent=0 prio=29
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=28
+[HTN] Task#6 DeliverBoxToGoal box=G goal=G agent=0 prio=28
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=27
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=27
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=26
+[HTN] Task#8 DeliverBoxToGoal box=I goal=I agent=0 prio=23
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

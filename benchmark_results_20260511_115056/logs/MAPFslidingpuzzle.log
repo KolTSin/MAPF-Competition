@@ -1,0 +1,76 @@
+[server][info] Running client on level: ./levels/MAPFslidingpuzzle.lvl
+[HTN] competitive_wave tasks=8 elapsed=5.453e-06s
+[HTN] task_batch size=8
+[HTN] Task#4 MoveAgentToGoal agent=4 target_goal=4 prio=9
+[HTN] Task#5 MoveAgentToGoal agent=5 target_goal=5 prio=8
+[HTN] Task#1 MoveAgentToGoal agent=1 target_goal=1 prio=7
+[HTN] Task#2 MoveAgentToGoal agent=2 target_goal=2 prio=7
+[HTN] Task#3 MoveAgentToGoal agent=3 target_goal=3 prio=7
+[HTN] Task#6 MoveAgentToGoal agent=6 target_goal=6 prio=7
+[HTN] Task#7 MoveAgentToGoal agent=7 target_goal=7 prio=7
+[HTN] Task#0 MoveAgentToGoal agent=0 target_goal=0 prio=6
+path planning for task: 4 and assigned agent: 4
+success: true
+path planning for task: 5 and assigned agent: 5
+success: false
+path planning for task: 1 and assigned agent: 1
+success: false
+path planning for task: 2 and assigned agent: 2
+success: false
+path planning for task: 3 and assigned agent: 3
+success: false
+path planning for task: 6 and assigned agent: 6
+success: false
+path planning for task: 7 and assigned agent: 7
+success: false
+path planning for task: 0 and assigned agent: 0
+success: false
+path planning for task: 5 and assigned agent: 5
+success: false
+path planning for task: 1 and assigned agent: 1
+success: false
+path planning for task: 2 and assigned agent: 2
+success: false
+path planning for task: 3 and assigned agent: 3
+success: false
+path planning for task: 6 and assigned agent: 6
+success: false
+path planning for task: 7 and assigned agent: 7
+success: false
+path planning for task: 0 and assigned agent: 0
+success: false
+[HTN] competitive_wave tasks=7 elapsed=0.0781831s
+[HTN] task_batch size=7
+[HTN] Task#4 MoveAgentToGoal agent=5 target_goal=5 prio=8
+[HTN] Task#1 MoveAgentToGoal agent=1 target_goal=1 prio=7
+[HTN] Task#2 MoveAgentToGoal agent=2 target_goal=2 prio=7
+[HTN] Task#3 MoveAgentToGoal agent=3 target_goal=3 prio=7
+[HTN] Task#5 MoveAgentToGoal agent=6 target_goal=6 prio=7
+[HTN] Task#6 MoveAgentToGoal agent=7 target_goal=7 prio=7
+[HTN] Task#0 MoveAgentToGoal agent=0 target_goal=0 prio=6
+path planning for task: 4 and assigned agent: 5
+success: false
+path planning for task: 1 and assigned agent: 1
+success: false
+path planning for task: 2 and assigned agent: 2
+success: false
+path planning for task: 3 and assigned agent: 3
+success: false
+path planning for task: 5 and assigned agent: 6
+success: false
+path planning for task: 6 and assigned agent: 7
+success: false
+path planning for task: 0 and assigned agent: 0
+success: false
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 1.
+[server][info] Time to solve: 4.335 seconds.

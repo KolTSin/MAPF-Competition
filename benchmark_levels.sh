@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+# Run every .lvl file in ./levels through MAvis using the competition solver.
+# Usage:
+#   ./scripts/benchmark_levels.sh
+# Optional environment overrides:
+#   LEVELS_DIR=./complevels CLIENT_CMD='build/searchclient --solver comp --heuristic gc' TIMEOUT=180 ./scripts/benchmark_levels.sh
+
+set -u
+
+LEVELS_DIR="${LEVELS_DIR:-./complevels}"
+SERVER_JAR="${SERVER_JAR:-./server.jar}"
+CLIENT_CMD="${CLIENT_CMD:-build/searchclient --solver comp --heuristic gc}"
+TIMEOUT="${TIMEOUT:-180}"
+OUT_DIR="${OUT_DIR:-benchmark_results_$(date +%Y%m%d_%H%M%S)}"
+LOG_DIR="$OUT_DIR/logs"
+CSV="$OUT_DIR/summary.csv"
+
+mkdir -p "$LOG_DIR"
+
+csv_escape() {
+    local s="${1:-}"
+    s=${s//\"/\"\"}
+    printf '"%s"' "$s"
+}
+
+extract_last_match() {
+    local pattern="$1"
+    local file="$2"
+    grep -E "$pattern" "$file" | tail -n 1 || true
+}
+
+printf 'level,status,solved,exit_code,wall_time_s,server_time_s,solution_length,log_file\n' > "$CSV"
+
+if [[ ! -f "$SERVER_JAR" ]]; then
+    echo "ERROR: Could not find $SERVER_JAR. Run this from the project root or set SERVER_JAR." >&2
+    exit 1
+fi
+
+if [[ ! -d "$LEVELS_DIR" ]]; then
+    echo "ERROR: Could not find $LEVELS_DIR. Run this from the project root or set LEVELS_DIR." >&2
+    exit 1
+fi
+
+mapfile -d '' LEVELS < <(find "$LEVELS_DIR" -maxdepth 1 -type f -name '*.lvl' -print0 | sort -z)
+
+if [[ ${#LEVELS[@]} -eq 0 ]]; then
+    echo "ERROR: No .lvl files found in $LEVELS_DIR" >&2
+    exit 1
+fi
+
+echo "Running ${#LEVELS[@]} levels"
+echo "Client: $CLIENT_CMD"
+echo "Timeout: ${TIMEOUT}s"
+echo "Output: $OUT_DIR"
+echo
+
+for level_path in "${LEVELS[@]}"; do
+    level_file="$(basename "$level_path")"
+    level_name="${level_file%.lvl}"
+    log_file="$LOG_DIR/${level_name}.log"
+
+    echo "==> $level_file"
+
+    start_ts=$(date +%s)
+    java -jar "$SERVER_JAR" -l "$level_path" -c "$CLIENT_CMD" -t "$TIMEOUT" > "$log_file" 2>&1
+    exit_code=$?
+    end_ts=$(date +%s)
+    wall_time=$((end_ts - start_ts))
+
+    solved_line="$(extract_last_match '\[server\]\[info\][[:space:]]+Level solved:' "$log_file")"
+    if [[ "$solved_line" =~ Level[[:space:]]solved:[[:space:]]*Yes ]]; then
+        solved="Yes"
+        status="SOLVED"
+    elif [[ "$solved_line" =~ Level[[:space:]]solved:[[:space:]]*No ]]; then
+        solved="No"
+        status="UNSOLVED"
+    else
+        solved="Unknown"
+        status="UNKNOWN"
+    fi
+
+    if [[ $exit_code -ne 0 && "$status" != "SOLVED" ]]; then
+        status="EXIT_${exit_code}"
+    fi
+    if grep -Eiq 'timeout|timed out|time-out|OutOfMemory|killed' "$log_file" && [[ "$status" != "SOLVED" ]]; then
+        status="TIMEOUT_OR_CRASH"
+    fi
+
+    server_time_line="$(extract_last_match '\[server\]\[info\][[:space:]]+Time to solve:' "$log_file")"
+    server_time="$(printf '%s' "$server_time_line" | sed -E 's/.*Time to solve:[[:space:]]*([0-9.]+).*/\1/' || true)"
+    [[ "$server_time" == "$server_time_line" ]] && server_time=""
+
+    length_line="$(extract_last_match 'Found solution of length|Solution length|solution of length|joint actions|Actions used' "$log_file")"
+    solution_length="$(printf '%s' "$length_line" | sed -E 's/.*(Found solution of length|Solution length|solution of length|joint actions|Actions used)[^0-9]*([0-9]+).*/\2/' || true)"
+    [[ "$solution_length" == "$length_line" ]] && solution_length=""
+
+    {
+        csv_escape "$level_file"; printf ','
+        csv_escape "$status"; printf ','
+        csv_escape "$solved"; printf ','
+        csv_escape "$exit_code"; printf ','
+        csv_escape "$wall_time"; printf ','
+        csv_escape "$server_time"; printf ','
+        csv_escape "$solution_length"; printf ','
+        csv_escape "$log_file"; printf '\n'
+    } >> "$CSV"
+
+    printf '    %-16s solved=%s wall=%ss length=%s\n' "$status" "$solved" "$wall_time" "${solution_length:-?}"
+done
+
+echo
+echo "Done. Summary: $CSV"
+echo "Logs:    $LOG_DIR"

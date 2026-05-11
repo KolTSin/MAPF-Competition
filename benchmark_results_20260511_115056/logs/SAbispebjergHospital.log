@@ -1,0 +1,37 @@
+[server][info] Running client on level: ./levels/SAbispebjergHospital.lvl
+[HTN] competitive_wave tasks=26 elapsed=4.562e-06s
+[HTN] task_batch size=26
+[HTN] Task#23 MoveBlockingBoxToParking box=V parking=(48,12) agent=0 prio=36
+[HTN] Task#24 MoveBlockingBoxToParking box=T parking=(48,12) agent=0 prio=34
+[HTN] Task#25 MoveBlockingBoxToParking box=S parking=(48,12) agent=0 prio=33
+[HTN] Task#22 MoveBlockingBoxToParking box=H parking=(48,12) agent=0 prio=7
+[HTN] Task#5 DeliverBoxToGoal box=D goal=D agent=0 prio=-12
+[HTN] Task#7 DeliverBoxToGoal box=C goal=C agent=0 prio=-16
+[HTN] Task#3 DeliverBoxToGoal box=F goal=F agent=0 prio=-18
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=-33
+[HTN] Task#16 DeliverBoxToGoal box=T goal=T agent=0 prio=-38
+[HTN] Task#15 DeliverBoxToGoal box=S goal=S agent=0 prio=-39
+[HTN] Task#20 DeliverBoxToGoal box=P goal=P agent=0 prio=-39
+[HTN] Task#17 DeliverBoxToGoal box=N goal=N agent=0 prio=-42
+[HTN] Task#11 DeliverBoxToGoal box=B goal=B agent=0 prio=-44
+[HTN] Task#1 DeliverBoxToGoal box=H goal=H agent=0 prio=-45
+[HTN] Task#0 DeliverBoxToGoal box=I goal=I agent=0 prio=-49
+[HTN] Task#21 DeliverBoxToGoal box=R goal=R agent=0 prio=-53
+[HTN] Task#6 DeliverBoxToGoal box=K goal=K agent=0 prio=-60
+[HTN] Task#10 DeliverBoxToGoal box=M goal=M agent=0 prio=-65
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=-69
+[HTN] Task#8 DeliverBoxToGoal box=X goal=X agent=0 prio=-74
+[HTN] Task#9 DeliverBoxToGoal box=L goal=L agent=0 prio=-76
+[HTN] Task#19 DeliverBoxToGoal box=O goal=O agent=0 prio=-77
+[HTN] Task#12 DeliverBoxToGoal box=W goal=W agent=0 prio=-89
+[HTN] Task#14 DeliverBoxToGoal box=U goal=U agent=0 prio=-101
+[HTN] Task#18 DeliverBoxToGoal box=V goal=V agent=0 prio=-104
+[HTN] Task#2 DeliverBoxToGoal box=Z goal=Z agent=0 prio=-113
+box planning for task: 22 and assigned agent: 0
+success: true reason: 
+box planning for task: 23 and assigned agent: 0
+[client][info] Client timed out.
+[client][info] Sending termination signal to client process (PID = 214060).
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

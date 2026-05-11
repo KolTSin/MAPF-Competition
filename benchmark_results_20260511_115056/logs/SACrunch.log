@@ -1,0 +1,22 @@
+[server][info] Running client on level: ./levels/SACrunch.lvl
+[HTN] competitive_wave tasks=6 elapsed=2.881e-06s
+[HTN] task_batch size=6
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=44
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=43
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(1,3) agent=0 prio=43
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#4 MoveBlockingBoxToParking box=D parking=(1,1) agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=36
+box planning for task: 5 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

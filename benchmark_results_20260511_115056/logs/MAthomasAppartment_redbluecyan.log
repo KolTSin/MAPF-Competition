@@ -1,0 +1,85 @@
+[server][info] Running client on level: ./levels/MAthomasAppartment_redbluecyan.lvl
+[HTN] competitive_wave tasks=15 elapsed=2.279e-06s
+[HTN] task_batch size=15
+[HTN] Task#2 DeliverBoxToGoal box=F goal=F agent=1 prio=44
+[HTN] Task#1 DeliverBoxToGoal box=E goal=E agent=1 prio=41
+[HTN] Task#13 MoveBlockingBoxToParking box=B parking=(5,11) agent=0 prio=37
+[HTN] Task#0 DeliverBoxToGoal box=D goal=D agent=1 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=G goal=G agent=1 prio=34
+[HTN] Task#12 MoveBlockingBoxToParking box=D parking=(4,11) agent=1 prio=33
+[HTN] Task#14 MoveBlockingBoxToParking box=H parking=(5,11) agent=2 prio=30
+[HTN] Task#8 DeliverBoxToGoal box=J goal=J agent=2 prio=15
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=2 prio=1
+[HTN] Task#7 DeliverBoxToGoal box=I goal=I agent=2 prio=-2
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=-15
+[HTN] Task#9 DeliverBoxToGoal box=K goal=K agent=2 prio=-16
+[HTN] Task#10 DeliverBoxToGoal box=L goal=L agent=2 prio=-17
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=0 prio=-29
+[HTN] Task#4 DeliverBoxToGoal box=C goal=C agent=0 prio=-35
+box planning for task: 13 and assigned agent: 0
+success: true reason: 
+box planning for task: 12 and assigned agent: 1
+success: false reason: no_path_for_single_box
+box planning for task: 12 and assigned agent: 1
+success: false reason: no_path_for_single_box
+box planning for task: 14 and assigned agent: 2
+success: false reason: no_path_for_single_box
+[HTN] competitive_wave tasks=14 elapsed=8.01587s
+[HTN] task_batch size=14
+[HTN] Task#2 DeliverBoxToGoal box=F goal=F agent=1 prio=44
+[HTN] Task#1 DeliverBoxToGoal box=E goal=E agent=1 prio=41
+[HTN] Task#0 DeliverBoxToGoal box=D goal=D agent=1 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=G goal=G agent=1 prio=34
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,8) agent=2 prio=32
+[HTN] Task#12 MoveBlockingBoxToParking box=D parking=(10,8) agent=1 prio=24
+[HTN] Task#8 DeliverBoxToGoal box=J goal=J agent=2 prio=15
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=0 prio=3
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=2 prio=1
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=-1
+[HTN] Task#7 DeliverBoxToGoal box=I goal=I agent=2 prio=-2
+[HTN] Task#9 DeliverBoxToGoal box=K goal=K agent=2 prio=-16
+[HTN] Task#10 DeliverBoxToGoal box=L goal=L agent=2 prio=-17
+[HTN] Task#4 DeliverBoxToGoal box=C goal=C agent=0 prio=-21
+box planning for task: 12 and assigned agent: 1
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(N)|NoOp|NoOp
+Move(N)|NoOp|NoOp
+Move(N)|NoOp|NoOp
+Move(N)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(W)|NoOp|NoOp
+Move(N)|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp
+Pull(W,S)|NoOp|NoOp
+Push(E,E)|NoOp|NoOp
+Push(E,E)|NoOp|NoOp
+Push(E,E)|NoOp|NoOp
+Push(E,E)|NoOp|NoOp
+Push(E,E)|NoOp|NoOp
+Push(E,N)|NoOp|NoOp
+Push(N,N)|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 30.
+[server][info] Time to solve: 8.509 seconds.

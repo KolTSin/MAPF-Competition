@@ -1,0 +1,61 @@
+[server][info] Running client on level: ./levels/MAPFreorder3.lvl
+[HTN] competitive_wave tasks=6 elapsed=5.724e-06s
+[HTN] task_batch size=6
+[HTN] Task#0 MoveAgentToGoal agent=0 target_goal=0 prio=8
+[HTN] Task#1 MoveAgentToGoal agent=1 target_goal=1 prio=6
+[HTN] Task#2 MoveAgentToGoal agent=2 target_goal=2 prio=4
+[HTN] Task#3 MoveAgentToGoal agent=3 target_goal=3 prio=2
+[HTN] Task#4 MoveAgentToGoal agent=4 target_goal=4 prio=0
+[HTN] Task#5 MoveAgentToGoal agent=5 target_goal=5 prio=-2
+path planning for task: 0 and assigned agent: 0
+success: true
+path planning for task: 1 and assigned agent: 1
+success: false
+path planning for task: 2 and assigned agent: 2
+success: false
+path planning for task: 3 and assigned agent: 3
+success: false
+path planning for task: 4 and assigned agent: 4
+success: false
+path planning for task: 5 and assigned agent: 5
+success: false
+path planning for task: 1 and assigned agent: 1
+success: false
+path planning for task: 2 and assigned agent: 2
+success: false
+path planning for task: 3 and assigned agent: 3
+success: false
+path planning for task: 4 and assigned agent: 4
+success: false
+path planning for task: 5 and assigned agent: 5
+success: false
+[HTN] competitive_wave tasks=5 elapsed=0.0788334s
+[HTN] task_batch size=5
+[HTN] Task#0 MoveAgentToGoal agent=1 target_goal=1 prio=6
+[HTN] Task#1 MoveAgentToGoal agent=2 target_goal=2 prio=4
+[HTN] Task#2 MoveAgentToGoal agent=3 target_goal=3 prio=2
+[HTN] Task#3 MoveAgentToGoal agent=4 target_goal=4 prio=0
+[HTN] Task#4 MoveAgentToGoal agent=5 target_goal=5 prio=-2
+path planning for task: 0 and assigned agent: 1
+success: false
+path planning for task: 1 and assigned agent: 2
+success: false
+path planning for task: 2 and assigned agent: 3
+success: false
+path planning for task: 3 and assigned agent: 4
+success: false
+path planning for task: 4 and assigned agent: 5
+success: false
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 2.
+[server][info] Time to solve: 2.210 seconds.

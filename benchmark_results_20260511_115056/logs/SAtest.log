@@ -1,0 +1,36 @@
+[server][info] Running client on level: ./levels/SAtest.lvl
+[HTN] competitive_wave tasks=2 elapsed=3.589e-06s
+[HTN] task_batch size=2
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=47
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=25
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] competitive_wave tasks=1 elapsed=0.229031s
+[HTN] task_batch size=1
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=27
+box planning for task: 0 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] competitive_wave tasks=1 elapsed=0.288114s
+[HTN] task_batch size=1
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=27
+box planning for task: 0 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] competitive_wave tasks=1 elapsed=0.35431s
+[HTN] task_batch size=1
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=27
+box planning for task: 0 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+Push(E,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 1.
+[server][info] Time to solve: 0.415 seconds.

@@ -1,0 +1,63 @@
+[server][info] Running client on level: ./levels/SASolo.lvl
+[HTN] competitive_wave tasks=16 elapsed=4.084e-06s
+[HTN] task_batch size=16
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=32
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=28
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=22
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=20
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=20
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=18
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=12
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=8
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=6
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=6
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=4
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=-6
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=-8
+box planning for task: 0 and assigned agent: 0
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] competitive_wave tasks=15 elapsed=0.867264s
+[HTN] task_batch size=15
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=47
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=37
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=33
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=21
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=21
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=21
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=9
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=9
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=7
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=7
+box planning for task: 0 and assigned agent: 0
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 10.
+[server][info] Time to solve: 0.909 seconds.

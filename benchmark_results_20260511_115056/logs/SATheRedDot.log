@@ -1,0 +1,20 @@
+[server][info] Running client on level: ./levels/SATheRedDot.lvl
+[HTN] competitive_wave tasks=6 elapsed=3.635e-06s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,0) agent=0 prio=30
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

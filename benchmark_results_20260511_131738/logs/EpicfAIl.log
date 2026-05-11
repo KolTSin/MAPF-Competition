@@ -1,0 +1,44 @@
+[server][info] Running client on level: ./complevels/EpicfAIl.lvl
+[HTN] competitive_wave tasks=11 elapsed=3.783e-06s
+[HTN] task_batch size=11
+[HTN] Task#4 MoveBlockingBoxToParking box=X parking=(3,4) agent=2 prio=38
+[HTN] Task#5 MoveBlockingBoxToParking box=Y parking=(3,4) agent=1 prio=34
+[HTN] Task#6 MoveBlockingBoxToParking box=A parking=(3,4) agent=0 prio=31
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=2 prio=27
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=3 prio=25
+[HTN] Task#0 DeliverBoxToGoal box=D goal=D agent=1 prio=21
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] Task#7 MoveAgentToGoal agent=3 target_goal=3 prio=-7 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#8 MoveAgentToGoal agent=2 target_goal=2 prio=-9 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#9 MoveAgentToGoal agent=1 target_goal=1 prio=-11 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#10 MoveAgentToGoal agent=0 target_goal=0 prio=-14 deps=, 0, 1, 2, 3, 4, 5, 6
+box planning for task: 4 and assigned agent: 2
+success: true reason: 
+box planning for task: 5 and assigned agent: 1
+success: false reason: no_path_for_single_box
+[HTN] competitive_wave tasks=11 elapsed=0.481077s
+[HTN] task_batch size=11
+[HTN] Task#5 MoveBlockingBoxToParking box=X parking=(6,2) agent=2 prio=40
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=2 prio=30
+[HTN] Task#4 MoveBlockingBoxToParking box=Y parking=(6,2) agent=1 prio=29
+[HTN] Task#6 MoveBlockingBoxToParking box=A parking=(6,2) agent=0 prio=28
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=3 prio=25
+[HTN] Task#0 DeliverBoxToGoal box=D goal=D agent=1 prio=21
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] Task#8 MoveAgentToGoal agent=2 target_goal=2 prio=-6 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#7 MoveAgentToGoal agent=3 target_goal=3 prio=-7 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#9 MoveAgentToGoal agent=1 target_goal=1 prio=-11 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#10 MoveAgentToGoal agent=0 target_goal=0 prio=-14 deps=, 0, 1, 2, 3, 4, 5, 6
+box planning for task: 4 and assigned agent: 1
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[client][info] Client timed out.
+[client][info] Sending termination signal to client process (PID = 217111).
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.
