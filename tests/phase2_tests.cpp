@@ -667,6 +667,36 @@ red: 1, C
     }
 
     {
+        std::string resolved = "levels/SAsoko3_04.lvl";
+        if (!std::filesystem::exists(resolved)) {
+            resolved = "../" + resolved;
+        }
+        assert(std::filesystem::exists(resolved));
+        std::ifstream in(resolved);
+        ParsedLevel parsed = LevelParser::parse(in);
+
+        TaskGenerator generator;
+        std::vector<Task> tasks = generator.generate_delivery_tasks(parsed.level, parsed.initial_state);
+        std::unordered_set<std::string> assigned_box_cells;
+        for (const Task& task : tasks) {
+            if (task.type != TaskType::DeliverBoxToGoal) continue;
+            assigned_box_cells.insert(std::to_string(task.box_pos.row) + "," + std::to_string(task.box_pos.col));
+            assert(parsed.level.goal_at(task.box_pos.row, task.box_pos.col) != task.box_id);
+        }
+        assert(assigned_box_cells.size() == 4);
+
+        CompetitiveSolver solver;
+        ConstantHeuristic h;
+        Plan p = solver.solve(parsed.level, parsed.initial_state, h);
+        PlanValidationResult validation = validate_plan_solves(parsed.level, parsed.initial_state, p);
+        if (!validation.valid) {
+            std::cerr << "SAsoko3_04 failure: " << validation.reason << "\n";
+        }
+        assert(validation.valid);
+        assert(p.steps.size() <= 13);
+    }
+
+    {
         Level l;
         l.rows = 3; l.cols = 5;
         l.walls.assign(15, false);

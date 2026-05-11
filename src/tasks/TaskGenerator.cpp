@@ -3,11 +3,54 @@
 #include "analysis/LevelAnalyzer.hpp"
 #include "hospital/BlockerResolver.hpp"
 
+#include <algorithm>
+#include <limits>
 #include <set>
 #include <sstream>
 #include <iostream>
 
 namespace {
+int manhattan(Position a, Position b) {
+    return std::abs(a.row - b.row) + std::abs(a.col - b.col);
+}
+
+bool contains_position(const std::vector<Position>& positions, Position pos) {
+    return std::find(positions.begin(), positions.end(), pos) != positions.end();
+}
+
+bool is_satisfied_box_goal(const Level& level, const State& state, Position pos, char box_id) {
+    return level.goal_at(pos.row, pos.col) == box_id && state.box_at(pos.row, pos.col) == box_id;
+}
+
+Position choose_box_for_goal(const Level& level,
+                             const State& state,
+                             char box_id,
+                             Position goal_pos,
+                             const std::vector<Position>& assigned_boxes) {
+    Position best{-1, -1};
+    int best_score = std::numeric_limits<int>::max();
+
+    for (int r = 0; r < state.rows; ++r) {
+        for (int c = 0; c < state.cols; ++c) {
+            const Position candidate{r, c};
+            if (state.box_at(r, c) != box_id) continue;
+            if (contains_position(assigned_boxes, candidate)) continue;
+
+            // A same-letter box that is already on a matching goal is doing
+            // useful work for another goal cell.  Only use it as an expensive
+            // last resort if there are no unassigned off-goal boxes available.
+            const int satisfied_goal_penalty = is_satisfied_box_goal(level, state, candidate, box_id) ? 100000 : 0;
+            const int score = satisfied_goal_penalty + manhattan(candidate, goal_pos);
+            if (score < best_score) {
+                best_score = score;
+                best = candidate;
+            }
+        }
+    }
+
+    return best;
+}
+
 std::size_t level_signature(const Level& level) {
     std::size_t h = static_cast<std::size_t>(level.rows) * 1315423911u + static_cast<std::size_t>(level.cols);
     const auto mix = [&h](std::size_t v) {
@@ -110,10 +153,12 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
     // the returned vector.
     int next_task_id = 0;
 
-    // Tracks goal coordinates already converted into a delivery task. The level
-    // scan visits each cell once, but this guard documents and enforces the
-    // output invariant: one delivery task per (box letter, goal row, goal col).
+    // Tracks goal coordinates and source boxes already converted into delivery
+    // tasks.  Same-letter boxes are interchangeable in the server state, but the
+    // task layer must still avoid assigning the same physical cell to multiple
+    // unsatisfied goals in one wave.
     std::set<std::tuple<char, int, int>> seen;
+    std::vector<Position> assigned_boxes;
 
     // First phase: inspect every static goal cell and create direct delivery
     // tasks for goals that are not currently satisfied.
@@ -126,19 +171,11 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
             if (!is_box_goal(goal)) continue;
             if (state.box_at(r, c) == goal) continue;
 
-            // Locate the current position of the box that matches this goal
-            // symbol. The output task needs both the source (`box_pos`) and the
-            // destination (`goal_pos`) so the planner can compute a route.
-            Position box_pos{-1, -1};
-            for (int br = 0; br < state.rows; ++br) {
-                for (int bc = 0; bc < state.cols; ++bc) {
-                    if (state.box_at(br, bc) == goal) {
-                        box_pos = Position{br, bc};
-                        break;
-                    }
-                }
-                if (box_pos.row != -1) break;
-            }
+            // Locate a currently unassigned box matching this goal symbol.
+            // Prefer off-goal boxes closest to this goal so same-letter Sokoban
+            // rows do not all target the first matching box found in row-major
+            // order, and avoid stealing boxes that already satisfy another goal.
+            Position box_pos = choose_box_for_goal(level, state, goal, Position{r, c}, assigned_boxes);
 
             // A goal without a matching box cannot be delivered. Record the
             // reason rather than emitting an impossible task.
@@ -183,6 +220,7 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
             task.goal_symbol = goal;
             task.goal_pos = Position{r, c};
             tasks.push_back(task);
+            assigned_boxes.push_back(box_pos);
         }
     }
 

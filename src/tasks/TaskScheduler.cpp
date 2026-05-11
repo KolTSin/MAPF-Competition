@@ -13,6 +13,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <cstdlib>
 #include <iostream>
 #include <limits>
 #include <optional>
@@ -25,6 +26,40 @@ namespace {
 // path; the scheduler only needs a cheap "try nearby agents first" ordering.
 int manhattan(const Position& a, const Position& b) {
     return std::abs(a.row - b.row) + std::abs(a.col - b.col);
+}
+
+bool verbose_scheduler() {
+    if (const char* v = std::getenv("MAPF_VERBOSE_TASKS")) {
+        return std::atoi(v) != 0;
+    }
+    return false;
+}
+
+bool is_satisfied_box_goal(const Level& level, const State& state, Position pos, char box_id) {
+    return level.goal_at(pos.row, pos.col) == box_id && state.box_at(pos.row, pos.col) == box_id;
+}
+
+Position choose_current_box_position(const Level& level, const State& state, const Task& task) {
+    if (state.in_bounds(task.box_pos.row, task.box_pos.col) &&
+        state.box_at(task.box_pos.row, task.box_pos.col) == task.box_id) {
+        return task.box_pos;
+    }
+
+    Position best{-1, -1};
+    int best_score = std::numeric_limits<int>::max();
+    for (int r = 0; r < state.rows; ++r) {
+        for (int c = 0; c < state.cols; ++c) {
+            if (state.box_at(r, c) != task.box_id) continue;
+            const Position candidate{r, c};
+            const int satisfied_goal_penalty = is_satisfied_box_goal(level, state, candidate, task.box_id) ? 100000 : 0;
+            const int score = satisfied_goal_penalty + manhattan(candidate, task.goal_pos);
+            if (score < best_score) {
+                best_score = score;
+                best = candidate;
+            }
+        }
+    }
+    return best;
 }
 
 // Return the agents that are allowed to execute a task, ordered by preference.
@@ -378,15 +413,7 @@ std::vector<ScheduledTask> schedule_once(
             // needs the current input position, not stale task metadata.
             Task chosen_task = task;
             if (chosen_task.box_id >= 'A' && chosen_task.box_id <= 'Z') {
-                for (int br = 0; br < simulated_state.rows; ++br) {
-                    for (int bc = 0; bc < simulated_state.cols; ++bc) {
-                        if (simulated_state.box_at(br, bc) == chosen_task.box_id) {
-                            chosen_task.box_pos = Position{br, bc};
-                            br = simulated_state.rows;
-                            break;
-                        }
-                    }
-                }
+                chosen_task.box_pos = choose_current_box_position(level, simulated_state, chosen_task);
             }
 
             // If another agent is currently parked on this delivery's goal,
@@ -425,14 +452,18 @@ std::vector<ScheduledTask> schedule_once(
                         agent_available[static_cast<std::size_t>(blocking_agent)] = parking_end;
                         dep_time = std::max(dep_time, parking_end);
                         progress = true;
-                        std::cerr << "[HTN] dynamic_agent_goal_blocker agent=" << blocking_agent
-                                  << " goal=(" << chosen_task.goal_pos.row << "," << chosen_task.goal_pos.col << ")"
-                                  << " park=(" << parking_task.parking_pos.row << "," << parking_task.parking_pos.col << ")"
-                                  << " unblock=" << chosen_task.box_id << '\n';
+                        if (verbose_scheduler()) {
+                            std::cerr << "[HTN] dynamic_agent_goal_blocker agent=" << blocking_agent
+                                      << " goal=(" << chosen_task.goal_pos.row << "," << chosen_task.goal_pos.col << ")"
+                                      << " park=(" << parking_task.parking_pos.row << "," << parking_task.parking_pos.col << ")"
+                                      << " unblock=" << chosen_task.box_id << '\n';
+                        }
                     } else {
-                        std::cerr << "[HTN] dynamic_agent_goal_blocker_failed agent=" << blocking_agent
-                                  << " goal=(" << chosen_task.goal_pos.row << "," << chosen_task.goal_pos.col << ")"
-                                  << " reason=" << parking_plan.failure_reason << '\n';
+                        if (verbose_scheduler()) {
+                            std::cerr << "[HTN] dynamic_agent_goal_blocker_failed agent=" << blocking_agent
+                                      << " goal=(" << chosen_task.goal_pos.row << "," << chosen_task.goal_pos.col << ")"
+                                      << " reason=" << parking_plan.failure_reason << '\n';
+                        }
                     }
                 }
             }
@@ -456,13 +487,21 @@ std::vector<ScheduledTask> schedule_once(
                 // use transport planning, which plans both agent actions and the
                 // box trajectory starting at chosen_start in the global timeline.
                 if (chosen_task.type == TaskType::MoveAgentToGoal || chosen_task.type == TaskType::ParkAgentSafely) {
-                    std::cerr << "path planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
+                    if (verbose_scheduler()) {
+                        std::cerr << "path planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
+                    }
                     plan = agent_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
-                    std::cerr << "success: " << (plan.success ? "true" : "false") << std::endl;
+                    if (verbose_scheduler()) {
+                        std::cerr << "success: " << (plan.success ? "true" : "false") << std::endl;
+                    }
                 } else {
-                    std::cerr << "box planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
+                    if (verbose_scheduler()) {
+                        std::cerr << "box planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
+                    }
                     plan = box_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
-                    std::cerr << "success: " << (plan.success ? "true" : "false") << " reason: " << plan.failure_reason << std::endl;
+                    if (verbose_scheduler()) {
+                        std::cerr << "success: " << (plan.success ? "true" : "false") << " reason: " << plan.failure_reason << std::endl;
+                    }
                 }
 
                 if (!plan.success) continue;
@@ -526,19 +565,25 @@ std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, cons
 
         const auto dependency = dependency_from_conflict(scheduled, conflict);
         if (!dependency.has_value()) {
-            std::cerr << "[HTN] unresolved schedule conflict without task mapping: " << to_string(conflict) << '\n';
+            if (verbose_scheduler()) {
+                std::cerr << "[HTN] unresolved schedule conflict without task mapping: " << to_string(conflict) << '\n';
+            }
             return agent_plans;
         }
 
         const auto [predecessor, successor] = *dependency;
         if (!add_dependency(mutable_tasks, predecessor, successor)) {
-            std::cerr << "[HTN] unresolved schedule conflict for existing dependency "
-                      << predecessor << " -> " << successor << ": " << to_string(conflict) << '\n';
+            if (verbose_scheduler()) {
+                std::cerr << "[HTN] unresolved schedule conflict for existing dependency "
+                          << predecessor << " -> " << successor << ": " << to_string(conflict) << '\n';
+            }
             return agent_plans;
         }
 
-        std::cerr << "[HTN] conflict_dependency " << predecessor << " -> " << successor
-                  << " due to " << to_string(conflict) << '\n';
+        if (verbose_scheduler()) {
+            std::cerr << "[HTN] conflict_dependency " << predecessor << " -> " << successor
+                      << " due to " << to_string(conflict) << '\n';
+        }
     }
 
     return expand_scheduled_tasks(initial_state, scheduled);

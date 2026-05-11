@@ -15,6 +15,8 @@
 #include <chrono>
 #include <cstdlib>
 #include <iostream>
+#include <string>
+#include <unordered_set>
 
 namespace {
 // Apply the first `horizon` joint actions of `plan` to a mutable State.
@@ -47,14 +49,39 @@ void apply_prefix(State& state, const Plan& plan, int horizon) {
     }
 }
 // Read the optional environment toggle used while diagnosing HTN task choices.
-// Returning true keeps the solver explainable by default: each wave can print
-// which tasks were generated, how they were scored, and why goals were skipped.
-
+// Verbose tracing is opt-in because benchmark stderr can become enormous and
+// the competition server timeout includes that I/O overhead.
 bool configured_verbose_tasks() {
     if (const char* v = std::getenv("MAPF_VERBOSE_TASKS")) {
         return std::atoi(v) != 0;
     }
-    return true;
+    return false;
+}
+
+std::vector<std::string> box_layout_signature(const State& state) {
+    std::vector<std::string> boxes;
+    boxes.reserve(static_cast<std::size_t>(state.rows * state.cols));
+    for (int r = 0; r < state.rows; ++r) {
+        for (int c = 0; c < state.cols; ++c) {
+            const char box = state.box_at(r, c);
+            if (box == '\0') continue;
+            boxes.push_back(std::string(1, box) + "@" + std::to_string(r) + "," + std::to_string(c));
+        }
+    }
+    return boxes;
+}
+
+std::string world_signature(const State& state) {
+    std::string signature;
+    signature.reserve(static_cast<std::size_t>(state.rows * state.cols + state.num_agents() * 8));
+    for (const Position& agent : state.agent_positions) {
+        signature += "a" + std::to_string(agent.row) + "," + std::to_string(agent.col) + ";";
+    }
+    signature += "|";
+    for (const std::string& box : box_layout_signature(state)) {
+        signature += box + ";";
+    }
+    return signature;
 }
 }
 
@@ -67,6 +94,21 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     // from the new state. The generic heuristic is therefore unused here; the
     // task prioritizer and scheduler provide the domain-specific guidance.
     (void)heuristic;
+
+    bool has_box_goal = false;
+    for (int r = 0; r < level.rows && !has_box_goal; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            const char goal = level.goal_at(r, c);
+            if (goal >= 'A' && goal <= 'Z') {
+                has_box_goal = true;
+                break;
+            }
+        }
+    }
+    if (!has_box_goal) {
+        CBSSolver fallback;
+        return fallback.solve(level, initial_state, heuristic);
+    }
 
     // Stop after several waves that fail to improve the state. This prevents an
     // infinite loop on unschedulable or cyclic task sets while still allowing a
@@ -97,6 +139,10 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     LocalRepair repair;
     PlanConflictRepairer conflict_repairer;
     int no_progress_iters = 0;
+    int wave_count = 0;
+    const int max_waves = std::max(32, level.rows * level.cols * 4);
+    std::unordered_set<std::string> seen_worlds;
+    seen_worlds.insert(world_signature(current));
 
     // Count completed box goals in a State. The value is used only as a simple
     // progress signal between waves; task generation still handles the detailed
@@ -109,11 +155,13 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         }
         return done;
     };
+    int best_goals_completed = goals_completed(current);
 
     // Main HTN loop: each iteration plans one wave from the latest simulated
     // state. Inputs are the level and `current`; output is appended into
     // `accumulated` and reflected back into `current` via apply_prefix().
     while (true) {
+        if (++wave_count > max_waves) break;
         const auto now = std::chrono::steady_clock::now();
         const double elapsed = std::chrono::duration<double>(now - start_time).count();
         if (elapsed >= kTimeBudgetSeconds) break;
@@ -197,6 +245,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // it made meaningful progress after simulation.
         const State before = current;
         const int goals_before = goals_completed(before);
+        const std::vector<std::string> boxes_before = box_layout_signature(before);
 
         // Today the scheduler returns only executable safe waves, so the safe
         // prefix is the complete wave. Keeping the prefix variable makes the
@@ -211,40 +260,23 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // post-wave state.
         apply_prefix(current, wave, safe_prefix);
         const int goals_after = goals_completed(current);
-        // Treat either a newly completed box goal or an agent movement as
-        // progress. Agent-only motion can be necessary setup for later box
-        // deliveries, so it should not be mistaken for a stalled iteration.
-        const bool progressed = (goals_after > goals_before) || !(current.agent_positions == before.agent_positions);
-        if (progressed) {
+        const bool repeated_world = !seen_worlds.insert(world_signature(current)).second;
+        const bool completed_new_goal = goals_after > goals_before;
+        const bool moved_any_box = box_layout_signature(current) != boxes_before;
+        if (repeated_world) {
+            break;
+        }
+        if (completed_new_goal || (moved_any_box && goals_after >= best_goals_completed)) {
+            best_goals_completed = std::max(best_goals_completed, goals_after);
             no_progress_iters = 0;
         } else if (++no_progress_iters >= kNoProgressBudget) {
             break;
         }
     }
 
-   // If the competitive pipeline produced no executable actions, or if it only
-    // made partial progress before getting stuck, return a simpler complete-solver
-    // attempt. This preserves a useful answer for small levels where sequential
-    // planning is sufficient and prevents a partial HLA prefix from masquerading
-    // as a complete solution.
-    const auto all_goals_satisfied = [&level](const State& s) {
-        for (int r = 0; r < level.rows; ++r) {
-            for (int c = 0; c < level.cols; ++c) {
-                const char g = level.goal_at(r, c);
-                if (g >= 'A' && g <= 'Z' && s.box_at(r, c) != g) return false;
-                if (g >= '0' && g <= '9') {
-                    const int agent = g - '0';
-                    if (agent >= s.num_agents() || !(s.agent_positions[agent] == Position{r, c})) return false;
-                }
-            }
-        }
-        return true;
-    };
-    if (accumulated.empty() || !all_goals_satisfied(current)) {
-        CBSSolver fallback;
-        Plan fallback_plan = fallback.solve(level, initial_state, heuristic);
-        if (!fallback_plan.empty()) return fallback_plan;
-    }
-
+    // Return the best HTN/reservation prefix immediately.  The old CBS fallback
+    // had no wall-clock budget and could consume the remaining server time after
+    // the competitive solver had already found useful work, turning partial
+    // failures into hard timeouts.
     return accumulated;
 }
