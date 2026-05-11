@@ -623,8 +623,8 @@ red: 1, C
 
         TaskScheduler sched;
         Plan p = sched.build_plan(l, s, {t0, t1, t2});
-        if (!p.empty() && p.steps.size() > 2) {
-            assert(p.steps[1].actions[0].type == ActionType::NoOp);
+        if (!p.empty()) {
+            assert(!ConflictDetector::has_conflict(p, s, nullptr));
         }
     }
 
@@ -1074,6 +1074,86 @@ red: 1, C
         WaveProgressDecision repeat = guard.assess(l, s, partial_push, 0);
         assert(!repeat.accept);
         assert(repeat.reason.find("repeated_task_local_trajectory") != std::string::npos);
+    }
+
+    {
+        Level l;
+        l.rows = 5; l.cols = 5;
+        l.walls.assign(25, false);
+        l.walls[l.index(0,0)] = true;
+        l.goals.assign(25, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.box_colors['A' - 'A'] = Color::Blue;
+
+        State s;
+        s.rows = 5; s.cols = 5;
+        s.agent_positions = {Position{2,1}};
+        s.box_pos.assign(25, '\0');
+        s.set_box(2,2,'A');
+
+        Task park;
+        park.task_id = 200;
+        park.type = TaskType::MoveBlockingBoxToParking;
+        park.agent_id = 0;
+        park.box_id = 'A';
+        park.box_pos = Position{2,2};
+        park.parking_pos = Position{0,0};
+        park.goal_pos = park.parking_pos;
+        park.parking_candidates = {Position{0,0}, Position{2,3}};
+        park.priority = 100;
+
+        TaskScheduler scheduler;
+        const std::vector<AgentPlan> plans = scheduler.build_agent_plans(l, s, {park});
+        assert(plans.size() == 1);
+        assert(!plans[0].actions.empty());
+
+        State after = s;
+        for (const Action& action : plans[0].actions) {
+            after = ActionApplicator::apply(l, after, 0, action);
+        }
+        assert(after.box_at(2,3) == 'A');
+        assert(after.box_at(2,2) == '\0');
+    }
+
+    {
+        Level l;
+        l.rows = 5; l.cols = 6;
+        l.walls.assign(30, false);
+        l.goals.assign(30, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.box_colors['A' - 'A'] = Color::Blue;
+        l.box_colors['B' - 'A'] = Color::Blue;
+
+        State s;
+        s.rows = 5; s.cols = 6;
+        s.agent_positions = {Position{2,1}};
+        s.box_pos.assign(30, '\0');
+        s.set_box(2,2,'A');
+        s.set_box(2,4,'B');
+
+        LevelAnalyzer analyzer;
+        const LevelAnalysis analysis = analyzer.analyze(l, s);
+        int next_task_id = 0;
+        BlockerResolver resolver;
+        const std::vector<Task> tasks = resolver.generate_blocker_tasks(l, s, analysis, next_task_id);
+
+        int blocker_tasks_with_alternates = 0;
+        std::vector<Position> selected_parking;
+        for (const Task& task : tasks) {
+            if (task.type != TaskType::MoveBlockingBoxToParking) continue;
+            assert(!task.parking_candidates.empty());
+            assert(task.parking_candidates.front() == task.parking_pos);
+            if (task.parking_candidates.size() > 1) ++blocker_tasks_with_alternates;
+            selected_parking.push_back(task.parking_pos);
+        }
+        assert(blocker_tasks_with_alternates >= 1);
+        if (selected_parking.size() >= 2) {
+            assert(selected_parking[0] != selected_parking[1]);
+        }
     }
 
     std::cout << "phase2_tests passed\n";

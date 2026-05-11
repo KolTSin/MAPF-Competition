@@ -279,7 +279,14 @@ bool box_transport_feasible(const Level& level, const State& state, char moved_b
     return planner.plan(level, state, probe).success;
 }
 
-Position best_parking_for(const Level& level, const State& state, const LevelAnalysis& analysis, char moved_box, Position box_pos, Position forbidden, int* out_score = nullptr, int agent_id = -1) {
+std::vector<std::pair<Position, int>> ranked_parking_candidates_for(const Level& level,
+                                                                       const State& state,
+                                                                       const LevelAnalysis& analysis,
+                                                                       char moved_box,
+                                                                       Position box_pos,
+                                                                       Position forbidden,
+                                                                       int agent_id = -1,
+                                                                       const std::vector<Position>& reserved_parking = {}) {
     std::vector<Position> candidates = analysis.parking_cells;
     for (const Position& p : analysis.free_cells) {
         if (std::find(candidates.begin(), candidates.end(), p) != candidates.end()) continue;
@@ -294,23 +301,67 @@ Position best_parking_for(const Level& level, const State& state, const LevelAna
                base_parking_score(level, state, analysis, box_pos, b);
     });
 
-    Position best = candidates.empty() ? Position{-1, -1} : candidates.front();
-    int best_score = std::numeric_limits<int>::min();
-    Position fallback = best;
-    int fallback_score = std::numeric_limits<int>::min();
+    std::vector<std::pair<Position, int>> strict;
+    std::vector<std::pair<Position, int>> fallback;
     for (const Position& p : candidates) {
+        if (p == box_pos || p == forbidden) continue;
         const int score = base_parking_score(level, state, analysis, box_pos, p);
-        if (score > fallback_score && p != box_pos && p != forbidden) { fallback_score = score; fallback = p; }
-        if (!parking_preserves_future_reachability(level, state, analysis, moved_box, box_pos, p, forbidden)) continue;
-        if (!box_transport_feasible(level, state, moved_box, box_pos, p, agent_id)) continue;
-        if (score > best_score) { best_score = score; best = p; }
+        if (std::find(reserved_parking.begin(), reserved_parking.end(), p) != reserved_parking.end()) {
+            fallback.push_back({p, score - 20000});
+            continue;
+        }
+        if (!parking_preserves_future_reachability(level, state, analysis, moved_box, box_pos, p, forbidden)) {
+            fallback.push_back({p, score - 10000});
+            continue;
+        }
+        if (!box_transport_feasible(level, state, moved_box, box_pos, p, agent_id)) {
+            fallback.push_back({p, score - 5000});
+            continue;
+        }
+        strict.push_back({p, score});
     }
-    if (best_score == std::numeric_limits<int>::min()) {
-        best = fallback;
-        best_score = fallback_score;
+
+    auto by_score = [](const auto& a, const auto& b) {
+        if (a.second != b.second) return a.second > b.second;
+        if (a.first.row != b.first.row) return a.first.row < b.first.row;
+        return a.first.col < b.first.col;
+    };
+    std::sort(strict.begin(), strict.end(), by_score);
+    std::sort(fallback.begin(), fallback.end(), by_score);
+
+    strict.insert(strict.end(), fallback.begin(), fallback.end());
+    return strict;
+}
+
+// Chooses the relocation target for one blocker. Inputs identify the moved box,
+// its current position, and a forbidden cell such as the delivery goal being
+// cleared. Output is the best reachability-preserving parking cell; if none pass
+// the strict checks, the best non-forbidden fallback is returned so planning can
+// still attempt recovery instead of dropping the blocker task completely.
+Position best_parking_for(const Level& level, const State& state, const LevelAnalysis& analysis, char moved_box, Position box_pos, Position forbidden, int* out_score = nullptr, int agent_id = -1, const std::vector<Position>& reserved_parking = {}) {
+    const auto ranked = ranked_parking_candidates_for(level, state, analysis, moved_box, box_pos, forbidden, agent_id, reserved_parking);
+    if (ranked.empty()) {
+        if (out_score) *out_score = std::numeric_limits<int>::min();
+        return Position{-1, -1};
     }
-    if (out_score) *out_score = best_score;
-    return best;
+    if (out_score) *out_score = ranked.front().second;
+    return ranked.front().first;
+}
+
+std::vector<Position> parking_candidate_positions_for(const Level& level,
+                                                       const State& state,
+                                                       const LevelAnalysis& analysis,
+                                                       char moved_box,
+                                                       Position box_pos,
+                                                       Position forbidden,
+                                                       int agent_id,
+                                                       const std::vector<Position>& reserved_parking) {
+    std::vector<Position> out;
+    for (const auto& [pos, _] : ranked_parking_candidates_for(level, state, analysis, moved_box, box_pos, forbidden, agent_id, reserved_parking)) {
+        if (std::find(out.begin(), out.end(), pos) == out.end()) out.push_back(pos);
+        if (out.size() >= 8) break;
+    }
+    return out;
 }
 }
 
@@ -332,6 +383,7 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
     // appear on multiple coarse/access routes, but emitting duplicate tasks for
     // the same physical box would confuse task ordering downstream.
     std::set<char> already_selected;
+    std::vector<Position> reserved_parking;
 
     // First classify letters that are still needed for unsatisfied goals. Boxes
     // with these letters should normally remain delivery candidates rather than
@@ -381,11 +433,14 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
             }
             t.agent_id = (best_agent >= 0) ? best_agent : 0;
             int best_score = std::numeric_limits<int>::min();
-            Position best_park = best_parking_for(level, state, analysis, b, t.box_pos, Position{-1, -1}, &best_score, t.agent_id);
+            t.parking_candidates = parking_candidate_positions_for(level, state, analysis, b, t.box_pos, Position{-1, -1}, t.agent_id, reserved_parking);
+            Position best_park = best_parking_for(level, state, analysis, b, t.box_pos, Position{-1, -1}, &best_score, t.agent_id, reserved_parking);
             t.parking_pos = best_park;
+            if (best_park.row >= 0 && (t.parking_candidates.empty() || t.parking_candidates.front() != best_park)) t.parking_candidates.insert(t.parking_candidates.begin(), best_park);
             t.goal_pos = t.parking_pos;
             t.priority = best_score;
             tasks.push_back(t);
+            if (best_park.row >= 0) reserved_parking.push_back(best_park);
             already_selected.insert(b);
         }
     }
@@ -467,13 +522,16 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
                 t.box_id = blocker;
                 t.box_pos = p;
                 int selected_score = 0;
-                t.parking_pos = best_parking_for(level, state, analysis, blocker, p, Position{r, c}, &selected_score, blocker_agent);
-                t.goal_pos = t.parking_pos;
                 t.agent_id = blocker_agent;
+                t.parking_candidates = parking_candidate_positions_for(level, state, analysis, blocker, p, Position{r, c}, blocker_agent, reserved_parking);
+                t.parking_pos = best_parking_for(level, state, analysis, blocker, p, Position{r, c}, &selected_score, blocker_agent, reserved_parking);
+                if (t.parking_pos.row >= 0 && (t.parking_candidates.empty() || t.parking_candidates.front() != t.parking_pos)) t.parking_candidates.insert(t.parking_candidates.begin(), t.parking_pos);
+                t.goal_pos = t.parking_pos;
                 t.priority = selected_score + 100;
                 t.unblocks_box_id = goal;
                 t.debug_label = "agent_access_blocker_for_" + std::string(1, goal);
                 tasks.push_back(t);
+                if (t.parking_pos.row >= 0) reserved_parking.push_back(t.parking_pos);
                 already_selected.insert(blocker);
                 break;
             }
@@ -533,11 +591,14 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
                 if (best_agent < 0) continue;
                 t.agent_id = best_agent;
                 int best_score = 0;
-                const Position best_park = best_parking_for(level, state, analysis, b, q, Position{r, c}, &best_score, best_agent);
+                t.parking_candidates = parking_candidate_positions_for(level, state, analysis, b, q, Position{r, c}, best_agent, reserved_parking);
+                const Position best_park = best_parking_for(level, state, analysis, b, q, Position{r, c}, &best_score, best_agent, reserved_parking);
                 t.parking_pos = best_park;
+                if (best_park.row >= 0 && (t.parking_candidates.empty() || t.parking_candidates.front() != best_park)) t.parking_candidates.insert(t.parking_candidates.begin(), best_park);
                 t.goal_pos = best_park;
                 t.priority = best_score + 20;
                 tasks.push_back(t);
+                if (best_park.row >= 0) reserved_parking.push_back(best_park);
                 already_selected.insert(b);
             }
         }

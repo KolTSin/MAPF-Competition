@@ -60,7 +60,7 @@ This checklist turns the current benchmark results in `benchmark_results_2026051
 
 ## 3. Make blocker relocation and parking multi-candidate
 
-- [ ] Treat parking assignment as a search/ranking problem instead of a single selected target.
+- [x] Treat parking assignment as a search/ranking problem instead of a single selected target.
 
 **Current signal**
 
