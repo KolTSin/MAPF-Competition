@@ -42,8 +42,8 @@ bool cell_has_agent(const State& state, const Position& p) {
 
 bool is_free_cell(const Level& level, const State& state, const Position& p, const Position& original_active_box) {
     if (!level.in_bounds(p.row, p.col) || level.is_wall(p.row, p.col)) return false;
-    // const char b = state.box_at(p.row, p.col);
-    // if (b != '\0' && !(p == original_active_box)) return false;
+    const char b = state.box_at(p.row, p.col);
+    if (b != '\0' && !(p == original_active_box)) return false;
     if (cell_has_agent(state, p)) return false;
     return true;
 }
