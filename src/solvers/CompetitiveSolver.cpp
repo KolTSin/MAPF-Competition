@@ -196,30 +196,45 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         PlanMerger::compact_independent_actions(level, current, wave);
         if (wave.empty()) {
             // An empty wave means the scheduler could not safely reserve paths
-            // for the generated tasks. Local repair tries one focused fallback
-            // around the first task before the main loop gives up.
+            // for the generated tasks. Local repair now performs real low-level
+            // planning alternatives (delays, alternate agents/parking, and a
+            // relaxed-reservation replan) and promotes a successful repair into
+            // the wave instead of repeatedly returning the same failed task.
             if (kVerboseTasks) {
-                std::cerr << "[HTN] scheduler_empty; attempting local repair on first task\n";
+                std::cerr << "[HTN] scheduler_empty; attempting local repair on ready tasks\n";
             }
             TaskPlan failed;
             failed.success = false;
             failed.failure_reason = "scheduler_empty";
-            for (int i = 0 ; i < static_cast<int>(tasks.size()); i++){
-                const RepairResult repaired = repair.repair(level, current, tasks[i], failed);
+            for (const Task& task : tasks) {
+                const RepairResult repaired = repair.repair(level, current, task, failed);
                 if (kVerboseTasks) {
                     std::cerr << "[HTN] repair outcome=" << static_cast<int>(repaired.outcome)
-                            << " success=" << (repaired.plan.success ? "true" : "false") << '\n';
+                              << " success=" << (repaired.plan.success ? "true" : "false")
+                              << " reason=" << repaired.reason << '\n';
                 }
-                if (repaired.plan.success && repaired.outcome == RepairStageOutcome::SafePrefixFallback && !accumulated.steps.empty()) {
+                if (!repaired.plan.success) continue;
+                if (repaired.outcome == RepairStageOutcome::SafePrefixFallback && !accumulated.steps.empty()) {
                     // Repair may validate that the already accumulated safe prefix is
                     // the best available output. Reset the stagnation counter so the
                     // solver can re-analyze from the unchanged state once more.
                     no_progress_iters = 0;
                     continue;
                 }
-                if (++no_progress_iters >= kNoProgressBudget) break;
-                continue;
+
+                wave_agent_plans.assign(current.num_agents(), AgentPlan{});
+                for (int agent = 0; agent < current.num_agents(); ++agent) {
+                    wave_agent_plans[static_cast<std::size_t>(agent)].agent = agent;
+                    wave_agent_plans[static_cast<std::size_t>(agent)].positions = {current.agent_positions[static_cast<std::size_t>(agent)]};
+                }
+                if (repaired.plan.agent_id >= 0 && repaired.plan.agent_id < current.num_agents()) {
+                    wave_agent_plans[static_cast<std::size_t>(repaired.plan.agent_id)] = repaired.plan.agent_plan;
+                    wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
+                    PlanMerger::compact_independent_actions(level, current, wave);
+                    break;
+                }
             }
+            if (wave.empty() && ++no_progress_iters >= kNoProgressBudget) break;
         }
         
         // The scheduler normally uses reservations, but a competitive wave can

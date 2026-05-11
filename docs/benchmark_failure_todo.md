@@ -10,7 +10,7 @@ This checklist turns the current benchmark results in `benchmark_results_2026051
 
 ## 1. Implement real local repair
 
-- [ ] Replace the placeholder `LocalRepair::repair` stages with actual planning attempts.
+- [x] Replace the placeholder `LocalRepair::repair` stages with actual planning attempts.
 
 **Current signal**
 
