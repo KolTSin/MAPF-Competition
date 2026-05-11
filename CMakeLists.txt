@@ -23,3 +23,7 @@ enable_testing()
 add_executable(phase2_tests tests/phase2_tests.cpp ${CORE_SRC_FILES})
 target_include_directories(phase2_tests PRIVATE src)
 add_test(NAME phase2_tests COMMAND phase2_tests)
+
+add_executable(cbs_solver_tests tests/cbs_solver_tests.cpp ${CORE_SRC_FILES})
+target_include_directories(cbs_solver_tests PRIVATE src)
+add_test(NAME cbs_solver_tests COMMAND cbs_solver_tests)
