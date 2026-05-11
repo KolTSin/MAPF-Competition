@@ -1,0 +1,16 @@
+[server][info] Running client on level: ./levels/SASolo.lvl
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 10.
+[server][info] Time to solve: 0.689 seconds.

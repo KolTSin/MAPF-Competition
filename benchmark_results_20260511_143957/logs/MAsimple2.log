@@ -1,0 +1,36 @@
+[server][info] Running client on level: ./levels/MAsimple2.lvl
+Move(W)|Move(E)
+Move(W)|Move(E)
+Move(W)|Move(E)
+Move(W)|Move(E)
+Move(W)|Move(E)
+Move(W)|Move(E)
+Move(W)|Move(E)
+Move(S)|Move(N)
+Move(S)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Push(N,N)|NoOp
+NoOp|Move(N)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Push(S,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 30.
+[server][info] Time to solve: 0.058 seconds.

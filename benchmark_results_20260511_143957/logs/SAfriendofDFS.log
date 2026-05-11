@@ -1,0 +1,14 @@
+[server][info] Running client on level: ./levels/SAfriendofDFS.lvl
+Move(N)
+Pull(S,S)
+Move(W)
+Pull(E,S)
+Move(E)
+Pull(W,S)
+Move(S)
+Pull(N,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 8.
+[server][info] Time to solve: 0.023 seconds.

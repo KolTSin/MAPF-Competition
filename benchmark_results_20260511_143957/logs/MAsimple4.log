@@ -1,0 +1,12 @@
+[server][info] Running client on level: ./levels/MAsimple4.lvl
+NoOp|Move(E)
+NoOp|Move(E)
+Push(E,S)|Move(E)
+NoOp|Pull(W,S)
+NoOp|Push(E,E)
+Push(E,S)|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 6.
+[server][info] Time to solve: 0.041 seconds.

@@ -1,0 +1,8 @@
+[server][info] Running client on level: ./levels/SAsoko1_04.lvl
+Push(E,E)
+Push(E,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 2.
+[server][info] Time to solve: 0.029 seconds.

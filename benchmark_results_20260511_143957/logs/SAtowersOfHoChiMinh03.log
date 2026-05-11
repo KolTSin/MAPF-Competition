@@ -1,0 +1,20 @@
+[server][info] Running client on level: ./levels/SAtowersOfHoChiMinh03.lvl
+Move(W)
+Move(W)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Push(W,S)
+Push(S,S)
+Push(S,S)
+Pull(N,N)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(S,E)
+Pull(S,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 14.
+[server][info] Time to solve: 0.090 seconds.
