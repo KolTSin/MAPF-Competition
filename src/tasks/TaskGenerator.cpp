@@ -7,6 +7,24 @@
 #include <sstream>
 #include <iostream>
 
+namespace {
+std::size_t level_signature(const Level& level) {
+    std::size_t h = static_cast<std::size_t>(level.rows) * 1315423911u + static_cast<std::size_t>(level.cols);
+    const auto mix = [&h](std::size_t v) {
+        h ^= v + 0x9e3779b97f4a7c15ULL + (h << 6) + (h >> 2);
+    };
+
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            mix(level.is_wall(r, c) ? 1u : 0u);
+            mix(static_cast<unsigned char>(level.goal_at(r, c)));
+        }
+    }
+    for (const Color color : level.agent_colors) mix(static_cast<std::size_t>(color));
+    for (const Color color : level.box_colors) mix(static_cast<std::size_t>(color));
+    return h;
+}
+}
 
 bool TaskGenerator::is_box_goal(char goal_symbol) noexcept {
     // Sokoban-style levels use uppercase letters to mean "a box with this
@@ -173,7 +191,12 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
     // vector so solvers can plan deliveries and prerequisite clearing work from
     // one ordered task list.
     LevelAnalyzer analyzer;
-    const LevelAnalysis analysis = analyzer.analyze(level, state, initial_agent_plans);
+    const std::size_t signature = level_signature(level);
+    if (!cached_initial_analysis_.has_value() || cached_level_signature_ != signature) {
+        cached_initial_analysis_ = analyzer.analyze(level, state, initial_agent_plans);
+        cached_level_signature_ = signature;
+    }
+    const LevelAnalysis analysis = analyzer.update(level, state, *cached_initial_analysis_, initial_agent_plans);
     BlockerResolver blocker_resolver;
     // std::cerr << "Parking cells on the level" << static_cast<int>(analysis.parking_cells.size()) << std::endl;
     // for (int i = 0; i < static_cast<int>(analysis.parking_cells.size()); i++) std::cerr << "parking cell: " 

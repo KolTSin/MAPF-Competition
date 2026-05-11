@@ -1,7 +1,6 @@
 #include "solvers/CompetitiveSolver.hpp"
 
 #include "actions/ActionSemantics.hpp"
-#include "analysis/LevelAnalyzer.hpp"
 #include "hospital/LocalRepair.hpp"
 #include "plan/AgentPlan.hpp"
 #include "plan/PlanConflictRepairer.hpp"
@@ -88,12 +87,10 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     Plan accumulated;
 
     // Pipeline components for one competitive wave:
-    //   1. analyze static/dynamic map structure,
-    //   2. generate high-level delivery tasks,
-    //   3. score them for traceability,
-    //   4. schedule primitive actions with reservations, and
-    //   5. try targeted repair if scheduling fails.
-    LevelAnalyzer analyzer;
+    //   1. generate high-level delivery tasks (with cached level analysis),
+    //   2. score them for traceability,
+    //   3. schedule primitive actions with reservations, and
+    //   4. try targeted repair if scheduling fails.
     TaskGenerator generator;
     TaskScheduler scheduler;
     TaskPrioritizer prioritizer;
@@ -120,11 +117,6 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         const auto now = std::chrono::steady_clock::now();
         const double elapsed = std::chrono::duration<double>(now - start_time).count();
         if (elapsed >= kTimeBudgetSeconds) break;
-
-        // Analyze the map at this state before task generation. The result is
-        // currently computed for side effects/caches used by downstream hospital
-        // modules; the local variable is not otherwise needed in this method.
-        (void)analyzer.analyze(level, current);
 
         // Convert unsatisfied goals into high-level delivery tasks. Each Task is
         // an intuitive contract: move a compatible box/agent from its source to
