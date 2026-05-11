@@ -3,8 +3,11 @@
 #include "domain/Level.hpp"
 #include "state/State.hpp"
 #include "tasks/Task.hpp"
+#include "analysis/LevelAnalysis.hpp"
 #include "plan/AgentPlan.hpp"
 
+#include <cstddef>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -63,4 +66,9 @@ private:
     // Cleared at the beginning of every generation run and then populated with
     // reasons for each skipped goal.
     std::vector<std::string> skip_reasons_{};
+
+    // Built once per TaskGenerator/level and then refreshed with lightweight
+    // dynamic parking updates after the solver advances the state.
+    std::optional<LevelAnalysis> cached_initial_analysis_{};
+    std::size_t cached_level_signature_{0};
 };

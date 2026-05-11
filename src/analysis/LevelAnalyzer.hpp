@@ -24,4 +24,15 @@ class LevelAnalyzer {
 public:
     [[nodiscard]] LevelAnalysis analyze(const Level& level, const State& state) const;
     [[nodiscard]] LevelAnalysis analyze(const Level& level, const State& state, const std::vector<AgentPlan>& initial_agent_plans) const;
+
+    // Lightweight refresh for a new dynamic state on the same static level.
+    // Reuses topology from `base`, then recomputes only state-sensitive route
+    // pressure, occupancy, plan visits, parking scores, and rankings.
+    [[nodiscard]] LevelAnalysis update(const Level& level,
+                                       const State& state,
+                                       const LevelAnalysis& base) const;
+    [[nodiscard]] LevelAnalysis update(const Level& level,
+                                       const State& state,
+                                       const LevelAnalysis& base,
+                                       const std::vector<AgentPlan>& initial_agent_plans) const;
 };

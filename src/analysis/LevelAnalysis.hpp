@@ -24,6 +24,9 @@ struct CellInfo {
     int component_id{-1};                       // Connected-component id over free cells.
     int degree{0};                              // Number of static free neighbors.
     int parking_score{0};                       // Higher means safer/better temporary storage.
+    int future_route_visits{0};                  // Static initial route pressure through this cell.
+    int nearest_goal_or_box_distance{0};         // Dynamic distance to current boxes or static goals.
+    int agent_path_visits{0};                    // Dynamic count of initial-plan visits through this cell.
 };
 
 // Compact grid-shaped analysis result. Position lists duplicate selected cells
