@@ -16,23 +16,40 @@ int corridor_access_bonus(const Level& level, const State& state, const Task& ta
     if (task.agent_id < 0 || task.agent_id >= state.num_agents()) return 0;
 
     const Position agent = state.agent_positions[static_cast<std::size_t>(task.agent_id)];
-    if (agent.row != task.goal_pos.row || agent.col == task.goal_pos.col) return 0;
-
-    const int step = (task.goal_pos.col > agent.col) ? 1 : -1;
-    int blocking_goals = 0;
-    for (int c = agent.col + step; c != task.goal_pos.col; c += step) {
-        if (!level.in_bounds(agent.row, c) || level.is_wall(agent.row, c)) break;
-        const char goal = level.goal_at(agent.row, c);
-        if (!is_box_goal(goal) || goal == task.box_id) continue;
-        if (state.box_at(agent.row, c) == goal) continue;
-        ++blocking_goals;
+    int access_blocking_goals = 0;
+    int route_blocking_goals = 0;
+    if (agent.row == task.goal_pos.row && agent.col != task.goal_pos.col) {
+        const int step = (task.goal_pos.col > agent.col) ? 1 : -1;
+        for (int c = agent.col + step; c != task.goal_pos.col; c += step) {
+            if (!level.in_bounds(agent.row, c) || level.is_wall(agent.row, c)) break;
+            const char goal = level.goal_at(agent.row, c);
+            if (!is_box_goal(goal) || goal == task.box_id) continue;
+            if (state.box_at(agent.row, c) == goal) continue;
+            ++access_blocking_goals;
+        }
     }
 
-    // Each unsatisfied box goal between the assigned agent and this task's goal
-    // is likely to become a permanent obstacle in a narrow corridor.  Give the
-    // far-side task enough lift to run before those nearer deliveries seal the
-    // corridor, without overwhelming the existing distance-based ordering.
-    return blocking_goals * 3;
+    // A box that must enter the goal row and then traverse over another
+    // unsatisfied box goal should be delivered first: once the crossed goal is
+    // filled, it becomes a static box obstacle for this task.  This captures the
+    // packed side-by-side goal pattern in MAsimple5 where B must cross A's goal
+    // cell before A is parked there.
+    if (task.box_pos.row != task.goal_pos.row && task.box_pos.col != task.goal_pos.col) {
+        const int step = (task.goal_pos.col > task.box_pos.col) ? 1 : -1;
+        for (int c = task.box_pos.col + step; c != task.goal_pos.col; c += step) {
+            if (!level.in_bounds(task.goal_pos.row, c) || level.is_wall(task.goal_pos.row, c)) break;
+            const char goal = level.goal_at(task.goal_pos.row, c);
+            if (!is_box_goal(goal) || goal == task.box_id) continue;
+            if (state.box_at(task.goal_pos.row, c) == goal) continue;
+            ++route_blocking_goals;
+        }
+    }
+
+    // Each unsatisfied box goal on the access route is likely to become a
+    // permanent obstacle in a narrow corridor.  Keep the established agent-side
+    // access weight, and give actual box routes that cross a future goal a
+    // stronger lift so they run before that goal is filled.
+    return access_blocking_goals * 3 + route_blocking_goals * 8;
 }
 }
 
