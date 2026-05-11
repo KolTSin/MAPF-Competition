@@ -194,11 +194,11 @@ void parse_goal_grid(const std::vector<std::string>& goal_lines, Level& level) {
                 level.goals[level.index(r, c)] = ch;
             } else if (ch == '+') {
                 if (!initial_is_wall) {
-                    throw std::runtime_error("Goal grid wall layout must match initial grid");
+                    throw std::runtime_error("Goal grid wall layout must match initial grid, WRONG WALL AT " + std::to_string(r) + ", " + std::to_string(c));
                 }
             } else if (ch == ' ') {
                 if (initial_is_wall) {
-                    throw std::runtime_error("Goal grid wall layout must match initial grid");
+                    throw std::runtime_error("Goal grid wall layout must match initial grid, WRONG SPACE AT " + std::to_string(r) + ", " + std::to_string(c));
                 }
             } else {
                 throw std::runtime_error("Invalid token in goal grid: '" + std::string(1, ch) + "'");

@@ -1,0 +1,397 @@
+[server][info] Running client on level: ./complevels/pacMAn.lvl
+[HTN] competitive_wave tasks=74 elapsed=0.000754093s
+[HTN] task_batch size=74
+[HTN] Task#17 MoveBlockingBoxToParking box=Z parking=(9,24) agent=0 prio=36
+[HTN] Task#25 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=36
+[HTN] Task#13 MoveBlockingBoxToParking box=Z parking=(9,3) agent=0 prio=35
+[HTN] Task#26 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=35
+[HTN] Task#33 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=35
+[HTN] Task#27 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#34 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#38 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#41 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#46 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#53 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#28 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#35 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#39 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#42 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#47 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#54 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#29 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#36 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#40 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#43 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#48 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#55 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#61 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#12 MoveBlockingBoxToParking box=Z parking=(9,27) agent=0 prio=31
+[HTN] Task#21 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=31
+[HTN] Task#37 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=31
+[HTN] Task#44 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#49 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#56 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#62 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#8 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=30
+[HTN] Task#11 MoveBlockingBoxToParking box=Z parking=(7,1) agent=0 prio=30
+[HTN] Task#30 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=30
+[HTN] Task#45 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#57 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#63 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#14 MoveBlockingBoxToParking box=Z parking=(14,3) agent=0 prio=29
+[HTN] Task#31 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=29
+[HTN] Task#50 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#58 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#64 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#16 MoveBlockingBoxToParking box=Z parking=(5,1) agent=0 prio=28
+[HTN] Task#22 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=28
+[HTN] Task#32 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=28
+[HTN] Task#51 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#59 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#65 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#69 MoveBlockingBoxToParking box=A parking=(9,0) agent=0 prio=28
+[HTN] Task#15 MoveBlockingBoxToParking box=Z parking=(14,24) agent=0 prio=27
+[HTN] Task#23 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=27
+[HTN] Task#52 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=27
+[HTN] Task#60 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=27
+[HTN] Task#68 MoveBlockingBoxToParking box=B parking=(9,0) agent=1 prio=27
+[HTN] Task#24 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=26
+[HTN] Task#67 MoveBlockingBoxToParking box=C parking=(9,0) agent=3 prio=26
+[HTN] Task#18 MoveBlockingBoxToParking box=Z parking=(4,26) agent=0 prio=25
+[HTN] Task#20 MoveBlockingBoxToParking box=Z parking=(20,20) agent=0 prio=25
+[HTN] Task#66 MoveBlockingBoxToParking box=D parking=(9,0) agent=2 prio=25
+[HTN] Task#9 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=24
+[HTN] Task#10 MoveBlockingBoxToParking box=Z parking=(14,27) agent=0 prio=24
+[HTN] Task#19 MoveBlockingBoxToParking box=Z parking=(22,1) agent=0 prio=21
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=2 prio=13
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=10
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=3 prio=7
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=1 prio=5
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=1 prio=1
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=1
+[HTN] Task#73 MoveAgentToGoal agent=0 target_goal=0 prio=0 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69
+[HTN] Task#72 MoveAgentToGoal agent=2 target_goal=2 prio=-3 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69
+[HTN] Task#4 DeliverBoxToGoal box=C goal=C agent=3 prio=-9
+[HTN] Task#70 MoveAgentToGoal agent=3 target_goal=3 prio=-13 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69
+[HTN] Task#6 DeliverBoxToGoal box=D goal=D agent=2 prio=-14
+[HTN] Task#71 MoveAgentToGoal agent=1 target_goal=1 prio=-18 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=73 elapsed=23.2917s
+[HTN] task_batch size=73
+[HTN] Task#16 MoveBlockingBoxToParking box=Z parking=(9,24) agent=0 prio=36
+[HTN] Task#24 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=36
+[HTN] Task#12 MoveBlockingBoxToParking box=Z parking=(9,3) agent=0 prio=35
+[HTN] Task#25 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=35
+[HTN] Task#32 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=35
+[HTN] Task#26 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#33 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#37 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#40 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#45 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#52 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#27 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#34 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#38 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#41 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#46 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#53 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#28 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#35 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#39 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#42 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#47 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#54 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#60 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#11 MoveBlockingBoxToParking box=Z parking=(9,27) agent=0 prio=31
+[HTN] Task#20 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=31
+[HTN] Task#36 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=31
+[HTN] Task#43 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#48 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#55 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#61 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#7 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=30
+[HTN] Task#10 MoveBlockingBoxToParking box=Z parking=(7,1) agent=0 prio=30
+[HTN] Task#29 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=30
+[HTN] Task#44 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#56 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#62 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#68 MoveBlockingBoxToParking box=D parking=(9,0) agent=2 prio=30
+[HTN] Task#13 MoveBlockingBoxToParking box=Z parking=(14,3) agent=0 prio=29
+[HTN] Task#30 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=29
+[HTN] Task#49 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#57 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#63 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#15 MoveBlockingBoxToParking box=Z parking=(5,1) agent=0 prio=28
+[HTN] Task#21 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=28
+[HTN] Task#31 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=28
+[HTN] Task#50 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#58 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#64 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#67 MoveBlockingBoxToParking box=A parking=(9,0) agent=0 prio=28
+[HTN] Task#14 MoveBlockingBoxToParking box=Z parking=(14,24) agent=0 prio=27
+[HTN] Task#22 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=27
+[HTN] Task#51 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=27
+[HTN] Task#59 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=27
+[HTN] Task#66 MoveBlockingBoxToParking box=B parking=(9,0) agent=1 prio=27
+[HTN] Task#23 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=26
+[HTN] Task#65 MoveBlockingBoxToParking box=C parking=(9,0) agent=3 prio=26
+[HTN] Task#17 MoveBlockingBoxToParking box=Z parking=(4,26) agent=0 prio=25
+[HTN] Task#19 MoveBlockingBoxToParking box=Z parking=(20,20) agent=0 prio=25
+[HTN] Task#8 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=24
+[HTN] Task#9 MoveBlockingBoxToParking box=Z parking=(14,27) agent=0 prio=24
+[HTN] Task#18 MoveBlockingBoxToParking box=Z parking=(22,1) agent=0 prio=21
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=10
+[HTN] Task#71 MoveAgentToGoal agent=2 target_goal=2 prio=8 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=3 prio=7
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=1 prio=5
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=1 prio=1
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=1
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=2 prio=0
+[HTN] Task#72 MoveAgentToGoal agent=0 target_goal=0 prio=0 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] Task#4 DeliverBoxToGoal box=C goal=C agent=3 prio=-9
+[HTN] Task#69 MoveAgentToGoal agent=3 target_goal=3 prio=-13 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] Task#70 MoveAgentToGoal agent=1 target_goal=1 prio=-18 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(6,12)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=73 elapsed=51.2696s
+[HTN] task_batch size=73
+[HTN] Task#16 MoveBlockingBoxToParking box=Z parking=(9,24) agent=0 prio=36
+[HTN] Task#24 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=36
+[HTN] Task#12 MoveBlockingBoxToParking box=Z parking=(9,3) agent=0 prio=35
+[HTN] Task#25 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=35
+[HTN] Task#32 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=35
+[HTN] Task#26 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#33 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#37 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#40 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#45 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#52 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#27 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#34 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#38 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#41 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#46 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#53 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#28 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#35 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#39 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#42 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#47 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#54 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#60 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#11 MoveBlockingBoxToParking box=Z parking=(9,27) agent=0 prio=31
+[HTN] Task#20 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=31
+[HTN] Task#36 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=31
+[HTN] Task#43 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#48 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#55 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#61 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#7 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=30
+[HTN] Task#10 MoveBlockingBoxToParking box=Z parking=(7,1) agent=0 prio=30
+[HTN] Task#29 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=30
+[HTN] Task#44 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#56 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#62 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#68 MoveBlockingBoxToParking box=D parking=(9,0) agent=2 prio=30
+[HTN] Task#13 MoveBlockingBoxToParking box=Z parking=(14,3) agent=0 prio=29
+[HTN] Task#30 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=29
+[HTN] Task#49 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#57 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#63 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#15 MoveBlockingBoxToParking box=Z parking=(5,1) agent=0 prio=28
+[HTN] Task#21 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=28
+[HTN] Task#31 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=28
+[HTN] Task#50 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#58 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#64 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#67 MoveBlockingBoxToParking box=A parking=(9,0) agent=0 prio=28
+[HTN] Task#14 MoveBlockingBoxToParking box=Z parking=(14,24) agent=0 prio=27
+[HTN] Task#22 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=27
+[HTN] Task#51 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=27
+[HTN] Task#59 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=27
+[HTN] Task#66 MoveBlockingBoxToParking box=B parking=(9,0) agent=1 prio=27
+[HTN] Task#23 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=26
+[HTN] Task#65 MoveBlockingBoxToParking box=C parking=(9,0) agent=3 prio=26
+[HTN] Task#17 MoveBlockingBoxToParking box=Z parking=(4,26) agent=0 prio=25
+[HTN] Task#19 MoveBlockingBoxToParking box=Z parking=(20,20) agent=0 prio=25
+[HTN] Task#8 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=24
+[HTN] Task#9 MoveBlockingBoxToParking box=Z parking=(14,27) agent=0 prio=24
+[HTN] Task#18 MoveBlockingBoxToParking box=Z parking=(22,1) agent=0 prio=21
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=10
+[HTN] Task#71 MoveAgentToGoal agent=2 target_goal=2 prio=8 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=3 prio=7
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=1 prio=5
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=1 prio=1
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=1
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=2 prio=0
+[HTN] Task#72 MoveAgentToGoal agent=0 target_goal=0 prio=0 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] Task#4 DeliverBoxToGoal box=C goal=C agent=3 prio=-9
+[HTN] Task#69 MoveAgentToGoal agent=3 target_goal=3 prio=-13 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] Task#70 MoveAgentToGoal agent=1 target_goal=1 prio=-18 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(6,12)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=73 elapsed=80.5152s
+[HTN] task_batch size=73
+[HTN] Task#16 MoveBlockingBoxToParking box=Z parking=(9,24) agent=0 prio=36
+[HTN] Task#24 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=36
+[HTN] Task#12 MoveBlockingBoxToParking box=Z parking=(9,3) agent=0 prio=35
+[HTN] Task#25 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=35
+[HTN] Task#32 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=35
+[HTN] Task#26 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#33 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#37 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=34
+[HTN] Task#40 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#45 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#52 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=34
+[HTN] Task#27 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#34 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#38 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=33
+[HTN] Task#41 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#46 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#53 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=33
+[HTN] Task#28 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#35 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#39 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=32
+[HTN] Task#42 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#47 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#54 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#60 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=32
+[HTN] Task#11 MoveBlockingBoxToParking box=Z parking=(9,27) agent=0 prio=31
+[HTN] Task#20 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=31
+[HTN] Task#36 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=31
+[HTN] Task#43 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#48 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#55 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#61 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=31
+[HTN] Task#7 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=30
+[HTN] Task#10 MoveBlockingBoxToParking box=Z parking=(7,1) agent=0 prio=30
+[HTN] Task#29 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=30
+[HTN] Task#44 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#56 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#62 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=30
+[HTN] Task#68 MoveBlockingBoxToParking box=D parking=(9,0) agent=2 prio=30
+[HTN] Task#13 MoveBlockingBoxToParking box=Z parking=(14,3) agent=0 prio=29
+[HTN] Task#30 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=29
+[HTN] Task#49 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#57 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#63 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=29
+[HTN] Task#15 MoveBlockingBoxToParking box=Z parking=(5,1) agent=0 prio=28
+[HTN] Task#21 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=28
+[HTN] Task#31 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=28
+[HTN] Task#50 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#58 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#64 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=28
+[HTN] Task#67 MoveBlockingBoxToParking box=A parking=(9,0) agent=0 prio=28
+[HTN] Task#14 MoveBlockingBoxToParking box=Z parking=(14,24) agent=0 prio=27
+[HTN] Task#22 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=27
+[HTN] Task#51 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=27
+[HTN] Task#59 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=27
+[HTN] Task#66 MoveBlockingBoxToParking box=B parking=(9,0) agent=1 prio=27
+[HTN] Task#23 MoveBlockingBoxToParking box=Z parking=(9,0) agent=0 prio=26
+[HTN] Task#65 MoveBlockingBoxToParking box=C parking=(9,0) agent=3 prio=26
+[HTN] Task#17 MoveBlockingBoxToParking box=Z parking=(4,26) agent=0 prio=25
+[HTN] Task#19 MoveBlockingBoxToParking box=Z parking=(20,20) agent=0 prio=25
+[HTN] Task#8 MoveBlockingBoxToParking box=Z parking=(14,0) agent=0 prio=24
+[HTN] Task#9 MoveBlockingBoxToParking box=Z parking=(14,27) agent=0 prio=24
+[HTN] Task#18 MoveBlockingBoxToParking box=Z parking=(22,1) agent=0 prio=21
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=10
+[HTN] Task#71 MoveAgentToGoal agent=2 target_goal=2 prio=8 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=3 prio=7
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=1 prio=5
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=1 prio=1
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=1
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=2 prio=0
+[HTN] Task#72 MoveAgentToGoal agent=0 target_goal=0 prio=0 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] Task#4 DeliverBoxToGoal box=C goal=C agent=3 prio=-9
+[HTN] Task#69 MoveAgentToGoal agent=3 target_goal=3 prio=-13 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] Task#70 MoveAgentToGoal agent=1 target_goal=1 prio=-18 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(6,12)
+NoOp|NoOp|Move(W)|NoOp
+NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|Move(W)|NoOp
+NoOp|NoOp|Move(W)|NoOp
+NoOp|NoOp|Pull(E,S)|NoOp
+NoOp|NoOp|Pull(E,E)|NoOp
+NoOp|NoOp|Pull(N,E)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,S)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,S)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|Push(S,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,N)|NoOp
+NoOp|NoOp|Push(N,N)|NoOp
+NoOp|NoOp|Push(N,N)|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 53.
+[server][info] Time to solve: 116.162 seconds.

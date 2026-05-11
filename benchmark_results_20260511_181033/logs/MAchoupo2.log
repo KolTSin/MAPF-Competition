@@ -1,0 +1,97 @@
+[server][info] Running client on level: ./complevels/MAchoupo2.lvl
+[HTN] competitive_wave tasks=6 elapsed=0.000913604s
+[HTN] task_batch size=6
+[HTN] Task#2 MoveBlockingBoxToParking box=B parking=(4,1) agent=1 prio=31
+[HTN] Task#3 MoveBlockingBoxToParking box=C parking=(4,25) agent=0 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=22
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=1 prio=22
+[HTN] Task#5 MoveAgentToGoal agent=1 target_goal=1 prio=-3 deps=, 0, 1, 2, 3
+[HTN] Task#4 MoveAgentToGoal agent=0 target_goal=0 prio=-7 deps=, 0, 1, 2, 3
+[HTN] competitive_wave tasks=0 elapsed=2.38336s
+[HTN] task_batch size=0
+Move(E)|Move(W)
+Push(S,E)|Push(N,W)
+Push(E,E)|Push(W,W)
+Push(E,E)|Push(W,W)
+Push(E,E)|Push(W,W)
+Push(E,E)|Push(W,W)
+Push(E,E)|Push(W,W)
+Push(E,E)|Push(W,W)
+Push(E,E)|Push(W,W)
+Push(E,E)|Push(W,W)
+Push(E,E)|Push(W,W)
+Push(E,N)|Push(W,N)
+Push(N,N)|Push(N,N)
+Push(N,N)|Push(N,N)
+Push(N,E)|Push(N,W)
+Pull(S,W)|Pull(S,E)
+Push(N,W)|Pull(S,S)
+Push(W,W)|Pull(E,S)
+Push(W,S)|NoOp
+Push(S,S)|NoOp
+Push(S,S)|NoOp
+Push(S,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,S)|NoOp
+Push(S,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,N)|NoOp
+Push(N,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+NoOp|Pull(S,E)
+NoOp|Pull(E,S)
+NoOp|Pull(E,E)
+Move(E)|Pull(E,E)
+Move(E)|Pull(E,E)
+Move(E)|Pull(E,E)
+Move(E)|Pull(E,E)
+Move(N)|Pull(E,E)
+Move(N)|Pull(E,E)
+Move(N)|Pull(E,E)
+Move(N)|Pull(S,E)
+Move(N)|Pull(E,S)
+Move(N)|Pull(S,E)
+Move(W)|Push(N,E)
+Move(W)|Push(E,E)
+Move(W)|Push(E,N)
+Move(W)|Push(N,E)
+Move(W)|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(S)
+NoOp|Move(E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 81.
+[server][info] Time to solve: 2.479 seconds.
