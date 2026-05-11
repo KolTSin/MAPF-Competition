@@ -49,9 +49,8 @@ void apply_prefix(State& state, const Plan& plan, int horizon) {
     }
 }
 // Read the optional environment toggle used while diagnosing HTN task choices.
-// Returning true keeps the solver explainable by default: each wave can print
-// which tasks were generated, how they were scored, and why goals were skipped.
-
+// Verbose tracing is opt-in because benchmark stderr can become enormous and
+// the competition server timeout includes that I/O overhead.
 bool configured_verbose_tasks() {
     if (const char* v = std::getenv("MAPF_VERBOSE_TASKS")) {
         return std::atoi(v) != 0;

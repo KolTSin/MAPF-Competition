@@ -35,6 +35,33 @@ bool verbose_scheduler() {
     return false;
 }
 
+bool is_satisfied_box_goal(const Level& level, const State& state, Position pos, char box_id) {
+    return level.goal_at(pos.row, pos.col) == box_id && state.box_at(pos.row, pos.col) == box_id;
+}
+
+Position choose_current_box_position(const Level& level, const State& state, const Task& task) {
+    if (state.in_bounds(task.box_pos.row, task.box_pos.col) &&
+        state.box_at(task.box_pos.row, task.box_pos.col) == task.box_id) {
+        return task.box_pos;
+    }
+
+    Position best{-1, -1};
+    int best_score = std::numeric_limits<int>::max();
+    for (int r = 0; r < state.rows; ++r) {
+        for (int c = 0; c < state.cols; ++c) {
+            if (state.box_at(r, c) != task.box_id) continue;
+            const Position candidate{r, c};
+            const int satisfied_goal_penalty = is_satisfied_box_goal(level, state, candidate, task.box_id) ? 100000 : 0;
+            const int score = satisfied_goal_penalty + manhattan(candidate, task.goal_pos);
+            if (score < best_score) {
+                best_score = score;
+                best = candidate;
+            }
+        }
+    }
+    return best;
+}
+
 // Return the agents that are allowed to execute a task, ordered by preference.
 //
 // Input:
@@ -386,15 +413,7 @@ std::vector<ScheduledTask> schedule_once(
             // needs the current input position, not stale task metadata.
             Task chosen_task = task;
             if (chosen_task.box_id >= 'A' && chosen_task.box_id <= 'Z') {
-                for (int br = 0; br < simulated_state.rows; ++br) {
-                    for (int bc = 0; bc < simulated_state.cols; ++bc) {
-                        if (simulated_state.box_at(br, bc) == chosen_task.box_id) {
-                            chosen_task.box_pos = Position{br, bc};
-                            br = simulated_state.rows;
-                            break;
-                        }
-                    }
-                }
+                chosen_task.box_pos = choose_current_box_position(level, simulated_state, chosen_task);
             }
 
             // If another agent is currently parked on this delivery's goal,
