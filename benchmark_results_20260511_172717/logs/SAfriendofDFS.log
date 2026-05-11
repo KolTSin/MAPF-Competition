@@ -1,0 +1,58 @@
+[server][info] Running client on level: ./levels/SAfriendofDFS.lvl
+[HTN] competitive_wave tasks=4 elapsed=0.000787392s
+[HTN] task_batch size=4
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=46
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=46
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=46
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=46
+[HTN] competitive_wave tasks=8 elapsed=0.00785129s
+[HTN] task_batch size=8
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(0,0) agent=0 prio=42
+[HTN] Task#5 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=42
+[HTN] Task#2 MoveBlockingBoxToParking box=A parking=(0,0) agent=0 prio=41
+[HTN] Task#6 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=41
+[HTN] Task#7 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=40
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=39
+[HTN] Task#3 MoveBlockingBoxToParking box=A parking=(0,0) agent=0 prio=37
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=36
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,2)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=8 elapsed=0.0244261s
+[HTN] task_batch size=8
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(0,0) agent=0 prio=42
+[HTN] Task#5 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=42
+[HTN] Task#2 MoveBlockingBoxToParking box=A parking=(0,0) agent=0 prio=41
+[HTN] Task#6 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=41
+[HTN] Task#7 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=40
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=39
+[HTN] Task#3 MoveBlockingBoxToParking box=A parking=(0,0) agent=0 prio=37
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=36
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,2)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=8 elapsed=0.0371802s
+[HTN] task_batch size=8
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(0,0) agent=0 prio=42
+[HTN] Task#5 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=42
+[HTN] Task#2 MoveBlockingBoxToParking box=A parking=(0,0) agent=0 prio=41
+[HTN] Task#6 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=41
+[HTN] Task#7 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=40
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=39
+[HTN] Task#3 MoveBlockingBoxToParking box=A parking=(0,0) agent=0 prio=37
+[HTN] Task#1 MoveBlockingBoxToParking box=A parking=(6,0) agent=0 prio=36
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,2)
+Move(N)
+Pull(S,S)
+Move(W)
+Pull(E,S)
+Move(E)
+Pull(W,S)
+Move(S)
+Pull(N,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 8.
+[server][info] Time to solve: 0.068 seconds.

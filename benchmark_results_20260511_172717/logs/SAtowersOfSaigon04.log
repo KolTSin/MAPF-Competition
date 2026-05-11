@@ -1,0 +1,128 @@
+[server][info] Running client on level: ./levels/SAtowersOfSaigon04.lvl
+[HTN] competitive_wave tasks=7 elapsed=0.000814407s
+[HTN] task_batch size=7
+[HTN] Task#6 MoveBlockingBoxToParking box=B parking=(5,3) agent=0 prio=42
+[HTN] Task#5 MoveBlockingBoxToParking box=A parking=(5,3) agent=0 prio=41
+[HTN] Task#4 MoveBlockingBoxToParking box=C parking=(5,3) agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=36
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=35
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=35
+[HTN] competitive_wave tasks=5 elapsed=0.234947s
+[HTN] task_batch size=5
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=43
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(1,2) agent=0 prio=41
+[HTN] Task#4 MoveBlockingBoxToParking box=C parking=(1,1) agent=0 prio=39
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=0 prio=38
+[HTN] competitive_wave tasks=5 elapsed=0.302778s
+[HTN] task_batch size=5
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(2,1) agent=0 prio=43
+[HTN] Task#4 MoveBlockingBoxToParking box=C parking=(2,3) agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=0 prio=36
+[HTN] competitive_wave tasks=4 elapsed=0.387793s
+[HTN] task_batch size=4
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=41
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(5,3) agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=37
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=0 prio=36
+[HTN] competitive_wave tasks=4 elapsed=0.443322s
+[HTN] task_batch size=4
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(5,3) agent=0 prio=42
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=39
+[HTN] cycle_detected: repeated_task_local_trajectory B:2,1->1,1; rejecting wave steps=3
+[HTN] competitive_wave tasks=4 elapsed=0.505919s
+[HTN] task_batch size=4
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(5,3) agent=0 prio=42
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=39
+[HTN] cycle_detected: repeated_task_local_trajectory B:2,1->1,1; rejecting wave steps=3
+[HTN] competitive_wave tasks=4 elapsed=0.568589s
+[HTN] task_batch size=4
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(5,3) agent=0 prio=42
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=39
+[HTN] cycle_detected: repeated_task_local_trajectory B:2,1->1,1; rejecting wave steps=3
+[HTN] competitive_wave tasks=4 elapsed=0.629172s
+[HTN] task_batch size=4
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(5,3) agent=0 prio=42
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=39
+[HTN] cycle_detected: repeated_task_local_trajectory B:2,1->1,1; rejecting wave steps=3
+[HTN] competitive_wave tasks=4 elapsed=0.690216s
+[HTN] task_batch size=4
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(5,3) agent=0 prio=42
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=39
+[HTN] cycle_detected: repeated_task_local_trajectory B:2,1->1,1; rejecting wave steps=3
+Move(W)
+Move(W)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Push(W,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(S,E)
+Pull(S,S)
+Pull(S,S)
+Push(N,N)
+Push(N,N)
+Push(N,E)
+Push(E,E)
+Push(E,S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Push(W,S)
+Push(S,S)
+Push(S,S)
+Pull(N,N)
+Pull(N,N)
+Pull(E,N)
+Push(W,W)
+Push(W,W)
+Push(W,S)
+Move(E)
+Move(E)
+Move(S)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(N,N)
+Move(W)
+Move(W)
+Push(S,S)
+Push(S,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 58.
+[server][info] Time to solve: 0.780 seconds.

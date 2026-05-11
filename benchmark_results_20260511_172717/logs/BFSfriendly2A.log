@@ -1,0 +1,7 @@
+[server][info] Running client on level: ./levels/BFSfriendly2A.lvl
+Move(W)|NoOp|NoOp|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 1.
+[server][info] Time to solve: 0.015 seconds.

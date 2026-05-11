@@ -1,0 +1,162 @@
+[server][info] Running client on level: ./levels/SAboXboXboX.lvl
+[HTN] competitive_wave tasks=10 elapsed=0.000211695s
+[HTN] task_batch size=10
+[HTN] Task#7 DeliverBoxToGoal box=H goal=H agent=0 prio=50
+[HTN] Task#5 DeliverBoxToGoal box=R goal=R agent=0 prio=46
+[HTN] Task#2 DeliverBoxToGoal box=E goal=E agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=S parking=(10,9) agent=0 prio=41
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#3 DeliverBoxToGoal box=P goal=P agent=0 prio=38
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=U goal=U agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=S goal=S agent=0 prio=34
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(0,9) agent=0 prio=31
+[HTN] competitive_wave tasks=9 elapsed=0.0242515s
+[HTN] task_batch size=9
+[HTN] Task#4 DeliverBoxToGoal box=R goal=R agent=0 prio=48
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=46
+[HTN] Task#7 MoveBlockingBoxToParking box=S parking=(10,9) agent=0 prio=41
+[HTN] Task#0 DeliverBoxToGoal box=U goal=U agent=0 prio=40
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=38
+[HTN] Task#3 DeliverBoxToGoal box=S goal=S agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=P goal=P agent=0 prio=36
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#8 MoveBlockingBoxToParking box=A parking=(0,9) agent=0 prio=31
+[HTN] competitive_wave tasks=7 elapsed=0.0400285s
+[HTN] task_batch size=7
+[HTN] Task#5 DeliverBoxToGoal box=H goal=H agent=0 prio=48
+[HTN] Task#3 DeliverBoxToGoal box=R goal=R agent=0 prio=46
+[HTN] Task#1 DeliverBoxToGoal box=P goal=P agent=0 prio=38
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=S goal=S agent=0 prio=34
+[HTN] Task#6 MoveBlockingBoxToParking box=A parking=(10,9) agent=0 prio=33
+[HTN] competitive_wave tasks=6 elapsed=0.0490531s
+[HTN] task_batch size=6
+[HTN] Task#3 DeliverBoxToGoal box=R goal=R agent=0 prio=45
+[HTN] Task#5 DeliverBoxToGoal box=H goal=H agent=0 prio=43
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=41
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=35
+[HTN] Task#2 DeliverBoxToGoal box=S goal=S agent=0 prio=35
+[HTN] Task#1 DeliverBoxToGoal box=P goal=P agent=0 prio=33
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=5 elapsed=0.0526468s
+[HTN] task_batch size=5
+[HTN] Task#2 DeliverBoxToGoal box=R goal=R agent=0 prio=50
+[HTN] Task#4 DeliverBoxToGoal box=H goal=H agent=0 prio=45
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=P goal=P agent=0 prio=35
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=4 elapsed=0.0561843s
+[HTN] task_batch size=4
+[HTN] Task#2 DeliverBoxToGoal box=R goal=R agent=0 prio=39
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=37
+[HTN] Task#3 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=P goal=P agent=0 prio=35
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=4 elapsed=0.0596337s
+[HTN] task_batch size=4
+[HTN] Task#2 DeliverBoxToGoal box=R goal=R agent=0 prio=39
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=37
+[HTN] Task#3 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=P goal=P agent=0 prio=35
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=4 elapsed=0.063129s
+[HTN] task_batch size=4
+[HTN] Task#2 DeliverBoxToGoal box=R goal=R agent=0 prio=39
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=37
+[HTN] Task#3 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=P goal=P agent=0 prio=35
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+Move(E)
+Move(S)
+Move(S)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(N,N)
+Push(S,E)
+Push(E,E)
+Push(E,N)
+Push(N,N)
+Move(S)
+Move(E)
+Move(E)
+Pull(W,W)
+Pull(W,W)
+Pull(N,W)
+Push(S,W)
+Push(W,W)
+Push(W,S)
+Push(S,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(E)
+Move(E)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(N,N)
+Push(S,W)
+Push(W,W)
+Push(W,N)
+Push(N,N)
+Move(S)
+Move(W)
+Move(W)
+Pull(E,E)
+Pull(E,E)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,S)
+Push(S,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(N,N)
+Push(S,E)
+Push(E,E)
+Push(E,N)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(E,N)
+Push(W,W)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 65.
+[server][info] Time to solve: 0.085 seconds.

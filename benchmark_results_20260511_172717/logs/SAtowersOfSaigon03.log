@@ -1,0 +1,66 @@
+[server][info] Running client on level: ./levels/SAtowersOfSaigon03.lvl
+[HTN] competitive_wave tasks=5 elapsed=0.000809023s
+[HTN] task_batch size=5
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(4,3) agent=0 prio=42
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(4,3) agent=0 prio=41
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=37
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] competitive_wave tasks=3 elapsed=0.0200052s
+[HTN] task_batch size=3
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=41
+[HTN] Task#2 MoveBlockingBoxToParking box=B parking=(1,2) agent=0 prio=41
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(4,3)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=3 elapsed=0.0345903s
+[HTN] task_batch size=3
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=41
+[HTN] Task#2 MoveBlockingBoxToParking box=B parking=(1,2) agent=0 prio=41
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(4,3)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=3 elapsed=0.0455239s
+[HTN] task_batch size=3
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=41
+[HTN] Task#2 MoveBlockingBoxToParking box=B parking=(1,2) agent=0 prio=41
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(4,3)
+Move(W)
+Move(W)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Push(W,S)
+Push(S,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Push(W,S)
+Push(S,S)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(S,E)
+Pull(S,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 24.
+[server][info] Time to solve: 0.096 seconds.

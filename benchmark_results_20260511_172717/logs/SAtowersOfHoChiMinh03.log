@@ -1,0 +1,82 @@
+[server][info] Running client on level: ./levels/SAtowersOfHoChiMinh03.lvl
+[HTN] competitive_wave tasks=5 elapsed=0.000672803s
+[HTN] task_batch size=5
+[HTN] Task#4 MoveBlockingBoxToParking box=B parking=(4,3) agent=0 prio=42
+[HTN] Task#3 MoveBlockingBoxToParking box=A parking=(4,3) agent=0 prio=41
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] competitive_wave tasks=5 elapsed=0.0111273s
+[HTN] task_batch size=5
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=45
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(1,2) agent=0 prio=42
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=40
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(1,1) agent=0 prio=40
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=38
+[HTN] competitive_wave tasks=5 elapsed=0.0218651s
+[HTN] task_batch size=5
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(2,1) agent=0 prio=43
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(3,1) agent=0 prio=42
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] cycle_detected: repeated_task_local_trajectory A:1,2->1,3; rejecting wave steps=16
+[HTN] competitive_wave tasks=5 elapsed=0.219665s
+[HTN] task_batch size=5
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(2,1) agent=0 prio=43
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(3,1) agent=0 prio=42
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] cycle_detected: repeated_task_local_trajectory A:1,2->1,3; rejecting wave steps=16
+[HTN] competitive_wave tasks=5 elapsed=0.404302s
+[HTN] task_batch size=5
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(2,1) agent=0 prio=43
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(3,1) agent=0 prio=42
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] cycle_detected: repeated_task_local_trajectory A:1,2->1,3; rejecting wave steps=16
+[HTN] competitive_wave tasks=5 elapsed=0.594064s
+[HTN] task_batch size=5
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(2,1) agent=0 prio=43
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(3,1) agent=0 prio=42
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] cycle_detected: repeated_task_local_trajectory A:1,2->1,3; rejecting wave steps=16
+[HTN] competitive_wave tasks=5 elapsed=0.808239s
+[HTN] task_batch size=5
+[HTN] Task#3 MoveBlockingBoxToParking box=B parking=(2,1) agent=0 prio=43
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(3,1) agent=0 prio=42
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=39
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] cycle_detected: repeated_task_local_trajectory A:1,2->1,3; rejecting wave steps=16
+Move(W)
+Move(W)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Push(W,S)
+Push(S,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Push(W,S)
+Push(S,S)
+Pull(N,N)
+Pull(E,N)
+Push(W,W)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 22.
+[server][info] Time to solve: 1.046 seconds.

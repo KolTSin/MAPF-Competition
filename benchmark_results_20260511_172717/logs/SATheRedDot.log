@@ -1,0 +1,50 @@
+[server][info] Running client on level: ./levels/SATheRedDot.lvl
+[HTN] competitive_wave tasks=6 elapsed=0.00050553s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.0437572s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.07623s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

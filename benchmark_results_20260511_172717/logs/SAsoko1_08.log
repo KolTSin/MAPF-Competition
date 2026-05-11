@@ -1,0 +1,17 @@
+[server][info] Running client on level: ./levels/SAsoko1_08.lvl
+[HTN] competitive_wave tasks=1 elapsed=1.2685e-05s
+[HTN] task_batch size=1
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=37
+[HTN] competitive_wave tasks=0 elapsed=0.00397418s
+[HTN] task_batch size=0
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 6.
+[server][info] Time to solve: 0.023 seconds.

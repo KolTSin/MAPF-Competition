@@ -1,0 +1,84 @@
+[server][info] Running client on level: ./levels/SAchoice.lvl
+[HTN] competitive_wave tasks=1 elapsed=0.00147145s
+[HTN] task_batch size=1
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] competitive_wave tasks=1 elapsed=0.00786255s
+[HTN] task_batch size=1
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(2,4) agent=0 prio=38
+[HTN] competitive_wave tasks=1 elapsed=0.0531625s
+[HTN] task_batch size=1
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(5,7) agent=0 prio=39
+[HTN] competitive_wave tasks=1 elapsed=0.0824113s
+[HTN] task_batch size=1
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(2,2) agent=0 prio=37
+[HTN] competitive_wave tasks=1 elapsed=0.108402s
+[HTN] task_batch size=1
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(5,6) agent=0 prio=38
+[HTN] cycle_detected: repeated_task_local_trajectory A:2,5->2,6; rejecting wave steps=7
+[HTN] competitive_wave tasks=1 elapsed=0.142105s
+[HTN] task_batch size=1
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(5,6) agent=0 prio=38
+[HTN] cycle_detected: repeated_task_local_trajectory A:2,5->2,6; rejecting wave steps=7
+[HTN] competitive_wave tasks=1 elapsed=0.175813s
+[HTN] task_batch size=1
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(5,6) agent=0 prio=38
+[HTN] cycle_detected: repeated_task_local_trajectory A:2,5->2,6; rejecting wave steps=7
+[HTN] competitive_wave tasks=1 elapsed=0.209076s
+[HTN] task_batch size=1
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(5,6) agent=0 prio=38
+[HTN] cycle_detected: repeated_task_local_trajectory A:2,5->2,6; rejecting wave steps=7
+[HTN] competitive_wave tasks=1 elapsed=0.241379s
+[HTN] task_batch size=1
+[HTN] Task#0 MoveBlockingBoxToParking box=A parking=(5,6) agent=0 prio=38
+[HTN] cycle_detected: repeated_task_local_trajectory A:2,5->2,6; rejecting wave steps=7
+Move(N)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(E,E)
+Push(E,S)
+Move(W)
+Move(S)
+Move(S)
+Move(S)
+Move(S)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Push(W,N)
+Push(N,N)
+Push(N,N)
+Push(N,N)
+Push(N,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Push(S,S)
+Push(S,S)
+Push(S,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,N)
+Push(N,N)
+Push(N,N)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 46.
+[server][info] Time to solve: 0.305 seconds.
