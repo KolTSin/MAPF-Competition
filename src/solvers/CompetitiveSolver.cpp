@@ -5,6 +5,7 @@
 #include "plan/AgentPlan.hpp"
 #include "plan/PlanConflictRepairer.hpp"
 #include "plan/PlanMerger.hpp"
+#include "plan/WaveProgressGuard.hpp"
 #include "solvers/CBSSolver.hpp"
 #include "tasks/HTNTracePrinter.hpp"
 #include "tasks/TaskGenerator.hpp"
@@ -16,7 +17,6 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
-#include <unordered_set>
 
 namespace {
 // Apply the first `horizon` joint actions of `plan` to a mutable State.
@@ -58,31 +58,6 @@ bool configured_verbose_tasks() {
     return false;
 }
 
-std::vector<std::string> box_layout_signature(const State& state) {
-    std::vector<std::string> boxes;
-    boxes.reserve(static_cast<std::size_t>(state.rows * state.cols));
-    for (int r = 0; r < state.rows; ++r) {
-        for (int c = 0; c < state.cols; ++c) {
-            const char box = state.box_at(r, c);
-            if (box == '\0') continue;
-            boxes.push_back(std::string(1, box) + "@" + std::to_string(r) + "," + std::to_string(c));
-        }
-    }
-    return boxes;
-}
-
-std::string world_signature(const State& state) {
-    std::string signature;
-    signature.reserve(static_cast<std::size_t>(state.rows * state.cols + state.num_agents() * 8));
-    for (const Position& agent : state.agent_positions) {
-        signature += "a" + std::to_string(agent.row) + "," + std::to_string(agent.col) + ";";
-    }
-    signature += "|";
-    for (const std::string& box : box_layout_signature(state)) {
-        signature += box + ";";
-    }
-    return signature;
-}
 }
 
 CompetitiveSolver::CompetitiveSolver(SolverConfig config) : config_(config) {}
@@ -141,21 +116,9 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     int no_progress_iters = 0;
     int wave_count = 0;
     const int max_waves = std::max(32, level.rows * level.cols * 4);
-    std::unordered_set<std::string> seen_worlds;
-    seen_worlds.insert(world_signature(current));
-
-    // Count completed box goals in a State. The value is used only as a simple
-    // progress signal between waves; task generation still handles the detailed
-    // compatibility checks for agents, boxes, and colors.
-    const auto goals_completed = [&level](const State& s) {
-        int done = 0;
-        for (int r = 0; r < level.rows; ++r) for (int c = 0; c < level.cols; ++c) {
-            const char g = level.goal_at(r, c);
-            if (g >= 'A' && g <= 'Z' && s.box_at(r, c) == g) ++done;
-        }
-        return done;
-    };
-    int best_goals_completed = goals_completed(current);
+    WaveProgressGuard progress_guard;
+    progress_guard.reset(level, current);
+    int best_goals_completed = WaveProgressGuard::goals_completed(level, current);
 
     // Main HTN loop: each iteration plans one wave from the latest simulated
     // state. Inputs are the level and `current`; output is appended into
@@ -256,11 +219,19 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             std::cerr << "[HTN] cbs_style_repair could not prove conflict-free wave; using scheduler wave\n";
         }
 
-        // Snapshot state before committing the wave so we can determine whether
-        // it made meaningful progress after simulation.
-        const State before = current;
-        const int goals_before = goals_completed(before);
-        const std::vector<std::string> boxes_before = box_layout_signature(before);
+        // Simulate the wave before accepting it.  A locally executable wave can
+        // still be cyclic (for example Push(E,E) immediately followed by the
+        // inverse Pull(W,W)) or return to a previously accepted world.  Reject
+        // those waves before appending them so cyclic benchmark cases terminate
+        // with a compact diagnostic prefix instead of thousands of oscillations.
+        const WaveProgressDecision progress = progress_guard.assess(level, current, wave, best_goals_completed);
+        if (!progress.accept) {
+            if (kVerboseTasks) {
+                std::cerr << "[HTN] " << progress.reason << "; rejecting wave steps=" << wave.steps.size() << '\n';
+            }
+            if (++no_progress_iters >= kNoProgressBudget) break;
+            continue;
+        }
 
         // Today the scheduler returns only executable safe waves, so the safe
         // prefix is the complete wave. Keeping the prefix variable makes the
@@ -274,15 +245,9 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // actions into `current` so the next iteration plans from the expected
         // post-wave state.
         apply_prefix(current, wave, safe_prefix);
-        const int goals_after = goals_completed(current);
-        const bool repeated_world = !seen_worlds.insert(world_signature(current)).second;
-        const bool completed_new_goal = goals_after > goals_before;
-        const bool moved_any_box = box_layout_signature(current) != boxes_before;
-        if (repeated_world) {
-            break;
-        }
-        if (completed_new_goal || (moved_any_box && goals_after >= best_goals_completed)) {
-            best_goals_completed = std::max(best_goals_completed, goals_after);
+        progress_guard.remember_accepted(current);
+        if (progress.completed_new_goal || (progress.moved_any_box && progress.goals_after >= best_goals_completed)) {
+            best_goals_completed = std::max(best_goals_completed, progress.goals_after);
             no_progress_iters = 0;
         } else if (++no_progress_iters >= kNoProgressBudget) {
             break;
