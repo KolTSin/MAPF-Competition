@@ -31,7 +31,11 @@ void update_costs(CBSNode& node) {
     }
 }
 
-Constraint make_constraint(const Conflict& conflict, int branch) {
+} // namespace
+
+namespace cbs_solver_detail {
+
+Constraint make_constraint_for_branch(const Conflict& conflict, int branch) {
     Constraint constraint;
     constraint.agent_id = conflict.agents[branch];
     constraint.time = conflict.time;
@@ -93,6 +97,10 @@ ReservationTable build_reservations_for_agent(const std::vector<Constraint>& con
     return reservations;
 }
 
+} // namespace cbs_solver_detail
+
+namespace {
+
 bool all_plans_valid(const std::vector<AgentPlan>& plans) {
     return std::all_of(plans.begin(), plans.end(), [](const AgentPlan& plan) {
         return plan.valid();
@@ -152,9 +160,9 @@ Plan CBSSolver::solve(const Level& level, const State& initial_state, const IHeu
             CBSNode child;
             child.constraints = current_constraints;
             child.plans = current_plans;
-            child.constraints.push_back(make_constraint(conflict, branch));
+            child.constraints.push_back(cbs_solver_detail::make_constraint_for_branch(conflict, branch));
 
-            const ReservationTable reservations = build_reservations_for_agent(
+            const ReservationTable reservations = cbs_solver_detail::build_reservations_for_agent(
                 child.constraints,
                 constrained_agent
             );
