@@ -1,235 +1,223 @@
 # Benchmark Failure TODO
 
-This checklist turns the current benchmark results in `benchmark_results_20260511_115056/summary.csv` into pick-off engineering tasks.  Each item describes the failure signal, the implementation idea, and the expected result once the item is complete.
+This checklist turns the latest benchmark runs into pick-off engineering tasks. It uses both regular `levels/` benchmarks from `benchmark_results_20260511_172717` and competition `complevels/` benchmarks from `benchmark_results_20260511_181033`.
 
-## Benchmark snapshot
+## Current benchmark snapshot
 
-- Current run: 107 levels total, 57 solved, 32 unsolved, 18 timeout/crash-class failures.
-- Strong areas: `BFSfriendly*`, simple `MAPF00`--`MAPF03C`, `MAsimple*`, `SAsoko1_*`, and `SAsoko2_*`.
-- Weak areas: `MAPFreorder*`, `MAPFslidingpuzzle`, large `MA*` hospital/sort/challenge levels, `MAthomasAppartment` multi-color combinations, `SAsoko3_*`, `SAtowers*`, and several single-agent puzzle maps with blockers or deadlocks.
+| Suite | Run directory | Tested | Solved | Failed | Success rate | Avg solved time |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| `levels/` | `benchmark_results_20260511_172717` | 107 | 68 | 39 | 63.55% | 5.077s |
+| `complevels/` | `benchmark_results_20260511_181033` | 47 | 10 | 37 | 21.28% | 8.825s |
 
-## 1. Implement real local repair
+### Main failure points
 
-- [x] Replace the placeholder `LocalRepair::repair` stages with actual planning attempts.
+1. **Large-map timeouts before emitting useful actions.** The regular benchmark still has 9 timeout/crash-class failures, and the competition benchmark has 22. Most of those report `server_time_s=0.000` and `solution_length=0`, which means the client spent the whole timeout before the server accepted any useful plan.
+2. **Scheduler stalls after partial progress.** Many failures end in `scheduler_empty` followed by local repair attempts. In the latest logs this appears in 17 failed regular levels and 17 failed competition levels.
+3. **Local repair is too shallow and often repeats the same unproductive choices.** `all_repair_stages_failed` appears in 16 failed regular levels and 16 failed competition levels. Successful repairs are often only a one-step delay, which helps local timing conflicts but does not create new domain work.
+4. **Cycle detection is catching repeated local trajectories, but the solver does not learn enough from them.** `cycle_detected` appears in 24 failed regular levels and 15 failed competition levels, with repeated box trajectories such as moving the same box between the same two cells.
+5. **Parking-cell selection over-concentrates blockers.** Logs show many generated `MoveBlockingBoxToParking` tasks targeting the same parking cell for several different boxes, which creates impossible or cyclic subproblems.
+6. **Agent-only MAPF coordination is still missing.** `MAPFreorder*`, `MAPFslidingpuzzle`, and the larger `MAPF02C`/`MAPF03C` variants fail with zero solution actions despite the smaller MAPF cases solving quickly.
+7. **Long single-agent puzzle families make progress but do not finish.** Tower levels, Sokoban/box-ordering levels, and several competition levels produce tens or hundreds of actions but are still unsolved, indicating that the high-level order is locally plausible but globally wrong.
+8. **Benchmark reporting is good enough for pass/fail, but not yet good enough for cause-directed development.** The summary CSVs expose status, time, and action count, but recurring log reasons still require one-off scripts.
 
-**Current signal**
+## TODO list
 
-- Logs repeatedly reach `scheduler_empty; attempting local repair on first task`, then every repair attempt fails.
-- Representative failures: `MAPFreorder.log`, `SACrunch.log`, and `MAthomasAppartment_redcyan.log`.
-- The current repair implementation only succeeds when the failure string already contains synthetic `stage_ok_*` markers, so it does not currently repair real benchmark failures.
+### 1. Add budget-aware early-exit and first-prefix planning for large maps
+
+- [ ] Make expensive pre-planning and task-generation phases wall-clock aware.
+
+**Failure signal**
+
+- Timeout/crash failures are the largest competition failure class: 22 of 47 `complevels/` and 9 of 107 regular levels.
+- Most timeout rows have `server_time_s=0.000` and `solution_length=0`, e.g. `AIMAS7`, `AMC`, `ISO`, `MAbispebjerg`, `MAmultiagentSort`, and full `MAthomasAppartment`.
 
 **Implementation idea**
 
-- Implement each advertised repair stage as a concrete strategy:
-  - Delay the failed task start time and retry with the same agent/box/parking target.
-  - Try alternate compatible agents for box tasks.
-  - Try alternate parking cells for blocker relocation tasks.
-  - Temporarily remove or relax reservations in a small neighborhood around the failed task and replan the local subset.
-  - Extract and return a safe prefix if the full wave cannot be repaired.
-- Extend `TaskPlan::failure_reason` or add a richer failure object so repair can tell whether the failure was a reservation conflict, static unreachable path, blocked parking target, expansion limit, or dependency/order issue.
-- Add focused tests that inject a failed delivery/blocker plan and assert that repair tries at least one real alternative before returning unresolved.
+- Thread a shared deadline/budget object through level analysis, task generation, prioritization, blocker generation, and low-level planning.
+- Add a cheap first wave that plans only the top few reachable, low-risk deliveries before running deep blocker enumeration.
+- Cache static distances, level analysis, component reachability, parking candidates, and generated task skeletons across waves.
+- If no accepted prefix exists by a small budget threshold, switch to a conservative fallback: choose the shortest safe delivery or a safe non-goal parking move and emit it.
+- Stop exploring lower-priority blocker tasks once the remaining budget falls below the threshold needed to validate and print a safe prefix.
 
 **Expected result**
 
-- `SACrunch.lvl` and `MAthomasAppartment_redcyan.lvl` should no longer terminate immediately after the first failed blocker parking task.
-- Logs should show concrete repair choices such as selected alternate parking cells or delayed start times instead of five identical failed repair attempts.
-- The number of `UNSOLVED` levels with `solution_length=0` should drop.
+- Timeout failures should no longer be dominated by `solution_length=0`.
+- Large maps may still be unsolved initially, but they should emit validated partial progress and become visible as `UNSOLVED` with actions instead of timeout/no-action failures.
+- The competition success rate should improve indirectly because smaller subproblems inside large maps will start completing before global reasoning times out.
 
-## 2. Add cycle and stagnation detection for accepted waves
+### 2. Turn `scheduler_empty` into structured dependency generation
 
-- [x] Detect and reject local push/pull loops and repeated task-local trajectories.
+- [ ] When the scheduler cannot add any ready task, convert failed low-level plans into new clearing or ordering tasks.
 
-**Current signal**
+**Failure signal**
 
-- `SAsoko3_04.log` times out after thousands of repeated `Push(E,S)` / `Pull(W,N)` style actions.
-- The top-level solver currently accepts waves if boxes move, even when the movement is cyclic and does not make useful goal progress.
+- `scheduler_empty` appears in 17 failed regular levels and 17 failed competition levels.
+- Current local repair can retry or delay a task, but the logs show many repeated repair failures without adding the missing prerequisite work.
 
 **Implementation idea**
 
-- Track a signature per active task: task type, agent, box letter, box start, box end, goal, and box trajectory hash.
-- Reject a wave if the same task-local signature repeats without reducing distance-to-goal or satisfying a new goal.
-- Add inverse-action detection for immediate oscillations, especially push/pull pairs that return the box to an earlier location.
-- Maintain per-box progress counters based on static wall-only distance to the target goal; require accepted waves to improve or unlock another task after a small no-progress allowance.
-- When a cycle is detected, force a different task order, alternate box choice, alternate parking target, or early safe-prefix return.
+- Extend `TaskPlan` failures with structured causes: blocked route cell, blocking box id/letter, blocking agent id, reserved cell/time, goal occupied, parking occupied, dead corridor, or no color-compatible agent route.
+- On `scheduler_empty`, inspect failed plans and synthesize one of:
+  - `MoveBlockingBoxToParking` for a blocking box on the agent route or box route,
+  - `ParkAgentSafely` for an agent occupying a needed route/goal,
+  - an ordering edge when a reservation or already-planned task blocks the current task,
+  - an alternate physical box-goal assignment when same-letter matching caused the failure.
+- Store the generated dependency in the task graph instead of only retrying the same ready tasks.
+- Add verbose HTN output that states exactly why the scheduler was empty and which dependency was generated.
 
 **Expected result**
 
-- `SAsoko3_*` levels should stop producing very long repetitive action streams.
-- Timeouts caused by cyclic output should convert into either solved runs or fast, diagnosable `UNSOLVED` runs with a clear `cycle_detected` reason.
-- Benchmark wall time for failing `SAsoko3_*` cases should fall far below the 180-second server timeout.
+- `scheduler_empty` should become rare and actionable.
+- Failed levels should transition from repeated “all repair stages failed” loops into either new clearing tasks or a concrete impossible-state reason.
+- Blocker-heavy competition levels such as `DECrunchy`, `PFarthing`, `QRscammer`, and `jAIl` should solve more subgoals before stopping.
 
-## 3. Make blocker relocation and parking multi-candidate
+### 3. Make local repair stateful and tabu-aware
 
-- [x] Treat parking assignment as a search/ranking problem instead of a single selected target.
+- [ ] Teach repair and wave planning to remember failed local trajectories and avoid immediately regenerating them.
 
-**Current signal**
+**Failure signal**
 
-- Blocker tasks fail with `no_path_for_single_box`, and the solver often gives up immediately.
-- `MAthomasAppartment_redcyan.log` creates multiple blocker tasks that target the same parking coordinate, indicating insufficient global parking coordination.
+- `cycle_detected` appears in 24 failed regular levels and 15 failed competition levels.
+- `repeated_task_local_trajectory` appears in both suites; examples include logs where the same box is moved back and forth between two cells, then the wave is rejected.
 
 **Implementation idea**
 
-- Have `BlockerResolver` emit several ranked parking candidates per blocker, or attach a candidate list to each blocker task.
-- Reserve chosen parking cells globally before later blocker tasks are generated or scheduled.
-- Before scheduling a blocker task, cheaply validate whether the box can plausibly be moved to the parking cell using static reachability and push-side feasibility.
-- If `BoxTransportPlanner` fails for one parking candidate, retry the next candidate before declaring the blocker unschedulable.
-- Penalize parking cells on future box routes, agent routes, goal corridors, and chokepoints.
+- Store per-wave and cross-wave tabu entries for `(task kind, box id/position, target position, first push/pull signature, final box position)`.
+- When a wave is rejected for a repeated trajectory, ban that exact task/parking/assignment choice for the next few waves.
+- Feed cycle information back into task prioritization so the next wave selects a different parking cell, different same-letter box, different agent, or different subgoal order.
+- Escalate repeated cycles into dependency generation: if a blocker move cycles because the target corridor is needed later, generate a different blocker-clearing task or reserve that corridor as non-parking.
+- Add regression checks that assert a rejected wave is not regenerated unchanged.
 
 **Expected result**
 
-- `SACrunch.lvl` should try alternate parking for boxes `B` and `D` instead of failing after the first `MoveBlockingBoxToParking` attempt.
-- `MAthomasAppartment_*` multi-color cases should avoid assigning multiple blockers to the same parking cell unless the sequence is explicitly feasible.
-- More failures should include actionable rejected-parking diagnostics.
+- Repeated `cycle_detected` messages should drop substantially.
+- Runtime on failing levels should decrease because the solver will stop spending full waves on known-bad local trajectories.
+- More partial-progress failures should convert into successful alternate plans rather than ending after several identical waves.
 
-## 4. Improve low-level box-planner failure reporting
+### 4. Rework parking-cell selection and reservation
 
-- [x] Split `no_path_for_single_box` into specific failure causes.
+- [ ] Make parking candidates conflict-aware, purpose-aware, and diversified across blockers.
 
-**Current signal**
+**Failure signal**
 
-- Many distinct failures collapse into `no_path_for_single_box`, which gives the scheduler and repair layer no useful next step.
+- Logs show many blockers assigned to the same parking cell in one wave, such as repeated `MoveBlockingBoxToParking` entries targeting one cell for many boxes.
+- This is especially visible in large single-agent/competition maps and contributes to local repair failure and repeated cycles.
 
 **Implementation idea**
 
-- Track why the box transport search ended:
-  - expansion limit reached,
-  - time horizon reached,
-  - agent cannot reach required push side,
-  - box destination blocked by wall/box/reservation,
-  - start cell reserved,
-  - no legal push/pull successors,
-  - static component unreachable.
-- Preserve a best frontier sample: nearest box state to the goal, nearest reachable push side, and the first blocking object or reservation when known.
-- Return the structured cause in `TaskPlan` and print it in verbose HTN logs.
-- Use these causes to trigger the right repair path: delay for reservations, blocker relocation for blocking boxes, alternate parking for blocked parking cells, or expansion-limit escalation for search caps.
+- Score parking by reachability, distance, future-goal safety, corridor criticality, component connectivity, and whether the cell is already targeted by another task.
+- Reserve selected parking cells at the task-generation level, not only during low-level action planning.
+- Keep parking cells away from articulation corridors, goal rooms, doorways, and known transit cells unless there is no alternative.
+- For multi-box blocker sets, solve parking assignment as a small matching problem instead of greedily selecting the nearest available cell per blocker.
+- If repair fails because parking is occupied or cyclic, blacklist that `(box, parking)` pair and retry a distinct parking cell.
 
 **Expected result**
 
-- Logs should replace vague `no_path_for_single_box` messages with specific causes.
-- Repair should stop trying irrelevant alternatives; for example, an expansion-limit failure should not be treated the same as a reserved-start-cell failure.
-- Debugging new failures should require less manual log inspection.
+- The number of identical-parking blocker tasks in HTN output should drop.
+- `all_repair_stages_failed` should decrease on blocker-heavy levels.
+- Large maps should avoid self-inflicted congestion and preserve transit space for later deliveries.
 
-## 5. Add dedicated MAPF agent-reordering mode
+### 5. Add a dedicated agent-only MAPF permutation mode
 
-- [ ] Detect tightly coupled agent-only goal permutations and solve them jointly.
+- [ ] Detect agent-goal permutation levels/subproblems and solve them as a coordinated multi-agent problem.
 
-**Current signal**
+**Failure signal**
 
-- `MAPFreorder.lvl`, `MAPFreorder2.lvl`, `MAPFreorder3.lvl`, `MAPFreorderC.lvl`, and `MAPFslidingpuzzle.lvl` are unsolved.
-- Logs show the solver treating these as independent `MoveAgentToGoal` tasks; after one agent moves, the remaining agents become unplannable.
+- `MAPFreorder.lvl`, `MAPFreorder2.lvl`, `MAPFreorder3.lvl`, `MAPFreorderC.lvl`, and `MAPFslidingpuzzle.lvl` fail with zero actions.
+- `MAPF02C.lvl` and `MAPF03C.lvl` also fail with zero actions while smaller MAPF variants solve.
 
 **Implementation idea**
 
-- Detect levels or subproblems where all remaining tasks are agent-only goals and agents share narrow corridors/rooms.
-- Instead of independent planning, invoke CBS or space-time A* over the involved agents as a joint subproblem.
-- Generate temporary parking/vacate-goal tasks for agents occupying a goal another agent must pass through.
-- Add a small permutation search for assigning goal order in tight rooms.
-- Avoid greedily committing one agent to its final goal if that cell is needed as transit space.
+- Detect when all remaining tasks are `MoveAgentToGoal` tasks and no boxes need to move.
+- Switch from independent task scheduling to a CBS/space-time A* joint subsolver for the involved agents.
+- Add temporary “vacate goal” and “parking” states so an agent can leave its own goal if that cell is needed as a transit buffer.
+- Search over goal/permutation ordering for tightly coupled rooms and corridors instead of greedily committing the first agent to its final goal.
+- Return a synchronized joint plan segment and reserve it as one coordinated wave.
 
 **Expected result**
 
-- The `MAPFreorder*` family should solve or at least make multi-agent coordinated progress instead of failing after one agent moves.
-- The timeout-adjacent `MAPF02B` and `MAPF03B` solved cases should become much faster because the planner will avoid pathological independent-agent ordering.
+- The `MAPFreorder*` family and `MAPFslidingpuzzle` should produce coordinated moves instead of immediate zero-action failures.
+- `MAPF02C`/`MAPF03C` should either solve or fail with a much clearer joint-search limit.
+- Future competition maps with agent-only subproblems should not be handled as independent single-agent tasks.
 
-## 6. Add anytime fallback for large maps
+### 6. Improve same-letter box assignment and global box-order reasoning
 
-- [ ] Ensure large hospital/sort/challenge levels emit useful safe prefixes before the server timeout.
+- [ ] Replace greedy physical box selection with retryable matching and deadlock-aware ordering.
 
-**Current signal**
+**Failure signal**
 
-- `MAbispebjerg.lvl`, `MAbispebjergHospital.lvl`, `MAchallenge.lvl`, and `MAmultiagentSort.lvl` time out with no actions and `server_time_s=0.000`.
+- Long single-agent families such as towers, `SAsokobanLevel96`, `SACrunch`, `SAWatsOn`, and multiple competition maps emit many actions but remain unsolved.
+- This suggests the solver can move boxes locally, but it commits to an order or physical box choice that blocks the remaining puzzle.
 
 **Implementation idea**
 
-- Add wall-clock checks inside expensive analysis, task generation, prioritization, and low-level planning loops, not only around the outer competitive wave loop.
-- Start with a quick first wave: generate a small top-N set of reachable delivery tasks, plan the easiest one, and emit it before attempting expensive global blocker analysis.
-- Cache level analysis, static distances, parking candidates, and component reachability across waves.
-- Add a budget-aware mode to skip deep blocker generation when the first safe prefix has not yet been produced.
-- Return the best safe prefix immediately if remaining budget falls below a configured threshold.
+- For each letter, compute a small matching between physical boxes and compatible goals using static distance, push feasibility, deadlock risk, and corridor/goal-room dependencies.
+- Track failed `(box position, goal position)` attempts and retry alternate boxes instead of regenerating the same task.
+- Detect goal-room stacks and tower-like structures where boxes must be placed in reverse dependency order.
+- Protect solved boxes only when they are truly final; allow moving a solved same-letter box if it is the only way to unblock the remaining goals and can be restored.
+- Add family-specific regression sets: towers, `SAsoko3_*`, `SACrunch`, `SAWatsOn`, and a few competition partial-progress failures.
 
 **Expected result**
 
-- Large benchmarks should stop timing out with zero actions.
-- Even if full solve remains hard, logs should show partial progress and a returned safe prefix.
-- The `TIMEOUT_OR_CRASH` count should decrease, and failures should become shorter and more diagnosable.
+- Partial-progress unsolved levels should either solve or stop earlier with a clear dependency/deadlock explanation.
+- Tower and Sokoban-family action counts should become shorter and more goal-directed.
+- Repeated attempts on the same bad same-letter pairing should disappear from verbose logs.
 
-## 7. Rework same-letter box selection and goal assignment
+### 7. Add goal-room and corridor deadlock analysis
 
-- [ ] Retry alternate physical boxes for same-letter goals when the selected box leads to a dead end or cycle.
+- [ ] Extend static analysis to mark cells where parking or early delivery can make future goals unreachable.
 
-**Current signal**
+**Failure signal**
 
-- `SAsoko3_*` levels have multiple same-letter boxes/goals and repeatedly regenerate delivery tasks for the same remaining goal.
-- The generator currently chooses an unassigned matching box using a static heuristic before the low-level planner validates the downstream consequences.
+- Many levels fail after nonzero progress, which implies an earlier legal action can leave the remaining problem unsolvable.
+- The current parking and blocker generation can place boxes in cells that look locally free but are globally critical transit or goal-room cells.
 
 **Implementation idea**
 
-- Represent same-letter box assignment as a small matching problem using static distance, push feasibility, and deadlock risk.
-- If the selected box fails or cycles, mark that `(box position, goal position)` pair as temporarily banned and retry another same-letter box.
-- Prefer boxes that are not already satisfying another goal, but allow moving a satisfied same-letter box only when it is required to unblock the remaining puzzle and can be restored.
-- Add regression tests with multiple identical boxes where the nearest box is not the solvable choice.
+- Compute articulation cells, one-cell-wide corridors, rooms with single entrances, goal-room entrance ordering, and cells behind irreversible push directions.
+- Mark forbidden parking cells and low-priority temporary cells in `LevelAnalysis`.
+- Add a “final placement safety” check before accepting a delivery into a goal room: verify that remaining boxes/goals in the same room still have an access order.
+- Feed these annotations into task prioritization, parking selection, and local repair.
 
 **Expected result**
 
-- `SAsoko3_*` levels should avoid repeatedly trying the same unproductive box-goal pairing.
-- Single-agent Sokoban failures should shift from timeout loops to deliberate alternate assignment attempts.
+- The solver should stop creating moves that make later goals unreachable.
+- Long partial solutions should become more reliable, especially for tower/Sokoban-style levels and competition warehouse maps.
+- Failure messages should distinguish true no-solution/deadlock from ordinary pathfinding failure.
 
-## 8. Improve dependency generation from failed planning
+### 8. Add cause-oriented benchmark triage and regression gates
 
-- [ ] Convert low-level failures into new ordering constraints or new clearing tasks.
+- [ ] Create a reusable script that summarizes benchmark results by family, status, action count, runtime, and log reason.
 
-**Current signal**
+**Failure signal**
 
-- The scheduler skips tasks whose candidate plans fail and stops when no task can be added in a pass.
-- This loses the reason the pass failed and does not generate new work to clear the blocker.
-
-**Implementation idea**
-
-- When a task fails, inspect the structured low-level failure cause and frontier sample.
-- If a box blocks a needed route, create a `MoveBlockingBoxToParking` dependency before the failed delivery.
-- If an agent blocks a needed route or goal, create a `ParkAgentSafely` dependency.
-- If a reservation blocks the task, add an ordering edge or delayed start rather than skipping the task.
-- Store failed-task diagnostics per wave and include them in verbose HTN output.
-
-**Expected result**
-
-- `scheduler_empty` should become rare; the scheduler should usually produce either new dependencies, blocker tasks, or a specific impossibility reason.
-- Reorder and blocker-heavy maps should make progress after initially failed planning attempts.
-
-## 9. Add a benchmark triage script and regression gates
-
-- [ ] Add a script that summarizes benchmark results by family, status, runtime, and recurring failure reason.
-
-**Current signal**
-
-- The benchmark summary is useful, but identifying families such as `SAsoko3_*` and `MAPFreorder*` currently requires manual grouping and log inspection.
+- The CSV summaries are useful, but identifying recurring root causes currently requires ad hoc Python/log inspection.
+- New benchmark runs added both `levels/` and `complevels/`, so manual comparison is now too slow and error-prone.
 
 **Implementation idea**
 
-- Create a script under `scripts/` that reads a benchmark result directory and prints:
+- Add `scripts/triage_benchmarks.py` that reads one or more benchmark result directories and reports:
   - solved/unsolved/timeout counts,
-  - counts by level family prefix,
-  - slow solved cases,
   - zero-action failures,
-  - top failure reasons from logs,
-  - suspected loops based on repeated action lines.
-- Add optional JSON output so future CI can compare before/after benchmark runs.
-- Use the script output to define small regression sets: `MAPFreorder*`, `SAsoko3_04`, `SACrunch`, selected `MAthomasAppartment_*`, and one large zero-action hospital map.
+  - partial-progress failures,
+  - slow solved levels,
+  - counts of log markers such as `scheduler_empty`, `repair outcome`, `all_repair_stages_failed`, `cycle_detected`, and `repeated_task_local_trajectory`,
+  - grouped families such as `MAPF*`, `MAthomasAppartment*`, `SAtowers*`, and competition maps.
+- Add optional JSON output so before/after runs can be compared in CI.
+- Define a small regression matrix for every major failure mode: MAPF permutation, blocker/parking, cycle repair, large timeout, tower ordering, and competition partial-progress.
 
 **Expected result**
 
-- After each solver change, developers can quickly see whether the change improved a failure family or merely moved failures around.
-- Future TODO items can be driven by objective deltas in solve rate, timeouts, and failure reasons.
+- Every future solver change can be evaluated against the same failure taxonomy.
+- PRs can report whether they improved success count, reduced zero-action failures, reduced cycles, or only shifted failures between categories.
+- The team can pick work from this TODO without re-reading dozens of logs.
 
 ## Suggested implementation order
 
-1. [ ] Add benchmark triage script so every subsequent change has clear before/after metrics.
-2. [ ] Implement structured `BoxTransportPlanner` failure reasons.
-3. [ ] Implement real local repair for delay, alternate parking, and alternate agent.
-4. [ ] Add multi-candidate blocker parking.
-5. [ ] Add cycle/stagnation detection for accepted waves.
-6. [ ] Add dedicated MAPF agent-reordering mode.
-7. [ ] Add anytime fallback for large maps.
-8. [ ] Rework same-letter box assignment for Sokoban-style levels.
-9. [ ] Convert low-level failures into dependencies and generated clearing tasks.
-10. [ ] Re-run the full benchmark suite and update this document with solved/unsolved deltas.
+1. Add triage script first, because it makes every subsequent task measurable.
+2. Fix budget-aware first-prefix planning, because zero-action timeouts are the biggest competition-level failure class.
+3. Make local repair tabu-aware, because cycle detection is already identifying wasted work.
+4. Rework parking-cell selection, because repeated parking targets poison many blocker-heavy plans.
+5. Turn scheduler stalls into dependency generation, using the improved failure diagnostics from the previous steps.
+6. Add dedicated MAPF permutation mode for the zero-action `MAPFreorder*` and `MAPFslidingpuzzle` failures.
+7. Improve same-letter matching and deadlock analysis for the remaining partial-progress puzzle families.
