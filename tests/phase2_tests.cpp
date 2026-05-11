@@ -383,7 +383,8 @@ red: 1, C
         BoxTransportPlanner planner;
         TaskPlan blocked = planner.plan(l, s, push_to_reserved, rt, 0);
         assert(!blocked.success);
-        assert(blocked.failure_reason == "no_path_for_single_box");
+        assert(blocked.failure_reason == "box_destination_reserved");
+        assert(blocked.failure_info.cause == TaskFailureCause::BoxDestinationReserved);
     }
 
     {
@@ -976,6 +977,7 @@ red: 1, C
         TaskPlan plan = p.plan(l,s,t);
         assert(!plan.success);
         assert(plan.failure_reason == "invalid_agent");
+        assert(plan.failure_info.cause == TaskFailureCause::InvalidAgent);
     }
 
     {
@@ -996,7 +998,106 @@ red: 1, C
         BoxTransportPlanner p;
         TaskPlan plan = p.plan(l,s,t);
         assert(!plan.success);
-        assert(plan.failure_reason == "no_path_for_single_box");
+        assert(plan.failure_reason == "box_destination_blocked_by_wall");
+        assert(plan.failure_info.cause == TaskFailureCause::BoxDestinationBlockedByWall);
+        assert((plan.failure_info.blocking_position == Position{1,3}));
+        assert(plan.failure_info.blocking_object == '#');
+    }
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 5;
+        l.walls.assign(15, false);
+        l.goals.assign(15, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        State s;
+        s.rows = 3; s.cols = 5;
+        s.agent_positions = {Position{1,0}};
+        s.box_pos.assign(15, '\0');
+        s.set_box(1,1,'A');
+        s.set_box(1,3,'B');
+
+        Task t; t.task_id=3; t.agent_id=0; t.box_id='A'; t.box_pos={1,1}; t.goal_pos={1,3};
+        BoxTransportPlanner p;
+        TaskPlan plan = p.plan(l,s,t);
+        assert(!plan.success);
+        assert(plan.failure_reason == "box_destination_blocked_by_box");
+        assert(plan.failure_info.cause == TaskFailureCause::BoxDestinationBlockedByBox);
+        assert((plan.failure_info.blocking_position == Position{1,3}));
+        assert(plan.failure_info.blocking_object == 'B');
+    }
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 5;
+        l.walls.assign(15, false);
+        l.goals.assign(15, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        State s;
+        s.rows = 3; s.cols = 5;
+        s.agent_positions = {Position{1,0}};
+        s.box_pos.assign(15, '\0');
+        s.set_box(1,1,'A');
+        ReservationTable rt;
+        for (int time = 1; time <= 5000; ++time) rt.reserve_cell(1,3,time,99);
+
+        Task t; t.task_id=4; t.agent_id=0; t.box_id='A'; t.box_pos={1,1}; t.goal_pos={1,3};
+        BoxTransportPlanner p;
+        TaskPlan plan = p.plan(l,s,t,rt,0);
+        assert(!plan.success);
+        assert(plan.failure_reason == "box_destination_reserved");
+        assert(plan.failure_info.cause == TaskFailureCause::BoxDestinationReserved);
+        assert((plan.failure_info.blocking_position == Position{1,3}));
+    }
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 5;
+        l.walls.assign(15, false);
+        for (int r = 0; r < l.rows; ++r) l.walls[l.index(r,2)] = true;
+        l.goals.assign(15, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        State s;
+        s.rows = 3; s.cols = 5;
+        s.agent_positions = {Position{1,0}};
+        s.box_pos.assign(15, '\0');
+        s.set_box(1,1,'A');
+
+        Task t; t.task_id=5; t.agent_id=0; t.box_id='A'; t.box_pos={1,1}; t.goal_pos={1,3};
+        BoxTransportPlanner p;
+        TaskPlan plan = p.plan(l,s,t);
+        assert(!plan.success);
+        assert(plan.failure_reason == "static_component_unreachable");
+        assert(plan.failure_info.cause == TaskFailureCause::StaticComponentUnreachable);
+        assert((plan.failure_info.nearest_box_to_goal == Position{1,1}));
+    }
+
+    {
+        Level l;
+        l.rows = 5; l.cols = 5;
+        l.walls.assign(25, false);
+        l.goals.assign(25, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        State s;
+        s.rows = 5; s.cols = 5;
+        s.agent_positions = {Position{0,0}};
+        s.box_pos.assign(25, '\0');
+        s.set_box(2,2,'A');
+        s.set_box(1,2,'B');
+        s.set_box(2,1,'C');
+        s.set_box(2,3,'D');
+        s.set_box(3,2,'E');
+
+        Task t; t.task_id=6; t.agent_id=0; t.box_id='A'; t.box_pos={2,2}; t.goal_pos={4,4};
+        BoxTransportPlanner p;
+        TaskPlan plan = p.plan(l,s,t);
+        assert(!plan.success);
+        assert(plan.failure_reason == "agent_cannot_reach_required_push_side");
+        assert(plan.failure_info.cause == TaskFailureCause::AgentCannotReachRequiredPushSide);
     }
 
 
