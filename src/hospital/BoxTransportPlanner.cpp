@@ -45,6 +45,10 @@ int manhattan(const Position& a, const Position& b) {
     return std::abs(a.row - b.row) + std::abs(a.col - b.col);
 }
 
+int box_transport_heuristic(const Position& agent, const Position& box, const Position& goal) {
+    return manhattan(agent, box) + manhattan(box, goal);
+}
+
 bool validate_replay(const Level& level, const State& state, const Task& task, TaskPlan& out) {
     Position agent = state.agent_positions[task.agent_id];
     Position box = task.box_pos;
@@ -210,7 +214,7 @@ TaskPlan BoxTransportPlanner::plan(const Level& level,
     const bool time_aware_closed_set = !reservations.empty();
 
     const Position start_agent = state.agent_positions[task.agent_id];
-    nodes.push_back(Node{start_agent, task.box_pos, 0, manhattan(task.box_pos, task.goal_pos), 0, -1, Action::noop()});
+    nodes.push_back(Node{start_agent, task.box_pos, 0, box_transport_heuristic(start_agent, task.box_pos, task.goal_pos), 0, -1, Action::noop()});
     open.push(0);
     best[Key{start_agent, task.box_pos, time_aware_closed_set ? 0 : 0}] = 0;
 
@@ -249,7 +253,7 @@ TaskPlan BoxTransportPlanner::plan(const Level& level,
             next.agent = succ.next.agent;
             next.box = succ.next.box;
             next.g = current.g + 1;
-            next.h = manhattan(next.box, task.goal_pos);
+            next.h = box_transport_heuristic(next.agent, next.box, task.goal_pos);
             next.time = succ.next.time;
             next.parent = current_index;
             next.action = succ.action;
