@@ -1,0 +1,38 @@
+[server][info] Running client on level: ./complevels/MAybetwo.lvl
+[HTN] competitive_wave tasks=3 elapsed=2.214e-06s
+[HTN] task_batch size=3
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=1 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=2 prio=36
+box planning for task: 0 and assigned agent: 1
+success: true reason: 
+box planning for task: 1 and assigned agent: 0
+success: true reason: 
+box planning for task: 2 and assigned agent: 2
+success: true reason: 
+[HTN] competitive_wave tasks=0 elapsed=0.0292195s
+[HTN] task_batch size=0
+Move(E)|Move(W)|Move(E)
+Move(E)|Move(W)|NoOp
+Move(E)|Move(W)|NoOp
+Move(E)|Move(W)|NoOp
+Move(E)|Move(W)|NoOp
+Move(E)|Move(W)|NoOp
+Move(E)|Move(W)|NoOp
+Push(E,E)|Move(N)|NoOp
+Push(E,S)|Move(N)|Move(E)
+Push(S,S)|Move(N)|Move(E)
+NoOp|Push(W,N)|Move(E)
+NoOp|NoOp|Move(E)
+NoOp|NoOp|Move(E)
+NoOp|NoOp|Move(E)
+NoOp|NoOp|Move(E)
+NoOp|NoOp|Move(N)
+NoOp|NoOp|Move(N)
+NoOp|NoOp|Move(N)
+NoOp|NoOp|Push(E,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 19.
+[server][info] Time to solve: 0.064 seconds.

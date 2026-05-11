@@ -1,0 +1,26 @@
+[server][info] Running client on level: ./complevels/MAzonakis.lvl
+[HTN] competitive_wave tasks=3 elapsed=1.871e-06s
+[HTN] task_batch size=3
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=0 prio=10
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=7
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=1 prio=-21
+box planning for task: 0 and assigned agent: 1
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] repair outcome=5 success=false
+[HTN] competitive_wave tasks=3 elapsed=0.162211s
+[HTN] task_batch size=3
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=0 prio=10
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=7
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=1 prio=-21
+box planning for task: 0 and assigned agent: 1
+success: false reason: no_path_for_single_box
+[HTN] scheduler_empty; attempting local repair on first task
+[HTN] repair outcome=5 success=false
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.
