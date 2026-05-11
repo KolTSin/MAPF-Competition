@@ -37,7 +37,7 @@ This checklist turns the current benchmark results in `benchmark_results_2026051
 
 ## 2. Add cycle and stagnation detection for accepted waves
 
-- [ ] Detect and reject local push/pull loops and repeated task-local trajectories.
+- [x] Detect and reject local push/pull loops and repeated task-local trajectories.
 
 **Current signal**
 

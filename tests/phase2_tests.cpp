@@ -14,6 +14,7 @@
 #include "plan/ReservationTable.hpp"
 #include "plan/PlanConflictRepairer.hpp"
 #include "plan/PlanMerger.hpp"
+#include "plan/WaveProgressGuard.hpp"
 #include "solvers/CompetitiveSolver.hpp"
 #include "search/heuristics/Heuristic.hpp"
 #include "parser/LevelParser.hpp"
@@ -996,6 +997,83 @@ red: 1, C
         TaskPlan plan = p.plan(l,s,t);
         assert(!plan.success);
         assert(plan.failure_reason == "no_path_for_single_box");
+    }
+
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 5;
+        l.walls.assign(15, false);
+        l.goals.assign(15, '\0');
+        l.goals[l.index(1,3)] = 'A';
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+
+        State s;
+        s.rows = 3; s.cols = 5;
+        s.agent_positions = {Position{1,1}};
+        s.box_pos.assign(15, '\0');
+        s.set_box(1,2,'A');
+
+        WaveProgressGuard guard;
+        guard.reset(l, s);
+
+        Plan direct_progress;
+        JointAction progress_step;
+        progress_step.actions = {Action::push(Direction::East, Direction::East)};
+        direct_progress.steps.push_back(progress_step);
+
+        WaveProgressDecision progress = guard.assess(l, s, direct_progress, 0);
+        assert(progress.accept);
+        assert(progress.completed_new_goal);
+        assert(progress.moved_any_box);
+        assert((progress.after.box_at(1,3) == 'A'));
+
+        Plan oscillation;
+        JointAction push;
+        push.actions = {Action::push(Direction::East, Direction::East)};
+        JointAction pull_back;
+        pull_back.actions = {Action::pull(Direction::West, Direction::West)};
+        oscillation.steps = {push, pull_back};
+
+        WaveProgressDecision rejected = guard.assess(l, s, oscillation, 0);
+        assert(!rejected.accept);
+        assert(rejected.reason.find("cycle_detected") != std::string::npos);
+        assert((rejected.after.box_at(1,2) == 'A'));
+        assert((rejected.after.agent_positions[0] == Position{1,1}));
+    }
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 6;
+        l.walls.assign(18, false);
+        l.goals.assign(18, '\0');
+        l.goals[l.index(1,4)] = 'A';
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+
+        State s;
+        s.rows = 3; s.cols = 6;
+        s.agent_positions = {Position{1,1}};
+        s.box_pos.assign(18, '\0');
+        s.set_box(1,2,'A');
+
+        WaveProgressGuard guard;
+        guard.reset(l, s);
+
+        Plan partial_push;
+        JointAction push;
+        push.actions = {Action::push(Direction::East, Direction::East)};
+        partial_push.steps = {push};
+
+        WaveProgressDecision first = guard.assess(l, s, partial_push, 0);
+        assert(first.accept);
+        assert(!first.completed_new_goal);
+        assert(first.moved_any_box);
+
+        WaveProgressDecision repeat = guard.assess(l, s, partial_push, 0);
+        assert(!repeat.accept);
+        assert(repeat.reason.find("repeated_task_local_trajectory") != std::string::npos);
     }
 
     std::cout << "phase2_tests passed\n";
