@@ -27,6 +27,13 @@ struct Task {
     Position goal_pos{};
 
     Position parking_pos{};
+
+    // Ranked parking alternatives for blocker relocation. parking_pos remains
+    // the preferred/default target for backwards compatibility, while the
+    // scheduler may retry later entries when the first target is not plannable
+    // under current reservations or push-side constraints.
+    std::vector<Position> parking_candidates{};
+
     int priority{0};
     std::vector<int> dependencies{};
 

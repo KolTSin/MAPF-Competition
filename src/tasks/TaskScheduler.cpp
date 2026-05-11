@@ -72,6 +72,20 @@ Position choose_current_box_position(const Level& level, const State& state, con
 //   - agent ids that may legally do the task.  Agent-only tasks keep their
 //     requested agent, while box tasks return all same-colored agents sorted by
 //     their Manhattan distance to the current box position.
+
+std::vector<Position> parking_targets_for_task(const Task& task) {
+    std::vector<Position> targets;
+    if (task.type != TaskType::MoveBlockingBoxToParking) return targets;
+
+    auto add = [&](Position p) {
+        if (p.row < 0 || p.col < 0) return;
+        if (std::find(targets.begin(), targets.end(), p) == targets.end()) targets.push_back(p);
+    };
+    add(task.parking_pos);
+    for (Position p : task.parking_candidates) add(p);
+    return targets;
+}
+
 std::vector<int> candidate_agents_for_task(const Level& level, const State& state, const Task& task) {
     std::vector<std::pair<int, int>> scored;
 
@@ -493,6 +507,24 @@ std::vector<ScheduledTask> schedule_once(
                     plan = agent_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
                     if (verbose_scheduler()) {
                         std::cerr << "success: " << (plan.success ? "true" : "false") << std::endl;
+                    }
+                } else if (chosen_task.type == TaskType::MoveBlockingBoxToParking) {
+                    const std::vector<Position> parking_targets = parking_targets_for_task(chosen_task);
+                    if (verbose_scheduler()) {
+                        std::cerr << "box planning for task: " << chosen_task.task_id
+                                  << " and assigned agent: " << chosen_task.agent_id
+                                  << " parking_candidates=" << parking_targets.size() << std::endl;
+                    }
+                    for (const Position parking_target : parking_targets) {
+                        chosen_task.parking_pos = parking_target;
+                        chosen_task.goal_pos = parking_target;
+                        plan = box_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
+                        if (verbose_scheduler()) {
+                            std::cerr << "success: " << (plan.success ? "true" : "false")
+                                      << " parking=(" << parking_target.row << "," << parking_target.col << ")"
+                                      << " reason: " << plan.failure_reason << std::endl;
+                        }
+                        if (plan.success && (!plan.agent_plan.actions.empty() || is_empty_plan_valid(chosen_task, simulated_state))) break;
                     }
                 } else {
                     if (verbose_scheduler()) {
