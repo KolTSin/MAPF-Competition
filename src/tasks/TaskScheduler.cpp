@@ -395,6 +395,14 @@ std::vector<ScheduledTask> schedule_once(
     std::unordered_set<int> completed;
     std::unordered_map<int, int> completion_time;
     std::vector<int> agent_available(initial_state.num_agents(), 0);
+
+    // `simulated_state` is a single serial snapshot: after accepting a task we
+    // immediately replay its effects before planning the next task.  Any later
+    // task planned from that snapshot therefore depends on all earlier accepted
+    // effects, even if the high-level dependency graph does not explicitly say
+    // so.  Keep a matching global frontier so emitted timelines cannot start a
+    // task before the world state it was planned against actually exists.
+    int global_state_frontier = 0;
     int next_dynamic_task_id = -1;
 
     // Repeatedly schedule every currently ready task that can be planned.  The
@@ -447,7 +455,7 @@ std::vector<ScheduledTask> schedule_once(
             if (chosen_task.type == TaskType::DeliverBoxToGoal) {
                 const int blocking_agent = agent_at_position(simulated_state, chosen_task.goal_pos, chosen_task.agent_id);
                 if (blocking_agent >= 0) {
-                    const int parking_start = std::max(agent_available[static_cast<std::size_t>(blocking_agent)], dep_time);
+                    const int parking_start = std::max({agent_available[static_cast<std::size_t>(blocking_agent)], dep_time, global_state_frontier});
                     const int parking_task_id = next_dynamic_task_id--;
                     TaskPlan parking_plan = plan_agent_parking(level,
                                                                simulated_state,
@@ -505,7 +513,7 @@ std::vector<ScheduledTask> schedule_once(
                 if (used_agents.count(candidate_agent)) continue;
 
                 chosen_task.agent_id = candidate_agent;
-                chosen_start = std::max(agent_available[candidate_agent], dep_time);
+                chosen_start = std::max({agent_available[candidate_agent], dep_time, global_state_frontier});
 
                 // Agent-only tasks use point-to-point path planning.  Box tasks
                 // use transport planning, which plans both agent actions and the
@@ -575,6 +583,7 @@ std::vector<ScheduledTask> schedule_once(
             completed.insert(chosen_task.task_id);
             completion_time[chosen_task.task_id] = end_time;
             agent_available[chosen_task.agent_id] = end_time;
+            global_state_frontier = std::max(global_state_frontier, end_time);
             used_agents.insert(chosen_task.agent_id);
             progress = true;
         }
