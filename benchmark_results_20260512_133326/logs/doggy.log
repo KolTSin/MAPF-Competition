@@ -1,0 +1,22 @@
+[server][info] Running client on level: ./complevels/doggy.lvl
+[HTN] competitive_wave tasks=14 elapsed=2.1041e-05s
+[HTN] task_batch size=14
+[HTN] Task#4 MoveBlockingBoxToParking box=D parking=(15,14) agent=1 prio=41
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=2 prio=20
+[HTN] Task#7 MoveAgentToGoal agent=3 target_goal=3 prio=6 deps=, 0, 1, 2, 3, 4
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=1 prio=5
+[HTN] Task#8 MoveAgentToGoal agent=2 target_goal=2 prio=5 deps=, 0, 1, 2, 3, 4
+[HTN] Task#12 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4
+[HTN] Task#6 MoveAgentToGoal agent=8 target_goal=8 prio=2 deps=, 0, 1, 2, 3, 4
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=3 prio=-2
+[HTN] Task#10 MoveAgentToGoal agent=1 target_goal=1 prio=-3 deps=, 0, 1, 2, 3, 4
+[HTN] Task#11 MoveAgentToGoal agent=0 target_goal=0 prio=-3 deps=, 0, 1, 2, 3, 4
+[HTN] Task#5 MoveAgentToGoal agent=7 target_goal=7 prio=-4 deps=, 0, 1, 2, 3, 4
+[HTN] Task#9 MoveAgentToGoal agent=6 target_goal=6 prio=-4 deps=, 0, 1, 2, 3, 4
+[HTN] Task#13 MoveAgentToGoal agent=4 target_goal=4 prio=-7 deps=, 0, 1, 2, 3, 4
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=3 prio=-22
+[client][info] Client timed out.
+[client][info] Sending termination signal to client process (PID = 246121).
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

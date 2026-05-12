@@ -1,0 +1,76 @@
+[server][info] Running client on level: ./complevels/TeamAgent.lvl
+[HTN] competitive_wave tasks=7 elapsed=0.000484715s
+[HTN] task_batch size=7
+[HTN] Task#3 MoveBlockingBoxToParking box=C parking=(5,12) agent=2 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=2 prio=40
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=1 prio=22
+[HTN] Task#6 MoveAgentToGoal agent=0 target_goal=0 prio=2 deps=, 0, 1, 2, 3
+[HTN] Task#5 MoveAgentToGoal agent=2 target_goal=2 prio=0 deps=, 0, 1, 2, 3
+[HTN] Task#4 MoveAgentToGoal agent=1 target_goal=1 prio=-4 deps=, 0, 1, 2, 3
+[HTN] competitive_wave tasks=2 elapsed=1.42871s
+[HTN] task_batch size=2
+[HTN] Task#0 MoveAgentToGoal agent=1 target_goal=1 prio=8
+[HTN] Task#1 MoveAgentToGoal agent=2 target_goal=2 prio=6
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=2 elapsed=1.7302s
+[HTN] task_batch size=2
+[HTN] Task#0 MoveAgentToGoal agent=1 target_goal=1 prio=8
+[HTN] Task#1 MoveAgentToGoal agent=2 target_goal=2 prio=6
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=2 elapsed=2.01691s
+[HTN] task_batch size=2
+[HTN] Task#0 MoveAgentToGoal agent=1 target_goal=1 prio=8
+[HTN] Task#1 MoveAgentToGoal agent=2 target_goal=2 prio=6
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+Move(E)|Move(W)|Move(S)
+NoOp|Pull(W,S)|Move(S)
+NoOp|Pull(S,W)|Move(W)
+NoOp|Pull(S,S)|Pull(N,E)
+Push(S,S)|Pull(E,S)|Push(S,S)
+Push(S,S)|Push(W,S)|Push(S,S)
+NoOp|Push(S,W)|Push(S,W)
+NoOp|Push(W,W)|Push(W,S)
+NoOp|Push(W,N)|Push(S,S)
+Push(S,S)|Push(N,N)|Push(S,W)
+Push(S,S)|Push(N,N)|Push(W,W)
+Push(S,S)|Push(N,N)|Push(W,N)
+Push(S,E)|Push(N,W)|Push(N,N)
+Push(E,E)|Push(W,W)|Push(N,N)
+NoOp|Push(W,S)|Push(N,N)
+NoOp|Push(S,S)|Push(N,W)
+NoOp|Push(S,S)|NoOp
+NoOp|Push(S,S)|NoOp
+NoOp|Push(S,W)|NoOp
+NoOp|Push(W,W)|NoOp
+NoOp|Push(W,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,W)|NoOp
+NoOp|Push(W,W)|NoOp
+NoOp|Push(W,S)|NoOp
+NoOp|Push(S,S)|NoOp
+NoOp|Push(S,S)|NoOp
+NoOp|Push(S,S)|NoOp
+NoOp|Push(S,W)|NoOp
+NoOp|Push(W,W)|NoOp
+NoOp|Push(W,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 38.
+[server][info] Time to solve: 2.319 seconds.

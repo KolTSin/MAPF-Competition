@@ -1,0 +1,73 @@
+[server][info] Running client on level: ./complevels/Ccropper.lvl
+[HTN] competitive_wave tasks=4 elapsed=2.3984e-05s
+[HTN] task_batch size=4
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=1 prio=12
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=2 prio=12
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=3 prio=12
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=12
+[HTN] competitive_wave tasks=0 elapsed=0.535907s
+[HTN] task_batch size=0
+NoOp|Move(W)|Move(S)|NoOp
+NoOp|Push(W,N)|Pull(W,N)|NoOp
+NoOp|Push(N,E)|Pull(W,W)|NoOp
+NoOp|Push(E,N)|Pull(W,W)|NoOp
+NoOp|Push(N,N)|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp
+NoOp|Push(N,E)|NoOp|NoOp
+NoOp|Push(E,N)|NoOp|NoOp
+NoOp|Push(N,E)|NoOp|NoOp
+NoOp|Push(E,N)|NoOp|NoOp
+NoOp|Push(N,E)|NoOp|NoOp
+NoOp|Push(E,N)|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp
+NoOp|Push(N,W)|NoOp|NoOp
+NoOp|Push(W,N)|Pull(W,W)|NoOp
+NoOp|Push(N,W)|Pull(N,W)|NoOp
+NoOp|Push(W,N)|Pull(W,N)|NoOp
+NoOp|Push(N,W)|Pull(N,W)|NoOp
+NoOp|Push(W,N)|Pull(W,N)|NoOp
+NoOp|Push(N,N)|Pull(N,W)|NoOp
+NoOp|Push(N,N)|Pull(W,N)|NoOp
+NoOp|Push(N,N)|Pull(N,W)|NoOp
+NoOp|Push(N,N)|Push(S,W)|NoOp
+NoOp|Push(N,N)|Push(W,S)|NoOp
+Move(E)|Push(N,N)|Push(S,W)|NoOp
+Pull(S,W)|NoOp|Push(W,S)|NoOp
+Pull(S,S)|NoOp|Push(S,W)|NoOp
+Pull(S,S)|NoOp|Push(W,S)|NoOp
+Pull(S,S)|NoOp|Push(S,W)|NoOp
+Pull(W,S)|NoOp|Push(W,W)|NoOp
+Pull(S,W)|NoOp|Push(W,W)|NoOp
+Pull(W,S)|NoOp|Push(W,W)|NoOp
+Pull(S,W)|NoOp|Push(W,W)|NoOp
+Pull(W,S)|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|Push(W,W)|Move(N)
+NoOp|NoOp|NoOp|Push(N,E)
+NoOp|NoOp|NoOp|Push(E,S)
+NoOp|NoOp|NoOp|Push(S,E)
+NoOp|NoOp|NoOp|Push(E,E)
+NoOp|NoOp|NoOp|Push(E,E)
+NoOp|NoOp|NoOp|Push(E,S)
+NoOp|NoOp|NoOp|Push(S,E)
+Pull(S,W)|NoOp|NoOp|Push(E,S)
+Pull(S,S)|NoOp|NoOp|Push(S,E)
+Pull(E,S)|NoOp|NoOp|Push(E,S)
+Pull(S,E)|NoOp|NoOp|Push(S,E)
+Pull(E,S)|NoOp|NoOp|Push(E,E)
+Pull(S,E)|NoOp|NoOp|Push(E,N)
+Pull(E,S)|NoOp|NoOp|Push(N,E)
+Pull(S,E)|NoOp|NoOp|Push(E,N)
+Pull(S,S)|NoOp|NoOp|Push(N,E)
+Pull(S,S)|NoOp|NoOp|Push(E,N)
+Pull(S,S)|NoOp|NoOp|Push(N,E)
+Pull(S,S)|NoOp|NoOp|Push(E,E)
+Pull(S,S)|NoOp|NoOp|Push(E,E)
+Pull(E,S)|NoOp|NoOp|Push(E,E)
+Push(W,S)|NoOp|NoOp|Push(E,E)
+NoOp|NoOp|NoOp|Push(E,E)
+NoOp|NoOp|NoOp|Push(E,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 59.
+[server][info] Time to solve: 0.580 seconds.

@@ -1,0 +1,146 @@
+[server][info] Running client on level: ./complevels/MAzonakis.lvl
+[HTN] competitive_wave tasks=3 elapsed=0.000579232s
+[HTN] task_batch size=3
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=0 prio=10
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=7
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=1 prio=-21
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=2 elapsed=0.90303s
+[HTN] task_batch size=2
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=26
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=1 prio=-21
+[HTN] competitive_wave tasks=0 elapsed=1.33233s
+[HTN] task_batch size=0
+Move(S)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(S)|NoOp
+Move(S)|NoOp
+Move(S)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,N)|NoOp
+Push(N,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Push(W,W)|NoOp
+Move(S)|Move(N)
+Move(E)|Move(W)
+Move(E)|Move(W)
+Move(E)|Move(W)
+Move(S)|Move(W)
+Move(S)|Move(W)
+Move(S)|Move(W)
+Pull(N,N)|Move(W)
+Pull(N,N)|Move(W)
+Pull(N,N)|Move(W)
+Pull(N,N)|Move(W)
+Push(S,W)|Move(W)
+Push(W,W)|Move(W)
+Push(W,W)|Move(W)
+Push(W,W)|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(N)
+NoOp|Move(N)
+NoOp|Move(N)
+NoOp|Move(N)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(N)
+NoOp|Move(N)
+NoOp|Move(N)
+NoOp|Move(N)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(N)
+NoOp|Pull(S,S)
+NoOp|Pull(W,S)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(S,W)
+NoOp|Pull(S,S)
+NoOp|Pull(S,S)
+NoOp|Pull(S,S)
+NoOp|Pull(S,S)
+NoOp|Push(N,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,N)
+NoOp|Push(N,W)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 126.
+[server][info] Time to solve: 1.389 seconds.

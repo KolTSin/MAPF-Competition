@@ -1,0 +1,26 @@
+[server][info] Running client on level: ./complevels/noone.lvl
+[HTN] competitive_wave tasks=4 elapsed=0.000292609s
+[HTN] task_batch size=4
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=40
+[HTN] Task#3 MoveAgentToGoal agent=0 target_goal=0 prio=4 deps=, 0
+[HTN] Task#2 MoveAgentToGoal agent=1 target_goal=1 prio=3 deps=, 0
+[HTN] Task#1 MoveAgentToGoal agent=2 target_goal=2 prio=2 deps=, 0
+[HTN] competitive_wave tasks=0 elapsed=0.0682706s
+[HTN] task_batch size=0
+Move(S)|Move(W)|NoOp
+Push(E,S)|Move(W)|NoOp
+Push(S,S)|Move(W)|NoOp
+Push(S,S)|Move(W)|NoOp
+Push(S,S)|Move(S)|Move(E)
+Move(W)|NoOp|Move(E)
+Move(S)|Move(S)|Move(E)
+Move(S)|Move(W)|Move(E)
+NoOp|NoOp|Move(E)
+NoOp|NoOp|Move(N)
+NoOp|NoOp|Move(E)
+NoOp|NoOp|Move(N)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 12.
+[server][info] Time to solve: 0.108 seconds.

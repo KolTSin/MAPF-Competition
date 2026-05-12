@@ -1,0 +1,26 @@
+[server][info] Running client on level: ./complevels/merRAM.lvl
+[HTN] competitive_wave tasks=18 elapsed=0.000974454s
+[HTN] task_batch size=18
+[HTN] Task#17 MoveBlockingBoxToParking box=D parking=(18,29) agent=3 prio=22
+[HTN] Task#16 MoveBlockingBoxToParking box=I parking=(18,27) agent=0 prio=5
+[HTN] Task#5 DeliverBoxToGoal box=I goal=I agent=0 prio=-18
+[HTN] Task#7 DeliverBoxToGoal box=M goal=M agent=0 prio=-19
+[HTN] Task#2 DeliverBoxToGoal box=E goal=E agent=0 prio=-34
+[HTN] Task#9 DeliverBoxToGoal box=P goal=P agent=3 prio=-40
+[HTN] Task#0 DeliverBoxToGoal box=F goal=F agent=1 prio=-45
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=1 prio=-51
+[HTN] Task#14 DeliverBoxToGoal box=G goal=G agent=2 prio=-54
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=-62
+[HTN] Task#13 DeliverBoxToGoal box=K goal=K agent=2 prio=-62
+[HTN] Task#8 DeliverBoxToGoal box=L goal=L agent=3 prio=-63
+[HTN] Task#11 DeliverBoxToGoal box=H goal=H agent=3 prio=-65
+[HTN] Task#6 DeliverBoxToGoal box=J goal=J agent=1 prio=-68
+[HTN] Task#4 DeliverBoxToGoal box=N goal=N agent=1 prio=-69
+[HTN] Task#12 DeliverBoxToGoal box=O goal=O agent=2 prio=-73
+[HTN] Task#15 DeliverBoxToGoal box=D goal=D agent=3 prio=-76
+[HTN] Task#10 DeliverBoxToGoal box=C goal=C agent=2 prio=-91
+[client][info] Client timed out.
+[client][info] Sending termination signal to client process (PID = 246319).
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.
