@@ -7,6 +7,7 @@
 #include "plan/Plan.hpp"
 #include "plan/ReservationTable.hpp"
 #include "solvers/CBSSolver.hpp"
+#include "solvers/CompetitiveSolver.hpp"
 #include "search/heuristics/Heuristic.hpp"
 
 #include <cassert>
@@ -189,6 +190,40 @@ int main() {
         std::string reason;
         if (!plan_solves_without_conflicts(parsed.level, parsed.initial_state, plan, &reason)) {
             std::cerr << "CBS vertex crossing failure: " << reason << "\n";
+        }
+        assert(plan_solves_without_conflicts(parsed.level, parsed.initial_state, plan, nullptr));
+    }
+
+    {
+        const std::string resolved = resolve_test_path("testlevels/CBS_goal_on_other_agent_start.lvl");
+        assert(std::filesystem::exists(resolved));
+        std::ifstream in(resolved);
+        assert(in.good());
+        ParsedLevel parsed = LevelParser::parse(in);
+
+        CBSSolver solver;
+        ConstantHeuristic h;
+        Plan plan = solver.solve(parsed.level, parsed.initial_state, h);
+        std::string reason;
+        if (!plan_solves_without_conflicts(parsed.level, parsed.initial_state, plan, &reason)) {
+            std::cerr << "CBS goal-on-start failure: " << reason << "\n";
+        }
+        assert(plan_solves_without_conflicts(parsed.level, parsed.initial_state, plan, nullptr));
+    }
+
+    {
+        const std::string resolved = resolve_test_path("testlevels/CBS_goal_on_other_agent_start.lvl");
+        assert(std::filesystem::exists(resolved));
+        std::ifstream in(resolved);
+        assert(in.good());
+        ParsedLevel parsed = LevelParser::parse(in);
+
+        CompetitiveSolver solver;
+        ConstantHeuristic h;
+        Plan plan = solver.solve(parsed.level, parsed.initial_state, h);
+        std::string reason;
+        if (!plan_solves_without_conflicts(parsed.level, parsed.initial_state, plan, &reason)) {
+            std::cerr << "Competitive CBS fallback failure: " << reason << "\n";
         }
         assert(plan_solves_without_conflicts(parsed.level, parsed.initial_state, plan, nullptr));
     }

@@ -1,0 +1,17 @@
+#domain
+hospital
+#levelname
+CBS_goal_on_other_agent_start
+#colors
+blue: 0, 1
+#initial
++++++
++0 1+
++   +
++++++
+#goal
++++++
++  0+
++ 1 +
++++++
+#end
