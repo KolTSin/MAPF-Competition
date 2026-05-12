@@ -27,6 +27,7 @@ MARKERS: tuple[str, ...] = (
     "competitive_wave",
     "MoveBlockingBoxToParking",
     "planning_deadline",
+    "partial_plan_unsolved",
     "budget",
 )
 
@@ -43,6 +44,7 @@ FAMILY_PATTERNS: tuple[tuple[str, str], ...] = (
 )
 
 PARKING_RE = re.compile(r"MoveBlockingBoxToParking[^\n]*\bparking=\((\d+),(\d+)\)")
+STOP_REASON_RE = re.compile(r"partial_plan_unsolved[^\n]*\bstop_reason=([^\s]+)")
 
 
 @dataclass(frozen=True)
@@ -58,6 +60,7 @@ class Row:
     family: str
     log_markers: dict[str, int]
     repeated_parking_targets: dict[str, int]
+    partial_stop_reason: str
 
     @property
     def is_solved(self) -> bool:
@@ -112,13 +115,15 @@ def read_log(log_file: Path | None) -> str:
     return log_file.read_text(errors="replace")
 
 
-def summarize_log(text: str) -> tuple[dict[str, int], dict[str, int]]:
+def summarize_log(text: str) -> tuple[dict[str, int], dict[str, int], str]:
     markers = {marker: text.count(marker) for marker in MARKERS}
     parking_counts = Counter(f"({row},{col})" for row, col in PARKING_RE.findall(text))
     repeated = {
         target: count for target, count in sorted(parking_counts.items()) if count > 1
     }
-    return markers, repeated
+    stop_reasons = STOP_REASON_RE.findall(text)
+    partial_stop_reason = stop_reasons[-1] if stop_reasons else ""
+    return markers, repeated, partial_stop_reason
 
 
 def read_result_dir(result_dir: Path) -> list[Row]:
@@ -148,7 +153,7 @@ def read_result_dir(result_dir: Path) -> list[Row]:
                     candidates[-1],
                 )
             log_text = read_log(log_file)
-            markers, repeated_parking = summarize_log(log_text)
+            markers, repeated_parking, partial_stop_reason = summarize_log(log_text)
             rows.append(
                 Row(
                     level=level,
@@ -162,6 +167,7 @@ def read_result_dir(result_dir: Path) -> list[Row]:
                     family=family_for(level, log_text),
                     log_markers=markers,
                     repeated_parking_targets=repeated_parking,
+                    partial_stop_reason=partial_stop_reason,
                 )
             )
     return rows
@@ -176,6 +182,11 @@ def count_rows(rows: Iterable[Row]) -> dict[str, Any]:
     marker_counts = Counter()
     repeated_parking_levels = 0
     repeated_parking_targets = Counter()
+    partial_stop_reasons = Counter(
+        row.partial_stop_reason
+        for row in materialized
+        if row.is_partial_progress_failure and row.partial_stop_reason
+    )
     for row in materialized:
         marker_counts.update(row.log_markers)
         if row.repeated_parking_targets:
@@ -193,6 +204,7 @@ def count_rows(rows: Iterable[Row]) -> dict[str, Any]:
         "marker_counts": dict(sorted(marker_counts.items())),
         "levels_with_repeated_parking_targets": repeated_parking_levels,
         "repeated_parking_targets": dict(repeated_parking_targets.most_common(10)),
+        "partial_stop_reasons": dict(partial_stop_reasons.most_common()),
     }
 
 
@@ -218,6 +230,34 @@ def slow_solved(rows: list[Row], limit: int) -> list[dict[str, Any]]:
     ]
 
 
+def row_failure_payload(row: Row) -> dict[str, Any]:
+    active_markers = {k: v for k, v in row.log_markers.items() if v}
+    return {
+        "level": row.level,
+        "family": row.family,
+        "status": row.status,
+        "wall_time_s": row.wall_time_s,
+        "server_time_s": row.server_time_s,
+        "solution_length": row.solution_length,
+        "markers": active_markers,
+        "repeated_parking_targets": row.repeated_parking_targets,
+        "partial_stop_reason": row.partial_stop_reason,
+        "log_file": str(row.log_file) if row.log_file is not None else "",
+    }
+
+
+def partial_progress_failures(rows: list[Row], limit: int) -> list[dict[str, Any]]:
+    partial_rows = [row for row in rows if row.is_partial_progress_failure]
+    partial_rows.sort(
+        key=lambda row: (
+            row.family,
+            -(row.solution_length or 0),
+            row.level,
+        )
+    )
+    return [row_failure_payload(row) for row in partial_rows[:limit]]
+
+
 def notable_failures(rows: list[Row], limit: int) -> list[dict[str, Any]]:
     failed_rows = [row for row in rows if not row.is_solved]
     failed_rows.sort(
@@ -229,22 +269,7 @@ def notable_failures(rows: list[Row], limit: int) -> list[dict[str, Any]]:
         ),
         reverse=True,
     )
-    output = []
-    for row in failed_rows[:limit]:
-        active_markers = {k: v for k, v in row.log_markers.items() if v}
-        output.append(
-            {
-                "level": row.level,
-                "family": row.family,
-                "status": row.status,
-                "wall_time_s": row.wall_time_s,
-                "server_time_s": row.server_time_s,
-                "solution_length": row.solution_length,
-                "markers": active_markers,
-                "repeated_parking_targets": row.repeated_parking_targets,
-            }
-        )
-    return output
+    return [row_failure_payload(row) for row in failed_rows[:limit]]
 
 
 def build_report(result_dirs: list[Path], limit: int) -> dict[str, Any]:
@@ -263,6 +288,7 @@ def build_report(result_dirs: list[Path], limit: int) -> dict[str, Any]:
                 for family, frows in sorted(family_rows.items())
             },
             "slow_solved": slow_solved(rows, limit),
+            "partial_progress_failures_detail": partial_progress_failures(rows, limit),
             "notable_failures": notable_failures(rows, limit),
         }
 
@@ -279,6 +305,7 @@ def build_report(result_dirs: list[Path], limit: int) -> dict[str, Any]:
                 for family, rows in sorted(combined_families.items())
             },
             "slow_solved": slow_solved(all_rows, limit),
+            "partial_progress_failures_detail": partial_progress_failures(all_rows, limit),
             "notable_failures": notable_failures(all_rows, limit),
         },
     }
@@ -300,6 +327,11 @@ def print_section(title: str, stats: dict[str, Any], limit: int) -> None:
         if count:
             print(f"  {marker}: {count}")
 
+    if stats.get("partial_stop_reasons"):
+        print("\nPartial-plan stop reasons:")
+        for reason, count in stats["partial_stop_reasons"].items():
+            print(f"  {reason}: {count}")
+
     print("\nFamilies:")
     for family, family_stats in stats.get("families", {}).items():
         print(
@@ -313,6 +345,16 @@ def print_section(title: str, stats: dict[str, Any], limit: int) -> None:
         print(
             f"  {row['level']} [{row['family']}]: server={row['server_time_s']}s "
             f"wall={row['wall_time_s']}s length={row['solution_length']}"
+        )
+
+    print(f"\nUnsolved levels that returned plans (top {limit}):")
+    for row in stats.get("partial_progress_failures_detail", []):
+        markers = ", ".join(f"{k}={v}" for k, v in row["markers"].items()) or "none"
+        stop_reason = row.get("partial_stop_reason") or "unknown"
+        print(
+            f"  {row['level']} [{row['family']}]: length={row['solution_length']} "
+            f"stop={stop_reason} server={row['server_time_s']}s wall={row['wall_time_s']}s "
+            f"markers=({markers}) log={row['log_file']}"
         )
 
     print(f"\nNotable failures (top {limit}):")
