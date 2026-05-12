@@ -5,6 +5,7 @@
 #include "plan/TaskPlan.hpp"
 #include "state/State.hpp"
 #include "tasks/Task.hpp"
+#include "utils/PlanningDeadline.hpp"
 
 enum class RepairStageOutcome {
     Delay,
@@ -30,6 +31,13 @@ public:
                                       const TaskPlan& failed,
                                       const ReservationTable& reservations,
                                       int start_time) const;
+    [[nodiscard]] RepairResult repair(const Level& level,
+                                      const State& state,
+                                      const Task& task,
+                                      const TaskPlan& failed,
+                                      const ReservationTable& reservations,
+                                      int start_time,
+                                      const PlanningDeadline& deadline) const;
     [[nodiscard]] RepairStageOutcome last_outcome() const { return last_outcome_; }
 private:
     mutable RepairStageOutcome last_outcome_{RepairStageOutcome::Unresolved};

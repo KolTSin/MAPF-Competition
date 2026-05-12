@@ -5,6 +5,7 @@
 #include "tasks/Task.hpp"
 #include "analysis/LevelAnalysis.hpp"
 #include "plan/AgentPlan.hpp"
+#include "utils/PlanningDeadline.hpp"
 
 #include <cstddef>
 #include <optional>
@@ -35,6 +36,10 @@ public:
     [[nodiscard]] std::vector<Task> generate_delivery_tasks(const Level& level,
                                                             const State& state,
                                                             const std::vector<AgentPlan>& initial_agent_plans);
+    [[nodiscard]] std::vector<Task> generate_delivery_tasks(const Level& level,
+                                                            const State& state,
+                                                            const std::vector<AgentPlan>& initial_agent_plans,
+                                                            const PlanningDeadline& deadline);
 
     // Human-readable explanations for goals that were intentionally ignored
     // during the last call to `generate_delivery_tasks`.

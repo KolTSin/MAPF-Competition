@@ -255,12 +255,26 @@ TaskPlan BoxTransportPlanner::plan(const Level& level,
                                    const Task& task,
                                    const ReservationTable& reservations,
                                    int start_time) const {
+    PlanningDeadline no_deadline;
+    return plan(level, state, task, reservations, start_time, no_deadline);
+}
+
+TaskPlan BoxTransportPlanner::plan(const Level& level,
+                                   const State& state,
+                                   const Task& task,
+                                   const ReservationTable& reservations,
+                                   int start_time,
+                                   const PlanningDeadline& deadline) const {
     TaskPlan out;
     out.task_id = task.task_id;
     out.task_type = task.type;
     out.agent_id = task.agent_id;
     out.agent_plan.agent = task.agent_id;
 
+    if (deadline.expired()) {
+        set_failure(out, TaskFailureCause::ExpansionLimitReached, "planning_deadline_expired");
+        return out;
+    }
     if (task.agent_id < 0 || task.agent_id >= state.num_agents()) {
         set_failure(out, TaskFailureCause::InvalidAgent, "invalid_agent");
         return out;
@@ -362,6 +376,10 @@ TaskPlan BoxTransportPlanner::plan(const Level& level,
     bool generated_any_successor = false;
 
     while (!open.empty() && expansions++ < max_expansions) {
+        if (deadline.expired()) {
+            set_failure(out, TaskFailureCause::ExpansionLimitReached, "planning_deadline_expired");
+            return out;
+        }
         const int current_index = open.top();
         open.pop();
         const Node current = nodes[current_index];
