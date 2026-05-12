@@ -1,0 +1,14 @@
+[server][info] Running client on level: ./complevels/MAGiC.lvl
+[HTN] competitive_wave tasks=6 elapsed=0.00376539s
+[HTN] task_batch size=6
+[HTN] Task#4 DeliverBoxToGoal box=J goal=J agent=0 prio=25
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=1 prio=23
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(30,38) agent=2 prio=6
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=2 prio=-17
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=3 prio=-30
+[HTN] Task#1 DeliverBoxToGoal box=D goal=D agent=4 prio=-30
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

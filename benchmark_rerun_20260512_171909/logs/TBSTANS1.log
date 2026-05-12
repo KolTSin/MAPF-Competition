@@ -1,0 +1,1068 @@
+[server][info] Running client on level: ./complevels/TBSTANS1.lvl
+[HTN] competitive_wave tasks=15 elapsed=0.00688522s
+[HTN] task_batch size=15
+[HTN] Task#7 MoveBlockingBoxToParking box=B parking=(11,3) agent=2 prio=39
+[HTN] Task#6 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#8 MoveBlockingBoxToParking box=D parking=(11,1) agent=5 prio=33
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#4 DeliverBoxToGoal box=B goal=B agent=2 prio=29
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#5 DeliverBoxToGoal box=D goal=D agent=5 prio=26
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=4 prio=20
+[HTN] Task#12 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8
+[HTN] Task#14 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8
+[HTN] Task#13 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8
+[HTN] Task#11 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8
+[HTN] Task#9 MoveAgentToGoal agent=2 target_goal=2 prio=1 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8
+[HTN] Task#10 MoveAgentToGoal agent=4 target_goal=4 prio=0 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8
+[HTN] competitive_wave tasks=13 elapsed=0.337243s
+[HTN] task_batch size=13
+[HTN] Task#6 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#4 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#5 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=4 prio=20
+[HTN] Task#10 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#12 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#11 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#7 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#9 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] Task#8 MoveAgentToGoal agent=4 target_goal=4 prio=0 deps=, 0, 1, 2, 3, 4, 5, 6
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=12 elapsed=0.378729s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=0.504025s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=0.608504s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=0.724286s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=0.845716s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=0.928673s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=1.01281s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=1.09674s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=1.18758s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=1.29712s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=1.41772s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=1.5327s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=1.67101s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=1.78799s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=1.89515s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=1.97917s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=2.06279s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=2.14625s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=2.2303s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=2.33271s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=2.44211s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=2.55108s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=2.65191s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=2.76722s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=2.8943s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=3.01741s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=3.14385s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=3.26255s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=3.39201s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=3.52236s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=3.67069s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=3.76949s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=3.8695s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=3.98127s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=4.112s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=4.22352s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=4.33792s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=4.46129s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=4.5821s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=4.70236s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=4.82018s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=4.93942s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=5.04986s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=5.18265s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=5.28187s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=5.38923s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=5.52216s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=5.63069s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=5.75964s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] competitive_wave tasks=12 elapsed=5.86095s
+[HTN] task_batch size=12
+[HTN] Task#5 DeliverBoxToGoal box=B goal=B agent=2 prio=37
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=3 prio=31
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=28
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=2 prio=25
+[HTN] Task#4 DeliverBoxToGoal box=D goal=D agent=5 prio=25
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=5 prio=23
+[HTN] Task#9 MoveAgentToGoal agent=0 target_goal=0 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=7 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#10 MoveAgentToGoal agent=3 target_goal=3 prio=5 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#6 MoveAgentToGoal agent=2 target_goal=2 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#8 MoveAgentToGoal agent=5 target_goal=5 prio=3 deps=, 0, 1, 2, 3, 4, 5
+[HTN] Task#7 MoveAgentToGoal agent=4 target_goal=4 prio=-2 deps=, 0, 1, 2, 3, 4, 5
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] cycle_detected: repeated_task_local_trajectory D:8,10->8,9; rejecting wave steps=60
+[HTN] partial_plan_unsolved stop_reason=stagnation_guard:cycle_detected:_repeated_task_local_trajectory_D:8_10-_8_9 steps=76 goals_completed=1/7 waves=52 no_progress_iters=50
+NoOp|NoOp|Push(N,E)|NoOp|NoOp|Move(N)
+NoOp|NoOp|Push(E,S)|NoOp|NoOp|Push(N,W)
+NoOp|NoOp|NoOp|NoOp|NoOp|Pull(E,E)
+NoOp|NoOp|NoOp|NoOp|NoOp|Push(W,S)
+NoOp|NoOp|NoOp|NoOp|NoOp|Push(S,S)
+NoOp|NoOp|NoOp|NoOp|NoOp|Push(S,W)
+NoOp|NoOp|NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(W,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(W,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(W,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(N,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(W,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(N,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(W,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(N,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(N,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(N,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(N,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(E,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(E,E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(E,E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(E,E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(E,E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(E,E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(E,E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(E,E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(E,E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(E,E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,E)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Pull(W,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(E,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(S,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 76.
+[server][info] Time to solve: 5.999 seconds.

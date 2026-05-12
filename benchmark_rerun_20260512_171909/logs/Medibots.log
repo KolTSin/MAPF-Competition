@@ -1,0 +1,172 @@
+[server][info] Running client on level: ./complevels/Medibots.lvl
+[HTN] competitive_wave tasks=80 elapsed=0.00506141s
+[HTN] task_batch size=80
+[HTN] Task#49 DeliverBoxToGoal box=W goal=W agent=6 prio=43
+[HTN] Task#33 DeliverBoxToGoal box=H goal=H agent=9 prio=41
+[HTN] Task#43 DeliverBoxToGoal box=X goal=X agent=4 prio=41
+[HTN] Task#46 DeliverBoxToGoal box=P goal=P agent=4 prio=41
+[HTN] Task#71 MoveBlockingBoxToParking box=U parking=(9,29) agent=5 prio=41
+[HTN] Task#73 MoveBlockingBoxToParking box=B parking=(9,29) agent=7 prio=41
+[HTN] Task#65 MoveBlockingBoxToParking box=D parking=(9,29) agent=8 prio=40
+[HTN] Task#74 MoveBlockingBoxToParking box=F parking=(9,29) agent=8 prio=40
+[HTN] Task#44 DeliverBoxToGoal box=Y goal=Y agent=4 prio=39
+[HTN] Task#72 MoveBlockingBoxToParking box=H parking=(9,29) agent=9 prio=39
+[HTN] Task#75 MoveBlockingBoxToParking box=C parking=(9,29) agent=7 prio=39
+[HTN] Task#14 DeliverBoxToGoal box=G goal=G agent=8 prio=38
+[HTN] Task#48 DeliverBoxToGoal box=V goal=V agent=6 prio=38
+[HTN] Task#9 DeliverBoxToGoal box=N goal=N agent=3 prio=37
+[HTN] Task#34 DeliverBoxToGoal box=D goal=D agent=8 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=2 prio=36
+[HTN] Task#8 DeliverBoxToGoal box=M goal=M agent=3 prio=36
+[HTN] Task#36 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#42 DeliverBoxToGoal box=R goal=R agent=4 prio=35
+[HTN] Task#70 MoveBlockingBoxToParking box=G parking=(9,29) agent=1 prio=35
+[HTN] Task#1 DeliverBoxToGoal box=J goal=J agent=2 prio=34
+[HTN] Task#62 MoveBlockingBoxToParking box=N parking=(9,29) agent=3 prio=34
+[HTN] Task#64 MoveBlockingBoxToParking box=R parking=(9,29) agent=4 prio=34
+[HTN] Task#13 DeliverBoxToGoal box=O goal=O agent=3 prio=33
+[HTN] Task#35 DeliverBoxToGoal box=E goal=E agent=8 prio=33
+[HTN] Task#45 DeliverBoxToGoal box=Q goal=Q agent=4 prio=33
+[HTN] Task#63 MoveBlockingBoxToParking box=M parking=(9,29) agent=3 prio=33
+[HTN] Task#69 MoveBlockingBoxToParking box=E parking=(9,29) agent=1 prio=33
+[HTN] Task#15 DeliverBoxToGoal box=Z goal=Z agent=7 prio=32
+[HTN] Task#32 DeliverBoxToGoal box=K goal=K agent=9 prio=32
+[HTN] Task#53 MoveBlockingBoxToParking box=O parking=(23,5) agent=3 prio=32
+[HTN] Task#0 DeliverBoxToGoal box=I goal=I agent=2 prio=31
+[HTN] Task#17 DeliverBoxToGoal box=E goal=E agent=1 prio=31
+[HTN] Task#25 DeliverBoxToGoal box=I goal=I agent=9 prio=31
+[HTN] Task#27 DeliverBoxToGoal box=F goal=F agent=1 prio=31
+[HTN] Task#54 MoveBlockingBoxToParking box=X parking=(9,29) agent=4 prio=31
+[HTN] Task#59 MoveBlockingBoxToParking box=A parking=(9,29) agent=0 prio=31
+[HTN] Task#16 DeliverBoxToGoal box=C goal=C agent=7 prio=30
+[HTN] Task#19 DeliverBoxToGoal box=F goal=F agent=8 prio=30
+[HTN] Task#22 DeliverBoxToGoal box=L goal=L agent=2 prio=30
+[HTN] Task#55 MoveBlockingBoxToParking box=V parking=(9,36) agent=6 prio=30
+[HTN] Task#20 DeliverBoxToGoal box=J goal=J agent=9 prio=29
+[HTN] Task#28 DeliverBoxToGoal box=K goal=K agent=9 prio=29
+[HTN] Task#31 DeliverBoxToGoal box=C goal=C agent=0 prio=29
+[HTN] Task#47 DeliverBoxToGoal box=T goal=T agent=5 prio=29
+[HTN] Task#56 MoveBlockingBoxToParking box=L parking=(9,29) agent=9 prio=29
+[HTN] Task#3 DeliverBoxToGoal box=G goal=G agent=1 prio=28
+[HTN] Task#21 DeliverBoxToGoal box=B goal=B agent=7 prio=28
+[HTN] Task#38 DeliverBoxToGoal box=E goal=E agent=1 prio=28
+[HTN] Task#23 DeliverBoxToGoal box=K goal=K agent=2 prio=27
+[HTN] Task#37 DeliverBoxToGoal box=D goal=D agent=1 prio=26
+[HTN] Task#68 MoveBlockingBoxToParking box=Z parking=(9,29) agent=0 prio=25
+[HTN] Task#5 DeliverBoxToGoal box=N goal=N agent=3 prio=24
+[HTN] Task#24 DeliverBoxToGoal box=A goal=A agent=7 prio=24
+[HTN] Task#30 DeliverBoxToGoal box=B goal=B agent=0 prio=24
+[HTN] Task#67 MoveBlockingBoxToParking box=P parking=(9,29) agent=4 prio=23
+[HTN] Task#10 DeliverBoxToGoal box=O goal=O agent=3 prio=22
+[HTN] Task#50 DeliverBoxToGoal box=U goal=U agent=5 prio=22
+[HTN] Task#58 MoveBlockingBoxToParking box=Y parking=(9,29) agent=4 prio=22
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=1 prio=21
+[HTN] Task#11 DeliverBoxToGoal box=M goal=M agent=3 prio=21
+[HTN] Task#18 DeliverBoxToGoal box=C goal=C agent=0 prio=21
+[HTN] Task#4 DeliverBoxToGoal box=J goal=J agent=2 prio=19
+[HTN] Task#26 DeliverBoxToGoal box=H goal=H agent=2 prio=19
+[HTN] Task#61 MoveBlockingBoxToParking box=K parking=(9,29) agent=2 prio=19
+[HTN] Task#60 MoveBlockingBoxToParking box=J parking=(9,29) agent=2 prio=18
+[HTN] Task#29 DeliverBoxToGoal box=A goal=A agent=0 prio=17
+[HTN] Task#57 MoveBlockingBoxToParking box=I parking=(9,29) agent=2 prio=17
+[HTN] Task#66 MoveBlockingBoxToParking box=W parking=(9,29) agent=6 prio=17
+[HTN] Task#7 DeliverBoxToGoal box=I goal=I agent=2 prio=16
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] Task#51 MoveBlockingBoxToParking box=Q parking=(9,29) agent=4 prio=11
+[HTN] Task#39 DeliverBoxToGoal box=F goal=F agent=1 prio=8
+[HTN] Task#52 MoveBlockingBoxToParking box=T parking=(9,36) agent=5 prio=5
+[HTN] Task#78 MoveAgentToGoal agent=9 target_goal=9 prio=4 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75
+[HTN] Task#77 MoveAgentToGoal agent=7 target_goal=7 prio=2 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75
+[HTN] Task#76 MoveAgentToGoal agent=8 target_goal=8 prio=1 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75
+[HTN] Task#79 MoveAgentToGoal agent=4 target_goal=4 prio=1 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75
+[HTN] Task#40 DeliverBoxToGoal box=G goal=G agent=1 prio=-1
+[HTN] Task#41 DeliverBoxToGoal box=L goal=L agent=9 prio=-12
+[HTN] competitive_wave tasks=61 elapsed=128.09s
+[HTN] task_batch size=61
+[HTN] Task#49 DeliverBoxToGoal box=W goal=W agent=6 prio=43
+[HTN] Task#33 DeliverBoxToGoal box=H goal=H agent=9 prio=41
+[HTN] Task#43 DeliverBoxToGoal box=X goal=X agent=4 prio=41
+[HTN] Task#46 DeliverBoxToGoal box=P goal=P agent=4 prio=41
+[HTN] Task#44 DeliverBoxToGoal box=Y goal=Y agent=4 prio=39
+[HTN] Task#14 DeliverBoxToGoal box=G goal=G agent=8 prio=38
+[HTN] Task#48 DeliverBoxToGoal box=V goal=V agent=6 prio=38
+[HTN] Task#34 DeliverBoxToGoal box=D goal=D agent=8 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=2 prio=36
+[HTN] Task#36 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#42 DeliverBoxToGoal box=R goal=R agent=4 prio=35
+[HTN] Task#1 DeliverBoxToGoal box=J goal=J agent=2 prio=34
+[HTN] Task#35 DeliverBoxToGoal box=E goal=E agent=8 prio=33
+[HTN] Task#45 DeliverBoxToGoal box=Q goal=Q agent=4 prio=33
+[HTN] Task#8 DeliverBoxToGoal box=M goal=M agent=3 prio=32
+[HTN] Task#15 DeliverBoxToGoal box=Z goal=Z agent=7 prio=32
+[HTN] Task#32 DeliverBoxToGoal box=K goal=K agent=9 prio=32
+[HTN] Task#0 DeliverBoxToGoal box=I goal=I agent=2 prio=31
+[HTN] Task#9 DeliverBoxToGoal box=N goal=N agent=3 prio=31
+[HTN] Task#17 DeliverBoxToGoal box=E goal=E agent=1 prio=31
+[HTN] Task#25 DeliverBoxToGoal box=I goal=I agent=9 prio=31
+[HTN] Task#27 DeliverBoxToGoal box=F goal=F agent=1 prio=31
+[HTN] Task#53 MoveBlockingBoxToParking box=X parking=(9,29) agent=4 prio=31
+[HTN] Task#58 MoveBlockingBoxToParking box=A parking=(9,29) agent=0 prio=31
+[HTN] Task#60 MoveBlockingBoxToParking box=K parking=(-1,-1) agent=2 prio=31
+[HTN] Task#16 DeliverBoxToGoal box=C goal=C agent=7 prio=30
+[HTN] Task#19 DeliverBoxToGoal box=F goal=F agent=8 prio=30
+[HTN] Task#22 DeliverBoxToGoal box=L goal=L agent=2 prio=30
+[HTN] Task#54 MoveBlockingBoxToParking box=V parking=(9,36) agent=6 prio=30
+[HTN] Task#20 DeliverBoxToGoal box=J goal=J agent=9 prio=29
+[HTN] Task#28 DeliverBoxToGoal box=K goal=K agent=9 prio=29
+[HTN] Task#31 DeliverBoxToGoal box=C goal=C agent=0 prio=29
+[HTN] Task#47 DeliverBoxToGoal box=T goal=T agent=5 prio=29
+[HTN] Task#55 MoveBlockingBoxToParking box=L parking=(9,29) agent=9 prio=29
+[HTN] Task#3 DeliverBoxToGoal box=G goal=G agent=1 prio=28
+[HTN] Task#21 DeliverBoxToGoal box=B goal=B agent=7 prio=28
+[HTN] Task#38 DeliverBoxToGoal box=E goal=E agent=1 prio=28
+[HTN] Task#23 DeliverBoxToGoal box=K goal=K agent=2 prio=27
+[HTN] Task#37 DeliverBoxToGoal box=D goal=D agent=1 prio=26
+[HTN] Task#24 DeliverBoxToGoal box=A goal=A agent=7 prio=24
+[HTN] Task#30 DeliverBoxToGoal box=B goal=B agent=0 prio=24
+[HTN] Task#50 DeliverBoxToGoal box=U goal=U agent=5 prio=22
+[HTN] Task#57 MoveBlockingBoxToParking box=Y parking=(9,29) agent=4 prio=22
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=1 prio=21
+[HTN] Task#18 DeliverBoxToGoal box=C goal=C agent=0 prio=21
+[HTN] Task#4 DeliverBoxToGoal box=J goal=J agent=2 prio=19
+[HTN] Task#26 DeliverBoxToGoal box=H goal=H agent=2 prio=19
+[HTN] Task#59 MoveBlockingBoxToParking box=J parking=(9,29) agent=2 prio=18
+[HTN] Task#29 DeliverBoxToGoal box=A goal=A agent=0 prio=17
+[HTN] Task#56 MoveBlockingBoxToParking box=I parking=(9,29) agent=2 prio=17
+[HTN] Task#7 DeliverBoxToGoal box=I goal=I agent=2 prio=16
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] Task#51 MoveBlockingBoxToParking box=Q parking=(9,29) agent=4 prio=11
+[HTN] Task#5 DeliverBoxToGoal box=N goal=N agent=3 prio=8
+[HTN] Task#39 DeliverBoxToGoal box=F goal=F agent=1 prio=8
+[HTN] Task#11 DeliverBoxToGoal box=M goal=M agent=3 prio=5
+[HTN] Task#52 MoveBlockingBoxToParking box=T parking=(9,36) agent=5 prio=5
+[HTN] Task#40 DeliverBoxToGoal box=G goal=G agent=1 prio=-1
+[HTN] Task#10 DeliverBoxToGoal box=O goal=O agent=3 prio=-7
+[HTN] Task#41 DeliverBoxToGoal box=L goal=L agent=9 prio=-12
+[HTN] Task#13 DeliverBoxToGoal box=O goal=O agent=3 prio=-20
+[HTN] partial_plan_unsolved stop_reason=deadline_before_scheduler steps=20 goals_completed=0/51 waves=2 no_progress_iters=0
+NoOp|NoOp|NoOp|Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(W,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(S,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(W,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 20.
+[server][info] Time to solve: 175.794 seconds.

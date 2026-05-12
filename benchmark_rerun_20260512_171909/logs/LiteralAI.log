@@ -1,0 +1,20 @@
+[server][info] Running client on level: ./complevels/LiteralAI.lvl
+[HTN] competitive_wave tasks=12 elapsed=0.00701926s
+[HTN] task_batch size=12
+[HTN] Task#10 MoveBlockingBoxToParking box=C parking=(10,12) agent=2 prio=33
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(15,15) agent=3 prio=33
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=-30
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=1 prio=-30
+[HTN] Task#7 DeliverBoxToGoal box=I goal=I agent=8 prio=-33
+[HTN] Task#8 DeliverBoxToGoal box=J goal=J agent=9 prio=-41
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=3 prio=-43
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=2 prio=-43
+[HTN] Task#4 DeliverBoxToGoal box=F goal=F agent=5 prio=-43
+[HTN] Task#5 DeliverBoxToGoal box=E goal=E agent=4 prio=-43
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=7 prio=-43
+[HTN] Task#9 DeliverBoxToGoal box=G goal=G agent=6 prio=-52
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

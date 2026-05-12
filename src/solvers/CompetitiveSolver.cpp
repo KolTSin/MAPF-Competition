@@ -102,7 +102,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     // Stop after several waves that fail to improve the state. This prevents an
     // infinite loop on unschedulable or cyclic task sets while still allowing a
     // few local-repair attempts to unblock progress.
-    constexpr int kNoProgressBudget = 5;
+    constexpr int kNoProgressBudget = 50;
     // Convert the external millisecond budget to the seconds representation used
     // by chrono::duration<double>. The main loop checks this before every wave.
     const double kTimeBudgetSeconds = static_cast<double>(config_.planning_time_budget_ms) / 1000.0;
