@@ -831,12 +831,12 @@ red: 1, C
         s.agent_positions = {Position{2,0}, Position{0,0}};
         s.box_pos.assign(35, '\0');
         s.set_box(2,2,'A');
-        s.set_box(1,4,'B');
+        s.set_box(2,4,'B');
 
         LevelAnalyzer analyzer;
         LevelAnalysis analysis = analyzer.analyze(l, s);
         for (Position candidate : analysis.parking_cells) {
-            if (candidate == Position{2,4}) {
+            if (candidate == Position{2,5}) {
                 analysis.at(candidate).parking_score = 10000;
             } else if (candidate == Position{0,4}) {
                 analysis.at(candidate).parking_score = 100;
@@ -855,7 +855,7 @@ red: 1, C
         for (const Task& task : tasks) {
             if (task.type == TaskType::MoveBlockingBoxToParking && task.box_id == 'B') {
                 checked_b = true;
-                assert(!(task.parking_pos == Position{2,4}));
+                assert(!(task.parking_pos == Position{2,5}));
                 assert((task.parking_pos == Position{0,4}));
             }
         }
@@ -1242,19 +1242,31 @@ red: 1, C
         BlockerResolver resolver;
         const std::vector<Task> tasks = resolver.generate_blocker_tasks(l, s, analysis, next_task_id);
 
-        int blocker_tasks_with_alternates = 0;
-        std::vector<Position> selected_parking;
+        // Boxes without active goals should not be parked preemptively when
+        // they are not observed blocking an active delivery.
+        assert(tasks.empty());
+    }
+
+    {
+        std::string resolved = "complevels/pooh.lvl";
+        if (!std::filesystem::exists(resolved)) {
+            resolved = "../" + resolved;
+        }
+        assert(std::filesystem::exists(resolved));
+        std::ifstream in(resolved);
+        ParsedLevel parsed = LevelParser::parse(in);
+
+        TaskGenerator generator;
+        const std::vector<Task> tasks = generator.generate_delivery_tasks(parsed.level, parsed.initial_state);
+
+        int h_deliveries = 0;
         for (const Task& task : tasks) {
-            if (task.type != TaskType::MoveBlockingBoxToParking) continue;
-            assert(!task.parking_candidates.empty());
-            assert(task.parking_candidates.front() == task.parking_pos);
-            if (task.parking_candidates.size() > 1) ++blocker_tasks_with_alternates;
-            selected_parking.push_back(task.parking_pos);
+            assert(!(task.type == TaskType::MoveBlockingBoxToParking && task.box_id == 'S'));
+            if (task.type == TaskType::DeliverBoxToGoal && task.box_id == 'H') {
+                ++h_deliveries;
+            }
         }
-        assert(blocker_tasks_with_alternates >= 1);
-        if (selected_parking.size() >= 2) {
-            assert(selected_parking[0] != selected_parking[1]);
-        }
+        assert(h_deliveries == 2);
     }
 
     std::cout << "phase2_tests passed\n";
