@@ -1,6 +1,6 @@
 # Benchmark Failure TODO
 
-This checklist turns the latest benchmark runs into pick-off engineering tasks. It uses both regular `levels/` benchmarks from `benchmark_results_20260511_172717` and competition `complevels/` benchmarks from `benchmark_results_20260511_181033`.
+This checklist turns the latest benchmark runs into pick-off engineering tasks. It uses both regular `levels/` benchmarks from `benchmark_results_20260511_172717` and competition `complevels/` benchmarks from `benchmark_results_20260511_181033`. Re-evaluation on 2026-05-12 separates already-landed mitigations from the still-open benchmark blockers; the benchmark counts below are still the latest recorded run data in this repository, not a fresh rerun after the mitigations.
 
 ## Current benchmark snapshot
 
@@ -20,11 +20,21 @@ This checklist turns the latest benchmark runs into pick-off engineering tasks. 
 7. **Long single-agent puzzle families make progress but do not finish.** Tower levels, Sokoban/box-ordering levels, and several competition levels produce tens or hundreds of actions but are still unsolved, indicating that the high-level order is locally plausible but globally wrong.
 8. **Benchmark reporting is good enough for pass/fail, but not yet good enough for cause-directed development.** The summary CSVs expose status, time, and action count, but recurring log reasons still require one-off scripts.
 
+## Re-evaluated status
+
+- **Still highest priority:** add reusable benchmark triage/reporting before deeper solver work so every future change can be measured against the same failure taxonomy.
+- **Partially mitigated:** the competitive solver now uses a top-level planning-time budget and returns the accumulated safe prefix instead of falling into an unbounded CBS fallback, but the expensive analysis/generation/planning phases still do not share a deadline object.
+- **Partially mitigated:** local repair now tries delayed starts, alternate agents, alternate parking, relaxed-reservation replans, and one-step safe-prefix fallback, but it still does not synthesize new dependencies from structured failure causes.
+- **Partially mitigated:** no-box-goal levels now route through the CBS solver, covering the simplest agent-only MAPF cases; dedicated permutation/parking/vacate-goal handling remains open for tightly coupled MAPF families.
+- **Still open:** same-letter box matching, goal-room/corridor deadlock analysis, and cause-oriented benchmark gates remain the main partial-progress puzzle work.
+
 ## TODO list
 
 ### 1. Add budget-aware early-exit and first-prefix planning for large maps
 
 - [ ] Make expensive pre-planning and task-generation phases wall-clock aware.
+  - [x] Add a top-level competitive-solver wall-clock budget and return the accumulated HTN/reservation prefix instead of running an unbounded fallback after useful progress exists.
+  - [ ] Thread a shared deadline through level analysis, task generation, prioritization, blocker generation, local repair, and low-level planners.
 
 **Failure signal**
 
@@ -48,6 +58,9 @@ This checklist turns the latest benchmark runs into pick-off engineering tasks. 
 ### 2. Turn `scheduler_empty` into structured dependency generation
 
 - [ ] When the scheduler cannot add any ready task, convert failed low-level plans into new clearing or ordering tasks.
+  - [x] Add machine-readable `TaskFailureCause`/`TaskFailureInfo` for low-level box planner failures.
+  - [x] Try delay, alternate-agent, alternate-parking, relaxed-reservation, and safe-prefix repair before giving up.
+  - [ ] Convert those failure causes into new blocker, parking, agent-vacate, or ordering dependencies in the task graph.
 
 **Failure signal**
 
@@ -74,6 +87,8 @@ This checklist turns the latest benchmark runs into pick-off engineering tasks. 
 ### 3. Make local repair stateful and tabu-aware
 
 - [ ] Teach repair and wave planning to remember failed local trajectories and avoid immediately regenerating them.
+  - [x] Reject cyclic/no-progress waves before appending them to the output prefix.
+  - [ ] Feed rejected trajectory signatures back into local repair and parking selection as tabu constraints.
 
 **Failure signal**
 
@@ -97,6 +112,8 @@ This checklist turns the latest benchmark runs into pick-off engineering tasks. 
 ### 4. Rework parking-cell selection and reservation
 
 - [ ] Make parking candidates conflict-aware, purpose-aware, and diversified across blockers.
+  - [x] Track reserved parking targets within blocker generation and prefer route/reachability-safe parking candidates.
+  - [ ] Make parking selection globally aware across waves and repair attempts, including rejected/cyclic parking choices.
 
 **Failure signal**
 
@@ -120,6 +137,8 @@ This checklist turns the latest benchmark runs into pick-off engineering tasks. 
 ### 5. Add a dedicated agent-only MAPF permutation mode
 
 - [ ] Detect agent-goal permutation levels/subproblems and solve them as a coordinated multi-agent problem.
+  - [x] Route levels with no box goals through the CBS solver instead of the HTN box scheduler.
+  - [ ] Add explicit vacate-goal, permutation-ordering, and parking states for tightly coupled agent-only rooms/corridors.
 
 **Failure signal**
 
@@ -214,10 +233,10 @@ This checklist turns the latest benchmark runs into pick-off engineering tasks. 
 
 ## Suggested implementation order
 
-1. Add triage script first, because it makes every subsequent task measurable.
-2. Fix budget-aware first-prefix planning, because zero-action timeouts are the biggest competition-level failure class.
-3. Make local repair tabu-aware, because cycle detection is already identifying wasted work.
-4. Rework parking-cell selection, because repeated parking targets poison many blocker-heavy plans.
-5. Turn scheduler stalls into dependency generation, using the improved failure diagnostics from the previous steps.
-6. Add dedicated MAPF permutation mode for the zero-action `MAPFreorder*` and `MAPFslidingpuzzle` failures.
+1. Add the triage script first, because it makes every subsequent task measurable and the latest benchmark counts have not yet been regenerated after the solver mitigations.
+2. Finish shared-deadline/budget plumbing below the competitive-solver loop so zero-action timeouts cannot hide inside analysis, task generation, blocker generation, or low-level planning.
+3. Turn scheduler stalls into dependency generation using the now-available structured failure diagnostics.
+4. Make local repair tabu-aware and feed cycle/no-progress decisions back into repair attempts.
+5. Rework parking-cell selection across waves/repair attempts so repeated parking targets stop poisoning blocker-heavy plans.
+6. Add dedicated MAPF permutation/vacate-goal mode for the zero-action `MAPFreorder*` and `MAPFslidingpuzzle` failures that the generic CBS fallback still cannot cover reliably.
 7. Improve same-letter matching and deadlock analysis for the remaining partial-progress puzzle families.

@@ -1,13 +1,14 @@
 # MAsimple Remaining Engineering Work TODO
 
-This checklist tracks the additional coordination, blocker, parking, and validation work needed to solve the remaining `MAsimple` levels reliably. `MAsimple1` and `MAsimple2` are expected to solve with the current solver; `MAsimple3` through `MAsimple5` still expose gaps in task sequencing, blocker relocation, reservations, and local repair.
+This checklist tracks the additional coordination, blocker, parking, and validation work needed to keep the `MAsimple` levels reliable. Re-evaluation on 2026-05-12: the in-process regression suite now validates solved states for `MAsimple1` through `MAsimple5`, so the remaining work below is focused on hardening the same mechanisms for MAvis/server smoke coverage and less curated benchmark families rather than treating `MAsimple3`--`MAsimple5` as the current blocker.
 
 ## Goal
 
-- [ ] Solve `levels/MAsimple3.lvl` in the MAvis server with `build/searchclient --solver comp`.
-- [ ] Solve `levels/MAsimple4.lvl` in the MAvis server with `build/searchclient --solver comp`.
-- [ ] Solve `levels/MAsimple5.lvl` in the MAvis server with `build/searchclient --solver comp`.
+- [x] Solve `levels/MAsimple3.lvl` in the in-process regression suite with `CompetitiveSolver`.
+- [x] Solve `levels/MAsimple4.lvl` in the in-process regression suite with `CompetitiveSolver`.
+- [x] Solve `levels/MAsimple5.lvl` in the in-process regression suite with `CompetitiveSolver`.
 - [x] Add tests that fail if any `MAsimple` level produces an empty, invalid, conflicting, or non-solving plan.
+- [ ] Re-run each `MAsimple` level through the MAvis server with `build/searchclient --solver comp`; the current proof is in-process and does not yet exercise the server protocol boundary.
 
 ## 1. Reserve boxes over time
 
@@ -53,7 +54,7 @@ Parking cells must be more than static high-score cells. A candidate is useful o
 - [x] Ensure access-blocker relocation tasks are hard dependencies of the affected delivery tasks.
 - [ ] After a blocker relocation, regenerate delivery tasks from the updated simulated state.
 - [ ] If the selected parking cell still blocks the dependent delivery, reject it and try another candidate.
-- [ ] Add a test based on `MAsimple3` where `B` blocks agent `0` from reaching `A`, requiring `B` to move first.
+- [x] Add a test based on `MAsimple3` where `B` blocks agent `0` from reaching `A`, requiring `B` to move first.
 
 ## 5. Add small interacting-task ordering search
 
@@ -78,12 +79,12 @@ The remaining simple levels can require moving a box that itself has a goal late
 
 ## 7. Replace Manhattan-only agent repositioning
 
-`AgentPathPlanner` currently moves row-first then column-first. Tight maps need actual pathfinding.
+Re-evaluation: this item is complete. `AgentPathPlanner` now performs time-aware A* over Move/NoOp successors, uses reservation checks, and has regression coverage for rerouting around a reserved box cell.
 
-- [ ] Replace row-first/column-first movement with BFS or A* over free cells.
-- [ ] Respect walls, boxes, other agents, and reservations.
-- [ ] Allow `NoOp` wait actions when a reservation blocks the shortest path temporarily.
-- [ ] Add tests where the direct Manhattan route is blocked but another route exists.
+- [x] Replace row-first/column-first movement with BFS or A* over free cells.
+- [x] Respect walls, boxes, other agents, and reservations.
+- [x] Allow `NoOp` wait actions when a reservation blocks the shortest path temporarily.
+- [x] Add tests where the direct Manhattan route is blocked but another route exists.
 
 ## 8. Improve local repair
 
@@ -91,9 +92,9 @@ Local repair should generate meaningful alternatives when scheduling fails.
 
 - [ ] When delivery planning fails, identify the blocking cell or blocking box from the failed search frontier.
 - [ ] Generate relocation tasks for discovered blockers.
-- [ ] Try alternate parking cells before giving up.
+- [x] Try alternate parking cells before giving up.
 - [ ] Try alternate task orderings before giving up.
-- [ ] Try delaying a conflicting task before giving up.
+- [x] Try delaying a conflicting task before giving up.
 - [ ] Emit a diagnostic reason that explains which blocker or reservation caused failure.
 
 ## 9. Strengthen plan validation and tests
@@ -106,7 +107,7 @@ Existing tests should assert solved states, not just non-empty or conflict-free 
 - [x] Assert no action attempts to move a box with an incompatible-color agent.
 - [x] Convert the current `MAsimple` loop into hard assertions for `MAsimple1` through `MAsimple5`.
 - [ ] Add a server-run smoke script or CTest wrapper for all `MAsimple` levels.
-- [ ] Fix the current hard-validation failure exposed on `levels/MAsimple3.lvl` before using the full `MAsimple` regression suite as a passing gate.
+- [x] Fix the hard-validation failure previously exposed on `levels/MAsimple3.lvl`; the full `MAsimple` regression suite is now a passing in-process gate.
 
 ## 10. Diagnostics for future debugging
 
@@ -125,6 +126,6 @@ The next failures should be easier to diagnose than `scheduler_empty`.
 4. [x] Replace debug-label blocker dependencies with structured dependencies.
 5. [ ] Add small ordering search for coupled box tasks.
 6. [ ] Support goal boxes as temporary blockers.
-7. [ ] Replace `AgentPathPlanner` with BFS/A*.
-8. [ ] Expand local repair to generate alternate parking and ordering attempts.
-9. [ ] Re-run MAvis server smoke tests for every `MAsimple` level and check off the goals above.
+7. [x] Replace `AgentPathPlanner` with BFS/A*.
+8. [ ] Expand local repair beyond delay/alternate-agent/alternate-parking retries into structured alternate ordering attempts.
+9. [ ] Re-run MAvis server smoke tests for every `MAsimple` level and record the protocol-level result above.
