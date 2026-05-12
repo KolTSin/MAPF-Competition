@@ -1,0 +1,23 @@
+[server][info] Running client on level: ./levels/SAbotbot.lvl
+[HTN] competitive_wave tasks=1 elapsed=0.00119022s
+[HTN] task_batch size=1
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=43
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=1 elapsed=0.0134741s
+[HTN] task_batch size=1
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=43
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=1 elapsed=0.0436946s
+[HTN] task_batch size=1
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=43
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

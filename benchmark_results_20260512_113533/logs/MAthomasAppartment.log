@@ -1,0 +1,28 @@
+[server][info] Running client on level: ./levels/MAthomasAppartment.lvl
+[HTN] competitive_wave tasks=20 elapsed=0.00104548s
+[HTN] task_batch size=20
+[HTN] Task#2 DeliverBoxToGoal box=F goal=F agent=1 prio=44
+[HTN] Task#1 DeliverBoxToGoal box=E goal=E agent=1 prio=41
+[HTN] Task#18 MoveBlockingBoxToParking box=B parking=(10,5) agent=0 prio=40
+[HTN] Task#19 MoveBlockingBoxToParking box=H parking=(11,19) agent=2 prio=40
+[HTN] Task#16 MoveBlockingBoxToParking box=N parking=(5,11) agent=3 prio=39
+[HTN] Task#17 MoveBlockingBoxToParking box=O parking=(10,3) agent=3 prio=37
+[HTN] Task#0 DeliverBoxToGoal box=D goal=D agent=1 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=G goal=G agent=1 prio=34
+[HTN] Task#15 MoveBlockingBoxToParking box=D parking=(4,10) agent=1 prio=32
+[HTN] Task#6 DeliverBoxToGoal box=O goal=O agent=3 prio=15
+[HTN] Task#11 DeliverBoxToGoal box=J goal=J agent=2 prio=15
+[HTN] Task#5 DeliverBoxToGoal box=N goal=N agent=3 prio=14
+[HTN] Task#4 DeliverBoxToGoal box=M goal=M agent=3 prio=13
+[HTN] Task#9 DeliverBoxToGoal box=H goal=H agent=2 prio=1
+[HTN] Task#10 DeliverBoxToGoal box=I goal=I agent=2 prio=-2
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=-15
+[HTN] Task#12 DeliverBoxToGoal box=K goal=K agent=2 prio=-16
+[HTN] Task#13 DeliverBoxToGoal box=L goal=L agent=2 prio=-17
+[HTN] Task#8 DeliverBoxToGoal box=B goal=B agent=0 prio=-29
+[HTN] Task#7 DeliverBoxToGoal box=C goal=C agent=0 prio=-35
+[client][info] Client timed out.
+[client][info] Sending termination signal to client process (PID = 240123).
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

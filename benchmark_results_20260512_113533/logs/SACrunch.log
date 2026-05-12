@@ -1,0 +1,93 @@
+[server][info] Running client on level: ./levels/SACrunch.lvl
+[HTN] competitive_wave tasks=6 elapsed=0.00109359s
+[HTN] task_batch size=6
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=44
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=43
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(1,3) agent=0 prio=43
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#4 MoveBlockingBoxToParking box=D parking=(1,1) agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=36
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=5 elapsed=0.0603359s
+[HTN] task_batch size=5
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=44
+[HTN] Task#4 MoveBlockingBoxToParking box=B parking=(2,2) agent=0 prio=43
+[HTN] Task#3 MoveBlockingBoxToParking box=D parking=(1,1) agent=0 prio=40
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=0 prio=35
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=2 elapsed=0.107781s
+[HTN] task_batch size=2
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=45
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=39
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=2 elapsed=0.149304s
+[HTN] task_batch size=2
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=45
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=39
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=2 elapsed=0.19049s
+[HTN] task_batch size=2
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=45
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=39
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+Move(S)
+Pull(N,W)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,N)
+Push(N,N)
+Push(N,N)
+Push(N,N)
+Push(N,W)
+Move(S)
+Move(S)
+Move(S)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(N)
+Move(N)
+Move(E)
+Pull(W,W)
+Pull(N,W)
+Push(S,S)
+Push(S,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,N)
+Push(N,N)
+Push(N,N)
+Push(N,N)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 41.
+[server][info] Time to solve: 0.358 seconds.

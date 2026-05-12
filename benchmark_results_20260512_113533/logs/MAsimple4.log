@@ -1,0 +1,19 @@
+[server][info] Running client on level: ./levels/MAsimple4.lvl
+[HTN] competitive_wave tasks=3 elapsed=0.00153049s
+[HTN] task_batch size=3
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=1 prio=48
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=47
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=46
+[HTN] competitive_wave tasks=0 elapsed=0.0139725s
+[HTN] task_batch size=0
+NoOp|Move(E)
+NoOp|Move(E)
+Push(E,S)|Move(E)
+NoOp|Pull(W,S)
+NoOp|Push(E,E)
+Push(E,S)|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 6.
+[server][info] Time to solve: 0.056 seconds.

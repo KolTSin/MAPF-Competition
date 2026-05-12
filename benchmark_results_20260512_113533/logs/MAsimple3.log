@@ -1,0 +1,57 @@
+[server][info] Running client on level: ./levels/MAsimple3.lvl
+[HTN] competitive_wave tasks=3 elapsed=0.00160948s
+[HTN] task_batch size=3
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=1 prio=42
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=40
+[HTN] Task#2 MoveBlockingBoxToParking box=B parking=(5,7) agent=1 prio=37
+[HTN] competitive_wave tasks=0 elapsed=0.101997s
+[HTN] task_batch size=0
+Move(W)|Move(E)
+Move(W)|Move(E)
+Move(S)|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(E)
+NoOp|Move(N)
+NoOp|Move(N)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Move(W)
+NoOp|Pull(E,E)
+Move(S)|Pull(E,E)
+Move(E)|Pull(E,E)
+Move(E)|Pull(E,E)
+Move(E)|Pull(E,E)
+Move(E)|Pull(E,E)
+Move(E)|Pull(E,E)
+Move(E)|Pull(E,E)
+Move(E)|Pull(S,E)
+Move(E)|Pull(S,S)
+Move(E)|Pull(W,S)
+Push(N,N)|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Pull(W,W)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,E)
+NoOp|Push(E,N)
+NoOp|Push(N,N)
+NoOp|Push(N,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+NoOp|Push(W,W)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 44.
+[server][info] Time to solve: 0.194 seconds.
