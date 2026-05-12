@@ -60,6 +60,27 @@ bool configured_verbose_tasks() {
     return false;
 }
 
+int total_box_goals(const Level& level) {
+    int total = 0;
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            const char goal = level.goal_at(r, c);
+            if (goal >= 'A' && goal <= 'Z') ++total;
+        }
+    }
+    return total;
+}
+
+std::string compact_stop_reason(std::string reason) {
+    for (char& ch : reason) {
+        const bool safe = (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') ||
+                          (ch >= '0' && ch <= '9') || ch == '_' || ch == '-' ||
+                          ch == ':' || ch == '.';
+        if (!safe) ch = '_';
+    }
+    return reason;
+}
+
 }
 
 CompetitiveSolver::CompetitiveSolver(SolverConfig config) : config_(config) {}
@@ -72,17 +93,8 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     // task prioritizer and scheduler provide the domain-specific guidance.
     (void)heuristic;
 
-    bool has_box_goal = false;
-    for (int r = 0; r < level.rows && !has_box_goal; ++r) {
-        for (int c = 0; c < level.cols; ++c) {
-            const char goal = level.goal_at(r, c);
-            if (goal >= 'A' && goal <= 'Z') {
-                has_box_goal = true;
-                break;
-            }
-        }
-    }
-    if (!has_box_goal) {
+    const int total_goals = total_box_goals(level);
+    if (total_goals == 0) {
         CBSSolver fallback;
         return fallback.solve(level, initial_state, heuristic);
     }
@@ -118,6 +130,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     PlanConflictRepairer conflict_repairer;
     int no_progress_iters = 0;
     int wave_count = 0;
+    std::string stop_reason = "loop_not_started";
     const int max_waves = std::max(32, level.rows * level.cols * 4);
     WaveProgressGuard progress_guard;
     progress_guard.reset(level, current);
@@ -127,10 +140,16 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     // state. Inputs are the level and `current`; output is appended into
     // `accumulated` and reflected back into `current` via apply_prefix().
     while (true) {
-        if (++wave_count > max_waves) break;
+        if (++wave_count > max_waves) {
+            stop_reason = "max_waves";
+            break;
+        }
         const auto now = std::chrono::steady_clock::now();
         const double elapsed = std::chrono::duration<double>(now - start_time).count();
-        if (elapsed >= kTimeBudgetSeconds || deadline.expired()) break;
+        if (elapsed >= kTimeBudgetSeconds || deadline.expired()) {
+            stop_reason = "deadline_before_wave";
+            break;
+        }
 
         // Convert unsatisfied goals into high-level delivery tasks. Each Task is
         // an intuitive contract: move a compatible box/agent from its source to
@@ -152,12 +171,20 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // No tasks means every currently generatable delivery goal is already
         // satisfied or impossible to assign, so there is no useful competitive
         // wave to append.
-        if (tasks.empty()) break;
+        if (tasks.empty()) {
+            stop_reason = (WaveProgressGuard::goals_completed(level, current) >= total_goals)
+                              ? "solved"
+                              : "no_tasks";
+            break;
+        }
 
         // Ask the scheduler to turn high-level tasks into a concrete joint plan.
         // Input: current world state plus the candidate tasks. Output: a wave of
         // synchronized actions that can be appended to the final plan.
-        if (deadline.expired()) break;
+        if (deadline.expired()) {
+            stop_reason = "deadline_before_scheduler";
+            break;
+        }
         std::vector<AgentPlan> wave_agent_plans = scheduler.build_agent_plans(level, current, tasks, deadline);
         Plan wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
         PlanMerger::compact_independent_actions(level, current, wave);
@@ -174,7 +201,10 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             failed.success = false;
             failed.failure_reason = "scheduler_empty";
             for (const Task& task : tasks) {
-                if (deadline.expired()) break;
+                if (deadline.expired()) {
+                    stop_reason = "deadline_during_repair";
+                    break;
+                }
                 const RepairResult repaired = repair.repair(level, current, task, failed, ReservationTable{}, 0, deadline);
                 if (kVerboseTasks) {
                     std::cerr << "[HTN] repair outcome=" << static_cast<int>(repaired.outcome)
@@ -202,7 +232,12 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
                     break;
                 }
             }
-            if (wave.empty() && ++no_progress_iters >= kNoProgressBudget) break;
+            if (wave.empty() && ++no_progress_iters >= kNoProgressBudget) {
+                if (stop_reason.empty() || stop_reason == "loop_not_started") {
+                    stop_reason = deadline.expired() ? "deadline_during_repair" : "scheduler_empty";
+                }
+                break;
+            }
         }
         
         // The scheduler normally uses reservations, but a competitive wave can
@@ -211,7 +246,10 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // conflict constraints and replan alternate routes without changing task
         // priorities or reshuffling the accepted schedule.
         // for (JointAction ja : wave.steps) std::cerr << ja.to_string() << std::endl;
-        if (deadline.expired()) break;
+        if (deadline.expired()) {
+            stop_reason = "deadline_before_conflict_repair";
+            break;
+        }
         const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave_agent_plans);
         if (repaired_wave.conflict_free) {
             if (kVerboseTasks && repaired_wave.changed) {
@@ -235,7 +273,10 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             if (kVerboseTasks) {
                 std::cerr << "[HTN] " << progress.reason << "; rejecting wave steps=" << wave.steps.size() << '\n';
             }
-            if (++no_progress_iters >= kNoProgressBudget) break;
+            if (++no_progress_iters >= kNoProgressBudget) {
+                stop_reason = "stagnation_guard:" + compact_stop_reason(progress.reason);
+                break;
+            }
             continue;
         }
 
@@ -252,10 +293,15 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // post-wave state.
         apply_prefix(current, wave, safe_prefix);
         progress_guard.remember_accepted(current);
+        if (WaveProgressGuard::goals_completed(level, current) >= total_goals) {
+            stop_reason = "solved";
+            break;
+        }
         if (progress.completed_new_goal || (progress.moved_any_box && progress.goals_after >= best_goals_completed)) {
             best_goals_completed = std::max(best_goals_completed, progress.goals_after);
             no_progress_iters = 0;
         } else if (++no_progress_iters >= kNoProgressBudget) {
+            stop_reason = "stagnation_guard:no_goal_progress";
             break;
         }
     }
@@ -263,6 +309,16 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     // Return the best HTN/reservation prefix immediately.  The old CBS fallback
     // had no wall-clock budget and could consume the remaining server time after
     // the competitive solver had already found useful work, turning partial
-    // failures into hard timeouts.
+    // failures into hard timeouts.  If that prefix is still incomplete, emit a
+    // stable marker so benchmark triage can separate "returned a useful but
+    // unfinished plan" from zero-action task-generation failures.
+    const int completed_goals = WaveProgressGuard::goals_completed(level, current);
+    if (!accumulated.steps.empty() && completed_goals < total_goals) {
+        std::cerr << "[HTN] partial_plan_unsolved stop_reason=" << compact_stop_reason(stop_reason)
+                  << " steps=" << accumulated.steps.size()
+                  << " goals_completed=" << completed_goals << '/' << total_goals
+                  << " waves=" << wave_count
+                  << " no_progress_iters=" << no_progress_iters << '\n';
+    }
     return accumulated;
 }
