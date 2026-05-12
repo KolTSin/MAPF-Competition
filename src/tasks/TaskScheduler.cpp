@@ -137,13 +137,16 @@ bool is_free_non_goal_agent_parking_cell(const Level& level, const State& state,
     return agent_at_position(state, pos, moving_agent) == -1;
 }
 
-std::vector<Position> parking_candidates_for_agent(const Level& level, const State& state, int moving_agent) {
+std::vector<Position> parking_candidates_for_agent(const Level& level, const State& state, int moving_agent, const PlanningDeadline& deadline) {
+    if (deadline.expired()) return {};
     LevelAnalyzer analyzer;
     const LevelAnalysis analysis = analyzer.analyze(level, state);
+    if (deadline.expired()) return {};
     ParkingCellAnalyzer parking_analyzer;
     std::vector<Position> candidates = parking_analyzer.find_parking_cells(level, state, analysis);
 
     for (const Position pos : analysis.free_cells) {
+        if (deadline.expired()) break;
         if (std::find(candidates.begin(), candidates.end(), pos) != candidates.end()) continue;
         candidates.push_back(pos);
     }
@@ -168,7 +171,8 @@ TaskPlan plan_agent_parking(const Level& level,
                             const ReservationTable& reservations,
                             int start_time,
                             int task_id,
-                            Position blocked_goal) {
+                            Position blocked_goal,
+                            const PlanningDeadline& deadline) {
     AgentPathPlanner agent_planner;
     TaskPlan best_failure;
     best_failure.task_id = task_id;
@@ -176,7 +180,8 @@ TaskPlan plan_agent_parking(const Level& level,
     best_failure.agent_id = moving_agent;
     best_failure.failure_reason = "no_safe_agent_parking_cell";
 
-    for (const Position candidate : parking_candidates_for_agent(level, state, moving_agent)) {
+    for (const Position candidate : parking_candidates_for_agent(level, state, moving_agent, deadline)) {
+        if (deadline.expired()) break;
         Task park;
         park.type = TaskType::ParkAgentSafely;
         park.task_id = task_id;
@@ -187,7 +192,7 @@ TaskPlan plan_agent_parking(const Level& level,
         park.priority = std::numeric_limits<int>::max() / 4;
         park.debug_label = "clear_agent_from_goal_(" + std::to_string(blocked_goal.row) + "," + std::to_string(blocked_goal.col) + ")";
 
-        TaskPlan plan = agent_planner.plan(level, state, park, reservations, start_time);
+        TaskPlan plan = agent_planner.plan(level, state, park, reservations, start_time, deadline);
         if (plan.success && !plan.agent_plan.actions.empty()) return plan;
         if (!plan.failure_reason.empty()) best_failure.failure_reason = plan.failure_reason;
     }
@@ -363,12 +368,14 @@ void add_corridor_access_dependencies(const Level& level, const State& state, st
 std::vector<ScheduledTask> schedule_once(
     const Level& level,
     const State& initial_state,
-    const std::vector<Task>& mutable_tasks
+    const std::vector<Task>& mutable_tasks,
+    const PlanningDeadline& deadline
 ) {
     // Global reservation state is the contract between independently planned
     // tasks.  Each successful task contributes occupied cells/edges to this
     // table so later planning attempts avoid collisions in space and time.
     ReservationTable reservations;
+    if (deadline.expired()) return {};
     std::vector<ScheduledTask> scheduled;
 
     // The scheduler delegates low-level path construction to specialized
@@ -395,6 +402,7 @@ std::vector<ScheduledTask> schedule_once(
     // tasks are either blocked by dependencies or currently unplannable.
     bool progress = true;
     while (progress) {
+        if (deadline.expired()) break;
         progress = false;
 
         // Convert ready task ids back into Task objects, then process higher
@@ -413,6 +421,7 @@ std::vector<ScheduledTask> schedule_once(
         std::unordered_set<int> used_agents;
 
         for (const Task& task : ready) {
+            if (deadline.expired()) return scheduled;
             // A task cannot start before all of its predecessors have ended.
             // Missing predecessors are not ready, so completion_time[pre] is
             // expected to exist for every predecessor seen here.
@@ -446,7 +455,8 @@ std::vector<ScheduledTask> schedule_once(
                                                                reservations,
                                                                parking_start,
                                                                parking_task_id,
-                                                               chosen_task.goal_pos);
+                                                               chosen_task.goal_pos,
+                                                               deadline);
                     if (parking_plan.success) {
                         Task parking_task;
                         parking_task.type = TaskType::ParkAgentSafely;
@@ -504,7 +514,7 @@ std::vector<ScheduledTask> schedule_once(
                     if (verbose_scheduler()) {
                         std::cerr << "path planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
                     }
-                    plan = agent_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
+                    plan = agent_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start, deadline);
                     if (verbose_scheduler()) {
                         std::cerr << "success: " << (plan.success ? "true" : "false") << std::endl;
                     }
@@ -518,7 +528,7 @@ std::vector<ScheduledTask> schedule_once(
                     for (const Position parking_target : parking_targets) {
                         chosen_task.parking_pos = parking_target;
                         chosen_task.goal_pos = parking_target;
-                        plan = box_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
+                        plan = box_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start, deadline);
                         if (verbose_scheduler()) {
                             std::cerr << "success: " << (plan.success ? "true" : "false")
                                       << " parking=(" << parking_target.row << "," << parking_target.col << ")"
@@ -530,7 +540,7 @@ std::vector<ScheduledTask> schedule_once(
                     if (verbose_scheduler()) {
                         std::cerr << "box planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
                     }
-                    plan = box_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start);
+                    plan = box_planner.plan(level, simulated_state, chosen_task, reservations, chosen_start, deadline);
                     if (verbose_scheduler()) {
                         std::cerr << "success: " << (plan.success ? "true" : "false") << " reason: " << plan.failure_reason << std::endl;
                     }
@@ -575,6 +585,11 @@ std::vector<ScheduledTask> schedule_once(
 }
 
 std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
+    PlanningDeadline no_deadline;
+    return build_agent_plans(level, initial_state, tasks, no_deadline);
+}
+
+std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, const State& initial_state, const std::vector<Task>& tasks, const PlanningDeadline& deadline) const {
     TaskPrioritizer prioritizer;
     std::vector<Task> mutable_tasks = tasks;
     prioritizer.score(level, initial_state, mutable_tasks);
@@ -587,7 +602,8 @@ std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, cons
     const int max_dependency_repairs = std::max(1, static_cast<int>(mutable_tasks.size()) * static_cast<int>(mutable_tasks.size()));
     std::vector<ScheduledTask> scheduled;
     for (int repair = 0; repair <= max_dependency_repairs; ++repair) {
-        scheduled = schedule_once(level, initial_state, mutable_tasks);
+        if (deadline.expired()) break;
+        scheduled = schedule_once(level, initial_state, mutable_tasks, deadline);
         std::vector<AgentPlan> agent_plans = expand_scheduled_tasks(initial_state, scheduled);
         if (agent_plans.empty()) return {};
 
@@ -622,7 +638,12 @@ std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, cons
 }
 
 Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const {
-    const std::vector<AgentPlan> agent_plans = build_agent_plans(level, initial_state, tasks);
+    PlanningDeadline no_deadline;
+    return build_plan(level, initial_state, tasks, no_deadline);
+}
+
+Plan TaskScheduler::build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks, const PlanningDeadline& deadline) const {
+    const std::vector<AgentPlan> agent_plans = build_agent_plans(level, initial_state, tasks, deadline);
     if (agent_plans.empty()) return {};
     Plan plan = PlanMerger::merge_agent_plans(agent_plans, initial_state.num_agents());
     PlanMerger::compact_independent_actions(level, initial_state, plan);

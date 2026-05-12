@@ -4,6 +4,7 @@
 #include "domain/Level.hpp"
 #include "state/State.hpp"
 #include "tasks/Task.hpp"
+#include "utils/PlanningDeadline.hpp"
 
 #include <vector>
 
@@ -19,4 +20,9 @@ public:
                                                            const State& state,
                                                            const LevelAnalysis& analysis,
                                                            int& next_task_id) const;
+    [[nodiscard]] std::vector<Task> generate_blocker_tasks(const Level& level,
+                                                           const State& state,
+                                                           const LevelAnalysis& analysis,
+                                                           int& next_task_id,
+                                                           const PlanningDeadline& deadline) const;
 };

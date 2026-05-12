@@ -53,13 +53,15 @@ bool path_to_box_neighbor_simulated(const Level& level,
                                     Position moved_from,
                                     Position parked_at,
                                     bool boxes_block,
-                                    std::vector<Position>* out_path) {
+                                    std::vector<Position>* out_path,
+                                    const PlanningDeadline* deadline = nullptr) {
     std::vector<bool> seen(static_cast<std::size_t>(level.rows * level.cols), false);
     std::vector<Position> parent(static_cast<std::size_t>(level.rows * level.cols), Position{-1, -1});
     std::queue<Position> q;
     q.push(start);
     seen[static_cast<std::size_t>(level.index(start.row, start.col))] = true;
     while (!q.empty()) {
+        if (deadline != nullptr && deadline->expired()) return false;
         Position cur = q.front();
         q.pop();
         if (manhattan(cur, box) == 1) {
@@ -89,8 +91,8 @@ bool path_to_box_neighbor_simulated(const Level& level,
 
 // Convenience wrapper for the common case where no hypothetical relocation is
 // being tested. The input/output contract matches path_to_box_neighbor_simulated.
-bool path_to_box_neighbor(const Level& level, const State& state, Position start, Position box, bool boxes_block, std::vector<Position>* out_path) {
-    return path_to_box_neighbor_simulated(level, state, start, box, Position{-1, -1}, Position{-1, -1}, boxes_block, out_path);
+bool path_to_box_neighbor(const Level& level, const State& state, Position start, Position box, bool boxes_block, std::vector<Position>* out_path, const PlanningDeadline* deadline = nullptr) {
+    return path_to_box_neighbor_simulated(level, state, start, box, Position{-1, -1}, Position{-1, -1}, boxes_block, out_path, deadline);
 }
 
 // Checks whether a box could theoretically travel from start to goal if all
@@ -103,12 +105,14 @@ bool reachable_without_boxes(const Level& level,
                              Position goal,
                              char moved_box,
                              Position moved_from,
-                             Position parked_at) {
+                             Position parked_at,
+                             const PlanningDeadline* deadline = nullptr) {
     std::vector<bool> seen(static_cast<std::size_t>(level.rows * level.cols), false);
     std::queue<Position> q;
     q.push(start);
     seen[static_cast<std::size_t>(level.index(start.row, start.col))] = true;
     while (!q.empty()) {
+        if (deadline != nullptr && deadline->expired()) return false;
         const Position cur = q.front();
         q.pop();
         if (cur == goal) return true;
@@ -154,7 +158,9 @@ bool parking_preserves_future_reachability(const Level& level,
                                            char moved_box,
                                            Position moved_from,
                                            Position parked_at,
-                                           Position forbidden) {
+                                           Position forbidden,
+                                           const PlanningDeadline* deadline = nullptr) {
+    if (deadline != nullptr && deadline->expired()) return false;
     if (!level.in_bounds(parked_at.row, parked_at.col) || level.is_wall(parked_at.row, parked_at.col)) return false;
     if (parked_at == moved_from || parked_at == forbidden) return false;
     if (state.has_box(parked_at.row, parked_at.col) && !(parked_at == moved_from)) return false;
@@ -166,7 +172,9 @@ bool parking_preserves_future_reachability(const Level& level,
     }
 
     for (int r = 0; r < level.rows; ++r) {
+        if (deadline != nullptr && deadline->expired()) return false;
         for (int c = 0; c < level.cols; ++c) {
+            if (deadline != nullptr && deadline->expired()) return false;
             const char goal = level.goal_at(r, c);
             if (goal < 'A' || goal > 'Z') continue;
             if (simulated_box_char_at(state, Position{r, c}, moved_box, moved_from, parked_at) == goal) continue;
@@ -174,14 +182,15 @@ bool parking_preserves_future_reachability(const Level& level,
             const Position box_pos = find_box_after_parking(state, goal, moved_box, moved_from, parked_at);
             if (box_pos.row == -1) continue;
             const Position goal_pos{r, c};
-            if (!reachable_without_boxes(level, state, box_pos, goal_pos, moved_box, moved_from, parked_at)) return false;
+            if (deadline != nullptr && deadline->expired()) return false;
+            if (!reachable_without_boxes(level, state, box_pos, goal_pos, moved_box, moved_from, parked_at, deadline)) return false;
 
             const Color goal_color = level.box_colors[static_cast<std::size_t>(goal - 'A')];
             bool any_agent_can_reach = false;
             for (int a = 0; a < state.num_agents(); ++a) {
                 if (level.agent_colors[static_cast<std::size_t>(a)] != goal_color) continue;
                 if (path_to_box_neighbor_simulated(level, state, state.agent_positions[static_cast<std::size_t>(a)], box_pos,
-                                                   moved_from, parked_at, true, nullptr)) {
+                                                   moved_from, parked_at, true, nullptr, deadline)) {
                     any_agent_can_reach = true;
                     break;
                 }
@@ -262,7 +271,7 @@ int base_parking_score(const Level& level, const State& state, const LevelAnalys
 // cleared. Output is the best reachability-preserving parking cell; if none pass
 // the strict checks, the best non-forbidden fallback is returned so planning can
 // still attempt recovery instead of dropping the blocker task completely.
-bool box_transport_feasible(const Level& level, const State& state, char moved_box, Position box_pos, Position parked_at, int agent_id) {
+bool box_transport_feasible(const Level& level, const State& state, char moved_box, Position box_pos, Position parked_at, int agent_id, const PlanningDeadline* deadline = nullptr) {
     if (agent_id < 0 || agent_id >= state.num_agents()) return true;
 
     Task probe;
@@ -275,6 +284,10 @@ bool box_transport_feasible(const Level& level, const State& state, char moved_b
     probe.goal_pos = parked_at;
 
     BoxTransportPlanner planner;
+    if (deadline != nullptr) {
+        ReservationTable empty;
+        return planner.plan(level, state, probe, empty, 0, *deadline).success;
+    }
     return planner.plan(level, state, probe).success;
 }
 
@@ -285,7 +298,8 @@ std::vector<std::pair<Position, int>> ranked_parking_candidates_for(const Level&
                                                                        Position box_pos,
                                                                        Position forbidden,
                                                                        int agent_id = -1,
-                                                                       const std::vector<Position>& reserved_parking = {}) {
+                                                                       const std::vector<Position>& reserved_parking = {},
+                                                                       const PlanningDeadline* deadline = nullptr) {
     std::vector<Position> candidates = analysis.parking_cells;
     for (const Position& p : analysis.free_cells) {
         if (std::find(candidates.begin(), candidates.end(), p) != candidates.end()) continue;
@@ -303,17 +317,18 @@ std::vector<std::pair<Position, int>> ranked_parking_candidates_for(const Level&
     std::vector<std::pair<Position, int>> strict;
     std::vector<std::pair<Position, int>> fallback;
     for (const Position& p : candidates) {
+        if (deadline != nullptr && deadline->expired()) break;
         if (p == box_pos || p == forbidden) continue;
         const int score = base_parking_score(level, state, analysis, box_pos, p);
         if (std::find(reserved_parking.begin(), reserved_parking.end(), p) != reserved_parking.end()) {
             fallback.push_back({p, score - 20000});
             continue;
         }
-        if (!parking_preserves_future_reachability(level, state, analysis, moved_box, box_pos, p, forbidden)) {
+        if (!parking_preserves_future_reachability(level, state, analysis, moved_box, box_pos, p, forbidden, deadline)) {
             fallback.push_back({p, score - 10000});
             continue;
         }
-        if (!box_transport_feasible(level, state, moved_box, box_pos, p, agent_id)) {
+        if (!box_transport_feasible(level, state, moved_box, box_pos, p, agent_id, deadline)) {
             fallback.push_back({p, score - 5000});
             continue;
         }
@@ -337,8 +352,8 @@ std::vector<std::pair<Position, int>> ranked_parking_candidates_for(const Level&
 // cleared. Output is the best reachability-preserving parking cell; if none pass
 // the strict checks, the best non-forbidden fallback is returned so planning can
 // still attempt recovery instead of dropping the blocker task completely.
-Position best_parking_for(const Level& level, const State& state, const LevelAnalysis& analysis, char moved_box, Position box_pos, Position forbidden, int* out_score = nullptr, int agent_id = -1, const std::vector<Position>& reserved_parking = {}) {
-    const auto ranked = ranked_parking_candidates_for(level, state, analysis, moved_box, box_pos, forbidden, agent_id, reserved_parking);
+Position best_parking_for(const Level& level, const State& state, const LevelAnalysis& analysis, char moved_box, Position box_pos, Position forbidden, int* out_score = nullptr, int agent_id = -1, const std::vector<Position>& reserved_parking = {}, const PlanningDeadline* deadline = nullptr) {
+    const auto ranked = ranked_parking_candidates_for(level, state, analysis, moved_box, box_pos, forbidden, agent_id, reserved_parking, deadline);
     if (ranked.empty()) {
         if (out_score) *out_score = std::numeric_limits<int>::min();
         return Position{-1, -1};
@@ -354,9 +369,10 @@ std::vector<Position> parking_candidate_positions_for(const Level& level,
                                                        Position box_pos,
                                                        Position forbidden,
                                                        int agent_id,
-                                                       const std::vector<Position>& reserved_parking) {
+                                                       const std::vector<Position>& reserved_parking,
+                                                       const PlanningDeadline* deadline = nullptr) {
     std::vector<Position> out;
-    for (const auto& [pos, _] : ranked_parking_candidates_for(level, state, analysis, moved_box, box_pos, forbidden, agent_id, reserved_parking)) {
+    for (const auto& [pos, _] : ranked_parking_candidates_for(level, state, analysis, moved_box, box_pos, forbidden, agent_id, reserved_parking, deadline)) {
         if (std::find(out.begin(), out.end(), pos) == out.end()) out.push_back(pos);
         if (out.size() >= 8) break;
     }
@@ -371,12 +387,20 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
                                                           const State& state,
                                                           const LevelAnalysis& analysis,
                                                           int& next_task_id) const {
+    return generate_blocker_tasks(level, state, analysis, next_task_id, PlanningDeadline{});
+}
+
+std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
+                                                          const State& state,
+                                                          const LevelAnalysis& analysis,
+                                                          int& next_task_id,
+                                                          const PlanningDeadline& deadline) const {
     std::vector<Task> tasks;
 
     // Without analyzer-provided free cells, this resolver has no output target for
     // relocation tasks, so the correct output is an empty task list. Low-scoring
     // free cells may still be considered as a fallback by best_parking_for().
-    if (analysis.free_cells.empty()) return tasks;
+    if (deadline.expired() || analysis.free_cells.empty()) return tasks;
 
     // Track box letters already converted into relocation tasks. Each box can
     // appear on multiple coarse/access routes, but emitting duplicate tasks for
@@ -400,7 +424,9 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
     // for the first such gate, annotated with unblocks_box_id so dependency
     // building can run this task before the affected delivery.
     for (int r = 0; r < level.rows; ++r) {
+        if (deadline.expired()) return tasks;
         for (int c = 0; c < level.cols; ++c) {
+            if (deadline.expired()) return tasks;
             const char goal = level.goal_at(r, c);
             if (goal < 'A' || goal > 'Z') continue;
             if (state.box_at(r, c) == goal) continue;
@@ -432,12 +458,12 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
 
             // If the normal search succeeds with boxes blocking, access is already
             // clear and no relocation task is needed for this goal's approach.
-            if (path_to_box_neighbor(level, state, agent_pos, active_box, true, nullptr)) continue;
+            if (path_to_box_neighbor(level, state, agent_pos, active_box, true, nullptr, &deadline)) continue;
 
             // Retry while ignoring boxes. A successful relaxed path means walls are
             // not the problem; boxes on this returned path are candidate blockers.
             std::vector<Position> passable_path;
-            if (!path_to_box_neighbor(level, state, agent_pos, active_box, false, &passable_path)) continue;
+            if (!path_to_box_neighbor(level, state, agent_pos, active_box, false, &passable_path, &deadline)) continue;
             for (const Position& p : passable_path) {
                 const char blocker = state.box_at(p.row, p.col);
                 if (blocker == '\0' || blocker == goal || already_selected.count(blocker)) continue;
@@ -470,8 +496,8 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
                 t.box_pos = p;
                 int selected_score = 0;
                 t.agent_id = blocker_agent;
-                t.parking_candidates = parking_candidate_positions_for(level, state, analysis, blocker, p, Position{r, c}, blocker_agent, reserved_parking);
-                t.parking_pos = best_parking_for(level, state, analysis, blocker, p, Position{r, c}, &selected_score, blocker_agent, reserved_parking);
+                t.parking_candidates = parking_candidate_positions_for(level, state, analysis, blocker, p, Position{r, c}, blocker_agent, reserved_parking, &deadline);
+                t.parking_pos = best_parking_for(level, state, analysis, blocker, p, Position{r, c}, &selected_score, blocker_agent, reserved_parking, &deadline);
                 if (t.parking_pos.row >= 0 && (t.parking_candidates.empty() || t.parking_candidates.front() != t.parking_pos)) t.parking_candidates.insert(t.parking_candidates.begin(), t.parking_pos);
                 t.goal_pos = t.parking_pos;
                 t.priority = selected_score + 100;
@@ -491,7 +517,9 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
     // blocker. Output tasks from this pass are lower priority than access gates
     // because they are based on a coarse route rather than observed agent access.
     for (int r = 0; r < level.rows; ++r) {
+        if (deadline.expired()) return tasks;
         for (int c = 0; c < level.cols; ++c) {
+            if (deadline.expired()) return tasks;
             const char goal = level.goal_at(r, c);
             if (goal < 'A' || goal > 'Z') continue;
             if (state.box_at(r, c) == goal) continue;
@@ -538,8 +566,8 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
                 if (best_agent < 0) continue;
                 t.agent_id = best_agent;
                 int best_score = 0;
-                t.parking_candidates = parking_candidate_positions_for(level, state, analysis, b, q, Position{r, c}, best_agent, reserved_parking);
-                const Position best_park = best_parking_for(level, state, analysis, b, q, Position{r, c}, &best_score, best_agent, reserved_parking);
+                t.parking_candidates = parking_candidate_positions_for(level, state, analysis, b, q, Position{r, c}, best_agent, reserved_parking, &deadline);
+                const Position best_park = best_parking_for(level, state, analysis, b, q, Position{r, c}, &best_score, best_agent, reserved_parking, &deadline);
                 t.parking_pos = best_park;
                 if (best_park.row >= 0 && (t.parking_candidates.empty() || t.parking_candidates.front() != best_park)) t.parking_candidates.insert(t.parking_candidates.begin(), best_park);
                 t.goal_pos = best_park;

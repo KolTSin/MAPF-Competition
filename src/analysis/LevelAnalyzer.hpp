@@ -3,6 +3,7 @@
 #include "domain/Level.hpp"
 #include "state/State.hpp"
 #include "plan/AgentPlan.hpp"
+#include "utils/PlanningDeadline.hpp"
 #include <vector>
 
 // Converts a raw level grid into reusable topology facts.
@@ -24,6 +25,7 @@ class LevelAnalyzer {
 public:
     [[nodiscard]] LevelAnalysis analyze(const Level& level, const State& state) const;
     [[nodiscard]] LevelAnalysis analyze(const Level& level, const State& state, const std::vector<AgentPlan>& initial_agent_plans) const;
+    [[nodiscard]] LevelAnalysis analyze(const Level& level, const State& state, const std::vector<AgentPlan>& initial_agent_plans, const PlanningDeadline& deadline) const;
 
     // Lightweight refresh for a new dynamic state on the same static level.
     // Reuses topology from `base`, then recomputes only state-sensitive route
@@ -35,4 +37,9 @@ public:
                                        const State& state,
                                        const LevelAnalysis& base,
                                        const std::vector<AgentPlan>& initial_agent_plans) const;
+    [[nodiscard]] LevelAnalysis update(const Level& level,
+                                       const State& state,
+                                       const LevelAnalysis& base,
+                                       const std::vector<AgentPlan>& initial_agent_plans,
+                                       const PlanningDeadline& deadline) const;
 };

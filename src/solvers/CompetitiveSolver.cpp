@@ -5,12 +5,14 @@
 #include "plan/AgentPlan.hpp"
 #include "plan/PlanConflictRepairer.hpp"
 #include "plan/PlanMerger.hpp"
+#include "plan/ReservationTable.hpp"
 #include "plan/WaveProgressGuard.hpp"
 #include "solvers/CBSSolver.hpp"
 #include "tasks/HTNTracePrinter.hpp"
 #include "tasks/TaskGenerator.hpp"
 #include "tasks/TaskPrioritizer.hpp"
 #include "tasks/TaskScheduler.hpp"
+#include "utils/PlanningDeadline.hpp"
 
 #include <algorithm>
 #include <chrono>
@@ -92,6 +94,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     // Convert the external millisecond budget to the seconds representation used
     // by chrono::duration<double>. The main loop checks this before every wave.
     const double kTimeBudgetSeconds = static_cast<double>(config_.planning_time_budget_ms) / 1000.0;
+    const PlanningDeadline deadline = PlanningDeadline::after(std::chrono::milliseconds(config_.planning_time_budget_ms));
 
     // Verbose mode is intentionally resolved once so a single solve call has a
     // consistent trace format even if the environment changes mid-run.
@@ -127,12 +130,12 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         if (++wave_count > max_waves) break;
         const auto now = std::chrono::steady_clock::now();
         const double elapsed = std::chrono::duration<double>(now - start_time).count();
-        if (elapsed >= kTimeBudgetSeconds) break;
+        if (elapsed >= kTimeBudgetSeconds || deadline.expired()) break;
 
         // Convert unsatisfied goals into high-level delivery tasks. Each Task is
         // an intuitive contract: move a compatible box/agent from its source to
         // its target goal while respecting hospital-domain constraints.
-        std::vector<Task> tasks = generator.generate_delivery_tasks(level, current);
+        std::vector<Task> tasks = generator.generate_delivery_tasks(level, current, std::vector<AgentPlan>{}, deadline);
         if (kVerboseTasks) {
             // Scoring is done on a copy because trace output should explain the
             // scheduler's priorities without mutating the task list returned by
@@ -154,7 +157,8 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // Ask the scheduler to turn high-level tasks into a concrete joint plan.
         // Input: current world state plus the candidate tasks. Output: a wave of
         // synchronized actions that can be appended to the final plan.
-        std::vector<AgentPlan> wave_agent_plans = scheduler.build_agent_plans(level, current, tasks);
+        if (deadline.expired()) break;
+        std::vector<AgentPlan> wave_agent_plans = scheduler.build_agent_plans(level, current, tasks, deadline);
         Plan wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
         PlanMerger::compact_independent_actions(level, current, wave);
         if (wave.empty()) {
@@ -170,7 +174,8 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             failed.success = false;
             failed.failure_reason = "scheduler_empty";
             for (const Task& task : tasks) {
-                const RepairResult repaired = repair.repair(level, current, task, failed);
+                if (deadline.expired()) break;
+                const RepairResult repaired = repair.repair(level, current, task, failed, ReservationTable{}, 0, deadline);
                 if (kVerboseTasks) {
                     std::cerr << "[HTN] repair outcome=" << static_cast<int>(repaired.outcome)
                               << " success=" << (repaired.plan.success ? "true" : "false")
@@ -206,6 +211,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // conflict constraints and replan alternate routes without changing task
         // priorities or reshuffling the accepted schedule.
         // for (JointAction ja : wave.steps) std::cerr << ja.to_string() << std::endl;
+        if (deadline.expired()) break;
         const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave_agent_plans);
         if (repaired_wave.conflict_free) {
             if (kVerboseTasks && repaired_wave.changed) {

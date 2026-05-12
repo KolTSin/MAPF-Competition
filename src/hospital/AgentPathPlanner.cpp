@@ -78,12 +78,21 @@ TaskPlan AgentPathPlanner::plan(const Level& level, const State& state, const Ta
 }
 
 TaskPlan AgentPathPlanner::plan(const Level& level, const State& state, const Task& task, const ReservationTable& reservations, int start_time) const {
+    PlanningDeadline no_deadline;
+    return plan(level, state, task, reservations, start_time, no_deadline);
+}
+
+TaskPlan AgentPathPlanner::plan(const Level& level, const State& state, const Task& task, const ReservationTable& reservations, int start_time, const PlanningDeadline& deadline) const {
     TaskPlan out;
     out.task_id = task.task_id;
     out.task_type = task.type;
     out.agent_id = task.agent_id;
     out.agent_plan.agent = task.agent_id;
 
+    if (deadline.expired()) {
+        out.failure_reason = "planning_deadline_expired";
+        return out;
+    }
     if (task.agent_id < 0 || task.agent_id >= state.num_agents()) {
         out.failure_reason = "invalid_agent";
         return out;
@@ -121,6 +130,10 @@ TaskPlan AgentPathPlanner::plan(const Level& level, const State& state, const Ta
     successors.reserve(5);
 
     while (!open.empty()) {
+        if (deadline.expired()) {
+            out.failure_reason = "planning_deadline_expired";
+            return out;
+        }
         const int current_index = open.top();
         open.pop();
         const AgentNode current = nodes[current_index];

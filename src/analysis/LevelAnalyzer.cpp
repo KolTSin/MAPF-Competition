@@ -27,7 +27,7 @@ Position find_box(const State& state, char box) {
     return Position{-1, -1};
 }
 
-std::vector<Position> shortest_path_ignoring_boxes(const Level& level, Position start, Position goal) {
+std::vector<Position> shortest_path_ignoring_boxes(const Level& level, Position start, Position goal, const PlanningDeadline* deadline = nullptr) {
     if (!level.in_bounds(start.row, start.col) || !level.in_bounds(goal.row, goal.col)) return {};
     if (level.is_wall(start.row, start.col) || level.is_wall(goal.row, goal.col)) return {};
 
@@ -38,6 +38,7 @@ std::vector<Position> shortest_path_ignoring_boxes(const Level& level, Position 
     seen[static_cast<std::size_t>(level.index(start.row, start.col))] = true;
 
     while (!q.empty()) {
+        if (deadline != nullptr && deadline->expired()) return {};
         const Position cur = q.front();
         q.pop();
         if (cur == goal) break;
@@ -65,7 +66,7 @@ std::vector<Position> shortest_path_ignoring_boxes(const Level& level, Position 
     return path;
 }
 
-std::vector<Position> shortest_path_to_box_neighbor(const Level& level, Position start, Position box) {
+std::vector<Position> shortest_path_to_box_neighbor(const Level& level, Position start, Position box, const PlanningDeadline* deadline = nullptr) {
     if (!level.in_bounds(start.row, start.col) || level.is_wall(start.row, start.col)) return {};
 
     std::vector<bool> seen(static_cast<std::size_t>(level.rows * level.cols), false);
@@ -76,6 +77,7 @@ std::vector<Position> shortest_path_to_box_neighbor(const Level& level, Position
 
     Position target{-1, -1};
     while (!q.empty() && target.row == -1) {
+        if (deadline != nullptr && deadline->expired()) return {};
         const Position cur = q.front();
         q.pop();
         if (manhattan(cur, box) == 1) {
@@ -111,23 +113,28 @@ void add_path_visits(LevelAnalysis& analysis, const Level& level, const std::vec
     }
 }
 
-void compute_initial_route_pressure(LevelAnalysis& analysis, const Level& level, const State& state) {
-    for (Position p : analysis.free_cells) analysis.at(p).future_route_visits = 0;
+void compute_initial_route_pressure(LevelAnalysis& analysis, const Level& level, const State& state, const PlanningDeadline* deadline = nullptr) {
+    for (Position p : analysis.free_cells) {
+        if (deadline != nullptr && deadline->expired()) return;
+        analysis.at(p).future_route_visits = 0;
+    }
 
     for (int r = 0; r < level.rows; ++r) {
+        if (deadline != nullptr && deadline->expired()) return;
         for (int c = 0; c < level.cols; ++c) {
+            if (deadline != nullptr && deadline->expired()) return;
             const char goal = level.goal_at(r, c);
             if (goal < 'A' || goal > 'Z') continue;
             if (state.box_at(r, c) == goal) continue;
 
             const Position box = find_box(state, goal);
             if (box.row == -1) continue;
-            add_path_visits(analysis, level, shortest_path_ignoring_boxes(level, box, Position{r, c}));
+            add_path_visits(analysis, level, shortest_path_ignoring_boxes(level, box, Position{r, c}, deadline));
 
             const Color box_color = level.box_colors[static_cast<std::size_t>(goal - 'A')];
             for (int agent = 0; agent < state.num_agents(); ++agent) {
                 if (level.agent_colors[static_cast<std::size_t>(agent)] != box_color) continue;
-                add_path_visits(analysis, level, shortest_path_to_box_neighbor(level, state.agent_positions[static_cast<std::size_t>(agent)], box));
+                add_path_visits(analysis, level, shortest_path_to_box_neighbor(level, state.agent_positions[static_cast<std::size_t>(agent)], box, deadline));
             }
         }
     }
@@ -168,13 +175,17 @@ void update_agent_path_visits(LevelAnalysis& analysis, const std::vector<AgentPl
 void refresh_dynamic_parking(LevelAnalysis& analysis,
                              const Level& level,
                              const State& state,
-                             const std::vector<AgentPlan>& initial_agent_plans) {
+                             const std::vector<AgentPlan>& initial_agent_plans,
+                             const PlanningDeadline* deadline = nullptr) {
+    if (deadline != nullptr && deadline->expired()) return;
     update_nearest_goal_or_box_distance(analysis, level, state);
+    if (deadline != nullptr && deadline->expired()) return;
     update_agent_path_visits(analysis, initial_agent_plans);
 
     ParkingCellAnalyzer parking;
     analysis.parking_cells = parking.find_parking_cells(level, state, analysis, initial_agent_plans);
     for (const Position p : analysis.free_cells) {
+        if (deadline != nullptr && deadline->expired()) return;
         analysis.at(p).parking_score = parking.score_parking_cell(p, level, state, analysis, initial_agent_plans);
     }
 }
@@ -186,6 +197,11 @@ LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state) con
 }
 
 LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state, const std::vector<AgentPlan>& initial_agent_plans) const {
+    PlanningDeadline no_deadline;
+    return analyze(level, state, initial_agent_plans, no_deadline);
+}
+
+LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state, const std::vector<AgentPlan>& initial_agent_plans, const PlanningDeadline& deadline) const {
     // Allocate a grid-shaped result. The cells vector has one CellInfo for
     // every coordinate, including walls; wall entries keep their default flags
     // while traversable entries are filled in by the scan below.
@@ -201,7 +217,9 @@ LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state, con
     // Output for each free cell: CellInfo flags for free space, degree,
     // corridor/dead-end/room shape, goal type, plus an entry in free_cells.
     for (int r = 0; r < level.rows; ++r) {
+        if (deadline.expired()) return analysis;
         for (int c = 0; c < level.cols; ++c) {
+            if (deadline.expired()) return analysis;
             Position p{r, c};
             if (level.is_wall(r, c)) continue;
 
@@ -310,6 +328,7 @@ LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state, con
     int component = 0;
     std::vector<bool> visited(static_cast<std::size_t>(level.rows * level.cols), false);
     for (const Position start : analysis.free_cells) {
+        if (deadline.expired()) return analysis;
         const int si = analysis.index(start);
         if (visited[static_cast<std::size_t>(si)]) continue;
 
@@ -318,6 +337,7 @@ LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state, con
         visited[static_cast<std::size_t>(si)] = true;
 
         while (!q.empty()) {
+            if (deadline.expired()) return analysis;
             const Position cur = q.front();
             q.pop();
             analysis.at(cur).component_id = component;
@@ -343,6 +363,7 @@ LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state, con
     // flow. is_articulation mirrors this conservative chokepoint label so
     // downstream heuristics can treat it as a strong "do not park here" signal.
     for (const Position p : analysis.free_cells) {
+        if (deadline.expired()) return analysis;
         CellInfo& info = analysis.at(p);
         info.is_chokepoint = info.is_dead_end || (info.is_corridor && info.degree <= 2);
         info.is_articulation = info.is_chokepoint;
@@ -355,11 +376,11 @@ LevelAnalysis LevelAnalyzer::analyze(const Level& level, const State& state, con
     // Pass 4: compute the expensive initial future-route pressure once.
     // Subsequent state updates reuse these values instead of rerunning BFS for
     // every parking candidate in every HTN wave.
-    compute_initial_route_pressure(analysis, level, state);
+    compute_initial_route_pressure(analysis, level, state, &deadline);
 
     // Pass 5: score and rank temporary parking cells using lightweight dynamic
     // occupancy and plan information.
-    refresh_dynamic_parking(analysis, level, state, initial_agent_plans);
+    refresh_dynamic_parking(analysis, level, state, initial_agent_plans, &deadline);
 
     return analysis;
 }
@@ -373,8 +394,18 @@ LevelAnalysis LevelAnalyzer::update(const Level& level,
                                     const State& state,
                                     const LevelAnalysis& base,
                                     const std::vector<AgentPlan>& initial_agent_plans) const {
+    PlanningDeadline no_deadline;
+    return update(level, state, base, initial_agent_plans, no_deadline);
+}
+
+LevelAnalysis LevelAnalyzer::update(const Level& level,
+                                    const State& state,
+                                    const LevelAnalysis& base,
+                                    const std::vector<AgentPlan>& initial_agent_plans,
+                                    const PlanningDeadline& deadline) const {
     LevelAnalysis analysis = base;
-    compute_initial_route_pressure(analysis, level, state);
-    refresh_dynamic_parking(analysis, level, state, initial_agent_plans);
+    if (deadline.expired()) return analysis;
+    compute_initial_route_pressure(analysis, level, state, &deadline);
+    refresh_dynamic_parking(analysis, level, state, initial_agent_plans, &deadline);
     return analysis;
 }

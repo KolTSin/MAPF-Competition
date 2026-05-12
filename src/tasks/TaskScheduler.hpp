@@ -6,6 +6,7 @@
 #include "tasks/Task.hpp"
 #include "plan/TaskPlan.hpp"
 #include "plan/AgentPlan.hpp"
+#include "utils/PlanningDeadline.hpp"
 
 #include <vector>
 
@@ -45,5 +46,7 @@ struct ScheduledTask {
 class TaskScheduler {
 public:
     [[nodiscard]] std::vector<AgentPlan> build_agent_plans(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const;
+    [[nodiscard]] std::vector<AgentPlan> build_agent_plans(const Level& level, const State& initial_state, const std::vector<Task>& tasks, const PlanningDeadline& deadline) const;
     [[nodiscard]] Plan build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const;
+    [[nodiscard]] Plan build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks, const PlanningDeadline& deadline) const;
 };

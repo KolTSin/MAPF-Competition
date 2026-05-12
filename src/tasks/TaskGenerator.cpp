@@ -59,7 +59,7 @@ std::size_t level_signature(const Level& level) {
 
     for (int r = 0; r < level.rows; ++r) {
         for (int c = 0; c < level.cols; ++c) {
-            mix(level.is_wall(r, c) ? 1u : 0u);
+                mix(level.is_wall(r, c) ? 1u : 0u);
             mix(static_cast<unsigned char>(level.goal_at(r, c)));
         }
     }
@@ -143,6 +143,14 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
 std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
                                                          const State& state,
                                                          const std::vector<AgentPlan>& initial_agent_plans) {
+    PlanningDeadline no_deadline;
+    return generate_delivery_tasks(level, state, initial_agent_plans, no_deadline);
+}
+
+std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
+                                                         const State& state,
+                                                         const std::vector<AgentPlan>& initial_agent_plans,
+                                                         const PlanningDeadline& deadline) {
     // Start each run with a clean output surface: callers receive only tasks
     // and skip reasons that describe the current level/state pair.
     skip_reasons_.clear();
@@ -160,10 +168,14 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
     std::set<std::tuple<char, int, int>> seen;
     std::vector<Position> assigned_boxes;
 
+    if (deadline.expired()) return tasks;
+
     // First phase: inspect every static goal cell and create direct delivery
     // tasks for goals that are not currently satisfied.
     for (int r = 0; r < level.rows; ++r) {
+        if (deadline.expired()) return tasks;
         for (int c = 0; c < level.cols; ++c) {
+            if (deadline.expired()) return tasks;
             const char goal = level.goal_at(r, c);
 
             // Non-box goals do not require moving a box, and already-satisfied
@@ -228,18 +240,22 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
     // detected by the level analysis. These blocker tasks share the same output
     // vector so solvers can plan deliveries and prerequisite clearing work from
     // one ordered task list.
+    if (deadline.expired()) return tasks;
     LevelAnalyzer analyzer;
     const std::size_t signature = level_signature(level);
     if (!cached_initial_analysis_.has_value() || cached_level_signature_ != signature) {
-        cached_initial_analysis_ = analyzer.analyze(level, state, initial_agent_plans);
+        if (deadline.expired()) return tasks;
+        cached_initial_analysis_ = analyzer.analyze(level, state, initial_agent_plans, deadline);
         cached_level_signature_ = signature;
     }
-    const LevelAnalysis analysis = analyzer.update(level, state, *cached_initial_analysis_, initial_agent_plans);
+    if (deadline.expired()) return tasks;
+    const LevelAnalysis analysis = analyzer.update(level, state, *cached_initial_analysis_, initial_agent_plans, deadline);
+    if (deadline.expired()) return tasks;
     BlockerResolver blocker_resolver;
     // std::cerr << "Parking cells on the level" << static_cast<int>(analysis.parking_cells.size()) << std::endl;
     // for (int i = 0; i < static_cast<int>(analysis.parking_cells.size()); i++) std::cerr << "parking cell: " 
     // << analysis.parking_cells[i].to_string() << std::endl;
-    std::vector<Task> blocker_tasks = blocker_resolver.generate_blocker_tasks(level, state, analysis, next_task_id);
+    std::vector<Task> blocker_tasks = blocker_resolver.generate_blocker_tasks(level, state, analysis, next_task_id, deadline);
 
     tasks.insert(tasks.end(), blocker_tasks.begin(), blocker_tasks.end());
 
@@ -247,7 +263,7 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
     // that have digit goals should return to their own goal cells.  These tasks
     // are intentionally appended last and depend on the earlier task ids so they
     // do not steal an agent away before its useful work is done.
-    append_agent_goal_tasks(level, state, next_task_id, tasks);
+    if (!deadline.expired()) append_agent_goal_tasks(level, state, next_task_id, tasks);
 
     return tasks;
 }
