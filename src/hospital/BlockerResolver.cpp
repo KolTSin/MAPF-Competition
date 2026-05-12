@@ -1,7 +1,6 @@
 #include "hospital/BlockerResolver.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
 #include <algorithm>
-#include <array>
 #include <limits>
 #include <queue>
 #include <set>
@@ -385,67 +384,15 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
     std::set<char> already_selected;
     std::vector<Position> reserved_parking;
 
-    // First classify letters that are still needed for unsatisfied goals. Boxes
-    // with these letters should normally remain delivery candidates rather than
-    // being treated as generic clutter in the first pass.
-    std::array<bool, 26> needed_for_goal{};
-    for (int r = 0; r < level.rows; ++r) {
-        for (int c = 0; c < level.cols; ++c) {
-            const char g = level.goal_at(r, c);
-            if (g < 'A' || g > 'Z') continue;
-            if (state.box_at(r, c) != g) {
-                needed_for_goal[static_cast<std::size_t>(g - 'A')] = true;
-            }
-        }
-    }
+    // Clutter boxes are intentionally not parked just because they lack a
+    // matching unsatisfied goal.  Moving harmless boxes to parking cells creates
+    // avoidable work and can make levels with unreachable decorative boxes (for
+    // example sealed-off letters) time out.  The resolver therefore emits
+    // relocation tasks only when a box is observed blocking an active delivery:
+    // either on the selected agent's access route or on the coarse box-to-goal
+    // route below.
 
-    // Pass 1: park obvious clutter boxes.
-    // Input: every current box cell. Output: relocation tasks for boxes that are
-    // not already on a goal and are not needed by any unsatisfied goal letter.
-    // These tasks reduce congestion before more goal-specific blockers are added.
-    for (int r = 0; r < state.rows; ++r) {
-        for (int c = 0; c < state.cols; ++c) {
-            const char b = state.box_at(r, c);
-            if (b == '\0') continue;
-            if (level.goal_at(r, c) != '\0') continue;
-            if (needed_for_goal[static_cast<std::size_t>(b - 'A')]) continue;
-
-            // The task output contains the blocker identity, its current input
-            // position, the chosen parking output position, and an initial agent
-            // assignment for a color-compatible mover.
-            Task t;
-            t.type = TaskType::MoveBlockingBoxToParking;
-            t.task_id = next_task_id++;
-            t.box_id = b;
-            t.box_pos = Position{r, c};
-            // Prefer the nearest compatible agent by Manhattan distance so parking
-            // selection can cheaply reject cells this mover cannot actually reach.
-            int best_agent = -1;
-            int best_dist = std::numeric_limits<int>::max();
-            const Color box_color = level.box_colors[static_cast<std::size_t>(b - 'A')];
-            for (int a = 0; a < state.num_agents(); ++a) {
-                if (level.agent_colors[static_cast<std::size_t>(a)] != box_color) continue;
-                const int dist = manhattan(state.agent_positions[static_cast<std::size_t>(a)], t.box_pos);
-                if (dist < best_dist) {
-                    best_dist = dist;
-                    best_agent = a;
-                }
-            }
-            t.agent_id = (best_agent >= 0) ? best_agent : 0;
-            int best_score = std::numeric_limits<int>::min();
-            t.parking_candidates = parking_candidate_positions_for(level, state, analysis, b, t.box_pos, Position{-1, -1}, t.agent_id, reserved_parking);
-            Position best_park = best_parking_for(level, state, analysis, b, t.box_pos, Position{-1, -1}, &best_score, t.agent_id, reserved_parking);
-            t.parking_pos = best_park;
-            if (best_park.row >= 0 && (t.parking_candidates.empty() || t.parking_candidates.front() != best_park)) t.parking_candidates.insert(t.parking_candidates.begin(), best_park);
-            t.goal_pos = t.parking_pos;
-            t.priority = best_score;
-            tasks.push_back(t);
-            if (best_park.row >= 0) reserved_parking.push_back(best_park);
-            already_selected.insert(b);
-        }
-    }
-
-    // Pass 2: clear agent-access blockers.
+    // Pass 1: clear agent-access blockers.
     // For each unsatisfied goal, find the matching active box and the closest
     // compatible agent. If walls allow the agent to reach the box only when boxes
     // are ignored, the path returned by the relaxed search identifies which box
@@ -538,7 +485,7 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
         }
     }
 
-    // Pass 3: clear boxes directly on coarse delivery routes.
+    // Pass 2: clear boxes directly on coarse delivery routes.
     // For every unsatisfied goal, build a cheap row-then-column path from the
     // active box to that goal. Any other box on that path is an obvious route
     // blocker. Output tasks from this pass are lower priority than access gates
