@@ -206,7 +206,7 @@ This checklist turns the latest benchmark runs into pick-off engineering tasks. 
 
 ### 8. Add cause-oriented benchmark triage and regression gates
 
-- [ ] Create a reusable script that summarizes benchmark results by family, status, action count, runtime, and log reason.
+- [x] Create a reusable script that summarizes benchmark results by family, status, action count, runtime, and log reason.
 
 **Failure signal**
 
@@ -224,6 +224,13 @@ This checklist turns the latest benchmark runs into pick-off engineering tasks. 
   - grouped families such as `MAPF*`, `MAthomasAppartment*`, `SAtowers*`, and competition maps.
 - Add optional JSON output so before/after runs can be compared in CI.
 - Define a small regression matrix for every major failure mode: MAPF permutation, blocker/parking, cycle repair, large timeout, tower ordering, and competition partial-progress.
+
+
+**Implemented**
+
+- `scripts/triage_benchmarks.py` reads one or more benchmark result directories, summarizes solved/failed/timeout counts, zero-action and partial-progress failures, slow solved levels, repeated parking targets, and the core HTN log markers.
+- Use text output for PR notes, for example `scripts/triage_benchmarks.py benchmark_results_20260511_172717 benchmark_results_20260511_181033 --limit 5`.
+- Use `--json` for CI/before-after comparisons, for example `scripts/triage_benchmarks.py benchmark_results_20260511_172717 --json`.
 
 **Expected result**
 
