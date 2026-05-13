@@ -148,9 +148,6 @@ Plan CBSSolver::solve(const Level& level, const State& initial_state, const IHeu
             return PlanMerger::merge_agent_plans(current.plans, num_agents);
         }
 
-        const std::vector<Constraint> current_constraints = current.constraints;
-        const std::vector<AgentPlan> current_plans = current.plans;
-
         for (int branch = 0; branch < 2; ++branch) {
             const int constrained_agent = conflict.agents[branch];
             if (constrained_agent < 0 || constrained_agent >= num_agents) {
@@ -158,8 +155,8 @@ Plan CBSSolver::solve(const Level& level, const State& initial_state, const IHeu
             }
 
             CBSNode child;
-            child.constraints = current_constraints;
-            child.plans = current_plans;
+            child.constraints = current.constraints;
+            child.plans = current.plans;
             child.constraints.push_back(cbs_solver_detail::make_constraint_for_branch(conflict, branch));
 
             const ReservationTable reservations = cbs_solver_detail::build_reservations_for_agent(

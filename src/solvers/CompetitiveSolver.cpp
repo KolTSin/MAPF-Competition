@@ -124,9 +124,9 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     //   3. schedule primitive actions with reservations, and
     //   4. try targeted repair if scheduling fails.
     TaskGenerator generator;
-    TaskScheduler scheduler;
+    TaskScheduler scheduler(config_);
     TaskPrioritizer prioritizer;
-    LocalRepair repair;
+    LocalRepair repair(config_);
     PlanConflictRepairer conflict_repairer;
     int no_progress_iters = 0;
     int wave_count = 0;

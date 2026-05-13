@@ -369,7 +369,8 @@ std::vector<ScheduledTask> schedule_once(
     const Level& level,
     const State& initial_state,
     const std::vector<Task>& mutable_tasks,
-    const PlanningDeadline& deadline
+    const PlanningDeadline& deadline,
+    int max_box_planner_expansions
 ) {
     // Global reservation state is the contract between independently planned
     // tasks.  Each successful task contributes occupied cells/edges to this
@@ -380,7 +381,7 @@ std::vector<ScheduledTask> schedule_once(
 
     // The scheduler delegates low-level path construction to specialized
     // planners, and only decides which task/agent/start-time combination to try.
-    BoxTransportPlanner box_planner;
+    BoxTransportPlanner box_planner(max_box_planner_expansions);
     AgentPathPlanner agent_planner;
     DependencyBuilder deps_builder;
 
@@ -612,7 +613,7 @@ std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, cons
     std::vector<ScheduledTask> scheduled;
     for (int repair = 0; repair <= max_dependency_repairs; ++repair) {
         if (deadline.expired()) break;
-        scheduled = schedule_once(level, initial_state, mutable_tasks, deadline);
+        scheduled = schedule_once(level, initial_state, mutable_tasks, deadline, config_.max_box_planner_expansions);
         std::vector<AgentPlan> agent_plans = expand_scheduled_tasks(initial_state, scheduled);
         if (agent_plans.empty()) return {};
 

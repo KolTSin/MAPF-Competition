@@ -347,7 +347,8 @@ TaskPlan BoxTransportPlanner::plan(const Level& level,
     open.push(0);
     best[Key{start_agent, task.box_pos, time_aware_closed_set ? 0 : 0}] = 0;
 
-    const int max_expansions = std::max(1000, level.rows * level.cols * 250);
+    const int fallback_max_expansions = std::max(1000, level.rows * level.cols * 250);
+    const int max_expansions = max_expansions_ > 0 ? max_expansions_ : fallback_max_expansions;
     const int max_time = std::max(256, level.rows * level.cols * 20);
     if (task.box_pos != task.goal_pos && !reservations.empty()) {
         bool destination_reserved_for_entire_horizon = true;

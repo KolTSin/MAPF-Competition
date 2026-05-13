@@ -7,6 +7,7 @@
 #include "plan/TaskPlan.hpp"
 #include "plan/AgentPlan.hpp"
 #include "utils/PlanningDeadline.hpp"
+#include "solvers/SolverConfig.hpp"
 
 #include <vector>
 
@@ -45,8 +46,13 @@ struct ScheduledTask {
 // timestep-by-timestep actions for all agents.
 class TaskScheduler {
 public:
+    explicit TaskScheduler(SolverConfig config = {})
+        : config_(config) {}
+
     [[nodiscard]] std::vector<AgentPlan> build_agent_plans(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const;
     [[nodiscard]] std::vector<AgentPlan> build_agent_plans(const Level& level, const State& initial_state, const std::vector<Task>& tasks, const PlanningDeadline& deadline) const;
     [[nodiscard]] Plan build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks) const;
     [[nodiscard]] Plan build_plan(const Level& level, const State& initial_state, const std::vector<Task>& tasks, const PlanningDeadline& deadline) const;
+private:
+    SolverConfig config_{};
 };
