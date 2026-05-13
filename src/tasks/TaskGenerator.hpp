@@ -67,8 +67,9 @@ private:
     [[nodiscard]] static bool is_agent_goal(char goal_symbol) noexcept;
 
     // Adds one final MoveAgentToGoal task for each agent digit goal that still
-    // needs attention. Existing task ids are recorded as dependencies so these
-    // cleanup moves happen after the generated delivery/blocker work.
+    // needs attention. Only tasks currently assigned to the same agent are hard
+    // dependencies; unrelated work is left parallel unless conflict repair later
+    // proves that the final position blocks another task.
     void append_agent_goal_tasks(const Level& level,
                                  const State& state,
                                  int& next_task_id,
