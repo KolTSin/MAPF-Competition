@@ -1,0 +1,1076 @@
+[server][info] Running client on level: ./levels/SAtowersOfSaigon10.lvl
+[HTN] competitive_wave tasks=19 elapsed=0.000727645s
+[HTN] task_batch size=19
+[HTN] Task#18 MoveBlockingBoxToParking box=H parking=(11,3) agent=0 prio=42
+[HTN] Task#17 MoveBlockingBoxToParking box=F parking=(11,3) agent=0 prio=41
+[HTN] Task#16 MoveBlockingBoxToParking box=D parking=(11,3) agent=0 prio=40
+[HTN] Task#15 MoveBlockingBoxToParking box=B parking=(11,3) agent=0 prio=39
+[HTN] Task#14 MoveBlockingBoxToParking box=A parking=(11,3) agent=0 prio=38
+[HTN] Task#13 MoveBlockingBoxToParking box=C parking=(11,3) agent=0 prio=37
+[HTN] Task#12 MoveBlockingBoxToParking box=E parking=(11,3) agent=0 prio=36
+[HTN] Task#11 MoveBlockingBoxToParking box=G parking=(11,3) agent=0 prio=35
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=34
+[HTN] Task#10 MoveBlockingBoxToParking box=I parking=(11,3) agent=0 prio=34
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=33
+[HTN] Task#9 DeliverBoxToGoal box=J goal=J agent=0 prio=30
+[HTN] Task#7 DeliverBoxToGoal box=H goal=H agent=0 prio=29
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=28
+[HTN] Task#6 DeliverBoxToGoal box=G goal=G agent=0 prio=28
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=27
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=27
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=26
+[HTN] Task#8 DeliverBoxToGoal box=I goal=I agent=0 prio=23
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=16 elapsed=0.0912958s
+[HTN] task_batch size=16
+[HTN] Task#15 MoveBlockingBoxToParking box=F parking=(11,3) agent=0 prio=41
+[HTN] Task#14 MoveBlockingBoxToParking box=D parking=(11,3) agent=0 prio=40
+[HTN] Task#13 MoveBlockingBoxToParking box=B parking=(11,3) agent=0 prio=39
+[HTN] Task#12 MoveBlockingBoxToParking box=A parking=(11,3) agent=0 prio=38
+[HTN] Task#11 MoveBlockingBoxToParking box=C parking=(11,3) agent=0 prio=37
+[HTN] Task#8 DeliverBoxToGoal box=J goal=J agent=0 prio=36
+[HTN] Task#10 MoveBlockingBoxToParking box=E parking=(11,3) agent=0 prio=36
+[HTN] Task#7 DeliverBoxToGoal box=H goal=H agent=0 prio=35
+[HTN] Task#9 MoveBlockingBoxToParking box=G parking=(11,3) agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=34
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=32
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=31
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=29
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=28
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=27
+[HTN] Task#6 DeliverBoxToGoal box=G goal=G agent=0 prio=22
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=14 elapsed=0.137906s
+[HTN] task_batch size=14
+[HTN] Task#13 MoveBlockingBoxToParking box=F parking=(11,3) agent=0 prio=41
+[HTN] Task#12 MoveBlockingBoxToParking box=D parking=(11,3) agent=0 prio=40
+[HTN] Task#11 MoveBlockingBoxToParking box=B parking=(11,3) agent=0 prio=39
+[HTN] Task#10 MoveBlockingBoxToParking box=A parking=(11,3) agent=0 prio=38
+[HTN] Task#9 MoveBlockingBoxToParking box=C parking=(11,3) agent=0 prio=37
+[HTN] Task#8 MoveBlockingBoxToParking box=E parking=(11,3) agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=34
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=33
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=32
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=31
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=31
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] competitive_wave tasks=15 elapsed=0.172232s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.219881s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.332574s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.396387s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.449339s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.487548s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.564019s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.608574s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.677416s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.722079s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.759424s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.830926s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.870297s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.915058s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=0.960104s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.0599s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.12585s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.17772s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.23543s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.29489s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.35156s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.41363s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.4744s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.51878s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.5635s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.62024s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.67032s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.74722s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.79387s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.8728s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.91037s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=1.94996s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.00493s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.06612s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.11812s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.17682s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.23884s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.28432s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.32618s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.38932s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.45159s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.51054s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.56098s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.6131s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.71181s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.77881s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.85317s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.90981s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=2.95968s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] competitive_wave tasks=15 elapsed=3.01655s
+[HTN] task_batch size=15
+[HTN] Task#14 MoveBlockingBoxToParking box=E parking=(10,3) agent=0 prio=44
+[HTN] Task#8 MoveBlockingBoxToParking box=C parking=(10,3) agent=0 prio=43
+[HTN] Task#13 MoveBlockingBoxToParking box=H parking=(10,3) agent=0 prio=43
+[HTN] Task#12 MoveBlockingBoxToParking box=F parking=(10,3) agent=0 prio=42
+[HTN] Task#11 MoveBlockingBoxToParking box=D parking=(10,3) agent=0 prio=41
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,3) agent=0 prio=40
+[HTN] Task#9 MoveBlockingBoxToParking box=A parking=(10,3) agent=0 prio=39
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=37
+[HTN] Task#6 DeliverBoxToGoal box=H goal=H agent=0 prio=37
+[HTN] Task#5 DeliverBoxToGoal box=F goal=F agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=30
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] cycle_detected: repeated_task_local_trajectory C:7,3->8,3; rejecting wave steps=60
+[HTN] partial_plan_unsolved stop_reason=stagnation_guard:cycle_detected:_repeated_task_local_trajectory_C:7_3-_8_3 steps=96 goals_completed=2/10 waves=53 no_progress_iters=50
+Move(W)
+Move(W)
+Pull(E,N)
+Pull(E,E)
+Pull(S,E)
+Push(N,E)
+Push(E,E)
+Push(E,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(S)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(S,E)
+Push(N,E)
+Push(E,E)
+Push(E,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Push(W,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Move(S)
+Move(S)
+Pull(N,N)
+Pull(N,N)
+Pull(N,N)
+Pull(E,N)
+Pull(E,E)
+Pull(S,E)
+Pull(S,S)
+Pull(S,S)
+Pull(S,S)
+Pull(S,S)
+Pull(S,S)
+Pull(S,S)
+Pull(S,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 96.
+[server][info] Time to solve: 3.180 seconds.

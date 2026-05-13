@@ -1,0 +1,6 @@
+[server][info] Running client on level: ./levels/MAmultiagentSort.lvl
+[client][info] Client timed out.
+[client][info] Sending termination signal to client process (PID = 260101).
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

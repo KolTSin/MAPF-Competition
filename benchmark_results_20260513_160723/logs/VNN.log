@@ -1,0 +1,92 @@
+[server][info] Running client on level: ./complevels/VNN.lvl
+[HTN] competitive_wave tasks=8 elapsed=3.1596e-05s
+[HTN] task_batch size=8
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(5,12) agent=3 prio=36
+[HTN] Task#6 MoveBlockingBoxToParking box=D parking=(11,12) agent=0 prio=36
+[HTN] Task#5 MoveBlockingBoxToParking box=C parking=(5,11) agent=1 prio=34
+[HTN] Task#7 MoveBlockingBoxToParking box=B parking=(11,11) agent=2 prio=34
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=1 prio=-6
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=2 prio=-6
+[HTN] Task#0 DeliverBoxToGoal box=D goal=D agent=0 prio=-21
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=3 prio=-21
+Move(S)|NoOp|NoOp|Move(N)
+Move(E)|NoOp|NoOp|Move(E)
+Move(S)|Move(N)|Move(S)|Move(N)
+Move(S)|Move(N)|Move(S)|Move(N)
+Move(S)|Move(E)|Move(E)|Move(N)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(N)|Move(S)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+Move(E)|Move(E)|Move(E)|Move(E)
+NoOp|Move(E)|Move(E)|Move(E)
+NoOp|Move(E)|Move(E)|Move(E)
+NoOp|Push(S,E)|Push(N,E)|Move(N)
+NoOp|Push(E,S)|Push(E,N)|Move(N)
+NoOp|Push(S,S)|Push(N,N)|Move(N)
+NoOp|Push(S,S)|Push(N,N)|Push(W,N)
+NoOp|NoOp|NoOp|Push(N,N)
+NoOp|NoOp|NoOp|Push(N,W)
+Move(E)|NoOp|NoOp|Push(W,W)
+Move(S)|Push(S,W)|NoOp|Push(W,W)
+Move(E)|Push(W,W)|NoOp|Push(W,W)
+Move(S)|Push(W,W)|NoOp|Push(W,W)
+Move(S)|Push(W,W)|NoOp|Push(W,W)
+Push(W,S)|Push(W,W)|NoOp|Push(W,W)
+Push(S,S)|Push(W,W)|NoOp|NoOp
+Push(S,W)|Push(W,N)|NoOp|NoOp
+Push(W,W)|Push(N,W)|NoOp|NoOp
+Push(W,W)|Push(W,W)|Push(N,W)|NoOp
+Push(W,W)|Push(W,W)|Push(W,W)|NoOp
+Push(W,W)|Push(W,S)|Push(W,W)|NoOp
+Push(W,W)|Push(S,W)|Push(W,W)|NoOp
+Push(W,W)|Push(W,W)|Push(W,W)|NoOp
+NoOp|Push(W,W)|Push(W,W)|Push(W,W)
+NoOp|Push(W,W)|Push(W,N)|Push(W,W)
+NoOp|Push(W,W)|Push(N,W)|Push(W,W)
+NoOp|Push(W,W)|Push(W,W)|Push(W,W)
+NoOp|Push(W,W)|Push(W,W)|Push(W,W)
+NoOp|Push(W,W)|Push(W,S)|Push(W,W)
+Push(W,N)|Push(W,N)|Push(S,W)|Push(W,W)
+Push(N,N)|NoOp|Push(W,W)|Push(W,W)
+Push(N,W)|NoOp|Push(W,W)|Push(W,S)
+Push(W,W)|NoOp|Push(W,W)|Push(S,W)
+Push(W,W)|NoOp|Push(W,W)|Push(W,S)
+Push(W,W)|NoOp|Push(W,W)|NoOp
+Push(W,S)|NoOp|Push(W,W)|NoOp
+Push(S,W)|NoOp|Push(W,W)|NoOp
+Push(W,W)|NoOp|Push(W,S)|NoOp
+Push(W,W)|NoOp|NoOp|NoOp
+Push(W,W)|NoOp|NoOp|NoOp
+Push(W,W)|NoOp|NoOp|NoOp
+Push(W,N)|NoOp|NoOp|NoOp
+Push(N,W)|NoOp|NoOp|NoOp
+Push(W,N)|NoOp|NoOp|NoOp
+Push(N,N)|NoOp|NoOp|NoOp
+Push(N,N)|NoOp|NoOp|NoOp
+Push(N,N)|NoOp|NoOp|NoOp
+Push(N,N)|NoOp|NoOp|Push(S,W)
+Push(N,N)|NoOp|NoOp|Push(W,S)
+Push(N,N)|NoOp|NoOp|Push(S,S)
+Push(N,E)|NoOp|NoOp|Push(S,S)
+NoOp|NoOp|NoOp|Push(S,S)
+NoOp|NoOp|NoOp|Push(S,S)
+NoOp|NoOp|NoOp|Push(S,S)
+NoOp|NoOp|NoOp|Push(S,S)
+NoOp|NoOp|NoOp|Push(S,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 76.
+[server][info] Time to solve: 8.139 seconds.

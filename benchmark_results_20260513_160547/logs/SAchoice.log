@@ -1,0 +1,20 @@
+[server][info] Running client on level: ./levels/SAchoice.lvl
+[HTN] competitive_wave tasks=1 elapsed=2.1543e-05s
+[HTN] task_batch size=1
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+Move(N)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(E,E)
+Push(E,S)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 11.
+[server][info] Time to solve: 0.025 seconds.

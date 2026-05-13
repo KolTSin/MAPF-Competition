@@ -1,0 +1,180 @@
+[server][info] Running client on level: ./complevels/merRAM.lvl
+[HTN] competitive_wave tasks=16 elapsed=5.2248e-05s cheap_first_prefix=true
+[HTN] task_batch size=16
+[HTN] Task#5 DeliverBoxToGoal box=I goal=I agent=0 prio=-18
+[HTN] Task#7 DeliverBoxToGoal box=M goal=M agent=0 prio=-19
+[HTN] Task#2 DeliverBoxToGoal box=E goal=E agent=0 prio=-34
+[HTN] Task#9 DeliverBoxToGoal box=P goal=P agent=3 prio=-40
+[HTN] Task#0 DeliverBoxToGoal box=F goal=F agent=1 prio=-45
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=1 prio=-51
+[HTN] Task#14 DeliverBoxToGoal box=G goal=G agent=2 prio=-54
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=-62
+[HTN] Task#13 DeliverBoxToGoal box=K goal=K agent=2 prio=-62
+[HTN] Task#8 DeliverBoxToGoal box=L goal=L agent=3 prio=-63
+[HTN] Task#11 DeliverBoxToGoal box=H goal=H agent=3 prio=-65
+[HTN] Task#6 DeliverBoxToGoal box=J goal=J agent=1 prio=-68
+[HTN] Task#4 DeliverBoxToGoal box=N goal=N agent=1 prio=-69
+[HTN] Task#12 DeliverBoxToGoal box=O goal=O agent=2 prio=-73
+[HTN] Task#15 DeliverBoxToGoal box=D goal=D agent=3 prio=-76
+[HTN] Task#10 DeliverBoxToGoal box=C goal=C agent=2 prio=-91
+[HTN] competitive_wave tasks=17 elapsed=12.4432s
+[HTN] task_batch size=17
+[HTN] Task#16 MoveBlockingBoxToParking box=D parking=(27,22) agent=3 prio=20
+[HTN] Task#15 MoveBlockingBoxToParking box=I parking=(18,27) agent=0 prio=5
+[HTN] Task#4 DeliverBoxToGoal box=I goal=I agent=0 prio=-18
+[HTN] Task#6 DeliverBoxToGoal box=M goal=M agent=0 prio=-19
+[HTN] Task#1 DeliverBoxToGoal box=E goal=E agent=0 prio=-34
+[HTN] Task#8 DeliverBoxToGoal box=P goal=P agent=3 prio=-40
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=1 prio=-51
+[HTN] Task#13 DeliverBoxToGoal box=G goal=G agent=2 prio=-54
+[HTN] Task#5 DeliverBoxToGoal box=J goal=J agent=1 prio=-56
+[HTN] Task#3 DeliverBoxToGoal box=N goal=N agent=1 prio=-57
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=-62
+[HTN] Task#12 DeliverBoxToGoal box=K goal=K agent=2 prio=-62
+[HTN] Task#7 DeliverBoxToGoal box=L goal=L agent=3 prio=-63
+[HTN] Task#10 DeliverBoxToGoal box=H goal=H agent=3 prio=-65
+[HTN] Task#11 DeliverBoxToGoal box=O goal=O agent=2 prio=-73
+[HTN] Task#14 DeliverBoxToGoal box=D goal=D agent=3 prio=-76
+[HTN] Task#9 DeliverBoxToGoal box=C goal=C agent=2 prio=-91
+[HTN] partial_plan_unsolved stop_reason=deadline_before_conflict_repair steps=136 goals_completed=1/16 waves=2 no_progress_iters=0
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(N)|NoOp|NoOp
+NoOp|Move(N)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Pull(W,S)|NoOp|NoOp
+NoOp|Pull(W,W)|NoOp|NoOp
+NoOp|Pull(W,W)|NoOp|NoOp
+NoOp|Pull(W,W)|NoOp|NoOp
+NoOp|Pull(N,W)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(W,N)|NoOp|NoOp
+NoOp|Pull(W,W)|NoOp|NoOp
+NoOp|Pull(N,W)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(W,N)|NoOp|NoOp
+NoOp|Pull(W,W)|NoOp|NoOp
+NoOp|Pull(N,W)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(E,N)|NoOp|NoOp
+NoOp|Pull(E,E)|NoOp|NoOp
+NoOp|Pull(E,E)|NoOp|NoOp
+NoOp|Pull(E,E)|NoOp|NoOp
+NoOp|Pull(E,E)|NoOp|NoOp
+NoOp|Pull(N,E)|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp
+NoOp|Pull(E,N)|NoOp|NoOp
+NoOp|Pull(E,E)|NoOp|NoOp
+NoOp|Pull(E,E)|NoOp|NoOp
+NoOp|Pull(E,E)|NoOp|NoOp
+NoOp|Pull(S,E)|NoOp|NoOp
+NoOp|Pull(E,S)|NoOp|NoOp
+NoOp|Pull(S,E)|NoOp|NoOp
+NoOp|Pull(S,S)|NoOp|NoOp
+NoOp|Pull(S,S)|NoOp|NoOp
+NoOp|Pull(W,S)|NoOp|NoOp
+NoOp|Pull(S,W)|NoOp|NoOp
+NoOp|Push(N,W)|NoOp|NoOp
+NoOp|Push(W,N)|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp
+NoOp|Push(N,W)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(N)|NoOp|NoOp
+NoOp|Move(N)|NoOp|NoOp
+NoOp|Move(N)|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp
+NoOp|Move(N)|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp
+NoOp|Move(N)|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 136.
+[server][info] Time to solve: 175.532 seconds.

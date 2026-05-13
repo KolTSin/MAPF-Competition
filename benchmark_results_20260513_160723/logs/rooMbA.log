@@ -1,0 +1,315 @@
+[server][info] Running client on level: ./complevels/rooMbA.lvl
+[HTN] competitive_wave tasks=21 elapsed=4.8752e-05s cheap_first_prefix=true
+[HTN] task_batch size=21
+[HTN] Task#7 DeliverBoxToGoal box=F goal=F agent=1 prio=44
+[HTN] Task#4 DeliverBoxToGoal box=N goal=N agent=5 prio=41
+[HTN] Task#6 DeliverBoxToGoal box=E goal=E agent=1 prio=41
+[HTN] Task#11 DeliverBoxToGoal box=H goal=H agent=2 prio=39
+[HTN] Task#5 DeliverBoxToGoal box=D goal=D agent=1 prio=36
+[HTN] Task#0 DeliverBoxToGoal box=L goal=L agent=3 prio=35
+[HTN] Task#1 DeliverBoxToGoal box=P goal=P agent=7 prio=34
+[HTN] Task#8 DeliverBoxToGoal box=G goal=G agent=1 prio=34
+[HTN] Task#3 DeliverBoxToGoal box=O goal=O agent=6 prio=33
+[HTN] Task#2 DeliverBoxToGoal box=M goal=M agent=4 prio=27
+[HTN] Task#13 DeliverBoxToGoal box=J goal=J agent=2 prio=15
+[HTN] Task#14 DeliverBoxToGoal box=K goal=K agent=2 prio=12
+[HTN] Task#12 DeliverBoxToGoal box=I goal=I agent=2 prio=5
+[HTN] Task#16 MoveAgentToGoal agent=1 target_goal=1 prio=2 deps=, 5, 6, 7, 8
+[HTN] Task#17 MoveAgentToGoal agent=2 target_goal=2 prio=-8 deps=, 11, 12, 13, 14
+[HTN] Task#19 MoveAgentToGoal agent=5 target_goal=5 prio=-15 deps=, 4
+[HTN] Task#20 MoveAgentToGoal agent=6 target_goal=6 prio=-15 deps=, 3
+[HTN] Task#18 MoveAgentToGoal agent=3 target_goal=3 prio=-16 deps=, 0
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=-23
+[HTN] Task#10 DeliverBoxToGoal box=B goal=B agent=0 prio=-29
+[HTN] Task#9 DeliverBoxToGoal box=C goal=C agent=0 prio=-35
+[HTN] competitive_wave tasks=17 elapsed=38.0913s
+[HTN] task_batch size=17
+[HTN] Task#5 DeliverBoxToGoal box=H goal=H agent=2 prio=39
+[HTN] Task#0 DeliverBoxToGoal box=L goal=L agent=3 prio=35
+[HTN] Task#2 DeliverBoxToGoal box=O goal=O agent=6 prio=33
+[HTN] Task#10 MoveBlockingBoxToParking box=H parking=(10,15) agent=2 prio=30
+[HTN] Task#12 MoveBlockingBoxToParking box=K parking=(9,1) agent=2 prio=30
+[HTN] Task#1 DeliverBoxToGoal box=M goal=M agent=4 prio=27
+[HTN] Task#11 MoveBlockingBoxToParking box=B parking=(8,15) agent=0 prio=25
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=2 prio=15
+[HTN] Task#8 DeliverBoxToGoal box=K goal=K agent=2 prio=12
+[HTN] Task#6 DeliverBoxToGoal box=I goal=I agent=2 prio=5
+[HTN] Task#13 MoveAgentToGoal agent=1 target_goal=1 prio=1
+[HTN] Task#14 MoveAgentToGoal agent=2 target_goal=2 prio=-8 deps=, 5, 6, 7, 8, 10, 12
+[HTN] Task#16 MoveAgentToGoal agent=6 target_goal=6 prio=-15 deps=, 2
+[HTN] Task#15 MoveAgentToGoal agent=3 target_goal=3 prio=-16 deps=, 0
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=-23
+[HTN] Task#4 DeliverBoxToGoal box=B goal=B agent=0 prio=-29
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=-35
+[HTN] competitive_wave tasks=16 elapsed=62.3927s
+[HTN] task_batch size=16
+[HTN] Task#0 DeliverBoxToGoal box=L goal=L agent=3 prio=35
+[HTN] Task#2 DeliverBoxToGoal box=O goal=O agent=6 prio=33
+[HTN] Task#11 MoveBlockingBoxToParking box=K parking=(8,15) agent=2 prio=31
+[HTN] Task#1 DeliverBoxToGoal box=M goal=M agent=4 prio=27
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,15) agent=0 prio=27
+[HTN] Task#5 DeliverBoxToGoal box=H goal=H agent=2 prio=15
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=2 prio=11
+[HTN] Task#8 DeliverBoxToGoal box=K goal=K agent=2 prio=8
+[HTN] Task#6 DeliverBoxToGoal box=I goal=I agent=2 prio=7
+[HTN] Task#12 MoveAgentToGoal agent=1 target_goal=1 prio=1
+[HTN] Task#13 MoveAgentToGoal agent=2 target_goal=2 prio=-2 deps=, 5, 6, 7, 8, 11
+[HTN] Task#15 MoveAgentToGoal agent=6 target_goal=6 prio=-15 deps=, 2
+[HTN] Task#14 MoveAgentToGoal agent=3 target_goal=3 prio=-16 deps=, 0
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=-23
+[HTN] Task#4 DeliverBoxToGoal box=B goal=B agent=0 prio=-29
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=-35
+[HTN] competitive_wave tasks=15 elapsed=88.8993s
+[HTN] task_batch size=15
+[HTN] Task#0 DeliverBoxToGoal box=L goal=L agent=3 prio=35
+[HTN] Task#2 DeliverBoxToGoal box=O goal=O agent=6 prio=33
+[HTN] Task#8 DeliverBoxToGoal box=K goal=K agent=2 prio=33
+[HTN] Task#1 DeliverBoxToGoal box=M goal=M agent=4 prio=27
+[HTN] Task#10 MoveBlockingBoxToParking box=B parking=(10,15) agent=0 prio=27
+[HTN] Task#7 DeliverBoxToGoal box=J goal=J agent=2 prio=17
+[HTN] Task#5 DeliverBoxToGoal box=H goal=H agent=2 prio=7
+[HTN] Task#6 DeliverBoxToGoal box=I goal=I agent=2 prio=7
+[HTN] Task#11 MoveAgentToGoal agent=1 target_goal=1 prio=1
+[HTN] Task#12 MoveAgentToGoal agent=2 target_goal=2 prio=-6 deps=, 5, 6, 7, 8
+[HTN] Task#14 MoveAgentToGoal agent=6 target_goal=6 prio=-15 deps=, 2
+[HTN] Task#13 MoveAgentToGoal agent=3 target_goal=3 prio=-16 deps=, 0
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=-23
+[HTN] Task#4 DeliverBoxToGoal box=B goal=B agent=0 prio=-29
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=-35
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=14 elapsed=91.6556s
+[HTN] task_batch size=14
+[HTN] Task#0 DeliverBoxToGoal box=L goal=L agent=3 prio=35
+[HTN] Task#1 DeliverBoxToGoal box=O goal=O agent=6 prio=33
+[HTN] Task#7 DeliverBoxToGoal box=K goal=K agent=2 prio=33
+[HTN] Task#9 MoveBlockingBoxToParking box=B parking=(21,21) agent=0 prio=24
+[HTN] Task#6 DeliverBoxToGoal box=J goal=J agent=2 prio=17
+[HTN] Task#4 DeliverBoxToGoal box=H goal=H agent=2 prio=7
+[HTN] Task#5 DeliverBoxToGoal box=I goal=I agent=2 prio=7
+[HTN] Task#10 MoveAgentToGoal agent=1 target_goal=1 prio=1
+[HTN] Task#11 MoveAgentToGoal agent=2 target_goal=2 prio=-6 deps=, 4, 5, 6, 7
+[HTN] Task#13 MoveAgentToGoal agent=6 target_goal=6 prio=-15 deps=, 1
+[HTN] Task#12 MoveAgentToGoal agent=3 target_goal=3 prio=-16 deps=, 0
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=-23
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=0 prio=-29
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=-35
+[HTN] competitive_wave tasks=10 elapsed=159.817s
+[HTN] task_batch size=10
+[HTN] Task#5 DeliverBoxToGoal box=K goal=K agent=2 prio=33
+[HTN] Task#7 MoveBlockingBoxToParking box=B parking=(21,21) agent=0 prio=24
+[HTN] Task#4 DeliverBoxToGoal box=J goal=J agent=2 prio=17
+[HTN] Task#2 DeliverBoxToGoal box=H goal=H agent=2 prio=7
+[HTN] Task#3 DeliverBoxToGoal box=I goal=I agent=2 prio=7
+[HTN] Task#8 MoveAgentToGoal agent=1 target_goal=1 prio=1
+[HTN] Task#9 MoveAgentToGoal agent=2 target_goal=2 prio=-6 deps=, 2, 3, 4, 5
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=-23
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=-29
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=-35
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=8 elapsed=164.581s
+[HTN] task_batch size=8
+[HTN] Task#4 DeliverBoxToGoal box=K goal=K agent=2 prio=33
+[HTN] Task#3 DeliverBoxToGoal box=J goal=J agent=2 prio=17
+[HTN] Task#1 DeliverBoxToGoal box=H goal=H agent=2 prio=7
+[HTN] Task#2 DeliverBoxToGoal box=I goal=I agent=2 prio=7
+[HTN] Task#6 MoveAgentToGoal agent=1 target_goal=1 prio=1
+[HTN] Task#7 MoveAgentToGoal agent=2 target_goal=2 prio=-6 deps=, 1, 2, 3, 4
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=-29
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=-35
+[HTN] partial_plan_unsolved stop_reason=deadline_before_conflict_repair steps=188 goals_completed=10/16 waves=7 no_progress_iters=0
+NoOp|Move(N)|NoOp|NoOp|NoOp|Push(E,E)|NoOp|Move(N)
+NoOp|Move(N)|NoOp|NoOp|NoOp|Push(E,E)|NoOp|Move(N)
+NoOp|Move(N)|NoOp|NoOp|NoOp|Push(E,E)|NoOp|Move(N)
+NoOp|Move(N)|NoOp|NoOp|NoOp|Push(E,S)|NoOp|Move(N)
+NoOp|Move(W)|NoOp|NoOp|NoOp|Push(S,S)|NoOp|Move(N)
+NoOp|Move(W)|NoOp|NoOp|NoOp|Push(S,S)|NoOp|Pull(N,E)
+NoOp|Move(W)|NoOp|NoOp|NoOp|Push(S,W)|NoOp|Push(S,E)
+NoOp|Pull(S,E)|NoOp|NoOp|NoOp|Push(W,W)|NoOp|Push(E,E)
+NoOp|Push(N,E)|NoOp|NoOp|NoOp|Push(W,W)|NoOp|Push(E,E)
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|Push(W,W)|NoOp|Push(E,E)
+NoOp|Move(S)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Push(E,N)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Push(W,N)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp
+NoOp|Push(N,E)|NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Push(E,N)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Pull(N,E)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,E)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(W,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(S,W)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(S,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(E,E)|NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|NoOp|Push(E,S)|NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(S,E)|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Push(E,N)|NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|NoOp|Push(N,N)|NoOp|NoOp|Push(S,W)|NoOp
+NoOp|NoOp|NoOp|Push(N,N)|NoOp|NoOp|Push(W,W)|NoOp
+NoOp|NoOp|NoOp|Push(N,N)|NoOp|NoOp|Push(W,S)|NoOp
+NoOp|NoOp|NoOp|Push(N,N)|NoOp|NoOp|Push(S,S)|NoOp
+NoOp|NoOp|NoOp|Push(N,N)|NoOp|NoOp|Move(N)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|Move(S)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|Move(S)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|Move(S)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|Move(S)|NoOp
+NoOp|NoOp|NoOp|Move(S)|NoOp|NoOp|Move(S)|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|Move(S)|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|Move(S)|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|Move(S)|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|Move(S)|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Move(E)|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Move(E)|NoOp
+Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(N,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Push(N,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Push(W,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 188.
+[server][info] Time to solve: 175.923 seconds.

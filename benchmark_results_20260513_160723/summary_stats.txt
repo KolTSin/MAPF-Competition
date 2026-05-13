@@ -1,0 +1,8 @@
+levels_tested=48
+levels_solved=13
+levels_failed=35
+levels_unsolved_reported=35
+levels_unknown=0
+success_rate_percent=27.08
+average_solve_time_s=3.144
+average_solve_time_note=Average is over solved levels only; uses server_time_s when available, otherwise wall_time_s.

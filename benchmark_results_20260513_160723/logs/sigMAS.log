@@ -1,0 +1,195 @@
+[server][info] Running client on level: ./complevels/sigMAS.lvl
+[HTN] competitive_wave tasks=15 elapsed=6.222e-05s cheap_first_prefix=true
+[HTN] task_batch size=15
+[HTN] Task#6 DeliverBoxToGoal box=D goal=D agent=1 prio=57
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=1 prio=56
+[HTN] Task#11 DeliverBoxToGoal box=R goal=R agent=1 prio=56
+[HTN] Task#9 DeliverBoxToGoal box=M goal=M agent=1 prio=49
+[HTN] Task#8 DeliverBoxToGoal box=N goal=N agent=1 prio=48
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=1 prio=48
+[HTN] Task#12 DeliverBoxToGoal box=K goal=K agent=1 prio=43
+[HTN] Task#0 DeliverBoxToGoal box=B goal=B agent=0 prio=31
+[HTN] Task#1 DeliverBoxToGoal box=C goal=C agent=0 prio=31
+[HTN] Task#5 DeliverBoxToGoal box=H goal=H agent=0 prio=23
+[HTN] Task#2 DeliverBoxToGoal box=E goal=E agent=0 prio=21
+[HTN] Task#3 DeliverBoxToGoal box=F goal=F agent=0 prio=21
+[HTN] Task#4 DeliverBoxToGoal box=G goal=G agent=0 prio=11
+[HTN] Task#14 MoveAgentToGoal agent=1 target_goal=1 prio=1 deps=, 6, 7, 8, 9, 10, 11, 12
+[HTN] Task#13 MoveAgentToGoal agent=0 target_goal=0 prio=-5 deps=, 0, 1, 2, 3, 4, 5
+Pull(S,E)|Push(S,S)
+Pull(S,S)|Push(S,W)
+Pull(S,S)|Push(W,W)
+Pull(S,S)|Push(W,W)
+Pull(S,S)|Move(E)
+Pull(S,S)|Move(E)
+Pull(E,S)|Move(N)
+Push(W,S)|Push(E,S)
+Push(S,S)|Push(S,W)
+Push(S,S)|Push(W,W)
+Push(S,W)|Push(W,W)
+Move(N)|Move(E)
+Move(N)|Move(N)
+Move(N)|Move(N)
+Move(N)|Move(W)
+Move(N)|Move(W)
+Move(N)|Move(W)
+Move(N)|Pull(W,N)
+Move(N)|Push(E,E)
+Move(N)|Push(E,E)
+Pull(W,W)|Push(E,E)
+Push(E,S)|Push(E,S)
+Push(S,S)|Push(S,S)
+Push(S,S)|Push(S,W)
+Push(S,S)|Move(N)
+Push(S,S)|Move(N)
+Push(S,S)|Move(W)
+Push(S,S)|Move(W)
+Push(S,S)|Pull(E,N)
+Push(S,S)|Pull(E,E)
+Push(S,E)|Pull(S,E)
+Move(N)|Pull(S,S)
+Move(N)|Pull(E,S)
+Move(N)|Move(E)
+Move(N)|Move(E)
+Move(E)|Pull(E,S)
+Move(E)|Push(W,W)
+Move(E)|Push(W,W)
+Move(E)|Move(E)
+Move(N)|Move(N)
+Move(N)|Move(N)
+Move(E)|Move(W)
+Move(N)|Move(W)
+Move(N)|Move(S)
+Pull(S,S)|Move(W)
+Pull(S,S)|Pull(E,E)
+Pull(W,S)|Pull(N,E)
+Pull(S,W)|Pull(E,N)
+Pull(S,S)|Pull(E,E)
+Pull(S,S)|Pull(S,E)
+Pull(W,S)|Pull(S,S)
+Pull(W,W)|Pull(E,S)
+Pull(W,W)|Push(W,W)
+Pull(W,W)|Move(N)
+Pull(S,W)|Pull(N,E)
+Pull(S,S)|Push(S,S)
+Pull(S,S)|Move(N)
+Pull(S,S)|Move(W)
+Pull(S,S)|Move(W)
+Push(N,E)|Move(W)
+Push(E,E)|Move(W)
+Push(E,N)|Move(W)
+Move(W)|Move(W)
+Move(W)|Move(W)
+Move(N)|Move(W)
+Move(N)|Move(N)
+Move(N)|Move(N)
+Move(N)|Move(N)
+Move(N)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Pull(S,W)|NoOp
+Pull(S,S)|NoOp
+Pull(S,S)|NoOp
+Pull(E,S)|NoOp
+Pull(E,E)|NoOp
+Pull(E,E)|NoOp
+Pull(E,E)|NoOp
+Pull(E,E)|NoOp
+Pull(S,E)|NoOp
+Pull(S,S)|NoOp
+Pull(S,S)|NoOp
+Pull(S,S)|NoOp
+Pull(S,S)|NoOp
+Push(N,W)|NoOp
+Push(W,S)|NoOp
+Move(E)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Pull(S,S)|NoOp
+Pull(S,S)|NoOp
+Pull(S,S)|NoOp
+Pull(S,S)|NoOp
+Pull(S,S)|NoOp
+Push(N,E)|NoOp
+Push(E,E)|NoOp
+Push(E,E)|NoOp
+Push(E,E)|NoOp
+Push(E,E)|NoOp
+Push(E,S)|NoOp
+Push(S,S)|NoOp
+Push(S,S)|NoOp
+Push(S,S)|NoOp
+Push(S,S)|NoOp
+Push(S,S)|NoOp
+Push(S,E)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Move(E)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(W)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Pull(S,S)|NoOp
+Pull(S,S)|NoOp
+Pull(E,S)|NoOp
+Pull(S,E)|NoOp
+Pull(S,S)|NoOp
+Pull(S,S)|NoOp
+Pull(W,S)|NoOp
+Pull(W,W)|NoOp
+Pull(W,W)|NoOp
+Pull(W,W)|NoOp
+Pull(W,W)|NoOp
+Push(E,S)|NoOp
+Push(S,S)|NoOp
+Push(S,S)|NoOp
+Push(S,S)|NoOp
+Push(S,E)|NoOp
+Push(E,E)|NoOp
+Push(E,S)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(N)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(W)|NoOp
+Move(S)|NoOp
+Move(S)|NoOp
+Move(S)|NoOp
+Move(W)|NoOp
+NoOp|Move(N)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 172.
+[server][info] Time to solve: 2.843 seconds.

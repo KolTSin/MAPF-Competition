@@ -1,0 +1,74 @@
+[server][info] Running client on level: ./levels/SAsoko3_07.lvl
+[HTN] competitive_wave tasks=7 elapsed=2.5993e-05s cheap_first_prefix=true
+[HTN] task_batch size=7
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=37
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=33
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 59.
+[server][info] Time to solve: 0.062 seconds.

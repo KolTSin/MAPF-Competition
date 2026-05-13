@@ -1,0 +1,1125 @@
+[server][info] Running client on level: ./levels/SADangerBot.lvl
+[HTN] competitive_wave tasks=20 elapsed=0.000105335s
+[HTN] task_batch size=20
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=41
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=40
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=40
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=33
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=32
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=27
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=25
+[HTN] Task#18 DeliverBoxToGoal box=A goal=A agent=0 prio=22
+[HTN] Task#19 DeliverBoxToGoal box=A goal=A agent=0 prio=21
+[HTN] Task#17 DeliverBoxToGoal box=A goal=A agent=0 prio=11
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=19 elapsed=0.0706065s
+[HTN] task_batch size=19
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=41
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=41
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=41
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=37
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=33
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=32
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=32
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#17 DeliverBoxToGoal box=A goal=A agent=0 prio=17
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=16
+[HTN] Task#18 DeliverBoxToGoal box=A goal=A agent=0 prio=16
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=18 elapsed=0.11042s
+[HTN] task_batch size=18
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=41
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=39
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=28
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=25
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=22
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=20
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] Task#17 DeliverBoxToGoal box=A goal=A agent=0 prio=12
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=0 success=true reason=delay_start_to_t1
+[HTN] competitive_wave tasks=17 elapsed=0.148378s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=0.271294s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=0.401876s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=0.532108s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=0.664206s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=0.790715s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=0.919687s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=1.04323s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=1.15357s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=1.25929s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=1.36583s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=1.47273s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=1.58936s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=1.70585s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=1.8199s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=1.93732s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=2.04362s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=2.15668s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=2.26932s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=2.37763s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=2.48555s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=2.58798s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=2.70109s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=2.81509s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=2.91979s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=3.03215s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=3.14542s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=3.2549s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=3.36212s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=3.47338s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=3.5792s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=3.6687s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=3.77661s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=3.87525s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=3.97679s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=4.0893s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=4.19657s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=4.30366s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=4.4035s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=4.5111s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=4.6558s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=4.77312s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=4.8773s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=4.97461s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=5.06688s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=5.16591s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=5.27207s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=5.37071s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=5.47989s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] competitive_wave tasks=17 elapsed=5.59041s
+[HTN] task_batch size=17
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=42
+[HTN] Task#8 DeliverBoxToGoal box=A goal=A agent=0 prio=38
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#5 DeliverBoxToGoal box=A goal=A agent=0 prio=35
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=0 prio=34
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=31
+[HTN] Task#7 DeliverBoxToGoal box=A goal=A agent=0 prio=30
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#10 DeliverBoxToGoal box=A goal=A agent=0 prio=29
+[HTN] Task#13 DeliverBoxToGoal box=A goal=A agent=0 prio=26
+[HTN] Task#12 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#11 DeliverBoxToGoal box=A goal=A agent=0 prio=23
+[HTN] Task#14 DeliverBoxToGoal box=A goal=A agent=0 prio=19
+[HTN] Task#15 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=A goal=A agent=0 prio=13
+[HTN] cycle_detected: repeated_task_local_trajectory A:5,9->6,9; rejecting wave steps=70
+[HTN] partial_plan_unsolved stop_reason=stagnation_guard:cycle_detected:_repeated_task_local_trajectory_A:5_9-_6_9 steps=42 goals_completed=3/20 waves=53 no_progress_iters=50
+Push(N,W)
+Push(W,W)
+Push(W,N)
+Push(N,N)
+Push(N,W)
+Move(S)
+Move(S)
+Move(W)
+Move(W)
+Move(N)
+Move(W)
+Move(W)
+Push(W,N)
+Move(E)
+Move(E)
+Move(S)
+Move(E)
+Move(E)
+Move(E)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Pull(E,E)
+Pull(S,E)
+Pull(E,S)
+Pull(S,E)
+Pull(E,S)
+Pull(S,E)
+Pull(S,S)
+Pull(S,S)
+Pull(E,S)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,N)
+Push(N,N)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 42.
+[server][info] Time to solve: 5.757 seconds.

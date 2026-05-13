@@ -1,0 +1,162 @@
+[server][info] Running client on level: ./levels/MAbispebjerg.lvl
+[HTN] competitive_wave tasks=4 elapsed=0.000733481s cheap_first_prefix=true
+[HTN] task_batch size=4
+[HTN] Task#1 DeliverBoxToGoal box=H goal=H agent=9 prio=-18
+[HTN] Task#3 DeliverBoxToGoal box=F goal=F agent=0 prio=-18
+[HTN] Task#0 DeliverBoxToGoal box=I goal=I agent=9 prio=-24
+[HTN] Task#2 DeliverBoxToGoal box=Z goal=Z agent=1 prio=-80
+[HTN] competitive_wave tasks=19 elapsed=7.64525s
+[HTN] task_batch size=19
+[HTN] Task#18 MoveBlockingBoxToParking box=V parking=(48,12) agent=6 prio=36
+[HTN] Task#17 DeliverBoxToGoal box=R goal=R agent=7 prio=25
+[HTN] Task#11 DeliverBoxToGoal box=S goal=S agent=8 prio=24
+[HTN] Task#12 DeliverBoxToGoal box=T goal=T agent=8 prio=23
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=3 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=P goal=P agent=8 prio=14
+[HTN] Task#13 DeliverBoxToGoal box=N goal=N agent=5 prio=7
+[HTN] Task#1 DeliverBoxToGoal box=D goal=D agent=0 prio=-12
+[HTN] Task#0 DeliverBoxToGoal box=E goal=E agent=1 prio=-14
+[HTN] Task#6 DeliverBoxToGoal box=M goal=M agent=5 prio=-16
+[HTN] Task#2 DeliverBoxToGoal box=K goal=K agent=4 prio=-19
+[HTN] Task#4 DeliverBoxToGoal box=X goal=X agent=6 prio=-22
+[HTN] Task#15 DeliverBoxToGoal box=O goal=O agent=5 prio=-28
+[HTN] Task#7 DeliverBoxToGoal box=B goal=B agent=3 prio=-30
+[HTN] Task#5 DeliverBoxToGoal box=L goal=L agent=5 prio=-35
+[HTN] Task#10 DeliverBoxToGoal box=U goal=U agent=6 prio=-35
+[HTN] Task#14 DeliverBoxToGoal box=V goal=V agent=6 prio=-38
+[HTN] Task#8 DeliverBoxToGoal box=W goal=W agent=6 prio=-53
+[HTN] Task#9 DeliverBoxToGoal box=A goal=A agent=2 prio=-57
+[HTN] partial_plan_unsolved stop_reason=deadline_before_scheduler steps=128 goals_completed=4/22 waves=2 no_progress_iters=0
+NoOp|Move(W)|Move(N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Move(E)
+NoOp|Move(W)|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Move(E)
+NoOp|Move(W)|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Move(S)
+NoOp|Move(W)|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Move(S)
+NoOp|Move(W)|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Move(S)
+NoOp|Move(W)|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Move(W)|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Move(W)|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Move(W)|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Move(W)|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Move(W)|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Move(W)|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Move(W)|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Move(W)|Push(E,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Move(W)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Pull(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Pull(N,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(S,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Pull(E,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(W,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,E)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(E,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)
+NoOp|Push(E,E)|Push(N,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)
+NoOp|Push(E,E)|Push(E,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)
+NoOp|Push(E,E)|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)
+NoOp|Push(E,E)|Push(N,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)
+NoOp|Push(E,E)|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,W)
+NoOp|Push(E,E)|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,N)|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(N,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(E,E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Move(W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Move(S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Pull(W,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Pull(N,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Pull(N,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Pull(W,N)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Pull(N,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(S,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(S,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,W)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(W,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|Push(S,S)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 128.
+[server][info] Time to solve: 175.139 seconds.

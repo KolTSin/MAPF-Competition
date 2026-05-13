@@ -1,0 +1,935 @@
+[server][info] Running client on level: ./levels/SAOptimal.lvl
+[HTN] competitive_wave tasks=38 elapsed=7.6523e-05s
+[HTN] task_batch size=38
+[HTN] Task#31 MoveBlockingBoxToParking box=S parking=(5,31) agent=0 prio=43
+[HTN] Task#36 MoveBlockingBoxToParking box=U parking=(7,34) agent=0 prio=34
+[HTN] Task#26 MoveBlockingBoxToParking box=A parking=(6,33) agent=0 prio=33
+[HTN] Task#21 MoveBlockingBoxToParking box=B parking=(3,34) agent=0 prio=31
+[HTN] Task#23 MoveBlockingBoxToParking box=F parking=(3,32) agent=0 prio=28
+[HTN] Task#22 MoveBlockingBoxToParking box=P parking=(5,36) agent=0 prio=26
+[HTN] Task#33 MoveBlockingBoxToParking box=I parking=(6,32) agent=0 prio=26
+[HTN] Task#32 MoveBlockingBoxToParking box=T parking=(6,31) agent=0 prio=24
+[HTN] Task#37 MoveBlockingBoxToParking box=X parking=(6,35) agent=0 prio=24
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=22
+[HTN] Task#29 MoveBlockingBoxToParking box=J parking=(7,33) agent=0 prio=22
+[HTN] Task#16 DeliverBoxToGoal box=R goal=R agent=0 prio=21
+[HTN] Task#24 MoveBlockingBoxToParking box=C parking=(3,35) agent=0 prio=21
+[HTN] Task#34 MoveBlockingBoxToParking box=H parking=(7,32) agent=0 prio=21
+[HTN] Task#10 DeliverBoxToGoal box=B goal=B agent=0 prio=18
+[HTN] Task#25 MoveBlockingBoxToParking box=K parking=(5,34) agent=0 prio=18
+[HTN] Task#28 MoveBlockingBoxToParking box=L parking=(6,34) agent=0 prio=18
+[HTN] Task#35 MoveBlockingBoxToParking box=R parking=(5,33) agent=0 prio=17
+[HTN] Task#8 DeliverBoxToGoal box=I goal=I agent=0 prio=16
+[HTN] Task#12 DeliverBoxToGoal box=J goal=J agent=0 prio=16
+[HTN] Task#20 MoveBlockingBoxToParking box=Q parking=(3,33) agent=0 prio=16
+[HTN] Task#0 DeliverBoxToGoal box=M goal=M agent=0 prio=14
+[HTN] Task#27 MoveBlockingBoxToParking box=M parking=(5,35) agent=0 prio=14
+[HTN] Task#30 MoveBlockingBoxToParking box=W parking=(6,36) agent=0 prio=13
+[HTN] Task#7 DeliverBoxToGoal box=D goal=D agent=0 prio=12
+[HTN] Task#4 DeliverBoxToGoal box=H goal=H agent=0 prio=10
+[HTN] Task#19 DeliverBoxToGoal box=T goal=T agent=0 prio=9
+[HTN] Task#13 DeliverBoxToGoal box=Q goal=Q agent=0 prio=8
+[HTN] Task#17 DeliverBoxToGoal box=L goal=L agent=0 prio=8
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=5
+[HTN] Task#15 DeliverBoxToGoal box=K goal=K agent=0 prio=3
+[HTN] Task#11 DeliverBoxToGoal box=E goal=E agent=0 prio=1
+[HTN] Task#9 DeliverBoxToGoal box=P goal=P agent=0 prio=-1
+[HTN] Task#14 DeliverBoxToGoal box=F goal=F agent=0 prio=-1
+[HTN] Task#1 DeliverBoxToGoal box=G goal=G agent=0 prio=-5
+[HTN] Task#5 DeliverBoxToGoal box=O goal=O agent=0 prio=-8
+[HTN] Task#18 DeliverBoxToGoal box=S goal=S agent=0 prio=-13
+[HTN] Task#2 DeliverBoxToGoal box=N goal=N agent=0 prio=-25
+[HTN] competitive_wave tasks=35 elapsed=8.37657s
+[HTN] task_batch size=35
+[HTN] Task#31 MoveBlockingBoxToParking box=E parking=(7,21) agent=0 prio=43
+[HTN] Task#32 MoveBlockingBoxToParking box=H parking=(7,10) agent=0 prio=43
+[HTN] Task#33 MoveBlockingBoxToParking box=R parking=(7,7) agent=0 prio=43
+[HTN] Task#29 MoveBlockingBoxToParking box=A parking=(7,27) agent=0 prio=42
+[HTN] Task#34 MoveBlockingBoxToParking box=T parking=(7,29) agent=0 prio=42
+[HTN] Task#30 MoveBlockingBoxToParking box=S parking=(7,28) agent=0 prio=40
+[HTN] Task#22 MoveBlockingBoxToParking box=B parking=(7,36) agent=0 prio=39
+[HTN] Task#28 MoveBlockingBoxToParking box=C parking=(7,26) agent=0 prio=39
+[HTN] Task#26 MoveBlockingBoxToParking box=L parking=(7,14) agent=0 prio=37
+[HTN] Task#25 MoveBlockingBoxToParking box=M parking=(7,11) agent=0 prio=36
+[HTN] Task#24 MoveBlockingBoxToParking box=O parking=(7,12) agent=0 prio=23
+[HTN] Task#27 MoveBlockingBoxToParking box=W parking=(7,25) agent=0 prio=23
+[HTN] Task#23 MoveBlockingBoxToParking box=F parking=(7,13) agent=0 prio=22
+[HTN] Task#21 MoveBlockingBoxToParking box=K parking=(6,36) agent=0 prio=15
+[HTN] Task#16 DeliverBoxToGoal box=R goal=R agent=0 prio=13
+[HTN] Task#20 MoveBlockingBoxToParking box=Q parking=(7,32) agent=0 prio=13
+[HTN] Task#0 DeliverBoxToGoal box=M goal=M agent=0 prio=12
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=12
+[HTN] Task#13 DeliverBoxToGoal box=Q goal=Q agent=0 prio=8
+[HTN] Task#7 DeliverBoxToGoal box=D goal=D agent=0 prio=4
+[HTN] Task#17 DeliverBoxToGoal box=L goal=L agent=0 prio=4
+[HTN] Task#15 DeliverBoxToGoal box=K goal=K agent=0 prio=3
+[HTN] Task#4 DeliverBoxToGoal box=H goal=H agent=0 prio=2
+[HTN] Task#19 DeliverBoxToGoal box=T goal=T agent=0 prio=-1
+[HTN] Task#14 DeliverBoxToGoal box=F goal=F agent=0 prio=-3
+[HTN] Task#11 DeliverBoxToGoal box=E goal=E agent=0 prio=-5
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=-8
+[HTN] Task#5 DeliverBoxToGoal box=O goal=O agent=0 prio=-8
+[HTN] Task#8 DeliverBoxToGoal box=I goal=I agent=0 prio=-10
+[HTN] Task#12 DeliverBoxToGoal box=J goal=J agent=0 prio=-11
+[HTN] Task#2 DeliverBoxToGoal box=N goal=N agent=0 prio=-13
+[HTN] Task#9 DeliverBoxToGoal box=P goal=P agent=0 prio=-15
+[HTN] Task#18 DeliverBoxToGoal box=S goal=S agent=0 prio=-15
+[HTN] Task#1 DeliverBoxToGoal box=G goal=G agent=0 prio=-17
+[HTN] Task#10 DeliverBoxToGoal box=B goal=B agent=0 prio=-17
+[HTN] competitive_wave tasks=36 elapsed=14.8146s
+[HTN] task_batch size=36
+[HTN] Task#24 MoveBlockingBoxToParking box=A parking=(2,28) agent=0 prio=41
+[HTN] Task#32 MoveBlockingBoxToParking box=R parking=(3,7) agent=0 prio=41
+[HTN] Task#20 MoveBlockingBoxToParking box=Q parking=(2,10) agent=0 prio=40
+[HTN] Task#21 MoveBlockingBoxToParking box=F parking=(2,11) agent=0 prio=40
+[HTN] Task#29 MoveBlockingBoxToParking box=O parking=(3,10) agent=0 prio=39
+[HTN] Task#31 MoveBlockingBoxToParking box=H parking=(3,8) agent=0 prio=39
+[HTN] Task#33 MoveBlockingBoxToParking box=C parking=(2,25) agent=0 prio=39
+[HTN] Task#34 MoveBlockingBoxToParking box=E parking=(2,20) agent=0 prio=39
+[HTN] Task#35 MoveBlockingBoxToParking box=L parking=(2,13) agent=0 prio=39
+[HTN] Task#30 MoveBlockingBoxToParking box=M parking=(2,9) agent=0 prio=38
+[HTN] Task#28 MoveBlockingBoxToParking box=T parking=(3,11) agent=0 prio=37
+[HTN] Task#27 MoveBlockingBoxToParking box=D parking=(2,12) agent=0 prio=30
+[HTN] Task#22 MoveBlockingBoxToParking box=W parking=(8,17) agent=0 prio=29
+[HTN] Task#26 MoveBlockingBoxToParking box=I parking=(2,18) agent=0 prio=27
+[HTN] Task#25 MoveBlockingBoxToParking box=X parking=(2,19) agent=0 prio=25
+[HTN] Task#23 MoveBlockingBoxToParking box=B parking=(3,9) agent=0 prio=20
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=R goal=R agent=0 prio=11
+[HTN] Task#11 DeliverBoxToGoal box=E goal=E agent=0 prio=7
+[HTN] Task#7 DeliverBoxToGoal box=D goal=D agent=0 prio=6
+[HTN] Task#17 DeliverBoxToGoal box=L goal=L agent=0 prio=4
+[HTN] Task#13 DeliverBoxToGoal box=Q goal=Q agent=0 prio=2
+[HTN] Task#14 DeliverBoxToGoal box=F goal=F agent=0 prio=1
+[HTN] Task#19 DeliverBoxToGoal box=T goal=T agent=0 prio=1
+[HTN] Task#4 DeliverBoxToGoal box=H goal=H agent=0 prio=0
+[HTN] Task#5 DeliverBoxToGoal box=O goal=O agent=0 prio=0
+[HTN] Task#0 DeliverBoxToGoal box=M goal=M agent=0 prio=-3
+[HTN] Task#8 DeliverBoxToGoal box=I goal=I agent=0 prio=-8
+[HTN] Task#18 DeliverBoxToGoal box=S goal=S agent=0 prio=-8
+[HTN] Task#12 DeliverBoxToGoal box=J goal=J agent=0 prio=-9
+[HTN] Task#15 DeliverBoxToGoal box=K goal=K agent=0 prio=-14
+[HTN] Task#1 DeliverBoxToGoal box=G goal=G agent=0 prio=-15
+[HTN] Task#2 DeliverBoxToGoal box=N goal=N agent=0 prio=-17
+[HTN] Task#10 DeliverBoxToGoal box=B goal=B agent=0 prio=-17
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=-18
+[HTN] Task#9 DeliverBoxToGoal box=P goal=P agent=0 prio=-21
+[HTN] cycle_detected: immediate_box_oscillation I 2,18->3,18; rejecting wave steps=688
+[HTN] competitive_wave tasks=36 elapsed=59.6571s
+[HTN] task_batch size=36
+[HTN] Task#24 MoveBlockingBoxToParking box=A parking=(2,28) agent=0 prio=41
+[HTN] Task#32 MoveBlockingBoxToParking box=R parking=(3,7) agent=0 prio=41
+[HTN] Task#20 MoveBlockingBoxToParking box=Q parking=(2,10) agent=0 prio=40
+[HTN] Task#21 MoveBlockingBoxToParking box=F parking=(2,11) agent=0 prio=40
+[HTN] Task#29 MoveBlockingBoxToParking box=O parking=(3,10) agent=0 prio=39
+[HTN] Task#31 MoveBlockingBoxToParking box=H parking=(3,8) agent=0 prio=39
+[HTN] Task#33 MoveBlockingBoxToParking box=C parking=(2,25) agent=0 prio=39
+[HTN] Task#34 MoveBlockingBoxToParking box=E parking=(2,20) agent=0 prio=39
+[HTN] Task#35 MoveBlockingBoxToParking box=L parking=(2,13) agent=0 prio=39
+[HTN] Task#30 MoveBlockingBoxToParking box=M parking=(2,9) agent=0 prio=38
+[HTN] Task#28 MoveBlockingBoxToParking box=T parking=(3,11) agent=0 prio=37
+[HTN] Task#27 MoveBlockingBoxToParking box=D parking=(2,12) agent=0 prio=30
+[HTN] Task#22 MoveBlockingBoxToParking box=W parking=(8,17) agent=0 prio=29
+[HTN] Task#26 MoveBlockingBoxToParking box=I parking=(2,18) agent=0 prio=27
+[HTN] Task#25 MoveBlockingBoxToParking box=X parking=(2,19) agent=0 prio=25
+[HTN] Task#23 MoveBlockingBoxToParking box=B parking=(3,9) agent=0 prio=20
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=R goal=R agent=0 prio=11
+[HTN] Task#11 DeliverBoxToGoal box=E goal=E agent=0 prio=7
+[HTN] Task#7 DeliverBoxToGoal box=D goal=D agent=0 prio=6
+[HTN] Task#17 DeliverBoxToGoal box=L goal=L agent=0 prio=4
+[HTN] Task#13 DeliverBoxToGoal box=Q goal=Q agent=0 prio=2
+[HTN] Task#14 DeliverBoxToGoal box=F goal=F agent=0 prio=1
+[HTN] Task#19 DeliverBoxToGoal box=T goal=T agent=0 prio=1
+[HTN] Task#4 DeliverBoxToGoal box=H goal=H agent=0 prio=0
+[HTN] Task#5 DeliverBoxToGoal box=O goal=O agent=0 prio=0
+[HTN] Task#0 DeliverBoxToGoal box=M goal=M agent=0 prio=-3
+[HTN] Task#8 DeliverBoxToGoal box=I goal=I agent=0 prio=-8
+[HTN] Task#18 DeliverBoxToGoal box=S goal=S agent=0 prio=-8
+[HTN] Task#12 DeliverBoxToGoal box=J goal=J agent=0 prio=-9
+[HTN] Task#15 DeliverBoxToGoal box=K goal=K agent=0 prio=-14
+[HTN] Task#1 DeliverBoxToGoal box=G goal=G agent=0 prio=-15
+[HTN] Task#2 DeliverBoxToGoal box=N goal=N agent=0 prio=-17
+[HTN] Task#10 DeliverBoxToGoal box=B goal=B agent=0 prio=-17
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=-18
+[HTN] Task#9 DeliverBoxToGoal box=P goal=P agent=0 prio=-21
+[HTN] cycle_detected: immediate_box_oscillation I 2,18->3,18; rejecting wave steps=688
+[HTN] competitive_wave tasks=36 elapsed=106.618s
+[HTN] task_batch size=36
+[HTN] Task#24 MoveBlockingBoxToParking box=A parking=(2,28) agent=0 prio=41
+[HTN] Task#32 MoveBlockingBoxToParking box=R parking=(3,7) agent=0 prio=41
+[HTN] Task#20 MoveBlockingBoxToParking box=Q parking=(2,10) agent=0 prio=40
+[HTN] Task#21 MoveBlockingBoxToParking box=F parking=(2,11) agent=0 prio=40
+[HTN] Task#29 MoveBlockingBoxToParking box=O parking=(3,10) agent=0 prio=39
+[HTN] Task#31 MoveBlockingBoxToParking box=H parking=(3,8) agent=0 prio=39
+[HTN] Task#33 MoveBlockingBoxToParking box=C parking=(2,25) agent=0 prio=39
+[HTN] Task#34 MoveBlockingBoxToParking box=E parking=(2,20) agent=0 prio=39
+[HTN] Task#35 MoveBlockingBoxToParking box=L parking=(2,13) agent=0 prio=39
+[HTN] Task#30 MoveBlockingBoxToParking box=M parking=(2,9) agent=0 prio=38
+[HTN] Task#28 MoveBlockingBoxToParking box=T parking=(3,11) agent=0 prio=37
+[HTN] Task#27 MoveBlockingBoxToParking box=D parking=(2,12) agent=0 prio=30
+[HTN] Task#22 MoveBlockingBoxToParking box=W parking=(8,17) agent=0 prio=29
+[HTN] Task#26 MoveBlockingBoxToParking box=I parking=(2,18) agent=0 prio=27
+[HTN] Task#25 MoveBlockingBoxToParking box=X parking=(2,19) agent=0 prio=25
+[HTN] Task#23 MoveBlockingBoxToParking box=B parking=(3,9) agent=0 prio=20
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=R goal=R agent=0 prio=11
+[HTN] Task#11 DeliverBoxToGoal box=E goal=E agent=0 prio=7
+[HTN] Task#7 DeliverBoxToGoal box=D goal=D agent=0 prio=6
+[HTN] Task#17 DeliverBoxToGoal box=L goal=L agent=0 prio=4
+[HTN] Task#13 DeliverBoxToGoal box=Q goal=Q agent=0 prio=2
+[HTN] Task#14 DeliverBoxToGoal box=F goal=F agent=0 prio=1
+[HTN] Task#19 DeliverBoxToGoal box=T goal=T agent=0 prio=1
+[HTN] Task#4 DeliverBoxToGoal box=H goal=H agent=0 prio=0
+[HTN] Task#5 DeliverBoxToGoal box=O goal=O agent=0 prio=0
+[HTN] Task#0 DeliverBoxToGoal box=M goal=M agent=0 prio=-3
+[HTN] Task#8 DeliverBoxToGoal box=I goal=I agent=0 prio=-8
+[HTN] Task#18 DeliverBoxToGoal box=S goal=S agent=0 prio=-8
+[HTN] Task#12 DeliverBoxToGoal box=J goal=J agent=0 prio=-9
+[HTN] Task#15 DeliverBoxToGoal box=K goal=K agent=0 prio=-14
+[HTN] Task#1 DeliverBoxToGoal box=G goal=G agent=0 prio=-15
+[HTN] Task#2 DeliverBoxToGoal box=N goal=N agent=0 prio=-17
+[HTN] Task#10 DeliverBoxToGoal box=B goal=B agent=0 prio=-17
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=-18
+[HTN] Task#9 DeliverBoxToGoal box=P goal=P agent=0 prio=-21
+[HTN] cycle_detected: immediate_box_oscillation I 2,18->3,18; rejecting wave steps=688
+[HTN] competitive_wave tasks=36 elapsed=152.122s
+[HTN] task_batch size=36
+[HTN] Task#24 MoveBlockingBoxToParking box=A parking=(2,28) agent=0 prio=41
+[HTN] Task#32 MoveBlockingBoxToParking box=R parking=(3,7) agent=0 prio=41
+[HTN] Task#20 MoveBlockingBoxToParking box=Q parking=(2,10) agent=0 prio=40
+[HTN] Task#21 MoveBlockingBoxToParking box=F parking=(2,11) agent=0 prio=40
+[HTN] Task#29 MoveBlockingBoxToParking box=O parking=(3,10) agent=0 prio=39
+[HTN] Task#31 MoveBlockingBoxToParking box=H parking=(3,8) agent=0 prio=39
+[HTN] Task#33 MoveBlockingBoxToParking box=C parking=(2,25) agent=0 prio=39
+[HTN] Task#34 MoveBlockingBoxToParking box=E parking=(2,20) agent=0 prio=39
+[HTN] Task#35 MoveBlockingBoxToParking box=L parking=(2,13) agent=0 prio=39
+[HTN] Task#30 MoveBlockingBoxToParking box=M parking=(2,9) agent=0 prio=38
+[HTN] Task#28 MoveBlockingBoxToParking box=T parking=(3,11) agent=0 prio=37
+[HTN] Task#27 MoveBlockingBoxToParking box=D parking=(2,12) agent=0 prio=30
+[HTN] Task#22 MoveBlockingBoxToParking box=W parking=(8,17) agent=0 prio=29
+[HTN] Task#26 MoveBlockingBoxToParking box=I parking=(2,18) agent=0 prio=27
+[HTN] Task#25 MoveBlockingBoxToParking box=X parking=(2,19) agent=0 prio=25
+[HTN] Task#23 MoveBlockingBoxToParking box=B parking=(3,9) agent=0 prio=20
+[HTN] Task#6 DeliverBoxToGoal box=A goal=A agent=0 prio=14
+[HTN] Task#16 DeliverBoxToGoal box=R goal=R agent=0 prio=11
+[HTN] Task#11 DeliverBoxToGoal box=E goal=E agent=0 prio=7
+[HTN] Task#7 DeliverBoxToGoal box=D goal=D agent=0 prio=6
+[HTN] Task#17 DeliverBoxToGoal box=L goal=L agent=0 prio=4
+[HTN] Task#13 DeliverBoxToGoal box=Q goal=Q agent=0 prio=2
+[HTN] Task#14 DeliverBoxToGoal box=F goal=F agent=0 prio=1
+[HTN] Task#19 DeliverBoxToGoal box=T goal=T agent=0 prio=1
+[HTN] Task#4 DeliverBoxToGoal box=H goal=H agent=0 prio=0
+[HTN] Task#5 DeliverBoxToGoal box=O goal=O agent=0 prio=0
+[HTN] Task#0 DeliverBoxToGoal box=M goal=M agent=0 prio=-3
+[HTN] Task#8 DeliverBoxToGoal box=I goal=I agent=0 prio=-8
+[HTN] Task#18 DeliverBoxToGoal box=S goal=S agent=0 prio=-8
+[HTN] Task#12 DeliverBoxToGoal box=J goal=J agent=0 prio=-9
+[HTN] Task#15 DeliverBoxToGoal box=K goal=K agent=0 prio=-14
+[HTN] Task#1 DeliverBoxToGoal box=G goal=G agent=0 prio=-15
+[HTN] Task#2 DeliverBoxToGoal box=N goal=N agent=0 prio=-17
+[HTN] Task#10 DeliverBoxToGoal box=B goal=B agent=0 prio=-17
+[HTN] Task#3 DeliverBoxToGoal box=C goal=C agent=0 prio=-18
+[HTN] Task#9 DeliverBoxToGoal box=P goal=P agent=0 prio=-21
+[HTN] partial_plan_unsolved stop_reason=deadline_before_conflict_repair steps=696 goals_completed=0/20 waves=6 no_progress_iters=3
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Push(E,E)
+Push(E,S)
+Move(W)
+Move(S)
+Move(S)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,N)
+Move(W)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Push(W,S)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Move(W)
+Move(W)
+Move(N)
+Move(N)
+Move(W)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,N)
+Push(N,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Move(W)
+Move(W)
+Pull(E,E)
+Pull(S,E)
+Pull(E,S)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(S,E)
+Pull(W,S)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,N)
+Move(W)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Push(W,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Move(W)
+Pull(E,E)
+Pull(N,E)
+Pull(E,N)
+Pull(E,E)
+Pull(S,E)
+Pull(E,S)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(S,E)
+Pull(E,S)
+Pull(S,E)
+Push(N,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,N)
+Push(N,E)
+Push(E,E)
+Move(W)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Pull(E,E)
+Pull(S,E)
+Push(N,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Push(S,E)
+Push(E,E)
+Push(E,N)
+Push(N,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Push(S,E)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Move(W)
+Pull(E,E)
+Pull(N,E)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(N,E)
+Pull(E,N)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(N,E)
+Pull(E,N)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Push(S,S)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Pull(S,E)
+Pull(E,S)
+Pull(E,E)
+Pull(E,E)
+Pull(S,E)
+Pull(E,S)
+Pull(E,E)
+Pull(S,E)
+Pull(E,S)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(E,E)
+Pull(S,E)
+Pull(W,S)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,N)
+Move(W)
+Move(W)
+Move(W)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Move(W)
+Move(W)
+Move(S)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Push(W,S)
+Push(S,S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(N)
+Move(W)
+Move(W)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Push(W,S)
+Push(S,E)
+Move(N)
+Move(W)
+Move(W)
+Push(W,S)
+Push(S,E)
+Move(N)
+Move(E)
+Move(N)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Pull(S,S)
+Pull(S,S)
+Pull(S,S)
+Move(E)
+Move(N)
+Move(N)
+Move(E)
+Move(E)
+Pull(N,W)
+Push(S,S)
+Push(S,W)
+Move(N)
+Move(N)
+Push(E,S)
+Push(S,W)
+Push(W,W)
+Push(W,W)
+Push(W,S)
+Move(N)
+Move(N)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Pull(E,S)
+Pull(E,E)
+Pull(E,E)
+Pull(N,E)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,W)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(S)
+Move(W)
+Move(W)
+Move(N)
+Move(W)
+Push(W,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Push(S,S)
+Move(N)
+Move(W)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Push(W,S)
+Push(S,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,S)
+Push(S,S)
+Push(S,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Move(N)
+Move(N)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(N)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(E,S)
+Push(S,S)
+Push(S,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(N)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(E,S)
+Push(S,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,S)
+Push(S,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,S)
+Push(S,S)
+Move(N)
+Move(N)
+Move(N)
+Move(N)
+Move(W)
+Move(W)
+Pull(N,E)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Push(S,S)
+Push(S,E)
+Push(E,E)
+Push(E,E)
+Push(E,S)
+Push(S,S)
+Push(S,W)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 696.
+[server][info] Time to solve: 175.453 seconds.

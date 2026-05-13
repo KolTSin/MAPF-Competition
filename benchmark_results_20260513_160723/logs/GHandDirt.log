@@ -1,0 +1,71 @@
+[server][info] Running client on level: ./complevels/GHandDirt.lvl
+[HTN] competitive_wave tasks=8 elapsed=0.000139517s cheap_first_prefix=true
+[HTN] task_batch size=8
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=1 prio=38
+[HTN] Task#3 DeliverBoxToGoal box=B goal=B agent=1 prio=35
+[HTN] Task#4 DeliverBoxToGoal box=B goal=B agent=1 prio=32
+[HTN] Task#6 DeliverBoxToGoal box=C goal=C agent=2 prio=30
+[HTN] Task#5 DeliverBoxToGoal box=C goal=C agent=2 prio=29
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#1 DeliverBoxToGoal box=A goal=A agent=0 prio=24
+[HTN] Task#7 MoveAgentToGoal agent=2 target_goal=2 prio=0 deps=, 5, 6
+Move(S)|Move(E)|Move(S)
+Move(S)|Move(N)|Move(W)
+Move(S)|Move(E)|Push(S,W)
+Move(S)|Move(N)|Push(W,W)
+Move(E)|Move(E)|Push(W,W)
+Push(E,E)|Move(E)|Push(W,S)
+Push(E,E)|Move(E)|Push(S,S)
+Push(E,N)|Pull(E,S)|Push(S,S)
+Push(N,N)|Pull(E,E)|Push(S,S)
+Push(N,N)|Pull(E,E)|Push(S,S)
+Push(N,N)|Pull(E,E)|Push(S,W)
+Push(N,E)|Pull(S,E)|Move(N)
+Push(E,E)|Push(N,N)|Move(N)
+Push(E,E)|Push(N,N)|Move(N)
+Push(E,E)|Push(N,W)|Move(N)
+Move(S)|Push(W,W)|Move(N)
+Move(W)|Push(W,W)|Move(E)
+Move(S)|Move(E)|Move(E)
+Move(W)|Move(E)|Move(E)
+Move(S)|Move(S)|Push(E,S)
+Move(W)|Move(S)|Push(S,S)
+Move(S)|Move(W)|Push(S,S)
+Move(W)|Move(W)|Push(S,W)
+Move(S)|Move(W)|Push(W,S)
+Move(W)|Move(W)|Push(S,W)
+Push(W,N)|Move(N)|Push(W,W)
+Push(N,N)|Pull(S,E)|Push(W,W)
+Push(N,N)|Pull(E,S)|Push(W,S)
+Push(N,N)|Pull(S,E)|Move(E)
+Push(N,E)|Push(N,E)|Move(S)
+Push(E,E)|Push(E,E)|NoOp
+Push(E,E)|Push(E,E)|NoOp
+Push(E,E)|Push(E,N)|NoOp
+Push(E,E)|Push(N,N)|NoOp
+Push(E,E)|Push(N,W)|NoOp
+NoOp|Push(W,W)|NoOp
+NoOp|Move(E)|NoOp
+NoOp|Move(S)|NoOp
+NoOp|Move(S)|NoOp
+NoOp|Move(W)|NoOp
+NoOp|Move(W)|NoOp
+NoOp|Move(W)|NoOp
+NoOp|Move(W)|NoOp
+NoOp|Move(N)|NoOp
+NoOp|Move(W)|NoOp
+NoOp|Pull(E,E)|NoOp
+NoOp|Pull(S,E)|NoOp
+NoOp|Pull(E,S)|NoOp
+NoOp|Pull(E,E)|NoOp
+NoOp|Pull(E,E)|NoOp
+NoOp|Pull(E,E)|NoOp
+NoOp|Pull(S,E)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,W)|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 55.
+[server][info] Time to solve: 1.015 seconds.

@@ -1,0 +1,59 @@
+[server][info] Running client on level: ./levels/SAsimple2.lvl
+[HTN] competitive_wave tasks=3 elapsed=2.3169e-05s
+[HTN] task_batch size=3
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=0 prio=45
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=38
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=29
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(S)
+Move(S)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(N,N)
+Move(S)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Move(W)
+Push(S,S)
+Move(N)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Move(E)
+Push(S,S)
+Push(S,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+Push(W,W)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: Yes.
+[server][info] Actions used: 48.
+[server][info] Time to solve: 0.072 seconds.

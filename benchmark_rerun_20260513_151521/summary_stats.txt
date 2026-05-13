@@ -1,0 +1,12 @@
+source_summary=./benchmark_results_20260513_092500/summary.csv
+level_search_dirs=./levels:./complevels
+levels_rerun=36
+levels_solved_this_rerun=2
+levels_still_failed=34
+levels_missing=0
+levels_unsolved_reported=34
+levels_unknown=0
+success_rate_percent_this_rerun=5.56
+average_solve_time_s_this_rerun=28.019
+average_solve_time_note=Average is over levels solved in this rerun only; uses server_time_s when available, otherwise wall_time_s.
+remaining_unsolved_file=benchmark_rerun_20260513_151521/remaining_unsolved_levels.txt

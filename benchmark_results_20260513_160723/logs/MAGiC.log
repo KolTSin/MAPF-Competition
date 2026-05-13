@@ -1,0 +1,117 @@
+[server][info] Running client on level: ./complevels/MAGiC.lvl
+[HTN] competitive_wave tasks=10 elapsed=8.4276e-05s cheap_first_prefix=true
+[HTN] task_batch size=10
+[HTN] Task#4 DeliverBoxToGoal box=J goal=J agent=0 prio=25
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=1 prio=23
+[HTN] Task#6 MoveAgentToGoal agent=1 target_goal=1 prio=-8 deps=, 3
+[HTN] Task#7 MoveAgentToGoal agent=2 target_goal=2 prio=-9 deps=, 2
+[HTN] Task#5 MoveAgentToGoal agent=0 target_goal=0 prio=-15 deps=, 4
+[HTN] Task#8 MoveAgentToGoal agent=3 target_goal=3 prio=-15 deps=, 0
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=2 prio=-17
+[HTN] Task#9 MoveAgentToGoal agent=4 target_goal=4 prio=-18 deps=, 1
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=3 prio=-30
+[HTN] Task#1 DeliverBoxToGoal box=D goal=D agent=4 prio=-30
+[HTN] competitive_wave tasks=5 elapsed=13.442s
+[HTN] task_batch size=5
+[HTN] Task#3 DeliverBoxToGoal box=A goal=A agent=1 prio=23
+[HTN] Task#4 MoveBlockingBoxToParking box=B parking=(30,38) agent=2 prio=6
+[HTN] Task#2 DeliverBoxToGoal box=B goal=B agent=2 prio=-17
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=3 prio=-30
+[HTN] Task#1 DeliverBoxToGoal box=D goal=D agent=4 prio=-30
+[HTN] partial_plan_unsolved stop_reason=deadline_before_scheduler steps=91 goals_completed=1/5 waves=2 no_progress_iters=0
+Pull(N,W)|NoOp|NoOp|NoOp|NoOp
+Pull(N,N)|NoOp|NoOp|NoOp|NoOp
+Pull(W,N)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(W,W)|NoOp|NoOp|NoOp|NoOp
+Pull(N,W)|NoOp|NoOp|NoOp|NoOp
+Pull(N,N)|NoOp|NoOp|NoOp|NoOp
+Pull(E,N)|NoOp|NoOp|NoOp|NoOp
+Pull(N,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,N)|NoOp|NoOp|NoOp|NoOp
+Pull(N,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,N)|NoOp|NoOp|NoOp|NoOp
+Pull(N,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,N)|NoOp|NoOp|NoOp|NoOp
+Pull(N,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,N)|NoOp|NoOp|NoOp|NoOp
+Pull(N,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,N)|NoOp|NoOp|NoOp|NoOp
+Pull(N,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,N)|NoOp|NoOp|NoOp|NoOp
+Pull(N,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,N)|NoOp|NoOp|NoOp|NoOp
+Pull(N,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,N)|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp
+Pull(E,S)|NoOp|NoOp|NoOp|NoOp
+Pull(E,E)|NoOp|NoOp|NoOp|NoOp
+Pull(S,E)|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp
+Pull(S,S)|NoOp|NoOp|NoOp|NoOp
+Push(N,W)|NoOp|NoOp|NoOp|NoOp
+Push(W,S)|NoOp|NoOp|NoOp|NoOp
+Push(S,S)|NoOp|NoOp|NoOp|NoOp
+Push(S,S)|NoOp|NoOp|NoOp|NoOp
+Push(S,S)|NoOp|NoOp|NoOp|NoOp
+Push(S,S)|NoOp|NoOp|NoOp|NoOp
+Push(S,S)|NoOp|NoOp|NoOp|NoOp
+Push(S,S)|NoOp|NoOp|NoOp|NoOp
+Push(S,W)|NoOp|NoOp|NoOp|NoOp
+Push(W,W)|NoOp|NoOp|NoOp|NoOp
+Move(S)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+Move(W)|NoOp|NoOp|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 91.
+[server][info] Time to solve: 175.126 seconds.
