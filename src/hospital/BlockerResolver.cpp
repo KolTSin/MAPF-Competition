@@ -5,8 +5,6 @@
 #include <limits>
 #include <queue>
 #include <set>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 namespace {
@@ -367,48 +365,6 @@ Position best_parking_for(const Level& level, const State& state, const LevelAna
 }
 
 
-
-std::unordered_set<char> boxes_in_goal_occupant_cycles(const Level& level, const State& state) {
-    // Build a compact permutation graph from the current dynamic state:
-    //   blocker box letter -> letter required by the goal cell it occupies.
-    // A directed cycle means every involved box is sitting on another involved
-    // box's destination, so at least one member must be moved to a global
-    // buffer before the deliveries can be topologically ordered.
-    std::unordered_map<char, char> blocks_goal_for;
-    for (int r = 0; r < level.rows; ++r) {
-        for (int c = 0; c < level.cols; ++c) {
-            const char goal = level.goal_at(r, c);
-            const char box = state.box_at(r, c);
-            if (goal < 'A' || goal > 'Z') continue;
-            if (box < 'A' || box > 'Z') continue;
-            if (box == goal) continue;
-            blocks_goal_for[box] = goal;
-        }
-    }
-
-    std::unordered_set<char> in_cycle;
-    for (const auto& [start, _] : blocks_goal_for) {
-        std::unordered_map<char, int> seen_at;
-        std::vector<char> path;
-        char cur = start;
-        while (true) {
-            const auto next_it = blocks_goal_for.find(cur);
-            if (next_it == blocks_goal_for.end()) break;
-            const auto seen_it = seen_at.find(cur);
-            if (seen_it != seen_at.end()) {
-                for (int i = seen_it->second; i < static_cast<int>(path.size()); ++i) {
-                    in_cycle.insert(path[static_cast<std::size_t>(i)]);
-                }
-                break;
-            }
-            seen_at[cur] = static_cast<int>(path.size());
-            path.push_back(cur);
-            cur = next_it->second;
-        }
-    }
-    return in_cycle;
-}
-
 std::vector<Position> cheap_goal_occupant_parking_candidates(const Level& level,
                                                             const State& state,
                                                             const LevelAnalysis& analysis,
@@ -439,7 +395,7 @@ std::vector<Position> cheap_goal_occupant_parking_candidates(const Level& level,
         return manhattan(box_pos, a) < manhattan(box_pos, b);
     });
 
-    if (candidates.size() > 8) candidates.resize(8);
+    if (candidates.size() > 3) candidates.resize(3);
     return candidates;
 }
 
@@ -488,7 +444,6 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
     // the same physical box would confuse task ordering downstream.
     std::set<char> already_selected;
     std::vector<Position> reserved_parking;
-    const std::unordered_set<char> cycle_boxes = boxes_in_goal_occupant_cycles(level, state);
 
     // Clutter boxes are intentionally not parked just because they lack a
     // matching unsatisfied goal.  Moving harmless boxes to parking cells creates
@@ -537,20 +492,16 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
             t.box_pos = goal_pos;
             t.agent_id = blocker_agent;
             t.unblocks_box_id = goal;
-            const bool breaks_cycle = cycle_boxes.count(blocker) > 0;
-            t.debug_label = (breaks_cycle ? "cycle_breaker_goal_occupant_for_" : "goal_occupant_blocker_for_") + std::string(1, goal);
+            t.debug_label = "goal_occupant_blocker_for_" + std::string(1, goal);
 
-            // Dense permutation levels need parking buffers chosen globally, not
-            // merely the first adjacent empty square.  Use the analyzer's
-            // future-route-aware parking scores plus a wave-level reservation
-            // list, but deliberately avoid running a full box-transport search
-            // for every wrong-goal occupant here; the scheduler validates the
-            // ranked alternatives under real reservations and expansion limits.
             t.parking_candidates = cheap_goal_occupant_parking_candidates(level, state, analysis, goal_pos, goal_pos, reserved_parking);
-            t.parking_pos = t.parking_candidates.empty() ? Position{-1, -1} : t.parking_candidates.front();
-            const int selected_score = (t.parking_pos.row >= 0 ? analysis.at(t.parking_pos).parking_score - manhattan(goal_pos, t.parking_pos) : 0);
+            if (!t.parking_candidates.empty()) {
+                t.parking_pos = t.parking_candidates.front();
+            } else {
+                t.parking_pos = Position{-1, -1};
+            }
             t.goal_pos = t.parking_pos;
-            t.priority = selected_score + (breaks_cycle ? 260 : 150);
+            t.priority = (t.parking_pos.row >= 0 ? analysis.at(t.parking_pos).parking_score - manhattan(goal_pos, t.parking_pos) : 0) + 150;
             tasks.push_back(t);
             if (t.parking_pos.row >= 0) reserved_parking.push_back(t.parking_pos);
             already_selected.insert(blocker);

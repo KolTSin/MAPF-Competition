@@ -69,15 +69,6 @@ void TaskPrioritizer::score(const Level& level, const State& state, std::vector<
             unlock = 30;
             chokepoint_risk = 10;
             transport_cost = manhattan(task.box_pos, task.parking_pos);
-            if (task.debug_label.find("cycle_breaker") != std::string::npos) {
-                // A box-goal permutation cycle has no valid delivery order until
-                // one member is moved into a buffer.  Keep those global cycle
-                // breakers ahead of ordinary route-cleanup moves after the
-                // scheduler recomputes priorities.
-                unlock += 80;
-            } else if (task.debug_label.find("goal_occupant") != std::string::npos) {
-                unlock += 35;
-            }
         } else {
             urgency = 10;
             transport_cost = manhattan(state.agent_positions[task.agent_id], task.goal_pos);
