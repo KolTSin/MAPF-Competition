@@ -7,7 +7,7 @@
 
 set -u
 
-LEVELS_DIR="${LEVELS_DIR:-./complevels}"
+LEVELS_DIR="${LEVELS_DIR:-./levels}"
 SERVER_JAR="${SERVER_JAR:-./server.jar}"
 CLIENT_CMD="${CLIENT_CMD:-build/searchclient --solver comp --heuristic gc}"
 TIMEOUT="${TIMEOUT:-180}"

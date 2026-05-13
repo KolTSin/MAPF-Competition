@@ -1,0 +1,381 @@
+[server][info] Running client on level: ./levels/SATheRedDot.lvl
+[HTN] competitive_wave tasks=6 elapsed=0.0137225s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.105662s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.192861s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.305723s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.422088s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.531001s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.631818s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.729047s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.841273s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=0.926093s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=1.01048s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=1.10135s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=1.19464s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=1.28258s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=1.38651s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=1.49382s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=1.61151s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=1.71306s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=1.81938s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=1.92417s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=2.01463s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=2.0986s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=2.19053s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=2.27292s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[HTN] competitive_wave tasks=6 elapsed=2.3804s
+[HTN] task_batch size=6
+[HTN] Task#0 DeliverBoxToGoal box=C goal=C agent=0 prio=42
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=0 prio=42
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=0 prio=36
+[HTN] Task#2 DeliverBoxToGoal box=A goal=A agent=0 prio=36
+[HTN] Task#4 MoveBlockingBoxToParking box=A parking=(8,0) agent=0 prio=34
+[HTN] Task#5 MoveBlockingBoxToParking box=B parking=(8,1) agent=0 prio=31
+[HTN] scheduler_empty; attempting local repair on ready tasks
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=5 success=false reason=all_repair_stages_failed
+[HTN] repair outcome=2 success=true reason=alternate_parking=(1,4)
+[HTN] cycle_detected: repeated_world; rejecting wave steps=0
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.

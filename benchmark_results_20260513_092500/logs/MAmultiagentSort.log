@@ -1,0 +1,43 @@
+[server][info] Running client on level: ./levels/MAmultiagentSort.lvl
+[HTN] competitive_wave tasks=35 elapsed=0.0175882s
+[HTN] task_batch size=35
+[HTN] Task#0 DeliverBoxToGoal box=A goal=A agent=3 prio=250
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=3 prio=221
+[HTN] Task#6 DeliverBoxToGoal box=E goal=E agent=3 prio=194
+[HTN] Task#27 DeliverBoxToGoal box=T goal=T agent=0 prio=186
+[HTN] Task#8 DeliverBoxToGoal box=G goal=G agent=3 prio=182
+[HTN] Task#29 DeliverBoxToGoal box=U goal=U agent=0 prio=169
+[HTN] Task#10 DeliverBoxToGoal box=H goal=H agent=3 prio=163
+[HTN] Task#5 DeliverBoxToGoal box=E goal=E agent=2 prio=161
+[HTN] Task#14 DeliverBoxToGoal box=L goal=L agent=3 prio=160
+[HTN] Task#22 DeliverBoxToGoal box=Q goal=Q agent=0 prio=142
+[HTN] Task#31 DeliverBoxToGoal box=W goal=W agent=1 prio=142
+[HTN] Task#32 DeliverBoxToGoal box=X goal=X agent=1 prio=113
+[HTN] Task#20 DeliverBoxToGoal box=O goal=O agent=3 prio=106
+[HTN] Task#24 DeliverBoxToGoal box=R goal=R agent=1 prio=102
+[HTN] Task#1 DeliverBoxToGoal box=B goal=B agent=1 prio=85
+[HTN] Task#7 DeliverBoxToGoal box=F goal=F agent=1 prio=85
+[HTN] Task#9 DeliverBoxToGoal box=H goal=H agent=0 prio=81
+[HTN] Task#12 DeliverBoxToGoal box=J goal=J agent=2 prio=79
+[HTN] Task#15 DeliverBoxToGoal box=M goal=M agent=2 prio=75
+[HTN] Task#28 DeliverBoxToGoal box=U goal=U agent=2 prio=74
+[HTN] Task#19 DeliverBoxToGoal box=O goal=O agent=2 prio=67
+[HTN] Task#11 DeliverBoxToGoal box=I goal=I agent=0 prio=62
+[HTN] Task#2 DeliverBoxToGoal box=C goal=C agent=0 prio=61
+[HTN] Task#18 DeliverBoxToGoal box=O goal=O agent=1 prio=61
+[HTN] Task#13 DeliverBoxToGoal box=K goal=K agent=0 prio=60
+[HTN] Task#23 DeliverBoxToGoal box=R goal=R agent=2 prio=58
+[HTN] Task#26 DeliverBoxToGoal box=T goal=T agent=3 prio=52
+[HTN] Task#30 DeliverBoxToGoal box=V goal=V agent=2 prio=50
+[HTN] Task#4 DeliverBoxToGoal box=E goal=E agent=0 prio=46
+[HTN] Task#21 DeliverBoxToGoal box=P goal=P agent=2 prio=46
+[HTN] Task#16 DeliverBoxToGoal box=N goal=N agent=1 prio=45
+[HTN] Task#25 DeliverBoxToGoal box=S goal=S agent=2 prio=41
+[HTN] Task#33 DeliverBoxToGoal box=Z goal=Z agent=3 prio=40
+[HTN] Task#17 DeliverBoxToGoal box=O goal=O agent=1 prio=38
+[HTN] Task#34 DeliverBoxToGoal box=Y goal=Y agent=3 prio=31
+[client][info] Client timed out.
+[client][info] Sending termination signal to client process (PID = 252223).
+[server][info] Level solved: No.
+[server][info] Actions used: 0.
+[server][info] Time to solve: 0.000 seconds.
