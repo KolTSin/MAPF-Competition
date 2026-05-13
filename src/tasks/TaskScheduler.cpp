@@ -611,6 +611,13 @@ std::vector<ScheduledTask> schedule_once(
             used_agents.insert(chosen_task.agent_id);
             progress = true;
         }
+
+        // Return the first useful wave instead of repeatedly re-scanning the
+        // same ready set.  Dense swap levels can contain several currently
+        // unplannable blockers; retrying all of them in the same scheduler call
+        // consumes the planning budget before the solver can commit the tasks
+        // that did succeed and re-analyze from the improved state.
+        if (mutable_tasks.size() > 20 && progress && !scheduled.empty()) break;
     }
 
     return scheduled;
