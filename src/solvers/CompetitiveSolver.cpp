@@ -77,6 +77,26 @@ bool has_planned_actions(const std::vector<AgentPlan>& agent_plans) {
                        [](const AgentPlan& plan) { return !plan.actions.empty(); });
 }
 
+bool is_cycle_breaker_task(const Task& task) {
+    return task.type == TaskType::MoveBlockingBoxToParking &&
+           task.debug_label.find("cycle_breaker") != std::string::npos;
+}
+
+void keep_next_cycle_breaker_only(const Level& level, const State& state, TaskPrioritizer& prioritizer, std::vector<Task>& tasks) {
+    if (std::none_of(tasks.begin(), tasks.end(), is_cycle_breaker_task)) return;
+
+    prioritizer.score(level, state, tasks);
+    std::stable_sort(tasks.begin(), tasks.end(), [](const Task& a, const Task& b) {
+        if (is_cycle_breaker_task(a) != is_cycle_breaker_task(b)) return is_cycle_breaker_task(a);
+        if (a.priority != b.priority) return a.priority > b.priority;
+        return a.task_id < b.task_id;
+    });
+
+    const Task selected = tasks.front();
+    tasks.clear();
+    tasks.push_back(selected);
+}
+
 std::string compact_stop_reason(std::string reason) {
     for (char& ch : reason) {
         const bool safe = (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') ||
@@ -191,6 +211,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
 
         if (wave.empty()) {
             tasks = generator.generate_delivery_tasks(level, current, std::vector<AgentPlan>{}, deadline);
+            keep_next_cycle_breaker_only(level, current, prioritizer, tasks);
         }
         if (kVerboseTasks) {
             // Scoring is done on a copy because trace output should explain the
