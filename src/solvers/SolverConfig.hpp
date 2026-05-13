@@ -1,11 +1,11 @@
 #pragma once
 
 struct SolverConfig {
-    bool debug_htn_trace{true};
+    bool debug_htn_trace{false};
     bool debug_analysis{false};
     int max_replans{256};
     int max_batch_tasks{4};
-    int max_box_planner_expansions{50000};
+    int max_box_planner_expansions{12000};
     int max_agent_planner_expansions{20000};
     int reservation_persistence_horizon{20};
     int safe_prefix_length{6};

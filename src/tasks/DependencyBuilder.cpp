@@ -156,13 +156,26 @@ DependencyGraph DependencyBuilder::build_graph(const std::vector<Task>& tasks) c
             if (a_blocks_same_box || b_blocks_same_box) {
                 continue;
             }
-            if (a.type == TaskType::MoveBlockingBoxToParking && b.type == TaskType::DeliverBoxToGoal &&
-                a.unblocks_box_id == b.box_id) {
+            const bool a_unblocks_b = a.type == TaskType::MoveBlockingBoxToParking &&
+                                      b.type == TaskType::DeliverBoxToGoal &&
+                                      a.unblocks_box_id == b.box_id;
+            const bool b_unblocks_a = b.type == TaskType::MoveBlockingBoxToParking &&
+                                      a.type == TaskType::DeliverBoxToGoal &&
+                                      b.unblocks_box_id == a.box_id;
+            if (a_unblocks_b) {
                 add_edge(graph, a.task_id, b.task_id);
             }
-            if (b.type == TaskType::MoveBlockingBoxToParking && a.type == TaskType::DeliverBoxToGoal &&
-                b.unblocks_box_id == a.box_id) {
+            if (b_unblocks_a) {
                 add_edge(graph, b.task_id, a.task_id);
+            }
+            // A relocation task is intentionally allowed to start on, or cross,
+            // the goal cell it is clearing for the delivery it unblocks.  The
+            // explicit blocker -> delivery edge above already captures the
+            // required ordering; adding the generic endpoint/route-overlap edge
+            // in the opposite task-id order creates a 2-cycle on packed swap
+            // levels such as MAkaleidoscope, leaving no schedulable task.
+            if (a_unblocks_b || b_unblocks_a) {
+                continue;
             }
             if (a.type == TaskType::DeliverBoxToGoal && b.type == TaskType::MoveAgentToGoal && a.agent_id == b.agent_id) {
                 add_edge(graph, a.task_id, b.task_id);

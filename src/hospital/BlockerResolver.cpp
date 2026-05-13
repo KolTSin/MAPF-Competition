@@ -364,6 +364,41 @@ Position best_parking_for(const Level& level, const State& state, const LevelAna
     return ranked.front().first;
 }
 
+
+std::vector<Position> cheap_goal_occupant_parking_candidates(const Level& level,
+                                                            const State& state,
+                                                            const LevelAnalysis& analysis,
+                                                            Position box_pos,
+                                                            Position forbidden,
+                                                            const std::vector<Position>& reserved_parking) {
+    std::vector<Position> candidates = analysis.parking_cells;
+    for (const Position& p : analysis.free_cells) {
+        if (std::find(candidates.begin(), candidates.end(), p) != candidates.end()) continue;
+        candidates.push_back(p);
+    }
+
+    candidates.erase(std::remove_if(candidates.begin(), candidates.end(), [&](Position p) {
+        if (!level.in_bounds(p.row, p.col) || level.is_wall(p.row, p.col)) return true;
+        if (p == box_pos || p == forbidden) return true;
+        if (state.has_box(p.row, p.col)) return true;
+        if (level.goal_at(p.row, p.col) != '\0') return true;
+        return false;
+    }), candidates.end());
+
+    std::stable_sort(candidates.begin(), candidates.end(), [&](Position a, Position b) {
+        const bool a_reserved = std::find(reserved_parking.begin(), reserved_parking.end(), a) != reserved_parking.end();
+        const bool b_reserved = std::find(reserved_parking.begin(), reserved_parking.end(), b) != reserved_parking.end();
+        if (a_reserved != b_reserved) return !a_reserved;
+        const int score_a = analysis.at(a).parking_score - manhattan(box_pos, a);
+        const int score_b = analysis.at(b).parking_score - manhattan(box_pos, b);
+        if (score_a != score_b) return score_a > score_b;
+        return manhattan(box_pos, a) < manhattan(box_pos, b);
+    });
+
+    if (candidates.size() > 3) candidates.resize(3);
+    return candidates;
+}
+
 std::vector<Position> parking_candidate_positions_for(const Level& level,
                                                        const State& state,
                                                        const LevelAnalysis& analysis,
@@ -417,6 +452,83 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
     // relocation tasks only when a box is observed blocking an active delivery:
     // either on the selected agent's access route or on the coarse box-to-goal
     // route below.
+
+
+    // Pass 0: clear wrong boxes that already occupy an unsatisfied goal cell.
+    // In permutation-style levels a delivery may be otherwise easy, but its
+    // destination is blocked by another box sitting on that goal.  The low-level
+    // box planner correctly refuses to push into an occupied destination, so we
+    // must expose the occupant as prerequisite relocation work before ordinary
+    // deliveries are scheduled.  This is especially important for dense swap
+    // layouts such as MAkaleidoscope where every initially ready delivery may
+    // target a goal cell occupied by a different letter.
+    for (int r = 0; r < level.rows; ++r) {
+        if (deadline.expired()) return tasks;
+        for (int c = 0; c < level.cols; ++c) {
+            if (deadline.expired()) return tasks;
+            const char goal = level.goal_at(r, c);
+            if (goal < 'A' || goal > 'Z') continue;
+            if (state.box_at(r, c) == goal) continue;
+
+            const Position goal_pos{r, c};
+            const char blocker = state.box_at(r, c);
+            if (blocker < 'A' || blocker > 'Z') continue;
+            if (already_selected.count(blocker)) continue;
+
+            int blocker_agent = -1;
+            int blocker_best_dist = std::numeric_limits<int>::max();
+            const Color blocker_color = level.box_colors[static_cast<std::size_t>(blocker - 'A')];
+            for (int a = 0; a < state.num_agents(); ++a) {
+                if (level.agent_colors[static_cast<std::size_t>(a)] != blocker_color) continue;
+                const int d = manhattan(state.agent_positions[static_cast<std::size_t>(a)], goal_pos);
+                if (d < blocker_best_dist) { blocker_best_dist = d; blocker_agent = a; }
+            }
+            if (blocker_agent < 0) continue;
+
+            Task t;
+            t.type = TaskType::MoveBlockingBoxToParking;
+            t.task_id = next_task_id++;
+            t.box_id = blocker;
+            t.box_pos = goal_pos;
+            t.agent_id = blocker_agent;
+            t.unblocks_box_id = goal;
+            t.debug_label = "goal_occupant_blocker_for_" + std::string(1, goal);
+
+            t.parking_candidates = cheap_goal_occupant_parking_candidates(level, state, analysis, goal_pos, goal_pos, reserved_parking);
+            if (!t.parking_candidates.empty()) {
+                t.parking_pos = t.parking_candidates.front();
+            } else {
+                t.parking_pos = Position{-1, -1};
+            }
+            t.goal_pos = t.parking_pos;
+            t.priority = (t.parking_pos.row >= 0 ? analysis.at(t.parking_pos).parking_score - manhattan(goal_pos, t.parking_pos) : 0) + 150;
+            tasks.push_back(t);
+            if (t.parking_pos.row >= 0) reserved_parking.push_back(t.parking_pos);
+            already_selected.insert(blocker);
+        }
+    }
+
+    // If wrong-goal occupants were found, return this focused prerequisite set
+    // immediately.  Running the more expensive route/access blocker scans on a
+    // dense permutation board spends the time budget proving many secondary
+    // blockers while the scheduler first needs only these destination cells
+    // cleared.
+    if (!tasks.empty()) {
+        std::stable_sort(tasks.begin(), tasks.end(), [](const Task& a, const Task& b) {
+            if (a.priority != b.priority) return a.priority > b.priority;
+            return a.task_id < b.task_id;
+        });
+        std::set<int> selected_agents;
+        std::vector<Task> selected;
+        for (const Task& task : tasks) {
+            if (selected_agents.count(task.agent_id)) continue;
+            selected.push_back(task);
+            selected_agents.insert(task.agent_id);
+            if (selected.size() >= 10) break;
+        }
+        tasks = std::move(selected);
+        return tasks;
+    }
 
     // Pass 1: clear agent-access blockers.
     // For each unsatisfied goal, find the matching active box and the closest
