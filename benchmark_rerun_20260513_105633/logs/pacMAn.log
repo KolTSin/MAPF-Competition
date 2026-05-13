@@ -1,0 +1,15 @@
+[server][info] Running client on level: ./complevels/pacMAn.lvl
+[HTN-LNS] partial_plan_unsolved stop_reason=empty_wave steps=8 goals_completed=0/8 waves=12
+NoOp|NoOp|NoOp|Move(E)
+NoOp|Move(E)|NoOp|Move(N)
+NoOp|Move(E)|NoOp|Move(N)
+NoOp|Move(N)|NoOp|Move(N)
+NoOp|Move(N)|NoOp|Move(E)
+NoOp|Move(N)|NoOp|Move(E)
+NoOp|Move(E)|NoOp|Move(E)
+NoOp|Move(E)|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 8.
+[server][info] Time to solve: 19.691 seconds.

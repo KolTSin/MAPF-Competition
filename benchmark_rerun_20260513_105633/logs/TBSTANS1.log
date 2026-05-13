@@ -1,0 +1,24 @@
+[server][info] Running client on level: ./complevels/TBSTANS1.lvl
+[HTN-LNS] partial_plan_unsolved stop_reason=stagnation_guard:cycle_detected:_repeated_task_local_trajectory_D:8_10-_8_9 steps=17 goals_completed=0/7 waves=23
+NoOp|NoOp|Push(N,E)|NoOp|NoOp|Move(N)
+NoOp|NoOp|Push(E,S)|NoOp|NoOp|Push(N,W)
+NoOp|NoOp|NoOp|NoOp|NoOp|Pull(E,E)
+NoOp|NoOp|NoOp|NoOp|NoOp|Push(W,S)
+NoOp|NoOp|NoOp|NoOp|NoOp|Push(S,S)
+NoOp|NoOp|NoOp|NoOp|NoOp|Push(S,W)
+Move(N)|NoOp|Push(S,S)|Move(N)|Move(N)|NoOp
+NoOp|NoOp|Push(S,W)|Move(N)|Move(N)|NoOp
+NoOp|NoOp|NoOp|Move(N)|NoOp|Push(W,W)
+NoOp|NoOp|NoOp|Move(N)|NoOp|Push(W,W)
+NoOp|NoOp|NoOp|NoOp|NoOp|Pull(N,E)
+NoOp|NoOp|NoOp|NoOp|NoOp|Push(S,E)
+NoOp|NoOp|NoOp|Move(N)|NoOp|Push(E,E)
+NoOp|NoOp|NoOp|NoOp|NoOp|Push(E,N)
+NoOp|NoOp|Push(E,N)|NoOp|NoOp|Push(N,N)
+NoOp|NoOp|Push(N,E)|NoOp|NoOp|Push(N,E)
+NoOp|NoOp|Push(E,N)|NoOp|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 17.
+[server][info] Time to solve: 0.785 seconds.

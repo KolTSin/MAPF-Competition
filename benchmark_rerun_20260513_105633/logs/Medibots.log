@@ -1,0 +1,8 @@
+[server][info] Running client on level: ./complevels/Medibots.lvl
+[HTN-LNS] partial_plan_unsolved stop_reason=deadline_before_wave steps=1 goals_completed=0/51 waves=2
+Push(S,S)|Move(N)|Move(N)|Move(W)|Move(E)|Move(N)|Move(E)|Move(N)|Move(N)|Move(N)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 1.
+[server][info] Time to solve: 178.207 seconds.

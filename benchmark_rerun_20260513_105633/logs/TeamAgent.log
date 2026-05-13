@@ -1,0 +1,44 @@
+[server][info] Running client on level: ./complevels/TeamAgent.lvl
+Move(E)|Move(W)|Move(S)
+NoOp|Pull(W,S)|Move(S)
+NoOp|Pull(S,W)|Move(W)
+NoOp|Pull(S,S)|NoOp
+NoOp|Pull(E,S)|Push(W,S)
+NoOp|Push(W,S)|Push(S,S)
+Push(S,S)|Push(S,W)|Push(S,E)
+Push(S,S)|Push(W,W)|Push(E,S)
+Push(S,E)|Push(W,N)|Push(S,W)
+Push(E,E)|Push(N,N)|Push(W,S)
+Push(E,S)|Push(N,N)|Push(S,W)
+Push(S,S)|Push(N,N)|Push(W,W)
+Push(S,S)|Push(N,W)|Push(W,N)
+Move(W)|Push(W,W)|Push(N,N)
+Move(S)|Push(W,S)|Push(N,N)
+NoOp|Push(S,S)|Push(N,N)
+NoOp|Push(S,S)|Push(N,W)
+NoOp|Push(S,S)|NoOp
+NoOp|Push(S,W)|NoOp
+NoOp|Push(W,W)|NoOp
+NoOp|Push(W,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,W)|NoOp
+NoOp|Push(W,W)|NoOp
+NoOp|Push(W,S)|NoOp
+NoOp|Push(S,S)|NoOp
+NoOp|Push(S,S)|NoOp
+NoOp|Push(S,S)|NoOp
+NoOp|Push(S,W)|NoOp
+NoOp|Push(W,W)|NoOp
+NoOp|Push(W,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+NoOp|Push(N,N)|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 38.
+[server][info] Time to solve: 1.812 seconds.

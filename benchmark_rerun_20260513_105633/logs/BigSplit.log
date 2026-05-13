@@ -1,0 +1,13 @@
+[server][info] Running client on level: ./complevels/BigSplit.lvl
+[HTN-LNS] partial_plan_unsolved stop_reason=empty_wave steps=6 goals_completed=0/16 waves=15
+NoOp|Move(S)|Move(N)|Move(E)|Move(S)|NoOp|Push(E,E)|Push(S,S)|Push(W,W)|Push(N,N)
+NoOp|NoOp|NoOp|Move(E)|Move(S)|NoOp|Push(E,E)|Push(S,S)|Push(W,W)|Push(N,N)
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|Push(E,E)|NoOp|Push(W,W)|Push(N,N)
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|Move(E)|NoOp|NoOp|NoOp|NoOp|NoOp|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 6.
+[server][info] Time to solve: 113.860 seconds.

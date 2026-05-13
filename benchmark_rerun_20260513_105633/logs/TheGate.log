@@ -1,0 +1,40 @@
+[server][info] Running client on level: ./complevels/TheGate.lvl
+[HTN-LNS] partial_plan_unsolved stop_reason=deadline_before_wave steps=33 goals_completed=59/78 waves=4
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|Move(S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|Move(W)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|Move(W)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|Move(S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(W)|NoOp|Move(S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(W)|NoOp|Move(S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|Move(S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|Move(S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(W)|NoOp|Move(S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(W)|NoOp|Move(S)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(W)|NoOp|Move(W)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(W)|NoOp|Move(W)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|Move(W)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|Move(W)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|Move(W)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(S)|NoOp|Move(W)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Move(E)|NoOp|Pull(N,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(E,N)|NoOp|Pull(N,N)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp|Pull(N,N)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,W)|NoOp|Pull(N,N)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp|Pull(E,N)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(W,N)|NoOp|Pull(E,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp|Pull(E,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp|Pull(S,E)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,N)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(N,W)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp|NoOp|NoOp
+NoOp|NoOp|NoOp|NoOp|NoOp|NoOp|Push(W,W)|NoOp|NoOp|NoOp
+Push(E,E)|Push(W,W)|Push(S,S)|NoOp|Move(S)|Move(S)|NoOp|NoOp|Move(E)|Move(E)
+Push(E,E)|Push(W,W)|NoOp|NoOp|Move(S)|Move(S)|NoOp|Move(E)|Move(E)|Move(E)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 33.
+[server][info] Time to solve: 179.050 seconds.

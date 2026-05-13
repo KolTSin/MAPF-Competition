@@ -1,0 +1,11 @@
+[server][info] Running client on level: ./complevels/PokeNOM.lvl
+[HTN-LNS] partial_plan_unsolved stop_reason=deadline_before_wave steps=4 goals_completed=0/15 waves=5
+NoOp|Move(S)|Move(S)|NoOp|Move(N)|NoOp|Move(S)|Move(W)|Move(N)
+NoOp|Move(S)|Move(S)|NoOp|Move(N)|NoOp|Move(S)|Move(W)|Move(N)
+NoOp|Move(W)|Move(S)|NoOp|Move(N)|NoOp|Move(W)|Move(S)|Move(N)
+Push(S,E)|NoOp|NoOp|Move(W)|Move(N)|NoOp|Move(S)|Move(W)|Move(W)
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 4.
+[server][info] Time to solve: 178.399 seconds.

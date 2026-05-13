@@ -1,0 +1,4 @@
+level,levels_dir,level_path,status,solved,exit_code,wall_time_s,server_time_s,solution_length,log_file,source_summary
+"AIMAS7.lvl","./complevels","./complevels/AIMAS7.lvl","EXIT_130","Unknown","130","6","","","benchmark_rerun_20260513_105612/logs/AIMAS7.log","./benchmark_results_20260512_133326/summary.csv"
+"AMC.lvl","./complevels","./complevels/AMC.lvl","EXIT_130","Unknown","130","0","","","benchmark_rerun_20260513_105612/logs/AMC.log","./benchmark_results_20260512_133326/summary.csv"
+"BigSplit.lvl","./complevels","./complevels/BigSplit.lvl","EXIT_130","Unknown","130","0","","","benchmark_rerun_20260513_105612/logs/BigSplit.log","./benchmark_results_20260512_133326/summary.csv"

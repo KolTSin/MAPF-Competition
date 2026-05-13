@@ -26,7 +26,7 @@
 set -u
 
 SERVER_JAR="${SERVER_JAR:-./server.jar}"
-CLIENT_CMD="${CLIENT_CMD:-build/searchclient --solver comp --heuristic gc}"
+CLIENT_CMD="${CLIENT_CMD:-build/searchclient --solver lns_htn --heuristic gc}"
 TIMEOUT="${TIMEOUT:-180}"
 OUT_DIR="${OUT_DIR:-benchmark_rerun_$(date +%Y%m%d_%H%M%S)}"
 LOG_DIR="$OUT_DIR/logs"

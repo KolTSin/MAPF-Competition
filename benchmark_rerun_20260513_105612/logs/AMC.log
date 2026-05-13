@@ -1,0 +1,13 @@
+[server][info] Running client on level: ./complevels/AMC.lvl
+[HTN] competitive_wave tasks=13 elapsed=0.000589969s
+[HTN] task_batch size=13
+[HTN] Task#8 DeliverBoxToGoal box=B goal=B agent=0 prio=34
+[HTN] Task#4 DeliverBoxToGoal box=C goal=C agent=3 prio=14
+[HTN] Task#7 DeliverBoxToGoal box=C goal=C agent=3 prio=14
+[HTN] Task#5 DeliverBoxToGoal box=C goal=C agent=3 prio=11
+[HTN] Task#0 DeliverBoxToGoal box=D goal=D agent=1 prio=7
+[HTN] Task#1 DeliverBoxToGoal box=D goal=D agent=1 prio=2
+[HTN] Task#3 DeliverBoxToGoal box=D goal=D agent=1 prio=0
+[HTN] Task#6 DeliverBoxToGoal box=D goal=D agent=1 prio=-1
+[HTN] Task#2 DeliverBoxToGoal box=D goal=D agent=1 prio=-3
+[HTN] Task#18 MoveAgentToGoal agent=0 target_goal=0 prio=-9 deps=, 0, 1, 2, 3, 4, 5, 6, 7, 8

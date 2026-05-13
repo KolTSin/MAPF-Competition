@@ -1,0 +1,9 @@
+[server][info] Running client on level: ./complevels/DECrunchy.lvl
+[HTN-LNS] partial_plan_unsolved stop_reason=empty_wave steps=2 goals_completed=0/16 waves=12
+Move(S)|Move(S)|NoOp
+Move(S)|Move(S)|NoOp
+[client][info] Waiting for client process to terminate by itself.
+[client][info] Client terminated.
+[server][info] Level solved: No.
+[server][info] Actions used: 2.
+[server][info] Time to solve: 6.234 seconds.
