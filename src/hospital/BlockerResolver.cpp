@@ -395,7 +395,7 @@ std::vector<Position> cheap_goal_occupant_parking_candidates(const Level& level,
         return manhattan(box_pos, a) < manhattan(box_pos, b);
     });
 
-    if (candidates.size() > 3) candidates.resize(3);
+    if (candidates.size() > 8) candidates.resize(8);
     return candidates;
 }
 
@@ -495,6 +495,17 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
             t.debug_label = "goal_occupant_blocker_for_" + std::string(1, goal);
 
             t.parking_candidates = cheap_goal_occupant_parking_candidates(level, state, analysis, goal_pos, goal_pos, reserved_parking);
+            if (t.parking_candidates.empty() && deadline.has_at_least(kLowPriorityBlockerMinimumBudget)) {
+                t.parking_candidates = parking_candidate_positions_for(level,
+                                                                        state,
+                                                                        analysis,
+                                                                        blocker,
+                                                                        goal_pos,
+                                                                        goal_pos,
+                                                                        blocker_agent,
+                                                                        reserved_parking,
+                                                                        &deadline);
+            }
             if (!t.parking_candidates.empty()) {
                 t.parking_pos = t.parking_candidates.front();
             } else {

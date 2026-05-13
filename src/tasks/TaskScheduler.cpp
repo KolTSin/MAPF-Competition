@@ -639,11 +639,17 @@ std::vector<AgentPlan> TaskScheduler::build_agent_plans(const Level& level, cons
     // planned tasks still conflict, convert the conflict into an explicit
     // dependency and retry so the next pass plans the successor after the
     // predecessor's committed finish time.
-    const int max_dependency_repairs = std::max(1, static_cast<int>(mutable_tasks.size()) * static_cast<int>(mutable_tasks.size()));
+    const int task_count = static_cast<int>(mutable_tasks.size());
+    const int max_dependency_repairs = task_count > 20
+        ? 8
+        : std::max(1, task_count * task_count);
     std::vector<ScheduledTask> scheduled;
     for (int repair = 0; repair <= max_dependency_repairs; ++repair) {
         if (deadline.expired()) break;
-        scheduled = schedule_once(level, initial_state, mutable_tasks, deadline, config_.max_box_planner_expansions);
+        const int wave_box_expansions = task_count > 20
+            ? std::min(config_.max_box_planner_expansions, 3000)
+            : config_.max_box_planner_expansions;
+        scheduled = schedule_once(level, initial_state, mutable_tasks, deadline, wave_box_expansions);
         std::vector<AgentPlan> agent_plans = expand_scheduled_tasks(initial_state, scheduled);
         if (agent_plans.empty()) return {};
 

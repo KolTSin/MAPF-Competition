@@ -41,8 +41,6 @@ void SearchClient::run() {
     for (const JointAction& joint_action : plan.steps) {
         std::cout << joint_action.to_string() << '\n';
         std::cout.flush();
-        std::cerr << joint_action.to_string() << '\n';
-
         std::string response;
         if (!std::getline(std::cin, response)) {
             break;

@@ -1,6 +1,8 @@
 #include "solvers/CompetitiveSolver.hpp"
 
 #include "actions/ActionSemantics.hpp"
+#include "hospital/AgentPathPlanner.hpp"
+#include "hospital/BoxTransportPlanner.hpp"
 #include "hospital/LocalRepair.hpp"
 #include "plan/AgentPlan.hpp"
 #include "plan/PlanConflictRepairer.hpp"
@@ -60,6 +62,13 @@ bool configured_verbose_tasks() {
     return false;
 }
 
+bool configured_progress_trace() {
+    if (const char* v = std::getenv("MAPF_TRACE_PROGRESS")) {
+        return std::atoi(v) != 0;
+    }
+    return false;
+}
+
 int total_box_goals(const Level& level) {
     int total = 0;
     for (int r = 0; r < level.rows; ++r) {
@@ -69,6 +78,138 @@ int total_box_goals(const Level& level) {
         }
     }
     return total;
+}
+
+bool agent_goals_satisfied(const Level& level, const State& state) {
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            const char goal = level.goal_at(r, c);
+            if (goal < '0' || goal > '9') continue;
+            const int agent = goal - '0';
+            if (agent < 0 || agent >= state.num_agents()) continue;
+            if (state.agent_positions[static_cast<std::size_t>(agent)] != Position{r, c}) return false;
+        }
+    }
+    return true;
+}
+
+Position find_box(const State& state, char box) {
+    for (int r = 0; r < state.rows; ++r) {
+        for (int c = 0; c < state.cols; ++c) {
+            if (state.box_at(r, c) == box) return Position{r, c};
+        }
+    }
+    return Position{-1, -1};
+}
+
+bool can_agent_move_box(const Level& level, int agent, char box) {
+    return agent >= 0 &&
+           agent < static_cast<int>(level.agent_colors.size()) &&
+           box >= 'A' &&
+           box <= 'Z' &&
+           level.agent_colors[static_cast<std::size_t>(agent)] == level.box_colors[static_cast<std::size_t>(box - 'A')];
+}
+
+Plan try_single_remaining_box_goal(const Level& level, const State& state, const PlanningDeadline& deadline) {
+    Position goal_pos{-1, -1};
+    char goal_box = '\0';
+    int unsatisfied = 0;
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            const char goal = level.goal_at(r, c);
+            if (goal < 'A' || goal > 'Z') continue;
+            if (state.box_at(r, c) == goal) continue;
+            ++unsatisfied;
+            goal_box = goal;
+            goal_pos = Position{r, c};
+        }
+    }
+    if (unsatisfied != 1 || goal_pos.row < 0 || state.box_at(goal_pos.row, goal_pos.col) != '\0') return {};
+
+    const Position box_pos = find_box(state, goal_box);
+    if (box_pos.row < 0) return {};
+
+    std::vector<int> agents;
+    for (int agent = 0; agent < state.num_agents(); ++agent) {
+        if (can_agent_move_box(level, agent, goal_box)) agents.push_back(agent);
+    }
+    std::sort(agents.begin(), agents.end(), [&](int a, int b) {
+        const Position pa = state.agent_positions[static_cast<std::size_t>(a)];
+        const Position pb = state.agent_positions[static_cast<std::size_t>(b)];
+        const int da = std::abs(pa.row - box_pos.row) + std::abs(pa.col - box_pos.col);
+        const int db = std::abs(pb.row - box_pos.row) + std::abs(pb.col - box_pos.col);
+        return da < db;
+    });
+
+    BoxTransportPlanner planner(200000);
+    for (int agent : agents) {
+        if (deadline.expired()) break;
+        Task task;
+        task.type = TaskType::DeliverBoxToGoal;
+        task.task_id = 0;
+        task.agent_id = agent;
+        task.box_id = goal_box;
+        task.box_pos = box_pos;
+        task.goal_symbol = goal_box;
+        task.goal_pos = goal_pos;
+
+        const TaskPlan plan = planner.plan(level, state, task, ReservationTable{}, 0, deadline);
+        if (!plan.success || plan.agent_plan.actions.empty()) continue;
+
+        std::vector<AgentPlan> agent_plans(static_cast<std::size_t>(state.num_agents()));
+        for (int a = 0; a < state.num_agents(); ++a) {
+            agent_plans[static_cast<std::size_t>(a)].agent = a;
+            agent_plans[static_cast<std::size_t>(a)].positions = {state.agent_positions[static_cast<std::size_t>(a)]};
+        }
+        agent_plans[static_cast<std::size_t>(agent)] = plan.agent_plan;
+        Plan out = PlanMerger::merge_agent_plans(agent_plans, state.num_agents());
+        PlanMerger::compact_independent_actions(level, state, out);
+        return out;
+    }
+    return {};
+}
+
+Plan try_finish_agent_goals(const Level& level, State& state, const PlanningDeadline& deadline) {
+    Plan out;
+    AgentPathPlanner planner;
+    bool progress = true;
+    while (!deadline.expired() && progress && !agent_goals_satisfied(level, state)) {
+        progress = false;
+        for (int r = 0; r < level.rows && !deadline.expired(); ++r) {
+            for (int c = 0; c < level.cols && !deadline.expired(); ++c) {
+                const char goal = level.goal_at(r, c);
+                if (goal < '0' || goal > '9') continue;
+                const int agent = goal - '0';
+                if (agent < 0 || agent >= state.num_agents()) continue;
+                if (state.agent_positions[static_cast<std::size_t>(agent)] == Position{r, c}) continue;
+
+                Task task;
+                task.type = TaskType::MoveAgentToGoal;
+                task.task_id = 0;
+                task.agent_id = agent;
+                task.goal_symbol = goal;
+                task.goal_pos = Position{r, c};
+                task.box_pos = state.agent_positions[static_cast<std::size_t>(agent)];
+
+                const TaskPlan plan = planner.plan(level, state, task, ReservationTable{}, 0, deadline);
+                if (!plan.success || plan.agent_plan.actions.empty()) continue;
+
+                std::vector<AgentPlan> agent_plans(static_cast<std::size_t>(state.num_agents()));
+                for (int a = 0; a < state.num_agents(); ++a) {
+                    agent_plans[static_cast<std::size_t>(a)].agent = a;
+                    agent_plans[static_cast<std::size_t>(a)].positions = {state.agent_positions[static_cast<std::size_t>(a)]};
+                }
+                agent_plans[static_cast<std::size_t>(agent)] = plan.agent_plan;
+                Plan agent_plan = PlanMerger::merge_agent_plans(agent_plans, state.num_agents());
+                PlanMerger::compact_independent_actions(level, state, agent_plan);
+                for (const JointAction& step : agent_plan.steps) out.steps.push_back(step);
+                apply_prefix(state, agent_plan, static_cast<int>(agent_plan.steps.size()));
+                progress = true;
+                break;
+            }
+        }
+    }
+    return out;
 }
 
 bool has_planned_actions(const std::vector<AgentPlan>& agent_plans) {
@@ -117,6 +258,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
     // Verbose mode is intentionally resolved once so a single solve call has a
     // consistent trace format even if the environment changes mid-run.
     const bool kVerboseTasks = config_.debug_htn_trace || configured_verbose_tasks();
+    const bool kTraceProgress = configured_progress_trace();
     const auto start_time = std::chrono::steady_clock::now();
 
     // `current` is the solver's internal simulation of the world after all
@@ -192,6 +334,12 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         if (wave.empty()) {
             tasks = generator.generate_delivery_tasks(level, current, std::vector<AgentPlan>{}, deadline);
         }
+        if (kTraceProgress) {
+            std::cerr << "[HTN] wave=" << wave_count
+                      << " after_tasks steps=" << accumulated.steps.size()
+                      << " completed=" << WaveProgressGuard::goals_completed(level, current) << '/' << total_goals
+                      << " tasks=" << tasks.size() << '\n';
+        }
         if (kVerboseTasks) {
             // Scoring is done on a copy because trace output should explain the
             // scheduler's priorities without mutating the task list returned by
@@ -210,7 +358,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // satisfied or impossible to assign, so there is no useful competitive
         // wave to append.
         if (tasks.empty()) {
-            stop_reason = (WaveProgressGuard::goals_completed(level, current) >= total_goals)
+            stop_reason = (WaveProgressGuard::goals_completed(level, current) >= total_goals && agent_goals_satisfied(level, current))
                               ? "solved"
                               : "no_tasks";
             break;
@@ -227,6 +375,11 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             wave_agent_plans = scheduler.build_agent_plans(level, current, tasks, deadline);
             wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
             PlanMerger::compact_independent_actions(level, current, wave);
+        }
+        if (kTraceProgress) {
+            std::cerr << "[HTN] wave=" << wave_count
+                      << " after_scheduler wave_steps=" << wave.steps.size()
+                      << " agent_plans=" << wave_agent_plans.size() << '\n';
         }
         bool conflict_repair_already_attempted = false;
         if (wave.empty()) {
@@ -282,7 +435,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             // whole scheduler wave.
             if (wave.empty() && !deadline.expired() && has_planned_actions(wave_agent_plans)) {
                 conflict_repair_already_attempted = true;
-                const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave_agent_plans);
+                const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave_agent_plans, 32, 32);
                 if (repaired_wave.conflict_free && !repaired_wave.plan.empty()) {
                     if (kVerboseTasks) {
                         std::cerr << "[HTN] cbs_style_repair recovered scheduler_empty iterations="
@@ -315,7 +468,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             break;
         }
         if (!conflict_repair_already_attempted) {
-            const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave_agent_plans);
+            const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave_agent_plans, 32, 32);
             if (repaired_wave.conflict_free) {
                 if (kVerboseTasks && repaired_wave.changed) {
                     std::cerr << "[HTN] cbs_style_repair inserted waits iterations="
@@ -328,6 +481,10 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
                 std::cerr << "[HTN] cbs_style_repair could not prove conflict-free wave; using scheduler wave\n";
             }
         }
+        if (kTraceProgress) {
+            std::cerr << "[HTN] wave=" << wave_count
+                      << " after_repair wave_steps=" << wave.steps.size() << '\n';
+        }
 
         // Simulate the wave before accepting it.  A locally executable wave can
         // still be cyclic (for example Push(E,E) immediately followed by the
@@ -335,6 +492,12 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // those waves before appending them so cyclic benchmark cases terminate
         // with a compact diagnostic prefix instead of thousands of oscillations.
         const WaveProgressDecision progress = progress_guard.assess(level, current, wave, best_goals_completed);
+        if (kTraceProgress) {
+            std::cerr << "[HTN] wave=" << wave_count
+                      << " progress accept=" << (progress.accept ? "true" : "false")
+                      << " reason=" << compact_stop_reason(progress.reason)
+                      << " goals_after=" << progress.goals_after << '\n';
+        }
         if (!progress.accept) {
             if (kVerboseTasks) {
                 std::cerr << "[HTN] " << progress.reason << "; rejecting wave steps=" << wave.steps.size() << '\n';
@@ -359,7 +522,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // post-wave state.
         apply_prefix(current, wave, safe_prefix);
         progress_guard.remember_accepted(current);
-        if (WaveProgressGuard::goals_completed(level, current) >= total_goals) {
+        if (WaveProgressGuard::goals_completed(level, current) >= total_goals && agent_goals_satisfied(level, current)) {
             stop_reason = "solved";
             break;
         }
@@ -370,6 +533,23 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             stop_reason = "stagnation_guard:no_goal_progress";
             break;
         }
+    }
+
+    if (WaveProgressGuard::goals_completed(level, current) + 1 == total_goals && !deadline.expired()) {
+        Plan final_box = try_single_remaining_box_goal(level, current, deadline);
+        if (!final_box.empty()) {
+            for (const JointAction& step : final_box.steps) accumulated.steps.push_back(step);
+            apply_prefix(current, final_box, static_cast<int>(final_box.steps.size()));
+        }
+    }
+
+    if (WaveProgressGuard::goals_completed(level, current) >= total_goals && !agent_goals_satisfied(level, current) && !deadline.expired()) {
+        Plan final_agents = try_finish_agent_goals(level, current, deadline);
+        for (const JointAction& step : final_agents.steps) accumulated.steps.push_back(step);
+    }
+
+    if (WaveProgressGuard::goals_completed(level, current) >= total_goals && agent_goals_satisfied(level, current)) {
+        stop_reason = "solved";
     }
 
     // Return the best HTN/reservation prefix immediately.  The old CBS fallback
@@ -385,6 +565,19 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
                   << " goals_completed=" << completed_goals << '/' << total_goals
                   << " waves=" << wave_count
                   << " no_progress_iters=" << no_progress_iters << '\n';
+        if (configured_progress_trace()) {
+            for (int r = 0; r < level.rows; ++r) {
+                for (int c = 0; c < level.cols; ++c) {
+                    const char goal = level.goal_at(r, c);
+                    if (goal >= 'A' && goal <= 'Z' && current.box_at(r, c) != goal) {
+                        std::cerr << "[HTN] unsatisfied_goal " << goal
+                                  << " at=(" << r << ',' << c << ')'
+                                  << " occupant=" << (current.box_at(r, c) == '\0' ? '.' : current.box_at(r, c))
+                                  << '\n';
+                    }
+                }
+            }
+        }
     }
     return accumulated;
 }

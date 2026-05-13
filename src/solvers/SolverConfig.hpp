@@ -11,5 +11,5 @@ struct SolverConfig {
     int safe_prefix_length{6};
     int max_local_repair_attempts{2};
     int max_parking_candidates{8};
-    int planning_time_budget_ms{175000};
+    int planning_time_budget_ms{230000};
 };
