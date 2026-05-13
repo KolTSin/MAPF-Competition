@@ -1,6 +1,7 @@
 #include "hospital/BlockerResolver.hpp"
 #include "hospital/BoxTransportPlanner.hpp"
 #include <algorithm>
+#include <chrono>
 #include <limits>
 #include <queue>
 #include <set>
@@ -12,6 +13,7 @@ namespace {
 // and output paths/reachability answers move one row/column at a time.
 constexpr int DR[4] = {-1, 1, 0, 0};
 constexpr int DC[4] = {0, 0, 1, -1};
+constexpr auto kLowPriorityBlockerMinimumBudget = std::chrono::milliseconds(40);
 
 // Lightweight distance heuristic for tie-breaking. It ignores walls and boxes,
 // so callers only use it for choosing the closest reasonable agent/cell, never
@@ -510,6 +512,8 @@ std::vector<Task> BlockerResolver::generate_blocker_tasks(const Level& level,
             }
         }
     }
+
+    if (!deadline.has_at_least(kLowPriorityBlockerMinimumBudget)) return tasks;
 
     // Pass 2: clear boxes directly on coarse delivery routes.
     // For every unsatisfied goal, build a cheap row-then-column path from the
