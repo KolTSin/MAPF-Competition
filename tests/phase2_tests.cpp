@@ -20,6 +20,7 @@
 #include "parser/LevelParser.hpp"
 
 #include <cassert>
+#include <chrono>
 #include <filesystem>
 #include <fstream>
 #include <sstream>
@@ -1273,6 +1274,27 @@ red: 1, C
             }
         }
         assert(h_deliveries == 2);
+    }
+
+
+    {
+        TaskGenerator generator;
+        TaskGenerationOptions options;
+        options.include_blocker_tasks = false;
+        options.include_agent_goal_tasks = false;
+        options.max_direct_delivery_tasks = 1;
+
+        PlanningDeadline deadline = PlanningDeadline::after(std::chrono::milliseconds(1000));
+        const std::vector<Task> tasks = generator.generate_delivery_tasks(make_level(), make_state(), {}, deadline, options);
+
+        assert(tasks.size() == 1);
+        assert(tasks.front().type == TaskType::DeliverBoxToGoal);
+    }
+
+    {
+        PlanningDeadline expired = PlanningDeadline::after(std::chrono::milliseconds(0));
+        assert(expired.expired());
+        assert(!expired.has_at_least(std::chrono::milliseconds(1)));
     }
 
     std::cout << "phase2_tests passed\n";

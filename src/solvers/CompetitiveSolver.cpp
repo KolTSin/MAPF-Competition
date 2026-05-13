@@ -153,8 +153,37 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
 
         // Convert unsatisfied goals into high-level delivery tasks. Each Task is
         // an intuitive contract: move a compatible box/agent from its source to
-        // its target goal while respecting hospital-domain constraints.
-        std::vector<Task> tasks = generator.generate_delivery_tasks(level, current, std::vector<AgentPlan>{}, deadline);
+        // its target goal while respecting hospital-domain constraints.  On the
+        // very first wave, try a tiny direct-delivery batch before expensive
+        // blocker enumeration; if it yields a valid prefix, return useful work
+        // sooner and let the next wave perform the deeper analysis from the
+        // advanced state.
+        std::vector<Task> tasks;
+        std::vector<AgentPlan> wave_agent_plans;
+        Plan wave;
+        bool used_cheap_first_prefix = false;
+        if (accumulated.steps.empty()) {
+            TaskGenerationOptions cheap_options;
+            cheap_options.include_blocker_tasks = false;
+            cheap_options.include_agent_goal_tasks = false;
+            cheap_options.max_direct_delivery_tasks = static_cast<std::size_t>(std::max(1, std::min(config_.max_batch_tasks, 4)));
+            std::vector<Task> cheap_tasks = generator.generate_delivery_tasks(level, current, std::vector<AgentPlan>{}, deadline, cheap_options);
+            if (!cheap_tasks.empty() && !deadline.expired()) {
+                std::vector<AgentPlan> cheap_agent_plans = scheduler.build_agent_plans(level, current, cheap_tasks, deadline);
+                Plan cheap_wave = PlanMerger::merge_agent_plans(cheap_agent_plans, current.num_agents());
+                PlanMerger::compact_independent_actions(level, current, cheap_wave);
+                if (!cheap_wave.empty()) {
+                    tasks = std::move(cheap_tasks);
+                    wave_agent_plans = std::move(cheap_agent_plans);
+                    wave = std::move(cheap_wave);
+                    used_cheap_first_prefix = true;
+                }
+            }
+        }
+
+        if (wave.empty()) {
+            tasks = generator.generate_delivery_tasks(level, current, std::vector<AgentPlan>{}, deadline);
+        }
         if (kVerboseTasks) {
             // Scoring is done on a copy because trace output should explain the
             // scheduler's priorities without mutating the task list returned by
@@ -162,7 +191,8 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             std::vector<Task> scored = tasks;
             prioritizer.score(level, current, scored);
             std::cerr << "[HTN] competitive_wave tasks=" << scored.size()
-                      << " elapsed=" << elapsed << "s\n";
+                      << " elapsed=" << elapsed << "s"
+                      << (used_cheap_first_prefix ? " cheap_first_prefix=true" : "") << '\n';
             HTNTracePrinter::print_task_batch(scored, std::cerr);
             for (const auto& reason : generator.skip_reasons()) {
                 std::cerr << "[HTN] " << reason << '\n';
@@ -185,9 +215,11 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             stop_reason = "deadline_before_scheduler";
             break;
         }
-        std::vector<AgentPlan> wave_agent_plans = scheduler.build_agent_plans(level, current, tasks, deadline);
-        Plan wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
-        PlanMerger::compact_independent_actions(level, current, wave);
+        if (wave.empty()) {
+            wave_agent_plans = scheduler.build_agent_plans(level, current, tasks, deadline);
+            wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
+            PlanMerger::compact_independent_actions(level, current, wave);
+        }
         if (wave.empty()) {
             // An empty wave means the scheduler could not safely reserve paths
             // for the generated tasks. Local repair now performs real low-level

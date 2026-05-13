@@ -12,6 +12,13 @@
 #include <string>
 #include <vector>
 
+
+struct TaskGenerationOptions {
+    bool include_blocker_tasks{true};
+    bool include_agent_goal_tasks{true};
+    std::size_t max_direct_delivery_tasks{0};
+};
+
 class TaskGenerator {
 public:
     // Builds the high-level work list consumed by solvers.
@@ -40,6 +47,11 @@ public:
                                                             const State& state,
                                                             const std::vector<AgentPlan>& initial_agent_plans,
                                                             const PlanningDeadline& deadline);
+    [[nodiscard]] std::vector<Task> generate_delivery_tasks(const Level& level,
+                                                            const State& state,
+                                                            const std::vector<AgentPlan>& initial_agent_plans,
+                                                            const PlanningDeadline& deadline,
+                                                            const TaskGenerationOptions& options);
 
     // Human-readable explanations for goals that were intentionally ignored
     // during the last call to `generate_delivery_tasks`.

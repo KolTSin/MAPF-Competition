@@ -15,9 +15,9 @@ Completed checklist items from those files were treated as already-picked-off pr
 **Open work:**
 
 - Thread one shared `PlanningDeadline` through level analysis, task generation, prioritization, blocker generation, local repair, and every low-level planner.
-- Add a cheap first-prefix mode that tries a small set of reachable, low-risk deliveries before expensive blocker enumeration.
+- Done: Add a cheap first-prefix mode that tries a small set of direct deliveries before expensive blocker enumeration.
 - Cache static analysis, static distances, component reachability, parking candidates, and task skeletons across waves.
-- Stop expanding low-priority blocker tasks when the remaining budget is too small to validate and return a safe prefix.
+- Done: Stop expanding low-priority coarse-route blocker tasks when the remaining budget is too small to validate and return a safe prefix.
 - Done: `BoxTransportPlanner` expansion limits are configurable through `SolverConfig` for competitive scheduling and local repair, with map-size fallback for default callers.
 
 **Prerequisites:**

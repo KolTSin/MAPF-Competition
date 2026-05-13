@@ -25,6 +25,16 @@ public:
 
     [[nodiscard]] Clock::time_point time_point() const noexcept { return deadline_; }
 
+    [[nodiscard]] std::chrono::milliseconds remaining() const noexcept {
+        const auto now = Clock::now();
+        if (now >= deadline_) return std::chrono::milliseconds(0);
+        return std::chrono::duration_cast<std::chrono::milliseconds>(deadline_ - now);
+    }
+
+    [[nodiscard]] bool has_at_least(std::chrono::milliseconds budget) const noexcept {
+        return remaining() >= budget;
+    }
+
 private:
     Clock::time_point deadline_{Clock::time_point::max()};
 };

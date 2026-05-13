@@ -151,6 +151,14 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
                                                          const State& state,
                                                          const std::vector<AgentPlan>& initial_agent_plans,
                                                          const PlanningDeadline& deadline) {
+    return generate_delivery_tasks(level, state, initial_agent_plans, deadline, TaskGenerationOptions{});
+}
+
+std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
+                                                         const State& state,
+                                                         const std::vector<AgentPlan>& initial_agent_plans,
+                                                         const PlanningDeadline& deadline,
+                                                         const TaskGenerationOptions& options) {
     // Start each run with a clean output surface: callers receive only tasks
     // and skip reasons that describe the current level/state pair.
     skip_reasons_.clear();
@@ -233,7 +241,14 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
             task.goal_pos = Position{r, c};
             tasks.push_back(task);
             assigned_boxes.push_back(box_pos);
+            if (options.max_direct_delivery_tasks > 0 && tasks.size() >= options.max_direct_delivery_tasks) break;
         }
+        if (options.max_direct_delivery_tasks > 0 && tasks.size() >= options.max_direct_delivery_tasks) break;
+    }
+
+    if (!options.include_blocker_tasks) {
+        if (options.include_agent_goal_tasks && !deadline.expired()) append_agent_goal_tasks(level, state, next_task_id, tasks);
+        return tasks;
     }
 
     // Second phase: augment direct deliveries with tasks that clear obstacles
@@ -263,7 +278,7 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
     // that have digit goals should return to their own goal cells.  These tasks
     // are intentionally appended last and depend on the earlier task ids so they
     // do not steal an agent away before its useful work is done.
-    if (!deadline.expired()) append_agent_goal_tasks(level, state, next_task_id, tasks);
+    if (options.include_agent_goal_tasks && !deadline.expired()) append_agent_goal_tasks(level, state, next_task_id, tasks);
 
     return tasks;
 }
