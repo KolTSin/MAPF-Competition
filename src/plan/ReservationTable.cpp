@@ -152,6 +152,7 @@ bool ReservationTable::can_move_agent(int agent_id, Position from, Position to, 
     return !is_edge_reserved(to, from, time_from, agent_id) &&
            !is_cell_reserved(to.row, to.col, time_from + 1, agent_id) &&
            !is_incoming_reserved(to, time_from, agent_id) &&
+           !is_outgoing_reserved(from, time_from, agent_id) &&
            !is_outgoing_reserved(to, time_from, agent_id);
 }
 bool ReservationTable::can_occupy_box(char box_char, Position pos, int time) const {

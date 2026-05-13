@@ -220,6 +220,127 @@ ReplanTarget target_from_agent_plan(const State& initial_state, const AgentPlan&
     return target;
 }
 
+
+std::optional<Position> personal_goal_for_agent(const Level& level, int agent) {
+    if (agent < 0 || agent > 9) {
+        return std::nullopt;
+    }
+
+    const char goal_symbol = static_cast<char>('0' + agent);
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            if (level.goal_at(r, c) == goal_symbol) {
+                return Position{r, c};
+            }
+        }
+    }
+
+    return std::nullopt;
+}
+
+bool passive_goal_blocker(const Conflict& conflict, int agent) {
+    if (conflict.type == ConflictType::BoxIntoAgentStartCell) {
+        return conflict.agents[1] == agent;
+    }
+    if (conflict.type == ConflictType::AgentBoxSameDestination) {
+        return conflict.agents[0] == agent && conflict.agents[1] != agent;
+    }
+    return false;
+}
+
+bool cell_is_initially_clear_for_agent(const State& state, Position pos, int moving_agent) {
+    if (!state.in_bounds(pos.row, pos.col)) {
+        return false;
+    }
+    if (state.has_box(pos.row, pos.col)) {
+        return false;
+    }
+    for (int agent = 0; agent < state.num_agents(); ++agent) {
+        if (agent == moving_agent) {
+            continue;
+        }
+        if (state.agent_positions[static_cast<std::size_t>(agent)] == pos) {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::optional<Position> nearest_safe_parking_target(const Level& level,
+                                                    const State& state,
+                                                    int agent,
+                                                    Position avoid_cell) {
+    if (agent < 0 || agent >= state.num_agents()) {
+        return std::nullopt;
+    }
+
+    const Position start = state.agent_positions[static_cast<std::size_t>(agent)];
+    std::optional<Position> best;
+    int best_score = std::numeric_limits<int>::max();
+
+    auto consider = [&](Position pos, int goal_penalty) {
+        if (!level.in_bounds(pos.row, pos.col) || level.is_wall(pos.row, pos.col)) {
+            return;
+        }
+        if (pos == avoid_cell) {
+            return;
+        }
+        if (!cell_is_initially_clear_for_agent(state, pos, agent)) {
+            return;
+        }
+
+        const int score = goal_penalty + std::abs(start.row - pos.row) + std::abs(start.col - pos.col);
+        if (!best.has_value() || score < best_score) {
+            best = pos;
+            best_score = score;
+        }
+    };
+
+    // Prefer ordinary floor so an evacuated agent does not become the next box-
+    // or agent-goal obstruction. If the component contains only goals, the second
+    // pass still provides a legal escape target as a last resort.
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            if (level.goal_at(r, c) == '\0') {
+                consider(Position{r, c}, 0);
+            }
+        }
+    }
+    if (best.has_value()) {
+        return best;
+    }
+
+    for (int r = 0; r < level.rows; ++r) {
+        for (int c = 0; c < level.cols; ++c) {
+            consider(Position{r, c}, 100000);
+        }
+    }
+
+    return best;
+}
+
+ReplanTarget retarget_passive_goal_blocker(const Level& level,
+                                           const State& initial_state,
+                                           int agent,
+                                           const Conflict& conflict,
+                                           ReplanTarget target) {
+    if (!passive_goal_blocker(conflict, agent)) {
+        return target;
+    }
+
+    if (const std::optional<Position> own_goal = personal_goal_for_agent(level, agent)) {
+        if (*own_goal != conflict.cell) {
+            target.agent = *own_goal;
+            return target;
+        }
+    }
+
+    if (const std::optional<Position> parking = nearest_safe_parking_target(level, initial_state, agent, conflict.cell)) {
+        target.agent = *parking;
+    }
+    return target;
+}
+
 bool matches_replan_target(const State& state, int agent, const ReplanTarget& target) {
     if (agent < 0 || agent >= state.num_agents()) {
         return false;
@@ -362,7 +483,13 @@ std::optional<AgentPlan> replan_agent_with_constraints(const Level& level,
     }
 
     const AgentPlan& original = plans[static_cast<std::size_t>(agent)];
-    const ReplanTarget target = target_from_agent_plan(initial_state, original);
+    const ReplanTarget target = retarget_passive_goal_blocker(
+        level,
+        initial_state,
+        agent,
+        conflict,
+        target_from_agent_plan(initial_state, original)
+    );
     if (target.agent.row < 0 || target.agent.col < 0) {
         return std::nullopt;
     }
@@ -473,6 +600,44 @@ std::optional<AgentPlan> replan_agent_with_constraints(const Level& level,
     }
 
     return std::nullopt;
+}
+
+
+int passive_blocker_for_conflict(const Conflict& conflict) {
+    if (conflict.type == ConflictType::BoxIntoAgentStartCell) {
+        return conflict.agents[1];
+    }
+    if (conflict.type == ConflictType::AgentBoxSameDestination) {
+        return conflict.agents[0];
+    }
+    return -1;
+}
+
+int moving_agent_for_passive_blocker_conflict(const Conflict& conflict) {
+    if (conflict.type == ConflictType::BoxIntoAgentStartCell ||
+        conflict.type == ConflictType::AgentBoxSameDestination) {
+        return conflict.agents[0] == passive_blocker_for_conflict(conflict) ? conflict.agents[1] : conflict.agents[0];
+    }
+    return -1;
+}
+
+AgentPlan delay_agent_plan(const AgentPlan& plan, int count) {
+    AgentPlan delayed = plan;
+    const int delay = std::max(1, count);
+    delayed.actions.insert(delayed.actions.begin(), static_cast<std::size_t>(delay), Action::noop());
+    if (!delayed.positions.empty()) {
+        delayed.positions.insert(delayed.positions.begin() + 1, static_cast<std::size_t>(delay), delayed.positions.front());
+    }
+    return delayed;
+}
+
+bool blocker_has_cleared_conflict_cell(const std::vector<AgentPlan>& plans, const Conflict& conflict) {
+    const int blocker = passive_blocker_for_conflict(conflict);
+    if (blocker < 0 || blocker >= static_cast<int>(plans.size())) {
+        return false;
+    }
+    const int clear_time = std::max(1, conflict.time + 1);
+    return plans[static_cast<std::size_t>(blocker)].position_at(clear_time) != conflict.cell;
 }
 
 std::vector<int> affected_agents(const Conflict& conflict, int num_agents) {
@@ -978,7 +1143,26 @@ PlanConflictRepairer::Result PlanConflictRepairer::repair(
         }
 
         bool repaired_this_conflict = false;
+
+        if (blocker_has_cleared_conflict_cell(plans, conflict)) {
+            const int mover = moving_agent_for_passive_blocker_conflict(conflict);
+            if (mover >= 0 && mover < num_agents && plans[static_cast<std::size_t>(mover)].valid()) {
+                std::vector<AgentPlan> candidate = plans;
+                candidate[static_cast<std::size_t>(mover)] = delay_agent_plan(candidate[static_cast<std::size_t>(mover)], 1);
+                const int old_first = first_conflict_time(uncompressed_plan_from_agent_plans(plans, num_agents), initial_state);
+                const int new_first = first_conflict_time(uncompressed_plan_from_agent_plans(candidate, num_agents), initial_state);
+                if (new_first >= old_first || is_conflict_free(candidate, initial_state)) {
+                    plans = std::move(candidate);
+                    result.changed = true;
+                    repaired_this_conflict = true;
+                }
+            }
+        }
+
         for (int agent : agents) {
+            if (repaired_this_conflict) {
+                break;
+            }
             std::optional<AgentPlan> replanned = replan_agent_with_constraints(
                 level,
                 initial_state,

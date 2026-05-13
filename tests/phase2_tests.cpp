@@ -1401,6 +1401,47 @@ red: 1, C
         assert(tasks.front().type == TaskType::DeliverBoxToGoal);
     }
 
+
+    {
+        Level l;
+        l.rows = 5; l.cols = 7;
+        l.walls.assign(35, false);
+        l.goals.assign(35, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Green;
+        l.agent_colors[1] = Color::Blue;
+        l.box_colors['B' - 'A'] = Color::Green;
+        l.goals[l.index(2,4)] = 'B';
+
+        State s;
+        s.rows = 5; s.cols = 7;
+        s.agent_positions = {Position{2,2}, Position{2,4}};
+        s.box_pos.assign(35, '\0');
+        s.set_box(2,3,'B');
+
+        AgentPlan mover;
+        mover.agent = 0;
+        mover.positions = {Position{2,2}, Position{2,3}};
+        mover.actions = {Action::push(Direction::East, Direction::East)};
+
+        AgentPlan blocker;
+        blocker.agent = 1;
+        blocker.positions = {Position{2,4}};
+
+        PlanConflictRepairer repairer;
+        const PlanConflictRepairer::Result repaired = repairer.repair(l, s, std::vector<AgentPlan>{mover, blocker}, 32, 8);
+        assert(repaired.changed);
+        assert(repaired.conflict_free);
+        assert((repaired.agent_plans[1].positions.back() != Position{2,4}));
+
+        const PlanValidationResult validation = validate_plan_solves(l, s, repaired.plan);
+        if (!validation.valid) {
+            std::cerr << "passive goal blocker repair failure: " << validation.reason << "\n";
+        }
+        assert(validation.valid);
+    }
+
     {
         PlanningDeadline expired = PlanningDeadline::after(std::chrono::milliseconds(0));
         assert(expired.expired());
