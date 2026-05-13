@@ -1,6 +1,7 @@
 #include "tasks/DependencyBuilder.hpp"
 
 #include <algorithm>
+#include <cstdlib>
 #include <unordered_set>
 
 namespace {
@@ -30,6 +31,31 @@ bool is_agent_only_task(const Task& task) {
 Position route_end(const Task& task) {
     if (task.type == TaskType::MoveBlockingBoxToParking) return task.parking_pos;
     return task.goal_pos;
+}
+
+int manhattan(Position a, Position b) {
+    return std::abs(a.row - b.row) + std::abs(a.col - b.col);
+}
+
+int route_length(const Task& task) {
+    return static_cast<int>(coarse_route(task.box_pos, route_end(task)).size());
+}
+
+bool has_route_proximity_risk(const Task& a, const Task& b) {
+    const auto ra = coarse_route(a.box_pos, route_end(a));
+    const auto rb = coarse_route(b.box_pos, route_end(b));
+    for (Position pa : ra) {
+        for (Position pb : rb) {
+            if (manhattan(pa, pb) <= 1) return true;
+        }
+    }
+    return false;
+}
+
+bool is_long_disjoint_delivery_pair(const Task& a, const Task& b) {
+    if (a.type != TaskType::DeliverBoxToGoal || b.type != TaskType::DeliverBoxToGoal) return false;
+    if (std::max(route_length(a), route_length(b)) <= 5) return false;
+    return !has_route_proximity_risk(a, b);
 }
 
 bool has_route_overlap_risk(const Task& a, const Task& b) {
@@ -148,8 +174,14 @@ DependencyGraph DependencyBuilder::build_graph(const std::vector<Task>& tasks) c
             // placeholder box_pos/parking_pos values into box-route dependency
             // heuristics. Explicit task dependencies above decide when they run.
             if (!is_agent_only_task(a) && !is_agent_only_task(b)) {
-                if (overlaps(a.box_pos, a.goal_pos, b.box_pos, b.goal_pos) ||
-                    overlaps(a.box_pos, a.parking_pos, b.box_pos, b.parking_pos)) {
+                const bool endpoint_overlap = overlaps(a.box_pos, route_end(a), b.box_pos, route_end(b));
+                const bool parking_overlap = overlaps(a.box_pos, a.parking_pos, b.box_pos, b.parking_pos);
+                const bool parking_overlap_is_placeholder =
+                    a.type == TaskType::DeliverBoxToGoal && b.type == TaskType::DeliverBoxToGoal &&
+                    !endpoint_overlap && parking_overlap;
+                const bool ignore_placeholder_overlap =
+                    parking_overlap_is_placeholder && is_long_disjoint_delivery_pair(a, b);
+                if (endpoint_overlap || (parking_overlap && !ignore_placeholder_overlap)) {
                     const int pred = (a.task_id < b.task_id) ? a.task_id : b.task_id;
                     const int succ = (a.task_id < b.task_id) ? b.task_id : a.task_id;
                     add_edge(graph, pred, succ);
