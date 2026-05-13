@@ -170,7 +170,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             cheap_options.include_agent_goal_tasks = true;
             cheap_options.max_direct_delivery_tasks = 0;
             std::vector<Task> cheap_tasks = generator.generate_delivery_tasks(level, current, std::vector<AgentPlan>{}, deadline, cheap_options);
-            if (!cheap_tasks.empty() && !deadline.expired()) {
+            if (cheap_tasks.size() > static_cast<std::size_t>(config_.max_batch_tasks) && !deadline.expired()) {
                 std::vector<AgentPlan> cheap_agent_plans = scheduler.build_agent_plans(level, current, cheap_tasks, deadline);
                 Plan cheap_wave = PlanMerger::merge_agent_plans(cheap_agent_plans, current.num_agents());
                 PlanMerger::compact_independent_actions(level, current, cheap_wave);
