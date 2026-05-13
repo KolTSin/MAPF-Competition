@@ -967,6 +967,12 @@ red: 1, C
         assert(plan.success);
         assert(!plan.agent_plan.actions.empty());
         assert((plan.box_trajectory.back() == Position{1,4}));
+
+        BoxTransportPlanner capped_planner(1);
+        TaskPlan capped = capped_planner.plan(l,s,t);
+        assert(!capped.success);
+        assert(capped.failure_info.cause == TaskFailureCause::ExpansionLimitReached);
+        assert(capped.failure_info.max_expansions == 1);
     }
 
     {

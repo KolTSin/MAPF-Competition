@@ -10,6 +10,9 @@
 // Plans the primitive push/pull sequence that transports one box to a target cell.
 class BoxTransportPlanner {
 public:
+    explicit BoxTransportPlanner(int max_expansions = 0)
+        : max_expansions_(max_expansions) {}
+
     [[nodiscard]] TaskPlan plan(const Level& level, const State& state, const Task& task) const;
     [[nodiscard]] TaskPlan plan(const Level& level,
                                 const State& state,
@@ -22,4 +25,6 @@ public:
                                 const ReservationTable& reservations,
                                 int start_time,
                                 const PlanningDeadline& deadline) const;
+private:
+    int max_expansions_{0};
 };

@@ -38,12 +38,13 @@ TaskPlan plan_task(const Level& level,
                    const Task& task,
                    const ReservationTable& reservations,
                    int start_time,
-                   const PlanningDeadline& deadline) {
+                   const PlanningDeadline& deadline,
+                   const SolverConfig& config) {
     if (is_agent_task(task.type)) {
         AgentPathPlanner planner;
         return planner.plan(level, state, task, reservations, start_time, deadline);
     }
-    BoxTransportPlanner planner;
+    BoxTransportPlanner planner(config.max_box_planner_expansions);
     return planner.plan(level, state, task, reservations, start_time, deadline);
 }
 
@@ -163,7 +164,7 @@ RepairResult LocalRepair::repair(const Level& level,
 
     for (int delay = 1; delay <= 5; ++delay) {
         if (deadline.expired()) break;
-        TaskPlan delayed = plan_task(level, state, task, reservations, start_time + delay, deadline);
+        TaskPlan delayed = plan_task(level, state, task, reservations, start_time + delay, deadline, config_);
         append_attempt(attempts, "delay", delayed);
         if (acceptable_repair_plan(task, state, delayed)) {
             result = make_success(RepairStageOutcome::Delay,
@@ -178,7 +179,7 @@ RepairResult LocalRepair::repair(const Level& level,
         if (deadline.expired()) break;
         Task alternate = task;
         alternate.agent_id = agent;
-        TaskPlan plan = plan_task(level, state, alternate, reservations, start_time, deadline);
+        TaskPlan plan = plan_task(level, state, alternate, reservations, start_time, deadline, config_);
         append_attempt(attempts, "alternate_agent", plan);
         if (acceptable_repair_plan(alternate, state, plan)) {
             result = make_success(RepairStageOutcome::AlternateAgent,
@@ -194,7 +195,7 @@ RepairResult LocalRepair::repair(const Level& level,
         Task alternate = task;
         alternate.parking_pos = parking;
         alternate.goal_pos = parking;
-        TaskPlan plan = plan_task(level, state, alternate, reservations, start_time, deadline);
+        TaskPlan plan = plan_task(level, state, alternate, reservations, start_time, deadline, config_);
         append_attempt(attempts, "alternate_parking", plan);
         if (acceptable_repair_plan(alternate, state, plan)) {
             result = make_success(RepairStageOutcome::AlternateParking,
@@ -207,7 +208,7 @@ RepairResult LocalRepair::repair(const Level& level,
 
     if (!reservations.empty() || start_time != 0) {
         ReservationTable relaxed;
-        TaskPlan replanned = plan_task(level, state, task, relaxed, 0, deadline);
+        TaskPlan replanned = plan_task(level, state, task, relaxed, 0, deadline, config_);
         append_attempt(attempts, "neighborhood_replan", replanned);
         if (acceptable_repair_plan(task, state, replanned)) {
             result = make_success(RepairStageOutcome::NeighborhoodReplan,

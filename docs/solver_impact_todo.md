@@ -18,7 +18,7 @@ Completed checklist items from those files were treated as already-picked-off pr
 - Add a cheap first-prefix mode that tries a small set of reachable, low-risk deliveries before expensive blocker enumeration.
 - Cache static analysis, static distances, component reachability, parking candidates, and task skeletons across waves.
 - Stop expanding low-priority blocker tasks when the remaining budget is too small to validate and return a safe prefix.
-- Make `BoxTransportPlanner` expansion limits configurable through `SolverConfig` instead of deriving them only from map size.
+- Done: `BoxTransportPlanner` expansion limits are configurable through `SolverConfig` for competitive scheduling and local repair, with map-size fallback for default callers.
 
 **Prerequisites:**
 
@@ -164,7 +164,7 @@ Completed checklist items from those files were treated as already-picked-off pr
 - In each CBS branch, reserve only the constrained branch agent's forbidden transition.
 - Validate all root low-level plans before inserting the root node.
 - Gate CBS and low-level debug logs behind a runtime or compile-time verbose flag.
-- Apply cheap CBS hot-path cleanups: avoid full-node copies, remove redundant reservation checks, clarify max-time bounds, and handle agent goal encoding beyond single-digit ids.
+- Partially done: avoid extra full-node copies when branching CBS nodes. Remaining: remove redundant reservation checks, clarify max-time bounds, and handle agent goal encoding beyond single-digit ids.
 
 **Prerequisites:**
 
