@@ -154,10 +154,11 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // Convert unsatisfied goals into high-level delivery tasks. Each Task is
         // an intuitive contract: move a compatible box/agent from its source to
         // its target goal while respecting hospital-domain constraints.  On the
-        // very first wave, try a tiny direct-delivery batch before expensive
-        // blocker enumeration; if it yields a valid prefix, return useful work
-        // sooner and let the next wave perform the deeper analysis from the
-        // advanced state.
+        // very first wave, try direct deliveries before expensive blocker
+        // enumeration; if it yields a valid prefix, return useful work sooner
+        // and let the next wave perform the deeper analysis from the advanced
+        // state.  Do not cap this by the small default batch size: independent
+        // agents should get a chance to start in the same opening wave.
         std::vector<Task> tasks;
         std::vector<AgentPlan> wave_agent_plans;
         Plan wave;
@@ -166,9 +167,9 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             TaskGenerationOptions cheap_options;
             cheap_options.include_blocker_tasks = false;
             cheap_options.include_agent_goal_tasks = false;
-            cheap_options.max_direct_delivery_tasks = static_cast<std::size_t>(std::max(1, std::min(config_.max_batch_tasks, 4)));
+            cheap_options.max_direct_delivery_tasks = 0;
             std::vector<Task> cheap_tasks = generator.generate_delivery_tasks(level, current, std::vector<AgentPlan>{}, deadline, cheap_options);
-            if (!cheap_tasks.empty() && !deadline.expired()) {
+            if (cheap_tasks.size() > static_cast<std::size_t>(config_.max_batch_tasks) && !deadline.expired()) {
                 std::vector<AgentPlan> cheap_agent_plans = scheduler.build_agent_plans(level, current, cheap_tasks, deadline);
                 Plan cheap_wave = PlanMerger::merge_agent_plans(cheap_agent_plans, current.num_agents());
                 PlanMerger::compact_independent_actions(level, current, cheap_wave);

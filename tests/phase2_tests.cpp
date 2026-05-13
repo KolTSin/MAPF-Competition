@@ -650,6 +650,39 @@ red: 1, C
     }
 
     {
+        Task far_a;
+        far_a.task_id = 20;
+        far_a.type = TaskType::DeliverBoxToGoal;
+        far_a.box_id = 'A';
+        far_a.box_pos = Position{1, 1};
+        far_a.goal_pos = Position{1, 8};
+        far_a.priority = 10;
+
+        Task far_b;
+        far_b.task_id = 21;
+        far_b.type = TaskType::DeliverBoxToGoal;
+        far_b.box_id = 'B';
+        far_b.box_pos = Position{5, 1};
+        far_b.goal_pos = Position{5, 8};
+        far_b.priority = 9;
+
+        DependencyBuilder builder;
+        DependencyGraph graph = builder.build_graph({far_a, far_b});
+        assert(graph.predecessors[far_a.task_id].empty());
+        assert(graph.predecessors[far_b.task_id].empty());
+
+        Task near_short_a = far_a;
+        near_short_a.task_id = 22;
+        near_short_a.goal_pos = Position{1, 3};
+        Task near_short_b = far_b;
+        near_short_b.task_id = 23;
+        near_short_b.box_pos = Position{5, 1};
+        near_short_b.goal_pos = Position{5, 3};
+        graph = builder.build_graph({near_short_a, near_short_b});
+        assert(!graph.predecessors[near_short_b.task_id].empty());
+    }
+
+    {
         Task access_blocker;
         access_blocker.task_id = 10;
         access_blocker.type = TaskType::MoveBlockingBoxToParking;
@@ -702,6 +735,74 @@ red: 1, C
         TaskScheduler sched;
         Plan p = sched.build_plan(l, s, {t0, t1});
         assert(p.steps.size() <= 20);
+    }
+
+
+    {
+        Level l;
+        l.rows = 3; l.cols = 7;
+        l.walls.assign(21, false);
+        l.goals.assign(21, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.agent_colors[1] = Color::Red;
+        l.box_colors['A' - 'A'] = Color::Blue;
+
+        State s;
+        s.rows = 3; s.cols = 7;
+        s.agent_positions = {Position{1,1}, Position{0,0}};
+        s.box_pos.assign(21, '\0');
+        s.set_box(1,2,'A');
+
+        Task delivery;
+        delivery.task_id = 0; delivery.type = TaskType::DeliverBoxToGoal; delivery.agent_id = 0;
+        delivery.box_id = 'A'; delivery.box_pos = Position{1,2}; delivery.goal_pos = Position{1,5}; delivery.priority = 100;
+        Task independent_agent_goal;
+        independent_agent_goal.task_id = 1; independent_agent_goal.type = TaskType::MoveAgentToGoal;
+        independent_agent_goal.agent_id = 1; independent_agent_goal.goal_pos = Position{0,2}; independent_agent_goal.priority = 0;
+
+        TaskScheduler sched;
+        const std::vector<AgentPlan> plans = sched.build_agent_plans(l, s, {delivery, independent_agent_goal});
+        assert(plans.size() == 2);
+        assert(!plans[1].actions.empty());
+        assert(plans[1].actions.front().type != ActionType::NoOp);
+    }
+
+
+    {
+        Level l;
+        l.rows = 5; l.cols = 7;
+        l.walls.assign(35, false);
+        l.goals.assign(35, '\0');
+        l.agent_colors.fill(Color::Unknown);
+        l.box_colors.fill(Color::Unknown);
+        l.agent_colors[0] = Color::Blue;
+        l.agent_colors[1] = Color::Red;
+        l.box_colors['A' - 'A'] = Color::Blue;
+        l.box_colors['B' - 'A'] = Color::Red;
+
+        State s;
+        s.rows = 5; s.cols = 7;
+        s.agent_positions = {Position{1,1}, Position{3,1}};
+        s.box_pos.assign(35, '\0');
+        s.set_box(1,2,'A');
+        s.set_box(3,2,'B');
+
+        Task top_delivery;
+        top_delivery.task_id = 0; top_delivery.type = TaskType::DeliverBoxToGoal; top_delivery.agent_id = 0;
+        top_delivery.box_id = 'A'; top_delivery.box_pos = Position{1,2}; top_delivery.goal_pos = Position{1,5}; top_delivery.priority = 100;
+        Task bottom_delivery;
+        bottom_delivery.task_id = 1; bottom_delivery.type = TaskType::DeliverBoxToGoal; bottom_delivery.agent_id = 1;
+        bottom_delivery.box_id = 'B'; bottom_delivery.box_pos = Position{3,2}; bottom_delivery.goal_pos = Position{3,5}; bottom_delivery.priority = 90;
+
+        TaskScheduler sched;
+        const Plan p = sched.build_plan(l, s, {top_delivery, bottom_delivery});
+        assert(p.steps.size() == 3);
+        for (const JointAction& step : p.steps) {
+            assert(step.actions[0].type != ActionType::NoOp);
+            assert(step.actions[1].type != ActionType::NoOp);
+        }
     }
 
 
@@ -917,13 +1018,15 @@ red: 1, C
         l.agent_colors.fill(Color::Unknown);
         l.box_colors.fill(Color::Unknown);
         l.agent_colors[0] = Color::Blue;
+        l.agent_colors[1] = Color::Red;
         l.box_colors['A' - 'A'] = Color::Blue;
         l.goals[l.index(0,0)] = '0';
+        l.goals[l.index(0,4)] = '1';
         l.goals[l.index(1,4)] = 'A';
 
         State s;
         s.rows = 3; s.cols = 5;
-        s.agent_positions = {Position{0,0}};
+        s.agent_positions = {Position{0,0}, Position{0,2}};
         s.box_pos.assign(15, '\0');
         s.set_box(1,2,'A');
 
@@ -931,20 +1034,27 @@ red: 1, C
         const auto tasks = generator.generate_delivery_tasks(l, s);
         const Task* delivery = nullptr;
         const Task* final_agent_goal = nullptr;
+        const Task* unrelated_agent_goal = nullptr;
         for (const Task& task : tasks) {
             if (task.type == TaskType::DeliverBoxToGoal && task.box_id == 'A') delivery = &task;
             if (task.type == TaskType::MoveAgentToGoal && task.agent_id == 0) final_agent_goal = &task;
+            if (task.type == TaskType::MoveAgentToGoal && task.agent_id == 1) unrelated_agent_goal = &task;
         }
         assert(delivery != nullptr);
         assert(final_agent_goal != nullptr);
+        assert(unrelated_agent_goal != nullptr);
         assert((final_agent_goal->goal_pos == Position{0,0}));
         assert(std::find(final_agent_goal->dependencies.begin(), final_agent_goal->dependencies.end(), delivery->task_id) != final_agent_goal->dependencies.end());
+        assert(unrelated_agent_goal->dependencies.empty());
 
         DependencyBuilder deps;
         const DependencyGraph graph = deps.build_graph(tasks);
         const auto pred_it = graph.predecessors.find(final_agent_goal->task_id);
         assert(pred_it != graph.predecessors.end());
         assert(std::find(pred_it->second.begin(), pred_it->second.end(), delivery->task_id) != pred_it->second.end());
+        const auto unrelated_pred_it = graph.predecessors.find(unrelated_agent_goal->task_id);
+        assert(unrelated_pred_it != graph.predecessors.end());
+        assert(unrelated_pred_it->second.empty());
     }
 
     {
