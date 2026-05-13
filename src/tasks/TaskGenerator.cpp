@@ -85,10 +85,11 @@ void TaskGenerator::append_agent_goal_tasks(const Level& level,
                                             const State& state,
                                             int& next_task_id,
                                             std::vector<Task>& tasks) {
-    std::vector<int> final_task_dependencies;
-    final_task_dependencies.reserve(tasks.size());
+    std::vector<std::vector<int>> agent_task_dependencies(static_cast<std::size_t>(state.num_agents()));
     for (const Task& task : tasks) {
-        final_task_dependencies.push_back(task.task_id);
+        if (task.agent_id >= 0 && task.agent_id < state.num_agents()) {
+            agent_task_dependencies[static_cast<std::size_t>(task.agent_id)].push_back(task.task_id);
+        }
     }
 
     for (int r = 0; r < level.rows; ++r) {
@@ -102,6 +103,7 @@ void TaskGenerator::append_agent_goal_tasks(const Level& level,
                 continue;
             }
 
+            const std::vector<int>& final_task_dependencies = agent_task_dependencies[static_cast<std::size_t>(agent_id)];
             const bool already_at_goal = state.agent_positions[agent_id] == Position{r, c};
             if (already_at_goal && final_task_dependencies.empty()) continue;
 
@@ -274,10 +276,10 @@ std::vector<Task> TaskGenerator::generate_delivery_tasks(const Level& level,
 
     tasks.insert(tasks.end(), blocker_tasks.begin(), blocker_tasks.end());
 
-    // Final phase: once all generated box/blocker work has completed, agents
-    // that have digit goals should return to their own goal cells.  These tasks
-    // are intentionally appended last and depend on the earlier task ids so they
-    // do not steal an agent away before its useful work is done.
+    // Final phase: agents that have digit goals should return to their own goal
+    // cells after their own assigned work. Unrelated agents are left free to move
+    // in parallel; if an early parked agent blocks a later box task, scheduler
+    // conflict repair will add the missing ordering edge.
     if (options.include_agent_goal_tasks && !deadline.expired()) append_agent_goal_tasks(level, state, next_task_id, tasks);
 
     return tasks;

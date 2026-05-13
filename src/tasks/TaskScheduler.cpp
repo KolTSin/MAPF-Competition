@@ -280,7 +280,21 @@ const ScheduledTask* task_active_for_agent(const std::vector<ScheduledTask>& sch
             if (st.start_time <= time - 1 && time - 1 < st.end_time) return &st;
         }
     }
-    return nullptr;
+
+    // A completed agent-only task can still be the reason for a later conflict:
+    // after reaching its goal the agent remains parked there as an idle obstacle.
+    // Map such post-task occupancy back to the most recent task for that agent
+    // so conflict repair can add an ordering edge (usually box delivery before
+    // the final agent-goal move) instead of failing to explain the collision.
+    const ScheduledTask* latest_completed = nullptr;
+    for (const ScheduledTask& st : scheduled) {
+        if (st.task.agent_id != agent_id) continue;
+        if (st.end_time > time) continue;
+        if (latest_completed == nullptr || st.end_time > latest_completed->end_time) {
+            latest_completed = &st;
+        }
+    }
+    return latest_completed;
 }
 
 const ScheduledTask* task_active_for_box(const std::vector<ScheduledTask>& scheduled, char box_letter, int time) {
@@ -398,11 +412,12 @@ std::vector<ScheduledTask> schedule_once(
     std::vector<int> agent_available(initial_state.num_agents(), 0);
 
     // `simulated_state` is a single serial snapshot: after accepting a task we
-    // immediately replay its effects before planning the next task.  Any later
-    // task planned from that snapshot therefore depends on all earlier accepted
-    // effects, even if the high-level dependency graph does not explicitly say
-    // so.  Keep a matching global frontier so emitted timelines cannot start a
-    // task before the world state it was planned against actually exists.
+    // immediately replay its effects before planning the next task. Box-moving
+    // tasks still respect a matching global frontier because they may depend on
+    // the future positions of several boxes. Agent-only tasks are allowed to run
+    // earlier when their own agent/dependencies are ready; reservations and the
+    // conflict-repair pass handle temporal interference with already scheduled
+    // work.
     int global_state_frontier = 0;
     int next_dynamic_task_id = -1;
 
@@ -514,12 +529,20 @@ std::vector<ScheduledTask> schedule_once(
                 if (used_agents.count(candidate_agent)) continue;
 
                 chosen_task.agent_id = candidate_agent;
-                chosen_start = std::max({agent_available[candidate_agent], dep_time, global_state_frontier});
+                const bool agent_only_task = chosen_task.type == TaskType::MoveAgentToGoal || chosen_task.type == TaskType::ParkAgentSafely;
+                chosen_start = std::max(agent_available[candidate_agent], dep_time);
+                if (!agent_only_task) {
+                    chosen_start = std::max(chosen_start, global_state_frontier);
+                }
 
-                // Agent-only tasks use point-to-point path planning.  Box tasks
-                // use transport planning, which plans both agent actions and the
-                // box trajectory starting at chosen_start in the global timeline.
-                if (chosen_task.type == TaskType::MoveAgentToGoal || chosen_task.type == TaskType::ParkAgentSafely) {
+                // Agent-only tasks use point-to-point path planning.  They can
+                // start as soon as their own agent and explicit dependencies are
+                // ready; reservations protect them from already scheduled box
+                // work, and conflict repair adds an ordering edge if parking the
+                // agent early blocks another task. Box tasks still use the global
+                // simulated-state frontier because they may depend on the current
+                // positions of multiple boxes.
+                if (agent_only_task) {
                     if (verbose_scheduler()) {
                         std::cerr << "path planning for task: " << chosen_task.task_id << " and assigned agent: " << chosen_task.agent_id << std::endl;
                     }
