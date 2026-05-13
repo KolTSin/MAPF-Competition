@@ -498,6 +498,9 @@ ConflictDetector::findAllConflicts(
         add_box_box_conflicts(attempts, boxes, static_cast<int>(t), step_conflicts);
 
         if (!step_conflicts.empty()) {
+            std::stable_sort(step_conflicts.begin(), step_conflicts.end(), [](const Conflict& a, const Conflict& b) {
+                return a.time < b.time;
+            });
             conflicts.insert(
                 conflicts.end(),
                 step_conflicts.begin(),
