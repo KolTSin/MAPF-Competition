@@ -71,6 +71,12 @@ int total_box_goals(const Level& level) {
     return total;
 }
 
+bool has_planned_actions(const std::vector<AgentPlan>& agent_plans) {
+    return std::any_of(agent_plans.begin(),
+                       agent_plans.end(),
+                       [](const AgentPlan& plan) { return !plan.actions.empty(); });
+}
+
 std::string compact_stop_reason(std::string reason) {
     for (char& ch : reason) {
         const bool safe = (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') ||
@@ -222,6 +228,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
             PlanMerger::compact_independent_actions(level, current, wave);
         }
+        bool conflict_repair_already_attempted = false;
         if (wave.empty()) {
             // An empty wave means the scheduler could not safely reserve paths
             // for the generated tasks. Local repair now performs real low-level
@@ -266,6 +273,29 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
                     break;
                 }
             }
+
+            // If the task-level local repair could not promote a single repaired
+            // task, still give the CBS-style conflict repairer the scheduler's
+            // original per-agent timelines.  Those plans may be unmergeable only
+            // because of a temporal conflict; the conflict repairer can identify
+            // the involved agents and replan/delay them without discarding the
+            // whole scheduler wave.
+            if (wave.empty() && !deadline.expired() && has_planned_actions(wave_agent_plans)) {
+                conflict_repair_already_attempted = true;
+                const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave_agent_plans);
+                if (repaired_wave.conflict_free && !repaired_wave.plan.empty()) {
+                    if (kVerboseTasks) {
+                        std::cerr << "[HTN] cbs_style_repair recovered scheduler_empty iterations="
+                                  << repaired_wave.iterations << " steps=" << repaired_wave.plan.steps.size() << '\n';
+                    }
+                    wave_agent_plans = repaired_wave.agent_plans;
+                    wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
+                    PlanMerger::compact_independent_actions(level, current, wave);
+                } else if (kVerboseTasks) {
+                    std::cerr << "[HTN] cbs_style_repair could not recover scheduler_empty wave\n";
+                }
+            }
+
             if (wave.empty() && ++no_progress_iters >= kNoProgressBudget) {
                 if (stop_reason.empty() || stop_reason == "loop_not_started") {
                     stop_reason = deadline.expired() ? "deadline_during_repair" : "scheduler_empty";
@@ -273,7 +303,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
                 break;
             }
         }
-        
+
         // The scheduler normally uses reservations, but a competitive wave can
         // still expose a conflict once the selected task/agent timelines are
         // composed. Repair operates on the AgentPlan wave directly so it can add
@@ -284,17 +314,19 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
             stop_reason = "deadline_before_conflict_repair";
             break;
         }
-        const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave_agent_plans);
-        if (repaired_wave.conflict_free) {
-            if (kVerboseTasks && repaired_wave.changed) {
-                std::cerr << "[HTN] cbs_style_repair inserted waits iterations="
-                          << repaired_wave.iterations << " steps=" << repaired_wave.plan.steps.size() << '\n';
+        if (!conflict_repair_already_attempted) {
+            const PlanConflictRepairer::Result repaired_wave = conflict_repairer.repair(level, current, wave_agent_plans);
+            if (repaired_wave.conflict_free) {
+                if (kVerboseTasks && repaired_wave.changed) {
+                    std::cerr << "[HTN] cbs_style_repair inserted waits iterations="
+                              << repaired_wave.iterations << " steps=" << repaired_wave.plan.steps.size() << '\n';
+                }
+                wave_agent_plans = repaired_wave.agent_plans;
+                wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
+                PlanMerger::compact_independent_actions(level, current, wave);
+            } else if (kVerboseTasks) {
+                std::cerr << "[HTN] cbs_style_repair could not prove conflict-free wave; using scheduler wave\n";
             }
-            wave_agent_plans = repaired_wave.agent_plans;
-            wave = PlanMerger::merge_agent_plans(wave_agent_plans, current.num_agents());
-            PlanMerger::compact_independent_actions(level, current, wave);
-        } else if (kVerboseTasks) {
-            std::cerr << "[HTN] cbs_style_repair could not prove conflict-free wave; using scheduler wave\n";
         }
 
         // Simulate the wave before accepting it.  A locally executable wave can
