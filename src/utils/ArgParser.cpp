@@ -13,6 +13,8 @@ SolverType parseSolver(const std::string& s) {
         {"spacetime_astar", SolverType::SPACETIME_ASTAR},
         {"cbs", SolverType::CBS},
         {"comp", SolverType::COMPETITIVE},
+        {"lns_htn", SolverType::LNS_HTN},
+        {"lns", SolverType::LNS_HTN},
     };
 
     auto it = table.find(s);
