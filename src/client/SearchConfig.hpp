@@ -9,7 +9,8 @@ enum class SolverType {
     SEQUENTIAL,
     SPACETIME_ASTAR,
     CBS,
-    COMPETITIVE
+    COMPETITIVE,
+    LNS_HTN
 };
 
 enum class HeuristicType {
