@@ -154,11 +154,12 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         // Convert unsatisfied goals into high-level delivery tasks. Each Task is
         // an intuitive contract: move a compatible box/agent from its source to
         // its target goal while respecting hospital-domain constraints.  On the
-        // very first wave, try direct deliveries before expensive blocker
-        // enumeration; if it yields a valid prefix, return useful work sooner
-        // and let the next wave perform the deeper analysis from the advanced
-        // state.  Do not cap this by the small default batch size: independent
-        // agents should get a chance to start in the same opening wave.
+        // very first wave, try every immediately generatable direct delivery and
+        // agent-goal task before expensive blocker enumeration; if it yields a
+        // valid prefix, return useful work sooner and let the next wave perform
+        // the deeper analysis from the advanced state.  Do not cap this by the
+        // small default batch size: independent agents should get a chance to
+        // start in the same opening wave.
         std::vector<Task> tasks;
         std::vector<AgentPlan> wave_agent_plans;
         Plan wave;
@@ -166,7 +167,7 @@ Plan CompetitiveSolver::solve(const Level& level, const State& initial_state, co
         if (accumulated.steps.empty()) {
             TaskGenerationOptions cheap_options;
             cheap_options.include_blocker_tasks = false;
-            cheap_options.include_agent_goal_tasks = false;
+            cheap_options.include_agent_goal_tasks = true;
             cheap_options.max_direct_delivery_tasks = 0;
             std::vector<Task> cheap_tasks = generator.generate_delivery_tasks(level, current, std::vector<AgentPlan>{}, deadline, cheap_options);
             if (cheap_tasks.size() > static_cast<std::size_t>(config_.max_batch_tasks) && !deadline.expired()) {
